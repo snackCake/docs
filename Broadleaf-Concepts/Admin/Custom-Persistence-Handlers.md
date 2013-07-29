@@ -62,6 +62,7 @@ Now when the admin attempts to add a new Product, your CustomPersistenceHandler 
 
 ## Hooking Up your Custom Persistence Handler
 In order to tell the admin to consider your custom persistence handler, simply add your bean to the list of `blCustomPersistenceHandlers` in an applicationContext picked up by the admin:
+
 ```xml
 <bean id="blCustomPersistenceHandlers" class="org.springframework.beans.factory.config.ListFactoryBean" scope="prototype">
     <property name="sourceList">
