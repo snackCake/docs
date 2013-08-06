@@ -341,6 +341,10 @@
     <td>2.3.0-SNAPSHOT</td>
     <td>2.4.0-SNAPSHOT</td>
   </tr>
+  <tr>
+    <td>3.0.0-GA</td>
+    <td>2.5.0-SNAPSHOT</td>
+  </tr>
 </table>
 
 ### broadleaf-sagepay-form ###
