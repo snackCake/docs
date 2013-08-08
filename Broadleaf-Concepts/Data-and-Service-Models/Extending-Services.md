@@ -32,7 +32,7 @@ Before our new service extension becomes active, we must first register it with 
 
 This bean definition should be added to your application context. Once in place, Broadleaf Commerce will now instantiate MyCartService when an instance of CartService is required and the new cancelOrder method implementation will be called whenever an order is cancelled.
 
-### Caveat with transactions
+### Caveat in regards to Transactions and AOP
 
 Most of the Broadleaf services use `@Transactional` annotations which means that Spring will wrap the service implementation within a JDK Proxy. By default, JDK proxies will only be castable to interfaces and not to the actual runtime type. Because of this, if you were to inject the `blCartService` bean if you attempted to cast to MyCartServiceImpl it would throw a ClassCastException.
 
