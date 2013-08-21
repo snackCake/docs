@@ -51,6 +51,7 @@ This especially comes into play when comparing values obtained from entities, si
 So if you were ever trying to see if the salePrice or retailPrice was zero, `BigDecimal.ZERO.equals(sku.getSalePrice().getAmount())` will _always_ be false since the database enforces a scale of 5, and the `BigDecimal.ZERO` constant has a scale of 0.
 
 To get around this, you can use the `compareTo` method which ignores precision.
+
 ```java
 Sku sku = new SkuImpl();
 sku.setRetailPrice(new Money(BigDecimal.ZERO);
