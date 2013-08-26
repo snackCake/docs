@@ -6,6 +6,7 @@
 - [[Pricing]]
 - [[Checkout]]
 - [[Payment]]
+- [[Architecture Diagrams]]
 - [[Additional Configuration]]
 - [[Admin]]
 - [[Presentation Layer]]
