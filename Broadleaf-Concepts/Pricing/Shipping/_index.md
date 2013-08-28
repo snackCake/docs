@@ -1,3 +1,5 @@
+# Pricing Shipping
+
 Broadleaf Commerce can be configured for shipping (fulfillment) calculation in a number of ways. Broadleaf provides a few out of the box implementations such as:
 
 - Banded Price
@@ -21,11 +23,11 @@ While these are the default options available to you, it is simple to configure 
 The final configuration in terms of Fulfillment groups would be:
 
 | Name        | Number of items | Fulfillment Type | Speed | Destination
-|: ----------- |:-------------|: ----------------- | ----- | -----------
-| Fulfillment Group 1 | 1 | 'PHYSICAL_SHIP' | Standard | Albuquerque
-| Fulfillment Group 2 | 1 | 'PHYSICAL_SHIP' | Next-Day | Albuquerque
-| Fulfillment Group 3 | 1 | 'PHYSICAL_SHIP' | Next-Day | Dallas
-| Fulfillment Group 4 | 1 | 'DIGITAL' | N/A | N/A
+| ----------- | ------------- | ----------------- | ----- | ----------- |
+| Fulfillment Group 1 | 1 | 'PHYSICAL_SHIP' | Standard | Albuquerque |
+| Fulfillment Group 2 | 1 | 'PHYSICAL_SHIP' | Next-Day | Albuquerque |
+| Fulfillment Group 3 | 1 | 'PHYSICAL_SHIP' | Next-Day | Dallas |
+| Fulfillment Group 4 | 1 | 'DIGITAL' | N/A | N/A |
 
 **FulfillmentPricingProvider** (service interface) - interface to implement to provide pricing information for a particular `FulfillmentOption` (for estimation) or `FulfillmentOption` + `FulfillmentGroup` combination.
 
