@@ -1,94 +1,81 @@
-# Shipping
+Broadleaf Commerce can be configured for shipping (fulfillment) calculation in a number of ways. Broadleaf provides a few out of the box implementations such as:
 
-Broadleaf Commerce can be configured for shipping calculation in a number of ways. You can use banded shipping, one of our included third party shipping modules (such as USPS), or by using a custom shipping module.
+- Banded Price
+- Banded Weight
+- Fixed Price
 
-## Banded Shipping
+While these are the default options available to you, it is simple to configure your own fulfillment pricing implementation or hook in 3rd-party pricing (like UPS, Fedex or USPS).
 
-The ShippingActivity instance from the pricing workflow is set to use the bean id `blShippingService`, which is associated with an instance of ShippingService. In turn, the ShippingService instance is associated with ShippingModule instance via the blShippingModule bean id.
+## Defining Terms
+ 
+**FulfillmentOption** (database) - an option a user can select for Fulfillment at the time of order. If you were to offer next-day, standard, ground and air for users to select that would correspond to 4 unique fulfillment options. Usually the set of FulfillmentOptions are displayed to the user to select from. After selection, the FulfillmentOption is associated with a Fulfillment Group
 
-```xml
-<bean id="blShippingService" class="org.broadleafcommerce.core.pricing.service.ShippingServiceImpl">
-    <property name="shippingModule" ref="blShippingModule"/>
-</bean>
+**FulfillmentType** (enum) - the type of fulfillment such as physical, in-store pickup, digital delivery, etc.
 
-<bean id="blShippingModule" class="org.broadleafcommerce.core.pricing.service.module.BandedShippingModule">
-    <property name="feeTypeMapping">
-        <map>
-            <entry key="standard" value="SHIPPING" />
-            <entry key="expedited" value="EXPEDITED"/>
-            <entry key="truck" value="FREE" />
-            <entry key="pickup" value="FREE" />
-        </map>
-    </property>
-    <property name="feeSubTypeMapping">
-        <map>
-            <entry key="ALL" value="ALL" />
-            <entry key="alsk" value="alsk" />
-            <entry key="hawi" value="hawi" />
-        </map>
-    </property>
-</bean>
+**FulfillmentGroup** (database) - a grouping of `OrderItem`s that are all shipped to the same location with the same option and the same `FulfillmentType`. Consider this scenario:
+
+1. A user adds 4 items to their cart
+2. A user wants to get 2 of the items next-day and one of the items with standard shipping. The 4th item is a digital item
+3. A user wants to send one of the next-day items and the standard shipping item to Albuquerque, and the other next-day item to Dallas
+
+The final configuration in terms of Fulfillment groups would be:
+
+| Name        | Number of items | Fulfillment Type | Speed | Destination
+|: ----------- |:-------------|: ----------------- | ----- | -----------
+| Fulfillment Group 1 | 1 | 'PHYSICAL_SHIP' | Standard | Albuquerque
+| Fulfillment Group 2 | 1 | 'PHYSICAL_SHIP' | Next-Day | Albuquerque
+| Fulfillment Group 3 | 1 | 'PHYSICAL_SHIP' | Next-Day | Dallas
+| Fulfillment Group 4 | 1 | 'DIGITAL' | N/A | N/A
+
+**FulfillmentPricingProvider** (service interface) - interface to implement to provide pricing information for a particular `FulfillmentOption` (for estimation) or `FulfillmentOption` + `FulfillmentGroup` combination.
+
+**FulfillmentPricingService** (Broadleaf service) - contains the list of `FulfillmentPricingProviders`. These are looped through to get a final price for the fulfillment group
+
+## Flat Rates per-Sku
+Each Sku has a Map of FulfillmentOption -> Price. Assuming that you have set the `USE_FLAT_RATES` flag in each `FulfillmentOption` to true, the system will utilize the price configured for that Sku instead of trying to price it by any other means.
+
+## Banded Price/Weight
+Broadleaf provides abilities to configure weight and price bands to give a certain price. For instance, you might offer free shipping for orders > $100 but $10 shipping on everything below $100.
+
+```sql 
+-- Insert the options
+INSERT INTO BLC_FULFILLMENT_OPTION (FULFILLMENT_OPTION_ID, NAME, LONG_DESCRIPTION, USE_FLAT_RATES, FULFILLMENT_TYPE) VALUES (1, 'Free Shipping Above $100', 'Free Shipping Above $100', FALSE, 'PHYSICAL_SHIP');
+INSERT INTO BLC_FULFILLMENT_OPT_BANDED_PRC(FULFILLMENT_OPTION_ID) VALUES (1);
+
+-- Insert the price bands
+INSERT INTO BLC_FULFILLMENT_PRICE_BAND (FULFILLMENT_PRICE_BAND_ID, RETAIL_PRICE_MINIMUM_AMOUNT, FULFILLMENT_OPTION_ID, RESULT_AMOUNT, RESULT_AMOUNT_TYPE) VALUES (1, 0.00, 1, 10.00, 'RATE');
+INSERT INTO BLC_FULFILLMENT_PRICE_BAND (FULFILLMENT_PRICE_BAND_ID, RETAIL_PRICE_MINIMUM_AMOUNT, FULFILLMENT_OPTION_ID, RESULT_AMOUNT, RESULT_AMOUNT_TYPE) VALUES (2, 100.00, 1, 0.00, 'RATE');
 ```
 
-The key behavior for shipping calculation occurs at the ShippingModule level, and it's at this level that key customizations are made. Broadleaf Commerce is configured by default to use a BandedShippingModule instance. Banded shipping is a type of shipping calculation approach in which order total dollar value ranges are used to derive a shipping estimate. This is a simplified form of shipping calculation where achieving a "close enough" shipping total is acceptable.
+Now, for all `FulfillmentGroup`s with a fulfillment type of PHYSICAL_SHIP and have a retail price below below $100, they will be charged $10 for shipping. Anything over $100 will be charged $0 for shipping.
 
-Configuring banded shipping involves establishing the maps in your application context that define the various fee types and fee sub-types. In addition, the appropriate database tables must be populated with the fee data for these types (more on this later). By default, Broadleaf Commerce defines fee types for standard, expedited, truck and pickup. For fee sub-types, ALL, alsk and hawi are defined. In this way, we can define the mode of shipping at the highest level, and then use the fee sub-type to further refine the shipping cost based on region. It is likely that the default Broadleaf Commerce configuration for banded shipping will not fulfill your needs, so let's create an example that alters the configuration.
+A very similar database configuration can be used for weight. The following SQL imports charge $10 for orders that weigh 10lbs or over:
 
-```
-<bean id="blShippingModule" class="org.broadleafcommerce.core.pricing.service.module.BandedShippingModule">
-    <property name="feeTypeMapping">
-        <map>
-            <entry key="standard" value="SHIPPING" />
-            <entry key="expedited" value="EXPEDITED"/>
-            <entry key="overnight" value="OVERNIGHT"/>
-        </map>
-    </property>
-    <property name="feeSubTypeMapping">
-        <map>
-            <entry key="ALL" value="ALL" />
-        </map>
-    </property>
-</bean>
+```sql 
+-- Insert the options
+INSERT INTO BLC_FULFILLMENT_OPTION (FULFILLMENT_OPTION_ID, NAME, LONG_DESCRIPTION, USE_FLAT_RATES, FULFILLMENT_TYPE) VALUES (1, 'Free Shipping for orders less than 10lbs', 'Free Shipping for orders less than 10lbs', FALSE, 'PHYSICAL_SHIP');
+INSERT INTO BLC_FULFILLMENT_OPT_BANDED_WGT(FULFILLMENT_OPTION_ID) VALUES (1);
+
+-- Insert the weight bands
+INSERT INTO BLC_FULFILLMENT_WEIGHT_BAND (FULFILLMENT_PRICE_BAND_ID, MINIMUM_WEIGHT, WEIGHT_UNIT_OF_MEASURE, FULFILLMENT_OPTION_ID, RESULT_AMOUNT, RESULT_AMOUNT_TYPE) VALUES (1, 0.00, 'POUNDS', 1, 0.00, 'RATE');
+INSERT INTO BLC_FULFILLMENT_WEIGHT_BAND (FULFILLMENT_PRICE_BAND_ID, MINIMUM_WEIGHT, WEIGHT_UNIT_OF_MEASURE, FULFILLMENT_OPTION_ID, RESULT_AMOUNT, RESULT_AMOUNT_TYPE) VALUES (2, 10.00, 'POUNDS', 1, 10.00, 'RATE');
 ```
 
-In this example, we're overriding the default banded shipping config from Broadleaf Commerce by defining a new BandedShippingModule bean with the appropriate id `blShippingModule`. We've taken away several of the shipping types and added an arbitrary new type for overnight shipping. Also, we've removed the alaska and hawaii shipping subtypes, effectively removing regional specificity for shipping charges. Now let's review some sample data that we can use to back our new banded shipping configuration.
 
-| ID  | BAND\_RESULT\_PCT | BAND\_RESULT\_QTY | BAND\_UNIT\_QTY | FEE\_BAND | FEE\_SUB\_TYPE | FEE\_TYPE |
-| :-- | :--------------   | :--------------   | :------------   | :-------  | :-----------   | :-------- |
-| 1   | 10                | 0                 | 50.00           | 1         | ALL            | SHIPPING  |
-| 2   | 9                 | 0                 | 999999          | 1         | ALL            | SHIPPING  |
-| 3   | 0                 | 10.50             | 50.00           | 2         | ALL            | EXPEDITED |
-| 4   | 0                 | 25.00             | 999999          | 2         | ALL            | EXPEDITED |
-| 5   | 0                 | 25.00             | 50.00           | 3         | ALL            | OVERNIGHT |
-| 6   | 0                 | 50.00             | 999999          | 3         | ALL            | OVERNIGHT |
+## Fixed Price
+This is for scenarios where you would like to offer a flat $5 shipping on all purchases. A potential SQL import for this:
 
-- BAND_RESULT_PCT - represents the percentage of the retail total of all items in a fulfillment group for this band.
-- BAND_RESULT_QTY - represents the flat rate amount for this band.
-- BAND_UNIT_QTY - represents the maximum dollar amount for the retail total of all items in a fulfillment group for which this band is allowable.
-- FEE_BAND - numeric identifier for a shipping type.
-- FEE_SUB_TYPE - region identifier for this band - specifically the state abbreviation from the shipping address.
-- FEE_TYPE - the major shipping type for this band.
+```sql
+INSERT INTO BLC_FULFILLMENT_OPTION (FULFILLMENT_OPTION_ID, NAME, LONG_DESCRIPTION, USE_FLAT_RATES, FULFILLMENT_TYPE) VALUES (1, 'Standard', '5 - 7 Days', FALSE, 'PHYSICAL_SHIP');
+INSERT INTO BLC_FULFILLMENT_OPTION (FULFILLMENT_OPTION_ID, NAME, LONG_DESCRIPTION, USE_FLAT_RATES, FULFILLMENT_TYPE) VALUES (2, 'Priority', '3 - 5 Days', FALSE, 'PHYSICAL_SHIP');
+INSERT INTO BLC_FULFILLMENT_OPTION (FULFILLMENT_OPTION_ID, NAME, LONG_DESCRIPTION, USE_FLAT_RATES, FULFILLMENT_TYPE) VALUES (3, 'Express', '1 - 2 Days', FALSE, 'PHYSICAL_SHIP');
 
-This represents sample data entered into the BLC_SHIPPING_RATE table in the non-secure schema (see [Data Model]). With this configuration, you would expect the following results:
+INSERT INTO BLC_FULFILLMENT_OPTION_FIXED (FULFILLMENT_OPTION_ID, PRICE) VALUES (1, 5.00);
+INSERT INTO BLC_FULFILLMENT_OPTION_FIXED (FULFILLMENT_OPTION_ID, PRICE) VALUES (2, 10.00);
+INSERT INTO BLC_FULFILLMENT_OPTION_FIXED (FULFILLMENT_OPTION_ID, PRICE) VALUES (3, 20.00);
+```
 
-- For fulfillment groups with the "SHIPPING" shipping method whose retail item total is less than $50.00, the shipping charge will be 10% of the retail item total (if a percentage is available for the band, it is always favored over the flat rate amount).
-- For "SHIPPING" fulfillment groups whose retail item total is greater than $50.00, the shipping charge will be 9% of the retail item total.
-- For "EXPEDITED" fulfillment groups whose retail item total is less than $50.00, the shipping charge will be $10.50.
-- For "EXPEDITED" fulfillment groups whose retail item total is greater than $50.00, the shipping charge will be $25.00.
-- For "OVERNIGHT" fulfillment groups whose retail item total is less than $50.00, the shipping charge will be $25.00.
-- For "OVERNIGHT" fulfillment groups whose retail item total is greater than $50.00, the shipping charge will be $50.00.
+This will add 3 options for users to select from at checkout.
 
-As long as you follow the required structure, you may introduce as many bands and regional variations as you like.
-
-## USPS (United States Postal Service)
-
-As an alternative to banded shipping, Broadleaf Commerce offers the USPS Shipping Pricing module. Please refer to the [[USPS Shipping Configuration | USPS Module]] section for more information.
-
-## Creating Your Own Shipping Module
-
-If the provided modules in Broadleaf do not meet your needs, you can easily write a customized shipping module to integrate with your shipping calculator. Please view the [[Creating a Shipping Module]] section.
-
-## QOS
-
-You should configure QOS so that your vendor services are monitored and so that you can be notified, or cause some other action to be taken, when a vendor service goes down or comes back up. Please refer to [[QOS Configuration]] for more information.
-
+## Writing your own fulfillment pricing
+Content coming soon. In the mean time, check out the `FulfillmentPricingProvider` interface definition.
