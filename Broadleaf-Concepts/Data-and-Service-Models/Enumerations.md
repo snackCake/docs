@@ -1,10 +1,10 @@
 #Enumerations
 
-Broadleaf provides two data structures to store enumeration like data, a BroadleafEnumerationType and a DataDrivenEnumeration.  Both are, in essence, just a collection of Strings.  A BroadleafEnumerationType is used to provide a predefined set of values to use in business logic, while a DataDrivenEnumerations is used to provide a variable set of values to use in places like drop-down menus.
+Broadleaf provides two data structures to store enumeration like data, a BroadleafEnumerationType and a DataDrivenEnumeration.  Both are, in essence, just a collection of Strings.  A BroadleafEnumerationType is used to provide a predefined set of values to use in business logic, while a DataDrivenEnumerations is used to provide a variable set of values to use in places like drop-down menus in the Admin console.
 
 ##BroadleafEnumerationType
 
-BroadleafEnumerationType is an interface that is implemented to create a custom enumeration of predefined hard-coded String values.  An example from the Broadleaf framework would be FulfillmentType.  FulfillmentType is an enumeration that contains values corresponding to the available FulfillmentGroup types.  Here is how BroadleafEnumerationType is implemented by FulfillmentType:
+The BroadleafEnumerationType is an interface that is implemented to create a custom enumeration of predefined hard-coded String values.  An example from the Broadleaf framework would be FulfillmentType.  FulfillmentType is an enumeration that contains values corresponding to the available FulfillmentGroup types.  Here is how BroadleafEnumerationType is implemented by FulfillmentType:
 
 ```java
 public class FulfillmentType implements Serializable, BroadleafEnumerationType {
@@ -39,15 +39,13 @@ if(!FulfillmentType.GIFT_CARD.equals(fulfillmentGroup.getType())) {
 
 ##DataDrivenEnumeration
 
-DataDrivenEnumeration refer to database supplied enumerations and their associated values.  Please note that Broadleaf contains non-database supplied enumerations that are hardcoded into the Broadleaf source files.  This page refers to only database supplied enumerations.
+A DataDrivenEnumeration is an entity that contains a list of DataDrivenEnumerationValues.  A DataDrivenEnumerationValue is also an entity and provides structure to a single String value.  In contrast to the BroadleafEnumerationType which is used to hard-code a set of values, the DataDrivenEnumeration contains a set of database stored values which can be changed as needed.
 
-The admin console provides configuration screens to build custom Data Driven Enumerations(under the "Utilities" tab in the sidebar).  Once an enumeration is built using the admin console, it is saved to the database for future use.  
-
-Data Driven Enumerations can be used in a few different scenarios.
+The admin console provides configuration screens to create and edit DataDrivenEnumerations (under the "Utilities" tab in the sidebar).  Once an enumeration is created using the admin console, it is saved to the database for future use.  
   
-To specify the values that will be used in a dropdown menu in the admin console the `@AdminPresentation` annotation is used with the `@AdminPresentationDataDrivenEnumerations` annotation.  Below is an example:
+An example of when to use a DataDrivenEnumeration is when creating drop-down menus in the Admin console.  In order to use a DataDrivenEnumeration to supply values to an Admin drop-down menu, the @AdminPresentation annotation is used with the @AdminPresentationDataDrivenEnumerations annotation.  Below is an example:
 
->Note:  `@AdminPresentation` is used to style and place the field.  `@AdminPresentationDataDrivenEnumeration` is used to specify that the field will be assigned a value from a specific subset of Data Driven Enumeration values.  
+>Note:  @AdminPresentation is used to style and place the field.  @AdminPresentationDataDrivenEnumeration is used to specify that the field will be assigned a value from a specific subset of DataDrivenEnumerationValues.  
 
 ```java
 @Column(name = "TAX_CODE")
@@ -56,7 +54,7 @@ To specify the values that will be used in a dropdown menu in the admin console 
 protected String taxCode;
 ```
 
-The `@AdminPresentationDataDrivenEnumeration` annotation specifies that the field `taxCode` will be assigned a value from the set of `DataDrivenEnumerationValueImpl` objects which have `type.key = "TAX_CODE"`.  The admin console will display a drop-down menu containing this set of values.
+The @AdminPresentationDataDrivenEnumeration annotation specifies that the field taxCode will be assigned a value from the set of DataDrivenEnumerationValues which have type.key = "TAX_CODE".  The admin console will display a drop-down menu containing this set of values.
 
 + `optionFilterParams` - Additional parameters to refine the query that is used to specify which values will be visible in the drop-down menu.
 + `param = "type.key"` - The field name in the target entity class that should be used to refine the query.  In this case `type` is from the `DataDrivenEnumerationValueImpl` object and `key` is from `DataDrivenEnumerationImpl` object.
