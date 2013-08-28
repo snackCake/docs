@@ -1,6 +1,6 @@
 #Enumerations
 
-Broadleaf provides two data structures to store enumeration like data, a `BroadleafEnumerationType` and a `DataDrivenEnumeration`.  Both are, in essence, just a collection of `String` values.  A `BroadleafEnumerationType` is used to provide a predefined set of values to use in business logic, while a `DataDrivenEnumerations` is used to provide a variable set of values to use in places like drop-down menus in the admin console.
+Broadleaf provides two data structures to store enumeration like data, a `BroadleafEnumerationType` and a `DataDrivenEnumeration`.  Both are, in essence, just a collection of `String` values.  A `BroadleafEnumerationType` is used to provide a predefined set of values to use in business logic, while a `DataDrivenEnumeration` is used to provide a variable set of values to use in places like drop-down menus in the admin console.
 
 ##BroadleafEnumerationType
 
