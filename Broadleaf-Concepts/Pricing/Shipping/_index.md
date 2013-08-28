@@ -33,10 +33,12 @@ The final configuration in terms of Fulfillment groups would be:
 
 **FulfillmentPricingService** (Broadleaf service) - contains the list of `FulfillmentPricingProviders`. These are looped through to get a final price for the fulfillment group
 
-## Flat Rates per-Sku
+## Out-of-the-box Providers
+
+### Flat Rates per-Sku
 Each Sku has a Map of FulfillmentOption -> Price. Assuming that you have set the `USE_FLAT_RATES` flag in each `FulfillmentOption` to true, the system will utilize the price configured for that Sku instead of trying to price it by any other means.
 
-## Banded Price/Weight
+### Banded Price/Weight
 Broadleaf provides abilities to configure weight and price bands to give a certain price. For instance, you might offer free shipping for orders > $100 but $10 shipping on everything below $100.
 
 ```sql 
@@ -64,7 +66,7 @@ INSERT INTO BLC_FULFILLMENT_WEIGHT_BAND (FULFILLMENT_PRICE_BAND_ID, MINIMUM_WEIG
 ```
 
 
-## Fixed Price
+### Fixed Price
 This is for scenarios where you would like to offer a flat $5 shipping on all purchases. A potential SQL import for this:
 
 ```sql
