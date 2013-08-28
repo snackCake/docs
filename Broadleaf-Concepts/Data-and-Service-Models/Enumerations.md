@@ -53,15 +53,14 @@ An example of when to use a DataDrivenEnumeration is when creating drop-down men
 @AdminPresentationDataDrivenEnumeration(optionFilterParams = { @OptionFilterParam(param = "type.key", value = "TAX_CODE", paramType = OptionFilterParamType.STRING) })
 protected String taxCode;
 ```
++ optionFilterParams - Additional parameters to refine the query that is used to specify which values will be visible in the drop-down menu.
++ param = "type.key" - The field name in the target entity that should be used to refine the query.  In this case type is from the DataDrivenEnumerationValue and key is from DataDrivenEnumeration.
++ value = "TAX_CODE" - The field value that should match for any items returned from the query.
++ paramType = OptionFilterParamType.STRING - This is the type for the value stored in this OptionFilterParam annotation.
 
 The @AdminPresentationDataDrivenEnumeration annotation specifies that the field taxCode will be assigned a value from the set of DataDrivenEnumerationValues which have type.key = "TAX_CODE".  The admin console will display a drop-down menu containing this set of values.
 
-+ `optionFilterParams` - Additional parameters to refine the query that is used to specify which values will be visible in the drop-down menu.
-+ `param = "type.key"` - The field name in the target entity class that should be used to refine the query.  In this case `type` is from the `DataDrivenEnumerationValueImpl` object and `key` is from `DataDrivenEnumerationImpl` object.
-+ `value = "TAX_CODE"` - The field value that should match for any items returned from the query.
-+ `paramType = OptionFilterParamType.STRING` - This is the type for the value stored in this OptionFilterParam annotation.
- 
-Here is a more complex example:
+Here is alternate example illustrating the creation of a drop-down whose values come from CategoryImpl.names:
 
 ```java
 @Column(name = "NAME")
@@ -70,12 +69,15 @@ Here is a more complex example:
         optionDisplayFieldName = "name", optionCanEditValues = true)
 protected String name;
 ```
-The `@AdminPresentationDataDrivenEnumeration` annotation specifies that the field `name` will be assigned a value from the set of all `CategoryImpl` objects(no `optionFilterParams` were used to refine the query).
 
-+ `optionListEntity` - Specify the target entity that should be queried for the list of options that will be presented to the user in a drop-down list.
-+ `optionValueFieldName = "name"` - Specify the field in the target entity that contains the value that will be persisted into this annotated field.
-+ `optionDisplayFieldName = "name"` - Specify the field in the target entity that contains the display value that will be shown to the user in the drop-down field.
-+ `optionCanEditValues = true` - Whether or not the user can edit (or enter new values) in the drop-down menu.
++ optionListEntity - Specifies the target entity that should be queried for the list of options that will be presented to the user in a drop-down list. In this case, it will use CategoryImpl.class.
++ optionValueFieldName = "name" - Specify the field in the target entity that contains the value that will be persisted into this annotated field.  In this case, it will use CategoryImpl.name.
++ optionDisplayFieldName = "name" - Specify the field in the target entity that contains the display value that will be shown to the user in the drop-down field. In this case, it will use CategoryImpl.name.
++ optionCanEditValues = true - Whether or not the user can edit (or enter new values) in the drop-down menu.  In this case the user can edit or enter new values in the drop-down menu.
+
+The @AdminPresentationDataDrivenEnumeration annotation specifies that the field name will be assigned a value from the set of all CategoryImpl.name values (no optionFilterParams were used to refine the query).
+
+
 
 
 
