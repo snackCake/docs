@@ -7,3 +7,5 @@ Navigate to Catalog > Offer in the admin and select "Add Offer" in the upper rig
 Fill in the required information and any additional optional information for the offer and click save.
 
 If the offer is not automatically considered, then add an offer code in the Codes tab. 
+
+More info coming soon.
