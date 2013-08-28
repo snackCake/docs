@@ -1,1 +1,2 @@
 [[Creating An Offer]]
+[[Using Structured Content]]
