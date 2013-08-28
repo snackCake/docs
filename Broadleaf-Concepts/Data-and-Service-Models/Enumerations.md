@@ -1,4 +1,39 @@
-#Data Driven Enumerations
+#Enumerations
+
+Broadleaf provides two data structures to store enumeration like data, a BroadleafEnumerationType and a DataDrivenEnumeration.  Both are, in essence, just a collection of Strings.  A BroadleafEnumerationType is used to provide a predefined set of values to use in business logic, while DataDrivenEnumerations are used to provide a variable set of values to use in places like drop-down menus.
+
+The BroadleafEnumerationType is an interface that is implemented to create a custom enumeration of predefined hard-coded String values.  An example from the Broadleaf framework would be FulfillmentType.  FulfillmentType is an enumeration that contains values corresponding to the available FulfillmentGroup types.  Here is how BroadleafEnumerationType is implemented by FulfillmentType:
+
+```java
+public class FulfillmentType implements Serializable, BroadleafEnumerationType {
+
+    private static final long serialVersionUID = 1L;
+
+    private static final Map<String, FulfillmentType> TYPES = new LinkedHashMap<String, FulfillmentType>();
+
+    public static final FulfillmentType DIGITAL = new FulfillmentType("DIGITAL", "Digital");
+    public static final FulfillmentType PHYSICAL_SHIP = new FulfillmentType("PHYSICAL_SHIP", "Physical Ship");
+    public static final FulfillmentType PHYSICAL_PICKUP = new FulfillmentType("PHYSICAL_PICKUP", "Physical Pickup");
+    public static final FulfillmentType PHYSICAL_PICKUP_OR_SHIP = new FulfillmentType("PHYSICAL_PICKUP_OR_SHIP", "Physical Pickup or Ship");
+    public static final FulfillmentType GIFT_CARD = new FulfillmentType("GIFT_CARD", "Gift Card");
+    @Deprecated
+    public static final FulfillmentType SHIPPING = new FulfillmentType("SHIPPING", "Shipping");
+
+    public static FulfillmentType getInstance(final String type) {
+        return TYPES.get(type);
+    }
+
+    private String type;
+    private String friendlyType;
+```
+
+and here is how FulfillmentType is used in business logic:
+
+```java
+if(!FulfillmentType.GIFT_CARD.equals(fulfillmentGroup.getType())) {
+    shippableFulfillmentGroups++;
+}
+```
 
 Data Driven Enumerations refer to database supplied enumerations and their associated values.  Please note that Broadleaf contains non-database supplied enumerations that are hardcoded into the Broadleaf source files.  This page refers to only database supplied enumerations.
 
