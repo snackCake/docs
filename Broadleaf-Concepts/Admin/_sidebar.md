@@ -1,4 +1,5 @@
 - [[Controllers | Admin Controllers]]
+- [[Entity Type Selection]]
 - [[Exporters | Admin Exporters]]
 - [[Validations | Admin Validations]]
 - [[Custom Persistence Handlers]]
