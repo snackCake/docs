@@ -18,7 +18,7 @@ Thanks for wanting to try out Broadleaf Commerce! By following this tutorial, yo
 
 Once you have the Java SDK installed, we're ready to get your IDE up and running. Let's start by downloading Eclipse.
 
-Download Link: [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/indigosr2)
+Download Link: [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/junosr2)
 
 Once Eclipse is done downloading, extract the archive and start it up. You'll be prompted for a workspace:
 
