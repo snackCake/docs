@@ -8,33 +8,33 @@ Broadleaf provides two different hooks for limiting this selection dialog for us
 
 1. Create a controller for the entity type you'd like to control. We will be using ProductOptions for this example. Note that the getSectionKey method should be implemented as follows.
 
-```java
-package com.mycompany.admin.web.controller;
+    ```java
+    package com.mycompany.admin.web.controller;
 
-@Controller
-@RequestMapping("/" + MyAdminProductOptionController.SECTION_KEY)
-public class MyAdminProductOptionController extends AdminBasicEntityController {
+    @Controller
+    @RequestMapping("/" + MyAdminProductOptionController.SECTION_KEY)
+    public class MyAdminProductOptionController extends AdminBasicEntityController {
 
-    protected static final String SECTION_KEY = "product-options";
+        protected static final String SECTION_KEY = "product-options";
 
-    @Override
-    protected String getSectionKey(Map<String, String> pathVars) {
-        if (super.getSectionKey(pathVars) != null) {
-            return super.getSectionKey(pathVars);
+        @Override
+        protected String getSectionKey(Map<String, String> pathVars) {
+            if (super.getSectionKey(pathVars) != null) {
+                return super.getSectionKey(pathVars);
+            }
+            return SECTION_KEY;
         }
-        return SECTION_KEY;
-    }
 
-}
-```
+    }
+    ```
 
 2. Ensure that your controller is scanned in the `applicationContext-servlet-admin.xml` file:
 
-```xml
-<context:component-scan base-package="com.mycompany.admin.web" />
-```
+    ```xml
+    <context:component-scan base-package="com.mycompany.admin.web" />
+    ```
 
-> The typical convention is to scan as far as the `web` package. This will let you have a nice separation of what gets scanned in the servlet vs non-servlet context files.
+    > The typical convention is to scan as far as the `web` package. This will let you have a nice separation of what gets scanned in the servlet vs non-servlet context files.
 
 ## Hook 1: Select an entity for the user automatically
 
