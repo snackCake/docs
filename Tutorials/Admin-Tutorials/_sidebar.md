@@ -1,2 +1,2 @@
-[[Creating An Offer]]
-[[Using Structured Content]]
+- [[Creating An Offer]]
+- [[Using Structured Content]]
