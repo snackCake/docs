@@ -37,6 +37,7 @@ public class HotSauceImpl extends ProductImpl implements HotSauce {
 Hibernate automatically uses the primary key of ProductImpl as the primary key of HotSauceImpl.  It also forces a foreign key constraint on the primary key of HotSauceImpl.  When ProductImpl is queried via JPA, Hibernate automatically does the appropriate joins to retrieve the additional data (in this case the Scoville Units) and instantiates the correct object (HotSauceImpl). The only other things required for all of this to work within Broadleaf are:
 
 1. The merged Persistence Unit needs to be aware of the new class:
+2. 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
@@ -50,6 +51,7 @@ Hibernate automatically uses the primary key of ProductImpl as the primary key o
     </persistence-unit>
 </persistence>
 ```
+
 2. Broadleaf's Entity Configuration needs to be aware of the new implementation, which can be done by modifying the application context for the entity configuration:
 
     ```xml
