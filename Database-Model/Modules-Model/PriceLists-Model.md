@@ -1,6 +1,6 @@
 ###Detailed ERD
 
-[![PriceLists Details](images/dataModel/modules/PriceLists/PriceListsDetailedERD.png)](images/dataModel/modules/PriceLists/PriceListsDetailedERD.png)
+[![PriceLists Details](dataModel/modules/PriceListsDetailedERD.png)](dataModel/modules/PriceListsDetailedERD.png)
 
 ###Tables
 
