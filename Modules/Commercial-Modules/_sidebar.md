@@ -5,4 +5,4 @@
 - [[Advanced Search | Advanced Search Module]]
 - [[Pricelist | Pricelist Module Quick Start]]
 - [[Advanced Offer | Advanced Offer Module Quick Start]]
-- [Gift Card and Customer Credit](http://docs.broadleafcommerce.org/giftcardandcustomercredit/current)
+- [[Gift Card and Customer Credit](http://docs.broadleafcommerce.org/giftcardandcustomercredit/current)]
