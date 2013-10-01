@@ -190,6 +190,7 @@ Your page may look something like this:
 ##4) Exclude the Authorize.net process URL from the CSRF checks
 
 Since Authorize.net sends a POST to whatever you have in ${authorizenet.relay.response.url}, we will need to exclude this URL from XSRF attack prevention built into the Broadleaf demo. In this case, we _want_ the POST to come from a different site.  Override the Broadleaf CsrfFilter to exclude the process URL in your applicationContext-security.xml:
+
 ```xml
 <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter">
     <property name="excludedRequestPatterns">
