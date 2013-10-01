@@ -194,7 +194,7 @@ Since Authorize.net sends a POST to whatever you have in ${authorizenet.relay.re
 <bean id="blCsrfFilter" class="org.broadleafcommerce.common.security.handler.CsrfFilter">
     <property name="excludedRequestPatterns">
         <list>
-            <value>${authorizenet.relay.response.url}</value>
+            <value>/process</value>
         </list>
     </property>
 </bean>
