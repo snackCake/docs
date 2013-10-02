@@ -111,4 +111,4 @@ And that's it!  Other potential modifications might be to show a specific messag
 doesn't have inventory.  [Check the diff](https://github.com/broadleafcommerce/demosite/compare/develop...inventory) to see what we did on DemoSite.
 
 ###Detailed ERD
-[![Inventory Detail](images/modules/InventoryDetailedERD.png)](images/modules/InventoryDetailedERD.png)
+[![Inventory Detail](modules/InventoryDetailedERD.png)](_img/modules/InventoryDetailedERD.png)

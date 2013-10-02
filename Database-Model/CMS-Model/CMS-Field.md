@@ -10,7 +10,7 @@
 
 | Table               | Related Entity    | Description                                         |
 |:--------------------|:------------------|:----------------------------------------------------|
-|BLC_FLD_DEF          | [FieldDefinition.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/field/domain/FieldDefinition.html)          | Defines a Broadleaf Field.  |
-|BLC_FLD_GROUP        | [FieldGroup.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/field/domain/FieldGroup.html)          | Represents a Field Group.  |
-|BLC_FLD_ENUM         | [FieldEnumeration.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/field/domain/FieldEnumeration.html)        | Represents a Field Enumeration.  |
-|BLC_FLD_ENUM_ITEM    | [FieldEnumerationItem.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/field/domain/FieldEnumerationItem.html)          | Defines a Field Enumeration Item.  |
+|BLC\_FLD\_DEF          | [FieldDefinition.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/field/domain/FieldDefinition.html)          | Defines a Broadleaf Field.  |
+|BLC\_FLD\_GROUP        | [FieldGroup.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/field/domain/FieldGroup.html)          | Represents a Field Group.  |
+|BLC\_FLD\_ENUM         | [FieldEnumeration.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/field/domain/FieldEnumeration.html)        | Represents a Field Enumeration.  |
+|BLC\_FLD\_ENUM\_ITEM    | [FieldEnumerationItem.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/field/domain/FieldEnumerationItem.html)          | Defines a Field Enumeration Item.  |
