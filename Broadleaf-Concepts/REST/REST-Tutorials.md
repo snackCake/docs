@@ -41,22 +41,22 @@ This configuration is required to use Broadleaf's RESTful services and the most 
 Lastly, it is recommended that you configure a filter to set the customer state, if known, on each request.  Broadleaf has a default filter that handles this.  You might want to replace it with your own implementation, especially if implementing some kind of security filter. To use Broadleaf's default filter out of the box, you must configure this filter in the merged application context.  Typically, we recommend using `applicationContext-security.xml`, if you are using the application as it is created with the Broadleaf Maven archetype.
 
 ```xml
-    <!-- Set up Spring security for the RESTful API -->
-    <sec:http pattern="/api/**" create-session="stateless">
-        <sec:http-basic />
-        <sec:custom-filter ref="blRestCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
-    </sec:http>
-    
-    <!-- Used for REST api calls.   This just takes in the passed in customerId and uses it to establish the customer. -->
-    <!-- Additional considerations MUST be made for implementations that are allowing external access to APIs. -->
-    <bean id="blRestCustomerStateFilter" class="org.broadleafcommerce.profile.web.core.security.RestApiCustomerStateFilter"/>
+<!-- Set up Spring security for the RESTful API -->
+<sec:http pattern="/api/**" create-session="stateless">
+    <sec:http-basic />
+    <sec:custom-filter ref="blRestCustomerStateFilter" after="REMEMBER_ME_FILTER"/>
+</sec:http>
+
+<!-- Used for REST api calls.   This just takes in the passed in customerId and uses it to establish the customer. -->
+<!-- Additional considerations MUST be made for implementations that are allowing external access to APIs. -->
+<bean id="blRestCustomerStateFilter" class="org.broadleafcommerce.profile.web.core.security.RestApiCustomerStateFilter"/>
 ```
 
 > **Note: Simply providing this security configuration will not secure your REST API. No URLs are secured with this configuration.** At a minimum, you will likely want to add:
 
-    ```xml
-    <sec:intercept-url pattern='/**' access='ROLE_REMOTE' />
-    ```
+```xml
+<sec:intercept-url pattern='/**' access='ROLE_REMOTE' />
+```
 
 > as well as provide some type of security other than http-basic.
 
@@ -191,6 +191,7 @@ public class MyResourceWrapper implements APIWrapper<MyEntity>  {
     }
 }
 ```
+
 The key here is that the wrap method allows you to set the properties that are required to be serialized. Since they are annotated with JAXB annotations, they will be serialized as XML or JSON, depending on the Accept header of the request. Also notice that the HttpServletRequest is passed to the endpoint method and is made available to the wrap method. This is important if there is something from the request that is required to build the response (e.g. request URI used to build a new URL for content or media). In this example, we simply ignore the HttpServletRequest in the wrap method.  Also, if you make the wrapper class a Spring-managed prototype bean, you can have a number of additional benefits such as making it ApplicationContextAware, injecting services into it for further processing during wrapping, etc. If you do this, be sure it is prototype scoped, and that anything you do not wish to serialize is annotated as XMLTransient. Also be sure to use the application context to retrieve an instance. This is important because the endpoint is a singleton and the wrapper bean is a prototype:
 
 ```java
