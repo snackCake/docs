@@ -226,6 +226,7 @@ The `Activity` interface provides support for skipping over that activity based 
 Activities in their most basic state are instances of the `Activity` interface, which provides simple entry points for executing the activity and retrieving the error handler. Most activities will actually implement the `BaseActivity` abstract class. The `PaymentActivity` is such a class, and it understands how to take a PaymentContext and apply it against a PaymentService to actually enact a payment transaction. We'll talk more about the PaymentActivity when we cover the payment workflow in detail.
 
 An `Activity` is also only relevant for a certain type of workflow (meaning it can only operate on a certain type of `ProcessContext`) defined by Java generics. For instance, this would the the definition of an activity in the `blPricingWorkflow`:
+
 ```java
 public class TotalActivity extends BaseActivity<PricingContext> {
 
