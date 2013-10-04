@@ -61,9 +61,9 @@ Lastly, it is recommended that you configure a filter to set the customer state,
 > as well as provide some type of security other than http-basic.
 
 ## Extending Broadleaf RESTful services
-Extending Broadleaf Commerce is a big topic. Broadleaf's default entities can be extended. Broadleaf's DAOs and Services can also be extended.  See the section on [[Extending Product | Next-Steps#wiki-extending-product]] or [[Extending Service | Next-Steps#wiki-extending-service]] for more information on generally extending Broadleaf's domain and service objects.  After extending the domain and/or services, you may want to expose the new data and/or functionality to clients of your RESTful API.  Broadleaf provides a mechanism for this and attempts to be as flexible as possible.
+Extending Broadleaf Commerce is a big topic. Broadleaf's default entities can be extended. Broadleaf's DAOs and Services can also be extended.  See the section on [Extending Product](Next-Steps#wiki-extending-product) or [Extending Service](Next-Steps#wiki-extending-service) for more information on generally extending Broadleaf's domain and service objects.  After extending the domain and/or services, you may want to expose the new data and/or functionality to clients of your RESTful API.  Broadleaf provides a mechanism for this and attempts to be as flexible as possible.
 
-Perhaps the best way to describe how this works is to use an example.  Catalog-related entities are among the Broadleaf entities most often extended.  Broadleaf, for example, provides a entities for Category, Product, and Sku.  Let's assume that you are developing an eCommerce store to sell hot sauce.  You want to extend Broadleaf's Product to include the [[Scoville Heat Units | http://en.wikipedia.org/wiki/Scoville_scale]].  Again, you can find details on how to extend a Product [[here | Next-Steps#wiki-extending-product]].  So, you create a new class called HotSauce:
+Perhaps the best way to describe how this works is to use an example.  Catalog-related entities are among the Broadleaf entities most often extended.  Broadleaf, for example, provides a entities for Category, Product, and Sku.  Let's assume that you are developing an eCommerce store to sell hot sauce.  You want to extend Broadleaf's Product to include the [Scoville Heat Units](http://en.wikipedia.org/wiki/Scoville_scale).  Again, you can find details on how to extend a Product [here](Next-Steps#wiki-extending-product).  So, you create a new class called HotSauce:
 
 ```java
 import org.broadleafcommerce.core.catalog.domain.ProductImpl;
@@ -124,7 +124,7 @@ In the merge configuration, you will also need to override the definition of thi
 And that's it! Broadleaf's merge process will replace the default wrapper implementation with your HotSauceWrapper implementation.  Your wrap logic will control what gets serialized and what doesn't.  Any calls to get a HotSauce product will result in your wrapper class being instantiated and your wrap method being called. The Scoville Units will be returned as part of the message, and the active start and end dates will be suppressed.
 
 ## Creating your own RESTful services
-In order to create a net new RESTful service, you simply need to implement an endpoint.  More information about JAX-RS is available [[here | http://docs.oracle.com/javaee/6/tutorial/doc/giepu.html]]. The important things to note are:
+In order to create a net new RESTful service, you simply need to implement an endpoint.  More information about JAX-RS is available [here](http://docs.oracle.com/javaee/6/tutorial/doc/giepu.html). The important things to note are:
 
 1. Make sure that your RESTful endpoint is a Spring-managed bean. This can be accomplished by using the @Component or @Service annotations, or by adding the bean to the merged application context via XML configuration.
 
