@@ -238,7 +238,9 @@ public class TotalActivity extends BaseActivity<PricingContext> {
     }
 }
 ```
+
 Whereas this `Activity` would be defined in the `blCheckoutWorkflow`:
+
 ```java
 public class CompleteOrderActivity extends BaseActivity<CheckoutContext> {
 
