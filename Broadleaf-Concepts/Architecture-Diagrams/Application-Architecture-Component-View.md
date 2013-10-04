@@ -7,7 +7,7 @@ Broadleaf Commerce is highly modular, highly extensible framework for building c
 |Spring Framework|[Spring](http://www.springsource.org) provides the component architecture used by Broadleaf Commerce.  |
 |Spring Security|Spring Security is leveraged by Broadleaf Commerce for authentication and authorization.|
 |Spring MVC|Spring MVC is the recommended view layer technology for a Broadleaf Commerce application.|
-|Hibernate|[Hiberante](http://www.hibernate.org) is used for all persistence operations in Broadleaf|
+|Hibernate|[Hibernate](http://www.hibernate.org) is used for all persistence operations in Broadleaf|
 |Thymeleaf|[Thymeleaf](http://www.thymeleaf.org) is the recommended templating engine and is recommended instead of JSP for Broadleaf|
 |SOLR|[SOLR](http://lucene.apache.org/solr/) is the search engine technology used by Broadleaf Commerce.
 
