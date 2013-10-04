@@ -1,6 +1,6 @@
 # REST Tutorials
 
-## Background ##
+## Background
 Broadleaf Commerce uses Jersey which is the default implementation of JAX-RS, or Java API for RESTful Services. Jersey and JAX-RS make use of JAXB to marshal and unmarshal objects to/from from the client.  Jersey provides content negotiation, making use of the standard HTTP Accept and Content-Type headers.  By default Broadleaf accepts and marshals XML and JSON.  Broadleaf Commerce provides a number of service endpoints to allow for a rich suite of functionality including catalog browsing, cart and pricing operations, checkout, and order history.  All of the Broadleaf RESTful APIs can be extended, augmented, or replaced entirely.
 
 The approach and design was meant to provide out-of-the-box services, but with the ability to extend the data model and override the business logic.  Rather than annotate each domain model with JAXB annotations we chose to use a wrapper concept.  This provided two major advantages:
@@ -9,7 +9,7 @@ The approach and design was meant to provide out-of-the-box services, but with t
 
 2. Allows us to override the marshaling and unmarshaling of data (allowing you to add or remove data that will be exposed, depending on your requirements.
 
-## Getting Started ##
+## Getting Started
 In order to use Broadleaf's default RESTful services, all that is required is some configuration in your application's /WEB-INF/web.xml file.  You will need to define a new Servlet and Servlet mapping:
 
 ```xml
@@ -60,7 +60,7 @@ Lastly, it is recommended that you configure a filter to set the customer state,
 
 > as well as provide some type of security other than http-basic.
 
-## Extending Broadleaf RESTful services ##
+## Extending Broadleaf RESTful services
 Extending Broadleaf Commerce is a big topic. Broadleaf's default entities can be extended. Broadleaf's DAOs and Services can also be extended.  See the section on [[Extending Product | Next-Steps#wiki-extending-product]] or [[Extending Service | Next-Steps#wiki-extending-service]] for more information on generally extending Broadleaf's domain and service objects.  After extending the domain and/or services, you may want to expose the new data and/or functionality to clients of your RESTful API.  Broadleaf provides a mechanism for this and attempts to be as flexible as possible.
 
 Perhaps the best way to describe how this works is to use an example.  Catalog-related entities are among the Broadleaf entities most often extended.  Broadleaf, for example, provides a entities for Category, Product, and Sku.  Let's assume that you are developing an eCommerce store to sell hot sauce.  You want to extend Broadleaf's Product to include the [[Scoville Heat Units | http://en.wikipedia.org/wiki/Scoville_scale]].  Again, you can find details on how to extend a Product [[here | Next-Steps#wiki-extending-product]].  So, you create a new class called HotSauce:
@@ -123,7 +123,7 @@ In the merge configuration, you will also need to override the definition of thi
 
 And that's it! Broadleaf's merge process will replace the default wrapper implementation with your HotSauceWrapper implementation.  Your wrap logic will control what gets serialized and what doesn't.  Any calls to get a HotSauce product will result in your wrapper class being instantiated and your wrap method being called. The Scoville Units will be returned as part of the message, and the active start and end dates will be suppressed.
 
-## Creating your own RESTful services ##
+## Creating your own RESTful services
 In order to create a net new RESTful service, you simply need to implement an endpoint.  More information about JAX-RS is available [[here | http://docs.oracle.com/javaee/6/tutorial/doc/giepu.html]]. The important things to note are:
 
 1. Make sure that your RESTful endpoint is a Spring-managed bean. This can be accomplished by using the @Component or @Service annotations, or by adding the bean to the merged application context via XML configuration.
