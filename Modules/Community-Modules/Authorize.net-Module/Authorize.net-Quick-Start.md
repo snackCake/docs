@@ -2,7 +2,7 @@
 
 Broadleaf Commerce offers an out-of-the-box Authorize.net solution that requires little configuration and is easily set up. For a more customized solution, please see [[Authorize.net Advance Configuration]].
 
-To quickly apply the following functionality to The Heat Clinic copy the patch `demosite.diff` into the Demo Site directory and type `git apply demosite.diff`.
+To quickly apply the following functionality to The Heat Clinic, copy the patch `demosite.diff` from the [Authorize.Net module repository](https://github.com/BroadleafCommerce/blc-authorizenet/tree/develop) into your Demo Site directory and type `git apply demosite.diff`.  Please note the patch currently supports Broadleaf framework versions 3.1 and up.
 
 **You must have completed the [[Authorize.net Environment Setup]] before continuing**
 
