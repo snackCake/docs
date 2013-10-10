@@ -12,7 +12,7 @@ A very common step that users may want to do is switch away from the bundled HSQ
     <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
-        <version>5.1.21</version>
+        <version>5.1.26</version>
         <type>jar</type>
         <scope>compile</scope>
     </dependency> 
@@ -76,5 +76,24 @@ A very common step that users may want to do is switch away from the bundled HSQ
     blCMSStorage.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
     ```
 
+6. Update the build properties to use the correct MySQL dialect. In `build.properties`, you will want to update the following:
+
+    ```text
+    ant.hibernate.sql.ddl.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
+    ...
+    ant.blPU.url=jdbc:mysql://localhost:3306/broadleaf
+    ant.blPU.userName=root
+    ant.blPU.password=
+    ant.blPU.driverClassName=com.mysql.jdbc.Driver
+
+    ant.blSecurePU.url=jdbc:mysql://localhost:3306/broadleaf
+    ant.blSecurePU.userName=root
+    ant.blSecurePU.password=
+    ant.blSecurePU.driverClassName=com.mysql.jdbc.Driver
+
+    ant.blCMSStorage.url=jdbc:mysql://localhost:3306/broadleaf
+    ant.blCMSStorage.userName=root
+    ant.blCMSStorage.password=
+    ```
 And that's it! You should now be up and running with MySQL.
 
