@@ -8,6 +8,7 @@
 - [[Braintree Environment Setup]]
 - [[Sagepay Environment Setup]]
 - [[Environment Setup]]
+- [[Removing Thymeleaf]]
 - [[Branching Strategy]]
 - [[Dealing With Money]]
 - [[Grails Plugin]]
