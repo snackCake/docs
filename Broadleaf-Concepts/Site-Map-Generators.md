@@ -56,3 +56,53 @@ public class CategorySiteMapGeneratorConfigurationImpl extends SiteMapGeneratorC
 ```
 
 4)  Most importantly a class that extends `SiteMapGenerator`.  This will be where your site map generator logic will go.
+
+Here is an example:
+```java
+@Component("blCategorySiteMapGenerator")
+public class CategorySiteMapGenerator implements SiteMapGenerator {
+
+    @Resource(name = "blCategoryDao")
+    protected CategoryDao categoryDao;
+
+    @Value("${category.site.map.generator.row.limit}")
+    protected int rowLimit;
+
+    @Override
+    public boolean canHandleSiteMapConfiguration(SiteMapGeneratorConfiguration siteMapGeneratorConfiguration) {
+        return SiteMapGeneratorType.CATEGORY.equals(siteMapGeneratorConfiguration.getSiteMapGeneratorType());
+    }
+
+    @Override
+    public void addSiteMapEntries(SiteMapGeneratorConfiguration smgc, SiteMapBuilder siteMapBuilder) {
+
+        CategorySiteMapGeneratorConfiguration categorySMGC = (CategorySiteMapGeneratorConfiguration) smgc;
+
+        addCategorySiteMapEntries(categorySMGC.getRootCategory(), 1, categorySMGC, siteMapBuilder);
+        
+    }
+```
+
+Note the methods you are required to implement.  `canHandleSiteMapConfigurations` will allow you to determine exactly when your site map generator should run.  `addSiteMapEntries` is where your logic will go that will add URL entries to the `siteMapBuilder`.  The `siteMapBuilder` is responsible for taking URL entry information and placing it into site map xml files.
+
+Here is some sample logic that would go in the above class:
+```java
+                // location
+                siteMapUrl.setLoc(categorySMGC.getSiteMapConfiguration().getSiteUrlPath() + category.getUrl());
+
+                // change frequency
+                siteMapUrl.setChangeFreqType(categorySMGC.getSiteMapChangeFreq());
+
+                // priority
+                siteMapUrl.setPriorityType(categorySMGC.getSiteMapPriority());
+
+                // lastModDate
+                siteMapUrl.setLastModDate(new Date());
+
+                siteMapBuilder.addUrl(siteMapUrl);
+```
+
+Site map xml files and site map index files can be optionally gzipped by setting `gzip.site.map`
+`gzip.site.map.index` to true.  Both of these values can be found in the Broadleaf framework, under the `broadleaf-common` project, in the file `common.properties`.
+
+
