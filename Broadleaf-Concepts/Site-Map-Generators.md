@@ -15,6 +15,7 @@ public class AdvancedStructuredContentSiteMapGeneratorType extends SiteMapGenera
 
 }
 ```
+
 2)  An interface that extends `SiteMapGeneratorConfiguration`.  This will allow you to add your own site map generator configurations.  Each combination of configurations is used to specify the priority and change frequency of a group of site map URLs.
 
 Here is an example:
@@ -40,6 +41,7 @@ public interface CategorySiteMapGeneratorConfiguration extends SiteMapGeneratorC
 3)  A class that extends `SiteMapGeneratorConfigurationImpl` and implements your interface from above.
 
 Here is an example:
+
 ```java
 @Entity
 @Table(name = "BLC_CAT_SITE_MAP_GEN_CFG")
@@ -58,6 +60,7 @@ public class CategorySiteMapGeneratorConfigurationImpl extends SiteMapGeneratorC
 4)  Most importantly a class that extends `SiteMapGenerator`.  This will be where your site map generator logic will go.
 
 Here is an example:
+
 ```java
 @Component("blCategorySiteMapGenerator")
 public class CategorySiteMapGenerator implements SiteMapGenerator {
@@ -106,6 +109,7 @@ Site map xml files and site map index files can be optionally gzipped by setting
 `gzip.site.map.index` to true.  Both of these values can be found in the Broadleaf framework, under the `broadleaf-common` project, in the file `common.properties`.
 
 5)  Lastly, you will need to let the Broadleaf framework know about your new site map generator by adding something similar to the following in your `applicationContext.xml`:
+
 ```xml
 <bean id="blFrameworkSiteMapGenerators" class="org.springframework.beans.factory.config.ListFactoryBean">
     <property name="sourceList">
