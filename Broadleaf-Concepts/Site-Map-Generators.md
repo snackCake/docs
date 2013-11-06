@@ -2,7 +2,7 @@
 
 The Broadleaf framework comes with 5 build-in site map generators:  Custom(manually enter URLs into the database), Page, Product, Category, and Advanced Structured Content.  Each site map generator is set to create site map files for all URLs in a given category.  Should more than one site map file need to be created (the default limit is set to 50,000 URLs per file, but the limit is configurable) a site map index file is also created.
 
-Additional site map generators can also be created by adding 4 new files:
+Additional site map generators can also be created by adding 5 new files:
 
 1)  A class that extends `SiteMapGeneratorType`.  This class will allow you to add your own site map generator type.  
 
@@ -105,4 +105,18 @@ Here is some sample logic that would go in the above class:
 Site map xml files and site map index files can be optionally gzipped by setting `gzip.site.map`
 `gzip.site.map.index` to true.  Both of these values can be found in the Broadleaf framework, under the `broadleaf-common` project, in the file `common.properties`.
 
-
+5)  Lastly, you will need to let the Broadleaf framework know about your new site map generator by adding something similar to the following in your `applicationContext.xml`:
+```xml
+<bean id="blFrameworkSiteMapGenerators" class="org.springframework.beans.factory.config.ListFactoryBean">
+    <property name="sourceList">
+        <list>
+            <ref bean="blCategorySiteMapGenerator" />
+            <ref bean="blProductSiteMapGenerator" />
+        </list>
+    </property>
+</bean>
+<bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+    <property name="collectionRef" value="blFrameworkSiteMapGenerators" />
+    <property name="targetRef" value="blSiteMapGenerators" />
+</bean>
+```
