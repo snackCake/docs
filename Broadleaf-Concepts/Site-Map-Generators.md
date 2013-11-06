@@ -4,7 +4,7 @@ The Broadleaf framework comes with 5 build-in site map generators:  Custom(manua
 
 Additional site map generators can also be created by adding 5 new files:
 
-1)  A class that extends `SiteMapGeneratorType`.  This class will allow you to add your own site map generator type.  
+1.  A class that extends `SiteMapGeneratorType`.  This class will allow you to add your own site map generator type.  
 
 Here is an example:
 
@@ -16,7 +16,7 @@ public class AdvancedStructuredContentSiteMapGeneratorType extends SiteMapGenera
 }
 ```
 
-2)  An interface that extends `SiteMapGeneratorConfiguration`.  This will allow you to add your own site map generator configurations.  Each combination of configurations is used to specify the priority and change frequency of a group of site map URLs.
+2.  An interface that extends `SiteMapGeneratorConfiguration`.  This will allow you to add your own site map generator configurations.  Each combination of configurations is used to specify the priority and change frequency of a group of site map URLs.
 
 Here is an example:
 
@@ -38,7 +38,7 @@ public interface CategorySiteMapGeneratorConfiguration extends SiteMapGeneratorC
     public void setRootCategory(Category rootCategory);
 ```
 
-3)  A class that extends `SiteMapGeneratorConfigurationImpl` and implements your interface from above.
+3.  A class that extends `SiteMapGeneratorConfigurationImpl` and implements your interface from above.
 
 Here is an example:
 
@@ -57,7 +57,7 @@ public class CategorySiteMapGeneratorConfigurationImpl extends SiteMapGeneratorC
     protected Category rootCategory;
 ```
 
-4)  Most importantly a class that extends `SiteMapGenerator`.  This will be where your site map generator logic will go.
+4.  Most importantly a class that extends `SiteMapGenerator`.  This will be where your site map generator logic will go.
 
 Here is an example:
 
@@ -108,7 +108,7 @@ Here is some sample logic that would go in the above class:
 Site map xml files and site map index files can be optionally gzipped by setting `gzip.site.map`
 `gzip.site.map.index` to true.  Both of these values can be found in the Broadleaf framework, under the `broadleaf-common` project, in the file `common.properties`.
 
-5)  Lastly, you will need to let the Broadleaf framework know about your new site map generator by adding something similar to the following in your `applicationContext.xml`:
+5.  Lastly, you will need to let the Broadleaf framework know about your new site map generator by adding something similar to the following in your `applicationContext.xml`:
 
 ```xml
 <bean id="blFrameworkSiteMapGenerators" class="org.springframework.beans.factory.config.ListFactoryBean">
