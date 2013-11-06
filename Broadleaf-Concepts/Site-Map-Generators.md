@@ -89,6 +89,7 @@ public class CategorySiteMapGenerator implements SiteMapGenerator {
 Note the methods you are required to implement.  `canHandleSiteMapConfigurations` will allow you to determine exactly when your site map generator should run.  `addSiteMapEntries` is where your logic will go that will add URL entries to the `siteMapBuilder`.  The `siteMapBuilder` is responsible for taking URL entry information and placing it into site map xml files.
 
 Here is some sample logic that would go in the above class:
+
 ```java
                 // location
                 siteMapUrl.setLoc(categorySMGC.getSiteMapConfiguration().getSiteUrlPath() + category.getUrl());
