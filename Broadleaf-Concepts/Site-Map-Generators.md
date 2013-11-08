@@ -16,7 +16,7 @@ public class AdvancedStructuredContentSiteMapGeneratorType extends SiteMapGenera
 }
 ```
 
-2)  An interface that extends `SiteMapGeneratorConfiguration`.  This will allow you to add your own site map generator configurations.  Each combination of configurations is used to specify the priority and change frequency of a group of site map URLs.
+2)  This step is optional.  Follow these instructions only if you wish to have site map generator configuration options beyond what is found in `SiteMapGeneratorConfiguration`.  An interface that extends `SiteMapGeneratorConfiguration`.  This will allow you to add your own site map generator configurations.  Each combination of configurations is used to specify the priority and change frequency of a group of site map URLs.
 
 Here is an example:
 
@@ -38,7 +38,7 @@ public interface CategorySiteMapGeneratorConfiguration extends SiteMapGeneratorC
     public void setRootCategory(Category rootCategory);
 ```
 
-3)  A class that extends `SiteMapGeneratorConfigurationImpl` and implements your interface from above.
+3)  This step is optional.  Follow these instructions only if you wish to have site map generator configuration options beyond what is found in `SiteMapGeneratorConfiguration`.  A class that extends `SiteMapGeneratorConfigurationImpl` and implements your interface from above.
 
 Here is an example:
 
@@ -55,7 +55,14 @@ public class CategorySiteMapGeneratorConfigurationImpl extends SiteMapGeneratorC
     @AdminPresentation(friendlyName = "CategorySiteMapGeneratorConfigurationImpl_Root_Category")
     @AdminPresentationToOneLookup()
     protected Category rootCategory;
+    
+    @Override
+    public SiteMapGeneratorType getSiteMapGeneratorType() {
+        return SiteMapGeneratorType.CATEGORY;
+    }
 ```
+
+Note that the method `getSiteMapGeneratorType` must return the `SiteMapGeneratorType` you setup in step 1.
 
 4)  Most importantly a class that extends `SiteMapGenerator`.  This will be where your site map generator logic will go.
 
