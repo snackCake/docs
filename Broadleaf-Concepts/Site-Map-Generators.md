@@ -18,7 +18,7 @@ public class AdvancedStructuredContentSiteMapGeneratorType extends SiteMapGenera
 
 2)  This step is optional.  Follow these instructions only if you wish to have site map generator configuration options beyond what is found in `SiteMapGeneratorConfiguration`.  
 
-An interface that extends `SiteMapGeneratorConfiguration`.  This will allow you to add your own site map generator configurations.  Each combination of configurations is used to specify the priority and change frequency of a group of site map URLs.
+An interface that extends `SiteMapGeneratorConfiguration` or one of its subinterfaces.  This will allow you to add your own site map generator configurations.  Each combination of configurations is used to specify the priority and change frequency of a group of site map URLs.
 
 Here is an example:
 
@@ -42,7 +42,7 @@ public interface CategorySiteMapGeneratorConfiguration extends SiteMapGeneratorC
 
 3)  This step is optional.  Follow these instructions only if you wish to have site map generator configuration options beyond what is found in `SiteMapGeneratorConfiguration`.
 
-A class that extends `SiteMapGeneratorConfigurationImpl` and implements your interface from above.
+A class that extends `SiteMapGeneratorConfigurationImpl` or one of its subclasses and implements your interface from above.
 
 Here is an example:
 
