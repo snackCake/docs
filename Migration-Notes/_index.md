@@ -4,6 +4,7 @@ This section contains migration documents that will help you transition your cur
 
 ## Recent migration notes
 
+- [[3.0 to 3.1 Migration]]
 - [[3.0 to 3.0.1 Migration]]
 
 ## Migrating to 3.0
