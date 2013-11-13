@@ -1,5 +1,3 @@
-As of Broadleaf 2.2.0, many of our new features are being created as standalone modules that users can integrate in their application. This configuration is module-specific, but there are a few general architectural goals that we are respecting with our official modules. In this section, we will describe the extension patterns that we are employing.
-
 ## Service Extension
 
 Often, modules will need to modify the behavior of a standard Broadleaf service. As we want to keep all modules self-contained, we are utilizing a manager/listener approach in these scenarios. For example, consider some code that filters eligible offers in `OfferServiceImpl`:

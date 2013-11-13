@@ -1,4 +1,3 @@
-- [[General Module Overview]]
-- [[Module Compatibility Chart | Compatibility]]
+- [[Extension Patterns]]
 - [[Community Modules]]
 - [[Commercial Modules]]
