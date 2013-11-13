@@ -8,7 +8,7 @@
 
 | Table                      | Related Entity | Description                                         |
 |:---------------------------|:----------|:----------------------------------------------------|
-|BLC\_ADDRESS                 | [Address.java](http://javadoc.broadleafcommerce.org/current/profile/org/broadleafcommerce/profile/core/domain/Address.html)     | Contains address information, e.g. city, state, and postal code   |
+|BLC\_ADDRESS                 | ^[javadoc:broadleaf-profile:org/broadleafcommerce/profile/core/domain/Address]     | Contains address information, e.g. city, state, and postal code   |
 |BLC\_CHALLENGE\_QUESTION      | [ChallengeQuestion.java](http://javadoc.broadleafcommerce.org/current/profile/org/broadleafcommerce/profile/core/domain/ChallengeQuestion.html)      | Question to present the user for password recovery purposes       |
 |BLC\_COUNTRY                 | [Country.java](http://javadoc.broadleafcommerce.org/current/profile/org/broadleafcommerce/profile/core/domain/Country.html)      | Contains country information, e.g. abbreviation and name          |
 |BLC\_CUSTOMER                | [Customer.java](http://javadoc.broadleafcommerce.org/current/profile/org/broadleafcommerce/profile/core/domain/Customer.html)      | Represents a customer in Broadleaf  |
