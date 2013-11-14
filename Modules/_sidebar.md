@@ -1,3 +1,1 @@
 - [[Extension Patterns]]
-- [[Community Modules]]
-- [[Commercial Modules]]
