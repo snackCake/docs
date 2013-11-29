@@ -65,22 +65,22 @@ Broadleaf Commerce can be enhanced with add-on modules.
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
-| [[Authorize.net | Authorize.net Module]] | Marketplace | Payments through CyberSource's [Authorize.net](http://www.authorize.net) gateway |
-| [[PayPal | PayPal Module]] | Marketplace | Payments through PayPal's [express checkout](https://www.paypal.com/webapps/mpp/express-checkout) |
+| [Authorize.net] (http://docs.broadleafcommerce.org/authorizenet/current) | Marketplace | Payments through CyberSource's [Authorize.net](http://www.authorize.net) gateway |
+| [Paypal] (http://docs.broadleafcommerce.org/paypal/current)  | Marketplace | Payments through PayPal's [express checkout](https://www.paypal.com/webapps/mpp/express-checkout) |
 | PayPal Payflow Pro | Marketplace | Payments through PayPal's [Payflow Pro](https://www.paypal.com/us/webapps/mpp/referral/paypal-payflow-pro) |
-| [[Braintree | Braintree Module]] | Marketplace | Payments through [Braintree Payments](https://www.braintreepayments.com/) |
-| [[CyberSource Silent Post | Cybersource Silent Post Module]] | Marketplace | Payments through CyberSource's [silent order post](http://www.cybersource.com/developers/develop/integration_methods/legacy_integrations/#scmp) |
-| [[Sagepay | Sagepay Module]] | Marketplace | Payments through [Sagepay](http://www.sagepay.co.uk/) |
+| [Braintree] (http://docs.broadleafcommerce.org/braintree/current) | Marketplace | Payments through [Braintree Payments](https://www.braintreepayments.com/) |
+| [CyberSource Silent Post] (http://docs.broadleafcommerce.org/cybersource-silentpost/current) | Marketplace | Payments through CyberSource's [silent order post](http://www.cybersource.com/developers/develop/integration_methods/legacy_integrations/#scmp) |
+| [Sagepay] (http://docs.broadleafcommerce.org/sagepay/current)  | Marketplace | Payments through [Sagepay](http://www.sagepay.co.uk/) |
 
 ## Tax Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
-| [[Avalara | Avalara Module]] | Marketplace | Sales tax through [Avalara](http://www.avalara.com/) |
+| [Avalara] (http://docs.broadleafcommerce.org/avalara/current)  | Marketplace | Sales tax through [Avalara] (http://www.avalara.com/) |
 
 ## Shipping Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
 | FedEx | Marketplace | Shipping quotes from [FedEx web services](http://www.fedex.com/us/developer/product/basics.html) |
-| [[USPS | USPS Module]] | Marketplace | Shipping quotes from [USPS web tools](https://www.usps.com/business/web-tools-apis/welcome.htm) |
+| [USPS] (http://docs.broadleafcommerce.org/usps/current)  | Marketplace | Shipping quotes from [USPS web tools](https://www.usps.com/business/web-tools-apis/welcome.htm) |
