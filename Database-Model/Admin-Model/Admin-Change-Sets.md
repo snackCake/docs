@@ -10,16 +10,16 @@
 
 | Table               | Related Entity    | Description                                         |
 |:--------------------|:------------------|:----------------------------------------------------|
-|BLC\_SANDBOX          | [SandBox.java](^[javadoc:org/broadleafcommerce/common/sandbox/domain/SandBox])          | Represents a sandbox.  |
+|BLC\_SANDBOX          | [SandBox.java](http://javadoc.broadleafcommerce.org/current/common/org/broadleafcommerce/common/sandbox/domain/SandBox.html)          | Represents a sandbox.  |
 |BLC\_ADMIN\_USER\_SANDBOX   | -      | Cross reference table that points to an admin user.  |
 |BLC\_SITE\_SANDBOX     | -          | Cross reference table that points to a site.  |
-|BLC\_SANDBOX\_ITEM     | [SandBoxItem.java](^[javadoc:org/broadleafcommerce/openadmin/server/domain/SandBoxItem])          | Represents a sandbox item.  |
+|BLC\_SANDBOX\_ITEM     | [SandBoxItem.java](http://javadoc.broadleafcommerce.org/current/open-admin-platform/org/broadleafcommerce/openadmin/server/domain/SandBoxItem.html)          | Represents a sandbox item.  |
 |SANDBOX\_ITEM\_ACTION  | -          | Cross reference table that points to an action.  |
-|BLC\_SANDBOX\_ACTION   | [SandBoxAction.java](^[javadoc:org/broadleafcommerce/openadmin/server/domain/SandBoxAction])          | Represents a sandbox action.  |
+|BLC\_SANDBOX\_ACTION   | [SandBoxAction.java](http://javadoc.broadleafcommerce.org/current/open-admin-platform/org/broadleafcommerce/openadmin/server/domain/SandBoxAction.html)          | Represents a sandbox action.  |
 
 ###Related Tables
 
 | Table               | Related Entity    | Description                                         |
 |:--------------------|:------------------|:----------------------------------------------------|
-|BLC\_ADMIN\_USER       | [AdminUser.java](^[javadoc:org/broadleafcommerce/openadmin/server/security/domain/AdminUser])          | Represents an admin user.  |
-|BLC\_SITE             | [Site.java](^[javadoc:org/broadleafcommerce/common/site/domain/Site])         | Represents a site.  |
+|BLC\_ADMIN\_USER       | [AdminUser.java](http://javadoc.broadleafcommerce.org/current/open-admin-platform/org/broadleafcommerce/openadmin/server/security/domain/AdminUser.html)          | Represents an admin user.  |
+|BLC\_SITE             | [Site.java](http://javadoc.broadleafcommerce.org/current/common/org/broadleafcommerce/common/site/domain/Site.html)         | Represents a site.  |
