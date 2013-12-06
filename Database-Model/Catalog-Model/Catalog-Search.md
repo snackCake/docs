@@ -10,21 +10,21 @@
 
 | Table               | Related Entity    | Description                                         |
 |:--------------------|:------------------|:----------------------------------------------------|
-|BLC\_SEARCH\_FACET     | [SearchFacet.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/SearchFacet.html)          | Represents a search facet.   |
-|BLC\_FIELD            | [Field.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/Field.html)          | Represents a field of a search facet.  |
+|BLC\_SEARCH\_FACET     | ^[javadoc:org/broadleafcommerce/core/search/domain/SearchFacet]          | Represents a search facet.   |
+|BLC\_FIELD            | ^[javadoc:org/broadleafcommerce/core/search/domain/Field]          | Represents a field of a search facet.  |
 |BLC\_FIELD\_SEARCH\_TYPES | -        | Designates if the field will be searchable.  |
-|BLC\_SEARCH\_FACET\_RANGE | [SearchFacetRange.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/SearchFacetRange.html)        | Designates a range for a search facet.  |
-|BLC\_SEARCH\_FACET\_XREF | [RequiredFacetImpl.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/RequiredFacetImpl.html)       | Cross references required search facets.  |
-|BLC\_CAT\_SEARCH\_FACET\_XREF   | [CategorySearchFacet.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/CategorySearchFacet.html)   | Cross references the search facet with categories. |
-|BLC\_CAT\_SEARCH\_FACET\_EXCL\_XREF| [CategoryExcludedSearchFacet.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/CategoryExcludedSearchFacet.html) | Cross references the search facet with categories to be excluded. |
-|BLC\_SEARCH\_INTERCEPT | [SearchIntercept.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/SearchIntercept.html)        | Represents the search redirect.  |
-|BLC\_URL\_HANDLER    | [URLHandler.java](http://javadoc.broadleafcommerce.org/current/contentmanagement-module/org/broadleafcommerce/cms/url/domain/URLHandler.html)        | Represents the URL handler.  |
-|BLC\_SEARCH\_SYNONYM   | [SearchSynonym.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/SearchSynonym.html)        | Represents search synonym.  |
-|BLC\_SHIPPING\_RATE    | [ShippingRate.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/pricing/domain/ShippingRate.html)         | Represents a shipping rate.  |
+|BLC\_SEARCH\_FACET\_RANGE | ^[javadoc:org/broadleafcommerce/core/search/domain/SearchFacetRange]        | Designates a range for a search facet.  |
+|BLC\_SEARCH\_FACET\_XREF | ^[javadoc:org/broadleafcommerce/core/search/domain/RequiredFacetImpl]       | Cross references required search facets.  |
+|BLC\_CAT\_SEARCH\_FACET\_XREF   | ^[javadoc:org/broadleafcommerce/core/search/domain/CategorySearchFacet]   | Cross references the search facet with categories. |
+|BLC\_CAT\_SEARCH\_FACET\_EXCL\_XREF| ^[javadoc:org/broadleafcommerce/core/search/domain/CategoryExcludedSearchFacet] | Cross references the search facet with categories to be excluded. |
+|BLC\_SEARCH\_INTERCEPT | ^[javadoc:org/broadleafcommerce/core/search/domain/SearchIntercept]        | Represents the search redirect.  |
+|BLC\_URL\_HANDLER    | ^[javadoc:org/broadleafcommerce/cms/url/domain/URLHandler]        | Represents the URL handler.  |
+|BLC\_SEARCH\_SYNONYM   | ^[javadoc:org/broadleafcommerce/core/search/domain/SearchSynonym]        | Represents search synonym.  |
+|BLC\_SHIPPING\_RATE    | ^[javadoc:org/broadleafcommerce/core/pricing/domain/ShippingRate]         | Represents a shipping rate.  |
 
 
 ###Related Tables
 
 | Table               | Related Entity    | Description                                         |
 |:--------------------|:------------------|:----------------------------------------------------|
-|BLC\_CATEGORY         | [Category.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/catalog/domain/Category.html)          | Represents a category.  |
+|BLC\_CATEGORY         | ^[javadoc:org/broadleafcommerce/core/catalog/domain/Category]          | Represents a category.  |
