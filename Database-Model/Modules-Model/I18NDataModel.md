@@ -22,9 +22,9 @@
 
 | Table                | Related Entity    | Description                                         |
 |:---------------------|:--------------|:----------------------------------------------------|
-|BLC_CATEGORY           | [Category.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/catalog/domain/Category.html)           | Contains Category  |
-|BLC_SKU          | [Sku.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/catalog/domain/Sku.html)          |  A SKU is a specific item that can be sold including any specific attributes of the item such as color or size.    |
-|BLC_PRODUCT_OPTION_VALUE          | [ProductOptionValue.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/catalog/domain/ProductOptionValue.html)          | Represents a product option value  |
-|BLC_PRODUCT_OPTION          | [ProductOption.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/catalog/domain/ProductOption.html)          | Represents a product option  |
-|SEARCH_FACET | [SearchFacet.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/SearchFacet.html)          | Holds search facet  information  |
-|BLC_FULFILLMENT_OPTION             | [FulfillmentOption.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/order/domain/FulfillmentOption.html)          | Represents an order  Fullfillment option  |
+|BLC_CATEGORY           | ^[javadoc:org/broadleafcommerce/core/catalog/domain/Category]           | Contains Category  |
+|BLC_SKU          | ^[javadoc:org/broadleafcommerce/core/catalog/domain/Sku]          |  A SKU is a specific item that can be sold including any specific attributes of the item such as color or size.    |
+|BLC_PRODUCT_OPTION_VALUE          | ^[javadoc:org/broadleafcommerce/core/catalog/domain/ProductOptionValue]          | Represents a product option value  |
+|BLC_PRODUCT_OPTION          | ^[javadoc:org/broadleafcommerce/core/catalog/domain/ProductOption]          | Represents a product option  |
+|SEARCH_FACET | ^[javadoc:org/broadleafcommerce/core/search/domain/SearchFacet]          | Holds search facet  information  |
+|BLC_FULFILLMENT_OPTION             | ^[javadoc:org/broadleafcommerce/core/order/domain/FulfillmentOption]          | Represents an order  Fullfillment option  |

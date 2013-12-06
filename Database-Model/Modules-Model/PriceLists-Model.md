@@ -17,9 +17,9 @@
 
 | Table                | Related Entity    | Description                                         |
 |:---------------------|:--------------|:----------------------------------------------------|
-|BLC_SKU_BUNDLE_ITEM           | [SkuBundleItem.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/catalog/domain/SkuBundleItem.html)           | Contains address information, e.g. city, state, and postal code  |
-|BLC_SKU          | [Sku.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/catalog/domain/Sku.html)          |  A SKU is a specific item that can be sold including any specific attributes of the item such as color or size.    |
-|BLC_PRODUCT_OPTION_VALUE          | [ProductOptionValue.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/catalog/domain/ProductOptionValue.html)          | Represents a customer in Broadleaf  |
-|BLC_CUSTOMER| [Customer.java](http://javadoc.broadleafcommerce.org/current/profile/org/broadleafcommerce/profile/core/domain/Customer.html)          | Represents a customer in Broadleaf |
-|SEARCH_FACET_RANGE | [SearchFacetRange.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/search/domain/SearchFacetRange.html)          | Holds search facet range information  |
-|BLC_ORDER             | [Order.java](http://javadoc.broadleafcommerce.org/current/framework/org/broadleafcommerce/core/order/domain/Order.html)          | Represents an order in Broadleaf  |
+|BLC_SKU_BUNDLE_ITEM           | ^[javadoc:org/broadleafcommerce/core/catalog/domain/SkuBundleItem]           | Contains address information, e.g. city, state, and postal code  |
+|BLC_SKU          | ^[javadoc:org/broadleafcommerce/core/catalog/domain/Sku]          |  A SKU is a specific item that can be sold including any specific attributes of the item such as color or size.    |
+|BLC_PRODUCT_OPTION_VALUE          | ^[javadoc:org/broadleafcommerce/core/catalog/domain/ProductOptionValue]          | Represents a customer in Broadleaf  |
+|BLC_CUSTOMER| ^[javadoc:org/broadleafcommerce/profile/core/domain/Customer]          | Represents a customer in Broadleaf |
+|SEARCH_FACET_RANGE | ^[javadoc:org/broadleafcommerce/core/search/domain/SearchFacetRange]          | Holds search facet range information  |
+|BLC_ORDER             | ^[javadoc:org/broadleafcommerce/core/order/domain/Order]          | Represents an order in Broadleaf  |
