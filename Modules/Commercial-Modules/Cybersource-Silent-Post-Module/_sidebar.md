@@ -1,2 +1,0 @@
-- [[SOP Quick Start | CyberSource SOP Quick Start]]
-- [[SOP Advanced Configuration | Cybersource SOP Advanced Configuration]]

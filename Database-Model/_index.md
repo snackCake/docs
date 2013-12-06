@@ -111,7 +111,3 @@
     - [[Email Tracking]]
     - [[Fulfillment]]
     - [[Social]]
-- [[Modules | Modules Model]]
-    - [[PriceList | PriceList Module Quick Start]]
-    - [[Advanced Search | Advanced Search Module]]
-    - [[I18n | I18N Quick Start]]

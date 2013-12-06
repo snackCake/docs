@@ -1,2 +1,0 @@
-- [[Authorize.net Quick Start]]
-- [[Authorize.net Advance Configuration]]

@@ -8,5 +8,5 @@
 
 | Table               | Related Entity    | Description                                         |
 |:--------------------|:------------------|:----------------------------------------------------|
-|BLC\_UserConnection   | [UserConnection.java](http://javadoc.broadleafcommerce.org/current/core/org/broadleafcommerce/core/social/domain/UserConnection.html)          | Represents a Spring Social User Connection.  |
+|BLC\_UserConnection   | ^[javadoc:org/broadleafcommerce/core/social/domain/UserConnection]          | Represents a Spring Social User Connection.  |
 

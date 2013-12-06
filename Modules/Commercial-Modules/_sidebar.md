@@ -1,8 +1,0 @@
-- [[Braintree | Braintree Module]]
-- [[Cybersource Silent Post | Cybersource Silent Post Module]]
-- [[Sagepay | Sagepay Module]]
-- [[Avalara | Avalara Module]]
-- [[Advanced Search | Advanced Search Module]]
-- [[Pricelist | Pricelist Module Quick Start]]
-- [[Advanced Offer | Advanced Offer Module Quick Start]]
-- [[[Gift Card and Customer Credit](http://docs.broadleafcommerce.org/giftcardandcustomercredit/2.0/)]]
