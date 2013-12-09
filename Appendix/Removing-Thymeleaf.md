@@ -62,6 +62,8 @@ If you would like to completely remove depdencency on Thymeleaf JARs from the *s
     <bean id="blProductOptionValueProcessor" class="org.broadleafcommerce.common.util.NullFactoryBean" />
     <bean id="blProductOptionsProcessor" class="org.broadleafcommerce.common.util.NullFactoryBean" />
     <bean id="blPaginationPageLinkProcessor" class="org.broadleafcommerce.common.util.NullFactoryBean" />
+    <bean id="blPaginationSizeLinkProcessor" class="org.broadleafcommerce.common.util.NullFactoryBean" />
+    <bean id="blPaginationSortLinkProcessor" class="org.broadleafcommerce.common.util.NullFactoryBean" />
     <bean id="blPriceTextDisplayProcessor" class="org.broadleafcommerce.common.util.NullFactoryBean" />
     <bean id="blRatingsProcessor" class="org.broadleafcommerce.common.util.NullFactoryBean" />
     <bean id="blRelatedProductProcessor" class="org.broadleafcommerce.common.util.NullFactoryBean" />
