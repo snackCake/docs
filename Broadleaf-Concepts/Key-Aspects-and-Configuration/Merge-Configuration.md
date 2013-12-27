@@ -66,3 +66,17 @@ We have identified this bean property as a property to be merged, not overriden,
     </property>
 </bean> 
 ```
+
+## Disabling Broadleaf Merge
+On occassion, you may need to override the Broadleaf merging process.
+
+This can be done by by adding a file named `broadleaf-commerce/skipMergeComponents.txt` in your classpath.   For example, in the DemoSite, put this file in the `core/src/main/resources` directory.
+
+The file should contain a list of component names for which you do not want the Broadleaf Commerce merge process to be used.  The example below would not perform merging on the `blAddItemWorkflow` and `blUpdateItemWorkflow` components.
+
+```
+blAddItemWorkflow
+blUpdateItemWorkflow
+```
+
+By adding a component to this list, the default Spring merging process will be used.
