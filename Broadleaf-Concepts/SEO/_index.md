@@ -21,6 +21,7 @@ For many sites, the sitemap is an important part of the SEO strategy.  Broadleaf
 The structure for sitemaps is a standard maintained at [sitemaps.org] (http://www.sitemaps.org/protocol.html).
 
 A simple version from the sitemap.org website follows:
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -34,6 +35,7 @@ A simple version from the sitemap.org website follows:
 ```
 
 Notice the `url` element in the example above.   An eCommerce site could have a large number of these (1 for each product).    The sitemap specification indicates a maximum of 50,000 entries per file which results in the need for "indexed" sitemap files.   An example from sitemap.org follows ...
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -56,6 +58,7 @@ The approach centers on ^[javadoc:org/broadleafcommerce/common/sitemap/service/S
 
 The key components involved are ...
 |Component Name|Component Description|
+|:--------------------|:----------------------------------------------------|
 |^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapService]|The primary process that is responsible for building the sitemap.|
 |^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapBuilder]|Helper class responsible for much of the file processing.| 
 |^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapGenerator]|Rresponsible for building url entries for the sitemap| 
@@ -63,6 +66,7 @@ The key components involved are ...
 
 In addition, the system provides the following generators out of box ...
 |Generator Name|Purpose|
+|:--------------------|:----------------------------------------------------|
 |^[javadoc:org/broadleafcommerce/cms/page/service/PageSiteMapGenerator]|Builds the url entries for pages| 
 |^[javadoc:org/broadleafcommerce/core/catalog/service/CategorySiteMapGenerator]|Builds the url entries for categories|
 |^[javadoc:org/broadleafcommerce/core/catalog/service/ProductSiteMapGenerator|Builds the url entries for products| 
