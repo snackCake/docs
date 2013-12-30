@@ -70,6 +70,8 @@ In addition, the system provides the following generators out of box ...
 
 Each of these components can be overridden and additional for implementation specific behavior and more complex implementations are likely to need custom SiteMapGenerators. 
 
+> The default Broadleaf Implementation will generate the sitemap when it is first requested for each application server and utilize that generated version for the next week.    The amount of time between generations is controllable by a property on SiteMapService.    It is recommended that for sites with large catalogs, the sitemap is generated offline as part of a scheduled job rather than having it generated on request.
+
 ## Robots.txt maintenance
 Broadleaf allows you to maintain your robots.txt file in the Broadleaf Admin.    Simply create a page named '/robots.txt' and it will be served when requested.
 
