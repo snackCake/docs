@@ -1,4 +1,2 @@
-- [[Payment Gateway Interfaces | Payment Gateway Interfaces]]
-- [[Workflow | Payment Workflow]]
-- [[Payment Security / PCI Compliance | Payment Security and PCI Compliance]]
-- [[Creating a Payment Module]]
+- [[Payment Gateway Interfaces]]
+- [[Creating a Payment Gateway Module]]
