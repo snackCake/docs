@@ -34,4 +34,13 @@ If the communication pattern is to POST the transaction results back to a public
 cases, the Payment Gateway will charge the card and send you back a response. If for some reason an error occurs processing that response and completing checkout, it is up to you to manually VOID that payment if necessary. Therefore, you may need to implement the Rollback interfaces in order to handle these error flows.
 
 
-## Understanding the Transaction Lifecycle
+## 4. How does the Gateway allow me to pass additional information not explicitly defined in their API.
+
+In some cases, we may find it necessary to pass some additional information that we would need passed back to us in the repsonse. 
+
+For example, one gateway provides an API to send extra custom fields that are pass through fields. In some of the modules built by Broadleaf, these fields may be used to hold identifying information about the Broadleaf Order. Many gateways allow this and it is important to keep in mind as you begin developing your solution in case you need it.
+
+
+## Begin Development
+
+Once you have the answers to these questions laid out and understood, you can start seeing where all this fits and where all the logic should go in terms of interfaces provided by Broadleaf.
