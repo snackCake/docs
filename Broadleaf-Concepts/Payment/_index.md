@@ -6,6 +6,7 @@ In 3.1, all Payment Modules have been refactored to be decoupled from the `Core`
 
 Below is a High Level Diagram of how the Payment Gateway Interfaces are structured and how they relate to the `Core` framework as well as the implementing Modules.
 
+![Payment Gateway High Level Diagram](payment-hld.png)
 
 
 Please use the menu on the right to navigate through the different sections of this documentation.
