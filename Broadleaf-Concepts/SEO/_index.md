@@ -57,20 +57,22 @@ The default implementation automatically indexes the files if needed.
 The approach centers on ^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapGenerator] components which are responsible for generating individual URL elements.
 
 The key components involved are ...
-|Component Name|Component Description|
+
+| Component Name | Component Description |
 |:--------------------|:----------------------------------------------------|
-|^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapService]|The primary process that is responsible for building the sitemap.|
-|^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapBuilder]|Helper class responsible for much of the file processing.| 
-|^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapGenerator]|Rresponsible for building url entries for the sitemap| 
-|^[javadoc:org/broadleafcommerce/common/sitemap/controller/BroadleafSiteMapController.java |A basic controller to render the SiteMap|
+| ^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapService] | The primary process that is responsible for building the sitemap |
+| ^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapBuilder] | Helper class responsible for much of the file processing | 
+| ^[javadoc:org/broadleafcommerce/common/sitemap/service/SiteMapGenerator] | Responsible for building url entries for the sitemap | 
+| ^[javadoc:org/broadleafcommerce/common/sitemap/controller/BroadleafSiteMapController] | A basic controller to render the SiteMap |
 
 In addition, the system provides the following generators out of box ...
-|Generator Name|Purpose|
+
+| Generator Name | Purpose |
 |:--------------------|:----------------------------------------------------|
-|^[javadoc:org/broadleafcommerce/cms/page/service/PageSiteMapGenerator]|Builds the url entries for pages| 
-|^[javadoc:org/broadleafcommerce/core/catalog/service/CategorySiteMapGenerator]|Builds the url entries for categories|
-|^[javadoc:org/broadleafcommerce/core/catalog/service/ProductSiteMapGenerator|Builds the url entries for products| 
-|^[javadoc:org/broadleafcommerce/common/sitemap/service/CustomUrlSiteMapGenerator]|Defines custom url entries| 
+| ^[javadoc:org/broadleafcommerce/cms/page/service/PageSiteMapGenerator] | Builds the url entries for pages | 
+| ^[javadoc:org/broadleafcommerce/core/catalog/service/CategorySiteMapGenerator] | Builds the url entries for categories |
+| ^[javadoc:org/broadleafcommerce/core/catalog/service/ProductSiteMapGenerator] | Builds the url entries for products | 
+| ^[javadoc:org/broadleafcommerce/common/sitemap/service/CustomUrlSiteMapGenerator] | Defines custom url entries | 
 
 Each of these components can be overridden and additional for implementation specific behavior and more complex implementations are likely to need custom SiteMapGenerators. 
 
