@@ -12,4 +12,4 @@
 - [[Presentation Layer]]
 - [[REST]]
 - [[Internationalization]]
-- [[Site Map Generators]]
+- [[SEO]]
