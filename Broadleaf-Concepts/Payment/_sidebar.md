@@ -1,2 +1,3 @@
 - [[Payment Gateway Interfaces]]
+- [[Understanding the Transaction Lifecycle]]
 - [[Creating a Payment Gateway Module]]
