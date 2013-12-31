@@ -48,19 +48,27 @@ Here are some steps to follow to help get you started developing your own module
 
 2. Implement the `PaymentGatewayTransactionService` to handle any post Authorize or Authroize and Capture operations.
 
-3. Implement the `PaymentGatewayWebResponseService`. In most cases, the Gateway will send back the transaction information back to your system using an HTTPServletRequest. Use this interface method to encapsulate translating this into a `PaymentResponseDTO`.
+3. Implement the `PaymentGatewayWebResponseService`. In most cases, the Gateway will send back the transaction information back to your system using an `HTTPServletRequest`. Use this interface method to encapsulate translating this into a `PaymentResponseDTO`.
+
+4. Implement a Spring MVC controller that receives the results of the transactions that extends `PaymentGatewayAbstractController`. This abstract controller expects certain methods to be implmented by the Gateway specific implementation.
 
 ## Hosted or Transparent Redirect?
 
-1. If it is a Hosted Solution:
+If it is a Hosted Solution:
 
 - Implement the `PaymentGatewayHostedService`
 - Create a Thymeleaf Processor to render the button/form needed to redirect to the hosted page.
 
-2. If it is a Transparent Redirect/Silent Post Solution:
+If it is a Transparent Redirect/Silent Post Solution:
 
 - Implement the `PaymentGatewayTransparentRedirectService`
 - Create a Thymeleaf Processor Extension Handler that extends `AbstractTRCreditCardExtensionHandler`. This will dynamically change a Credit Card Form (see `TransparentRedirectCreditCardFormProcessor`) on the checkout page and changes its ACTION URL and append any gateway specific hidden fields to that form.
 - Create a Thymeleaf Expression Extension Handler that extends `AbstractPaymentGatewayFieldExtensionHandler`. This will dynamically change any HTML field `name` attributes to be those that are expected from the gateway.
+
+
+## Testing
+
+You can mock the Payment Request DTO without worrying about creating an actual Broadleaf Order since modules are only dependent on BLC `Common`. This allows you to create isolated integration tests for each service.
+
 
 
