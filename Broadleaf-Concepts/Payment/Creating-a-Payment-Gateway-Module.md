@@ -32,7 +32,35 @@ Note that some gateways don't publish their Java SDK on Maven Central, so you ma
 
 In a lot of cases, you may notice that a lot of the transaction methods share common code to create a Request which then calls an external API or SDK and parses the Response. If this is the case, you may wish to create a parent class that all these extend to unify this boiler plate code. It's also important to extend `AbstractExternalPaymentGatewayCall` if your service makes an SDK or External API call. This allows anyone using the framework to configure the ServiceMonitor AOP hooks and detect any outages to provide (email/logging) feedback when necessary. You can look at the Java Docs on that class for further examples and documentation.
 
+### 4. Creating endpoints within the Modules
+
+Each of the Payment Modules will now provide out-of-the-box endpoints to handle processing web responses back from the Gateway. These Spring MVC controllers will reside under the `.../vendor/replace_with_gateway_name/web/` package. These controllers will provide default @RequestMappings and extend `PaymentGatewayAbstractController`
+
+### 5. Make sure to capture the Raw Response on your PaymentResponseDTO.
+
+It's often very helpful and in some cases required to capture the entire response back from a gateway. Make sure to serialize all the information coming back from the gateway in the Raw Response field. You may wish to use the `PaymentGatewayWebResponsePrintServiceImpl` to translate an `HttpServletRequest` into a Raw Response String.
+
 ## Implementation Guidelines
 
+Here are some steps to follow to help get you started developing your own module.
+
+1. Extend and Implement the `PaymentGatewayConfigurationService`. Every module should provide a configuration service that provides information about what it can and cannot handle as well as any specific configuration parameters it needs.
+
+2. Implement the `PaymentGatewayTransactionService` to handle any post Authorize or Authroize and Capture operations.
+
+3. Implement the `PaymentGatewayWebResponseService`. In most cases, the Gateway will send back the transaction information back to your system using an HTTPServletRequest. Use this interface method to encapsulate translating this into a `PaymentResponseDTO`.
+
+## Hosted or Transparent Redirect?
+
+1. If it is a Hosted Solution:
+
+- Implement the `PaymentGatewayHostedService`
+- Create a Thymeleaf Processor to render the button/form needed to redirect to the hosted page.
+
+2. If it is a Transparent Redirect/Silent Post Solution:
+
+- Implement the `PaymentGatewayTransparentRedirectService`
+- Create a Thymeleaf Processor Extension Handler that extends `AbstractTRCreditCardExtensionHandler`. This will dynamically change a Credit Card Form (see `TransparentRedirectCreditCardFormProcessor`) on the checkout page and changes its ACTION URL and append any gateway specific hidden fields to that form.
+- Create a Thymeleaf Expression Extension Handler that extends `AbstractPaymentGatewayFieldExtensionHandler`. This will dynamically change any HTML field `name` attributes to be those that are expected from the gateway.
 
 
