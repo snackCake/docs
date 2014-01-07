@@ -64,6 +64,12 @@ If it is a Transparent Redirect/Silent Post Solution:
 - Implement the `PaymentGatewayTransparentRedirectService`
 - Create a Thymeleaf Processor Extension Handler that extends `AbstractTRCreditCardExtensionHandler`. This will dynamically change a Credit Card Form (see `TransparentRedirectCreditCardFormProcessor`) on the checkout page and changes its ACTION URL and append any gateway specific hidden fields to that form.
 - Create a Thymeleaf Expression Extension Handler that extends `AbstractPaymentGatewayFieldExtensionHandler`. This will dynamically change any HTML field `name` attributes to be those that are expected from the gateway.
+ 
+## Example Gateway
+
+The Heat Clinic Demo Site includes a test "Null Payment Gateway" implementation that shows the implementations involved to integrate an actual payment gateway. This is not an actual payment gateway and in no way should be used in production. This was created for demo purposes only and is helpful in showing how all the payment "plumbing" is configured.
+
+View the classes in the package `DemoSite/core/src/main/java/com/mycompany/sample`
 
 
 ## Testing
