@@ -44,13 +44,15 @@ It's often very helpful and in some cases required to capture the entire respons
 
 Here are some steps to follow to help get you started developing your own module.
 
-1. Extend and Implement the `PaymentGatewayConfigurationService`. Every module should provide a configuration service that provides information about what it can and cannot handle as well as any specific configuration parameters it needs.
+1. Extend and Implement the `PaymentGatewayConfiguration`. Every module should provide a configuration bean that provides information about what it can and cannot handle as well as any specific configuration parameters it needs.
 
-2. Implement the `PaymentGatewayTransactionService` to handle any post Authorize or Authroize and Capture operations.
+2. Implement the `PaymentGatewayConfigurationService`. Every module should provide an implementation of this service that will define all the Payment Gateway Interfaces that this module supports.
 
-3. Implement the `PaymentGatewayWebResponseService`. In most cases, the Gateway will send back the transaction information back to your system using an `HTTPServletRequest`. Use this interface method to encapsulate translating this into a `PaymentResponseDTO`.
+3. Implement the `PaymentGatewayTransactionService` to handle any post Authorize or Authroize and Capture operations.
 
-4. Implement a Spring MVC controller that receives the results of the transactions that extends `PaymentGatewayAbstractController`. This abstract controller expects certain methods to be implmented by the Gateway specific implementation.
+4. Implement the `PaymentGatewayWebResponseService`. In most cases, the Gateway will send back the transaction information back to your system using an `HTTPServletRequest`. Use this interface method to encapsulate translating this into a `PaymentResponseDTO`.
+
+5. Implement a Spring MVC controller that receives the results of the transactions that extends `PaymentGatewayAbstractController`. This abstract controller expects certain methods to be implmented by the Gateway specific implementation.
 
 ## Hosted or Transparent Redirect?
 
