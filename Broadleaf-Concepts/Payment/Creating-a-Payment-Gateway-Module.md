@@ -54,6 +54,8 @@ Here are some steps to follow to help get you started developing your own module
 
 5. Implement a Spring MVC controller that receives the results of the transactions that extends `PaymentGatewayAbstractController`. This abstract controller expects certain methods to be implmented by the Gateway specific implementation.
 
+6. Implement the `PaymentGatewayRollbackService` to handle error scenarios. This API will be called in the event an error gets thrown in the Checkout Workflow after a payment has been confirmed. That means the payment has already been captured or authorized however something else in the workflow has caused an exception to occur which therefore needs to rollback any payments that have already been processed. 
+
 ## Hosted or Transparent Redirect?
 
 If it is a Hosted Solution:
