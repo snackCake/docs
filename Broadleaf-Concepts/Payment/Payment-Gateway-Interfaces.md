@@ -2,8 +2,9 @@
 
 | Interface | Description |
 | :----------- | :---------- |
+| PaymentGatewayConfiguartion | This bean is intended to define the specific configuration parameters that this gateway implementation currently supports. |
+| PaymentGatewayConfigurationService | Each payment gateway module should configure an instance of this. In order for multiple gateways to exist in the system at the same time, a list of these is managed via the {@link PaymentGatewayConfigurationServiceProvider}. This allows for proper delegation to the right gateway to perform operations against via different order payments on an order. |
 | PaymentGatewayCheckoutService | This is designed as a generic contract for allowing payment modules to add payments to an order represented in Broadleaf while still staying decoupled from any of the Broadleaf core framework concepts. These service methods are usually invoked from the controller that listens to the endpoint hit by the external payment provider (which should be a subclass of PaymentGatewayAbstractController).|
-| PaymentGatewayConfigurationService | This API is intended to define the specific configuration parameters that this gateway implementation currently supports. |
 | PaymentGatewayCreditCardService | Several payment gateways allow you to manage Customer and Credit Card Information from the gateway allowing you to create a transaction from the tokenized customer or payment method at a later date. Note: These are usually extra features you need to pay for when you sign up with the Gateway |
 | PaymentGatewayCustomerService | Several payment gateways allow you to manage Customer and Credit Card Information from the gateway allowing you to create a transaction from the tokenized customer or payment method at a later date. Note: These are usually extra features you need to pay for when you sign up with the Gateway |
 | PaymentGatewayFraudService | Certain Payment Integrations allow you to use Fraud Services like Address Verification and Buyer Authentication. This API allows you to call certain fraud prevention APIs exposed from the gateway. |
