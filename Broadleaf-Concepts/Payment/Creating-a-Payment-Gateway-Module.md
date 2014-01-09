@@ -68,6 +68,7 @@ If it is a Transparent Redirect/Silent Post Solution:
 - Implement the `PaymentGatewayTransparentRedirectService`
 - Create a Thymeleaf Processor Extension Handler that extends `AbstractTRCreditCardExtensionHandler`. This will dynamically change a Credit Card Form (see `TransparentRedirectCreditCardFormProcessor`) on the checkout page and changes its ACTION URL and append any gateway specific hidden fields to that form.
 - Create a Thymeleaf Expression Extension Handler that extends `AbstractPaymentGatewayFieldExtensionHandler`. This will dynamically change any HTML field `name` attributes to be those that are expected from the gateway.
+- If the Payment Gateway requires the Credit Card Type (e.g. Visa, Mastercard, etc...) be sent along with the Credit Card Number and the Expiry Date. Implement the `CreditCardTypesExtensionHandler` to add the code/card type map to your Thymeleaf evaluation model.
  
 ## Example Gateway
 
