@@ -32,9 +32,20 @@ Note that some gateways don't publish their Java SDK on Maven Central, so you ma
 
 In a lot of cases, you may notice that a lot of the transaction methods share common code to create a Request which then calls an external API or SDK and parses the Response. If this is the case, you may wish to create a parent class that all these extend to unify this boiler plate code. It's also important to extend `AbstractExternalPaymentGatewayCall` if your service makes an SDK or External API call. This allows anyone using the framework to configure the ServiceMonitor AOP hooks and detect any outages to provide (email/logging) feedback when necessary. You can look at the Java Docs on that class for further examples and documentation.
 
-### 4. Creating endpoints within the Modules
+### 4. Create a Spring MVC controller to process the Payment Response within the Module
 
 Each of the Payment Modules will now provide out-of-the-box endpoints to handle processing web responses back from the Gateway. These Spring MVC controllers will reside under the `.../vendor/replace_with_gateway_name/web/` package. These controllers will provide default @RequestMappings and extend `PaymentGatewayAbstractController`
+
+You will need to implement the `handleProcessingException()` and `handleUnsuccessfulTransaction()` methods. In most cases, you will just need to log the exception and add a processing error to the Redirect Attributes. In some implementations you can re-throw the exception as the Gateway will listen back for an error response and VOID the transaction. In other cases, you never communicate back to the Gateway and need to show an error message to the customer.
+
+```java
+        if (LOG.isTraceEnabled()) {
+            LOG.trace("A Processing Exception Occurred for " + GATEWAY_CONTEXT_KEY +
+                    ". Adding Error to Redirect Attributes.");
+        }
+
+        redirectAttributes.addAttribute(PAYMENT_PROCESSING_ERROR, getProcessingErrorMessage());
+```
 
 ### 5. Make sure to capture the Raw Response on your PaymentResponseDTO.
 
