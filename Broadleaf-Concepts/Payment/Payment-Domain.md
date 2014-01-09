@@ -15,24 +15,22 @@ Broadleaf has some predefined payment types:
 - Money Order
 - Customer Credit
 - Collect on delivery (can also be used for cash)
-
-### Status
-##TODO
-This is really a convenience property that can be predetermined by looking at the payment 
+- Third Party Account (e.g. PayPal Express Checkout)
 
 ### Amount
 How much the customer is going to pay with this particular payment on a particular order. In the common case, a customer will pay for the entire order total using only a single payment (1 credit card) but you might want to support a customer paying for items with both a credit card and a gift card, or multiple gift cards or even multiple credit cards.
 
-> While the Broadleaf domain does not explicitly prevent you from allowing customers to pay for an order with multiple credit cards, if you do not want to store the credit cards yourself (and forego the PCI requirements) but also still capture multiple cards then this scenario becomes very complicated.
+> While the Broadleaf domain does not explicitly prevent you from allowing customers to pay for an order with multiple credit cards, if you do not want to store the credit cards yourself (and forego the PCI requirements) and integrate with a Payment Gateway, but also still capture multiple cards then this scenario becomes very complicated. Many Payment Gateways assume that a call to them with Credit Card information is the last step in the checkout process and will
+ultimately complete the order. This causes issues if you intend to capture multiple credit card payments, and a more customized solution is needed.
 
 ### Billing address
 This is normally used for credit cards. Gift cards do not usually require a billing address
 
 ### Gateway type
-Allows for easy reference to what gateway was used for this particular payment for auditing purposes or in multi-site configurations where 2 sites might use different payment processors. While Broadleaf does not provide any of these types out of the box, this will be used by different payment providers (Braintree, Authorize.net, Cybersource, etc).
+Allows for easy reference to what gateway was used for this particular payment for auditing purposes or in multi-site configurations where 2 sites might use different payment processors. While Broadleaf does not provide any of these types out of the box, this will be used by different payment providers (Braintree, Authorize.net, Cybersource, etc). Every implementing module will have a `PaymentGatewayType`
 
 ### Transactions
-A transaction is some sort of modification for a particular payment. For instance, a customer might say that they intend to pay for an order with $20 from a credit card (which would be an `OrderPaymen	t`) but then actually *authorizing* or *capturing* the card would occur within a transaction.
+A transaction represent a state or modification for a particular payment. For instance, a customer might say that they intend to pay for an order with $20 from a credit card (which would be an `OrderPayment`) but then actually *authorizing* or *capturing* the card would occur within a transaction.
 
 Read more about [[Payment Transactions]]
 
