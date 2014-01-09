@@ -3,5 +3,5 @@
 - [[Understanding Payment Gateways]]
 - [[Creating a Payment Gateway Module]]
 - [[Payment Domain]]
-- [[Payment Workflow]]
+- [[Payment and Pricing Activities]]
 - [[Payment Security and PCI Compliance]]
