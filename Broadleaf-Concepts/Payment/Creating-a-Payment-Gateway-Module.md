@@ -80,5 +80,13 @@ View the classes in the package `DemoSite/core/src/main/java/com/mycompany/sampl
 
 You can mock the Payment Request DTO without worrying about creating an actual Broadleaf Order since modules are only dependent on BLC `Common`. This allows you to create isolated integration tests for each service.
 
+If you've followed the package structure outlined above, it is helpful to enable trace debugging for the following:
+
+```xml    
+    <logger name="org.broadleafcommerce.vendor" level="TRACE"/>
+    <logger name="com.broadleafcommerce.vendor" level="TRACE"/>
+    <logger name="org.broadleafcommerce.common.web.payment" level="TRACE"/>
+```    
+
 
 
