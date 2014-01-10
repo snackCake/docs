@@ -114,7 +114,7 @@ Since we use JPA and Hibernate, we can specify properties that control the behav
 
 ```xml
 <properties>
-    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
+    <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
 </properties>
 ```
 
@@ -123,7 +123,7 @@ However, Broadleaf provides a mechanism to easily control this behavior on a per
 ```xml
 <properties>
   <property name="hibernate.hbm2ddl.auto" value="create-drop" />
-  <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
+  <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
   <property name="hibernate.show_sql" value="true"/>
   <property name="hibernate.cache.use_second_level_cache" value="true"/>
   <property name="hibernate.cache.use_query_cache" value="true"/>
