@@ -51,7 +51,9 @@ You will need to implement the `handleProcessingException()` and `handleUnsucces
 
 It's often very helpful and in some cases required to capture the entire response back from a gateway. Make sure to serialize all the information coming back from the gateway in the Raw Response field. You may wish to use the `PaymentGatewayWebResponsePrintServiceImpl` to translate an `HttpServletRequest` into a Raw Response String.
 
-### 6. Create a `MessageConstants` class that define the gateway specific constants that you pass between the additional fields map of the Request and Response DTO's to the Gateway Services.
+### 6. Utilize a `MessageConstants` class
+
+Create a `MessageConstants` class that define the gateway specific constants that you pass between the additional fields map of the Request and Response DTO's to the Gateway Services. 
 
 One important convention to take note of as you push fields into the additional fields map of the ResponseDTO: make sure to be aware of the fields that you place into the map, as that map is saved into the `PaymentTransaction.additionalFields` map in the framework. One gotcha, is that MySQL is by default case-insensitive, so be sure to not place duplicate fields into this map (of different case) as you may face a unique-constraint violation when that object is persisted.
 
