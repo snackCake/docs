@@ -101,11 +101,11 @@ You can mock the Payment Request DTO without worrying about creating an actual B
 If you've followed the package structure outlined above, it is helpful to enable trace debugging for the following:
 
 ```xml    
-    <logger name="org.broadleafcommerce.payment.service.gateway" level="TRACE"/>
-    <logger name="com.broadleafcommerce.payment.service.gateway" level="TRACE"/>
-    <logger name="org.broadleafcommerce.vendor" level="TRACE"/>
-    <logger name="com.broadleafcommerce.vendor" level="TRACE"/>
-    <logger name="org.broadleafcommerce.common.web.payment" level="TRACE"/>
+    <logger name="org.broadleafcommerce.payment.service.gateway"><level value="TRACE"/></logger>
+    <logger name="com.broadleafcommerce.payment.service.gateway"><level value="TRACE"/></logger>
+    <logger name="org.broadleafcommerce.vendor"><level value="TRACE"/></logger>
+    <logger name="com.broadleafcommerce.vendor"><level value="TRACE"/></logger>
+    <logger name="org.broadleafcommerce.common.web.payment"><level value="TRACE"/></logger>
 ```    
 
 
