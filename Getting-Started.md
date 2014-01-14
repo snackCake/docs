@@ -8,7 +8,7 @@ Thanks for wanting to try out Broadleaf Commerce! By following this tutorial, yo
 
 - First, you'll need the Java 7 Development Kit (JDK), which you can find [on Oracle's official Java site](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
 
-> While Broadleaf will still work with Java 6, we recommend using Java 7 unless there is an exceptional reason that your organization requires Java 6. Oracle marked Java 6 was marked as end of life in [February of 2013](http://www.oracle.com/technetwork/java/eol-135779.html)
+> While Broadleaf will still work with Java 6, we recommend using Java 7 unless there is an exceptional reason that your organization requires Java 6. Oracle marked Java 6 "end of life" in [February of 2013](http://www.oracle.com/technetwork/java/eol-135779.html)
 
 - You will also need the latest version of Maven, which you can get [on the official Apache Maven site](http://maven.apache.org/download.html)
 
