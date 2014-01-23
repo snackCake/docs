@@ -321,14 +321,26 @@ The following provides a list of current RESTful endpoints provided with Broadle
     <th>URI</th><td>Description</td><th>Method</th><th>Query Parameters</th>
   </tr>
   <tr>
-    <td>/cart/checkout</td>
-    <td>Accepts a list of PaymentMapWrapper representations in JSON or XML format. Returns a completed order.</td>
-    <td>POST</td>
+    <td>/cart/checkout/payments</td>
+    <td>Returns a list of Order Payments on the order.</td>
+    <td>GET</td>
     <td>None</td>
   </tr>
   <tr>
-    <td>/cart/checkout/payment/response</td>
-    <td>This should only be called for modules that need to engage the workflow directly without doing a complete checkout. For example, when using PayPal for doing an authorize and retrieving the redirect: url to PayPal. This takes in a single PaymentReferenceMap representation. Returns a PaymentResponseItem representation.</td>
+    <td>/cart/checkout/payment</td>
+    <td>Adds a new OrderPayment and any associated PaymentTransactions to the Order. Accepts an OrderPayment representation in JSON or XML format.</td>
+    <td>POST</td>
+    <td>None</td>
+  </tr>  
+  <tr>
+    <td>/cart/checkout/payment</td>
+    <td>Deletes the OrderPayment that is represented by the payment passed in. Accepts an OrderPayment representation in JSON or XML format.</td>
+    <td>DELETE</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td>/cart/checkout</td>
+    <td>Once all the payments have been finalized and the order is ready for checkout. This method allows you to complete checkout.</td>
     <td>POST</td>
     <td>None</td>
   </tr>
