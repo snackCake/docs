@@ -60,6 +60,60 @@ Lastly, it is recommended that you configure a filter to set the customer state,
 
 > as well as provide some type of security other than http-basic.
 
+
+## Running a Basic Checkout Scenario in Heat Clinic
+
+If you've got the Heat Clinic Demo Site running and have enabled the REST API as instructed above,
+you can use a REST client like Postman (http://www.getpostman.com/) to test a basic checkout flow outlined below:
+
+1. Create a new cart:
+
+`POST: http://localhost:8080/api/v1/cart`
+
+2. Add Product ID: 1 to the newly created cart. Note: this assumes that the customerId created above was 100
+
+`POST: http://localhost:8080/api/v1/cart/1?categoryId=1&customerId=100`
+
+3. Add a Payment to the Order
+
+`POST: http://localhost:8080/api/v1/cart/checkout/payment?customerId=100`
+
+Here is what a JSON representation of what an OrderPayment may look like. The REST API assumes that any Payment Gateway Communication or Processing is handled by the client. The REST API is intended to only handle the basic CRUD operations for payments on an order and the "handshake and communication between any Payment Provider" is handled outside the scope of the REST endpoint. Once you have received a successful Payment Response, you can then persist it to an order via an OrderPaymentWrapper like this:
+
+```json
+{
+        "orderId": 1,
+        "type": "CREDIT_CARD",
+        "amount": "12.99",
+        "currency": "USD",
+        "gatewayType": "MY_GATEWAY",
+        "transactions": [
+            {
+                "type": "AUTHORIZE_AND_CAPTURE",
+                "rawResponse": "{\"attributes\": {\"blSandboxDisplayDateTimeDate\":\"01/22/2014\",\"javax.servlet.request.cipher_suite\":\"TLS_DHE_RSA_WITH_AES_256_CBC_SHA\",\"blSandboxDisplayDateTimeMinutes\":\"22\",\"org.springframework.web.servlet.HandlerMapping.pathWithinHandlerMapping\":\"/null-checkout/hosted/return\",\"blSandboxDisplayDateTimeHours\":\"5\",\"javax.servlet.request.ssl_session_id\":\"52E052C494619fE503Dd29A590Ab184dDe3d1eE086Da2781Dc1c98646f962453\",\"org.springframework.web.servlet.HandlerMapping.bestMatchingPattern\":\"/null-checkout/hosted/return\"},\"parameters\": {\"MESSAGE\":\"Hosted Call Successful\",\"ORDER_ID\":\"2\",\"TRANSACTION_AMT\":\"12.99\",\"COMPLETE_CHECKOUT_ON_CALLBACK\":\"false\"}}",
+                "success": true,
+                "amount": "12.99",
+                "currency": "USD",
+                "additionalFields": [
+                    {
+                        "key": "MESSAGE",
+                        "value": "Call Successful"
+                    }
+                ]
+            }
+        ]
+}
+
+```
+
+4. Checkout
+
+`POST: http://localhost:8080/api/v1/cart/checkout?customerId=100`
+
+5. Check the Order History for the Submitted Order
+
+`GET: http://localhost:8080/api/v1/orders?customerId=100`
+
 ## Extending Broadleaf RESTful services
 Extending Broadleaf Commerce is a big topic. Broadleaf's default entities can be extended. Broadleaf's DAOs and Services can also be extended.  See the section on [Extending Product](Next-Steps#wiki-extending-product) or [Extending Service](Next-Steps#wiki-extending-service) for more information on generally extending Broadleaf's domain and service objects.  After extending the domain and/or services, you may want to expose the new data and/or functionality to clients of your RESTful API.  Broadleaf provides a mechanism for this and attempts to be as flexible as possible.
 
