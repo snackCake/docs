@@ -1,5 +1,8 @@
 # Database Model
 
+### 3.0 to 3.1 Model Changes
+
+
 ### 2.3 to 3.0 Model Changes
 - In [[Customer | Customer Detail]]
     - New Fields in `BLC_ADDRESS`: ADDRESS_LINE3
