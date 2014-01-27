@@ -1,7 +1,7 @@
 - [[Runtime Environment Configuration]]
 - [[Preparing for Production | Production Considerations]]
 - [[Environment Setup]]
-- [[Managing DB Versions Migrations With Liquibase]]
+- [[DB Management with Liquibase | Managing DB Versions Migrations With Liquibase]]
 - [[Removing Thymeleaf]]
 - [[Branching Strategy]]
 - [[Dealing With Money]]
