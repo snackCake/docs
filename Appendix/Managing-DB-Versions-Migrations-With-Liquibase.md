@@ -15,7 +15,7 @@ If you aren't using Liquibase, here is an example of incorporating the Liquibase
 
 >> Note: This example implementation requires that you create a reference Database of the newest version (e.g. 3.1 schema) so that Liquibase can connect to it in order to generate the database diff. It, is also recommended that the two databases that you compare are of the same type. Even though the Liquibase changelog file is database agnostic, when you are comparing two databases of different types (e.g. HSQL and MySQL) you may get un-intended diff comparisons if they aren't of the same type.
 
-1. If you don't have a reference DB set up of the new schema, you can clone the repo of the new version of the DemoSite and set the Hibernate properties file to `create` instead of `create-drop`, start-up the application, and create the reference Database. 
+1) If you don't have a reference DB set up of the new schema, you can clone the repo of the new version of the DemoSite and set the Hibernate properties file to `create` instead of `create-drop`, start-up the application, and create the reference Database. 
 
 Change your development-shared.properties and development.properties of the upgraded application to create a new reference schema: (3.1 for this example)
 
@@ -23,9 +23,9 @@ Change your development-shared.properties and development.properties of the upgr
 blPU.hibernate.hbm2ddl.auto=create
 ```
 
-2. Once you have a reference DB of the new schema created, switch back to the old schema and application and add the Liquibase Maven Plugin so you can do a Database Diff
+2) Once you have a reference DB of the new schema created, switch back to the old schema and application and add the Liquibase Maven Plugin so you can do a Database Diff
 
-3. Add the Liquibase Maven Plugin to your root `pom.xml`
+3) Add the Liquibase Maven Plugin to your root `pom.xml`
 
 ```xml
   <dependency>
@@ -35,7 +35,7 @@ blPU.hibernate.hbm2ddl.auto=create
   </dependency>
 ```
 
-4. Add the dependency to your `core` pom as well
+4) Add the dependency to your `core` pom as well
 
 ```xml
   <dependency>
@@ -44,7 +44,7 @@ blPU.hibernate.hbm2ddl.auto=create
   </dependency>
 ```
 
-5. Add the Liquibase Maven Plugin configuration in your `core` pom.xml. You can find more details about the plugin configuration here (http://www.liquibase.org/documentation/maven/)
+5) Add the Liquibase Maven Plugin configuration in your `core` pom.xml. You can find more details about the plugin configuration here (http://www.liquibase.org/documentation/maven/)
 
 In this example, you must configure the following properties:
 
@@ -92,15 +92,15 @@ In this example, you must configure the following properties:
   </plugin>
 ```
 
-6. Do a `mvn clean install` on your DemoSite project to pull in all the dependencies, and cd into your `core` directory and type in:
+6) Do a `mvn clean install` on your DemoSite project to pull in all the dependencies, and cd into your `core` directory and type in:
 
 ```text
 mvn liquibase:diff
 ```
 
-7. After executing the above command, it should generate a changelog file in the directory specified above. In this example: `src/main/resources/db.changelog-NEW.xml`
+7) After executing the above command, it should generate a changelog file in the directory specified above. In this example: `src/main/resources/db.changelog-NEW.xml`
 
-8. Once you have reviewd the diff of the new schema changes, make any adjustments, and then you can get liquibase to generate the migration SQL script for you. Run the following command in your `core` directory"
+8) Once you have reviewd the diff of the new schema changes, make any adjustments, and then you can get liquibase to generate the migration SQL script for you. Run the following command in your `core` directory"
 
 ```text
 mvn liquibase:updateSQL
