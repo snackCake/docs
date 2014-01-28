@@ -22,7 +22,7 @@ Some payment gateways like "PayPal Express Checkout" offer alternative checkout 
 
 When you place the PayPal Express Checkout button on your cart page. The user will be redirected to PayPal's site to enter their details. After completing this they will then be redirected back to your site as the order has not yet been completed. They have not yet entered their Shipping Address or picked their Delivery Method.
 
-We provied a Thymeleaf `OnePageCheckoutProcessor` to help render and make business decisions on when to draw the different states that are required for the checkout page. Our `OnePageCheckoutProcessor` will handle this particular case where there is an OrderPayment on the order that is what we called `UNCONFIRMED`. Since there is an Order Payment that is unconfirmed from a `THIRD_PARTY_ACCOUNT`, our checkout page won't bother asking for a billing address and will only allow you to complete checkout using that payment that's in process.
+We provide a Thymeleaf `OnePageCheckoutProcessor` to help render and make business decisions on when to draw the different states that are required for the checkout page. Our `OnePageCheckoutProcessor` will handle this particular case where there is an OrderPayment on the order that is what we called `UNCONFIRMED`. Since there is an Order Payment that is unconfirmed from a `THIRD_PARTY_ACCOUNT`, our checkout page won't bother asking for a billing address and will only allow you to complete checkout using that payment that's in process.
 
 Here is a wireframe depicting how the UI may look like if integrating with a gateway like PayPal Express Checkout:
 
