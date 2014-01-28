@@ -4,6 +4,7 @@
 - [[Catalog and Search]]
 - [[Cart Operations]]
 - [[Pricing]]
+- [[Checkout Page Design]]
 - [[Checkout]]
 - [[Payment]]
 - [[Architecture Diagrams]]
