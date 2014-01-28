@@ -1,7 +1,7 @@
 # Payment Domain
 
 ## Payment
-`OrderPayment` is how customers indicate how they will pay for their order. Conceptually, a payment is more about what a customer *intends* to do, while a `PaymentTransaction` is what actually happened to that payment. For instance, a customer might say that they want to pay for $20 of the order with a gift card (which would be an `OrderPayment`) but actually decrementing the amount from the gift card would not occur until checkout. **All completed orders should have at least 1 `OrderPayment` and that `OrderPayment` should have at least 1 confirmed and successful transaction**. A few key parts make up a payment:
+`OrderPayment` is how customers indicate how they will pay for their order. Conceptually, a payment is more about what a customer *intends* to do, while a `PaymentTransaction` is what actually happened to that payment. For instance, a customer might say that they want to pay for $20 of the order with a gift card (which would be an `OrderPayment`) but actually decrementing the amount from the gift card would not occur until checkout. **All completed orders should have at least 1 `OrderPayment` and that `OrderPayment` should have at least 1 confirmed and successful transaction of type `AUTHORIZE` or `AUTHORIZE_AND_CAPTURE`**. A few key parts make up a payment:
 
 ### Type
 Broadleaf has some predefined payment types:
