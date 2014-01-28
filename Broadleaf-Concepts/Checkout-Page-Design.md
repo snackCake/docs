@@ -10,10 +10,6 @@ For example, some gateways require that you pass in a billing address to be toke
 
 A few things to note. First if you are not logged in, we will present the user with a login option or the ability to checkout as guest. Next, if this order requires a billing address, we'll go ahead and ask the user to fill out their billing address first. Next, they will have the ability to fill out their shipping address (or choose same as billing) and choose their delivery method. Note, that whenever they select a new delivery option, the price of their order may change. Finally, they will have the ability to add any other Payment methods (gift cards/customer credit) and enter their credit card information. Once they hit the final submit, their Credit Card information is POST'ed directly to the Payment Gateway for processing along with any other tokenized order information that is specific for that gateway.
 
-Another important consideration is that the different sections may or may not be relevant based on your current order state. For example, if your order contains non-shippable items (e.g. digital downloads) it does't make sense to ask for shipping information. Or, if you have applied a payment method like (PayPal Express Checkout), it doesn't make sense to ask for a billing address.
-
-We provied a Thymeleaf `OnePageCheckoutProcessor` to help render and make those decisions on when to draw the different states that are required for the checkout page.
-
 ## Thymeleaf Credit Card Form
 
 We've aimed to make the integrations with Payment Gateways seamless and transparent. We've also aimed to lessen any PCI-compliance burdens when dealing with Credit Card information. With that in mind, most of the integrations with the Payment Gateways that we provide offer a "Transparent Redirect" or "Direct Post" form of transaction communication (both terms are synonymous) where Credit Card information is sent directly to the Gateway bypassing your web servers.
@@ -26,7 +22,17 @@ Some payment gateways like "PayPal Express Checkout" offer alternative checkout 
 
 When you place the PayPal Express Checkout button on your cart page. The user will be redirected to PayPal's site to enter their details. After completing this they will then be redirected back to your site as the order has not yet been completed. They have not yet entered their Shipping Address or picked their Delivery Method.
 
-Our `OnePageCheckoutProcessor` will handle this particular order state where there is an OrderPayment on the order that is what we called `UNCONFIRMED`. Since there is an Order Payment that is unconfirmed from a `THIRD_PARTY_ACCOUNT`, our checkout page won't bother asking for a billing address and will only allow you to complete checkout using that payment that's in process.
+We provied a Thymeleaf `OnePageCheckoutProcessor` to help render and make business decisions on when to draw the different states that are required for the checkout page. Our `OnePageCheckoutProcessor` will handle this particular case where there is an OrderPayment on the order that is what we called `UNCONFIRMED`. Since there is an Order Payment that is unconfirmed from a `THIRD_PARTY_ACCOUNT`, our checkout page won't bother asking for a billing address and will only allow you to complete checkout using that payment that's in process.
+
+Here is a wireframe depicting how the UI may look like if integrating with a gateway like PayPal Express Checkout:
+
+![Alternative Checkout Page Design - PayPal Express Checkout](checkout-alternative-flow-1.png)
+
+Another important consideration is that the different sections may or may not be relevant based on your current order state. For example, if your order contains non-shippable items (e.g. digital downloads) it does't make sense to ask for shipping information. Or, if you have applied a payment method like (PayPal Express Checkout), it doesn't make sense to ask for a billing address.
+
+Here is how the UI may look like if the order contains non-shippable fulfillment groups:
+
+![Alternative Checkout Page Design - Non-Shippable Fulfillment Group](checkout-alternative-flow-2.png)
 
 So, if you are integrating with a Payment Gateway that require alternative checkout flows, be mindful of the different payment states that can occur and how your UI will best handle it.
 
