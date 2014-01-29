@@ -24,7 +24,7 @@
     - New Fields in `BLC_ORDER_PAYMENT`: GATEWAY_TYPE
     - New Fields in `BLC_ORDER_PAYMENT`: ORDER_PAYMENT_ID
     - New Fields in `BLC_ORDER_PAYMENT`: REFERENCE_NUMBER
-    - New Fields in `BLC_PAYMENT_LOG`: ORDER_PAYMENT_REFERENCE_NUMBER
+    - New Fields in `BLC_PAYMENT_LOG`: ORDER_PAYMENT_REF_NUM
 - In [[Common]]
     - New Table: `BLC_SANDBOX_MGMT`
     - New Table: `BLC_CUST_SITE_MAP_GEN_CFG`
