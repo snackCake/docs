@@ -38,8 +38,6 @@ The Broadleaf Admin also gives the ability to look at the logs for any particula
 
 ![Payment Transactions in the Admin](payment-transactions-admin.png)
 
-Read more about [[Payment Transactions]]
-
 ## Checkout Workflow Activity
 In previous versions of Broadleaf, there was a concept of a payment workflow, payment activities and payment modules. The payment workflow was invoked inside of the checkout workflow, coupling those concepts very close together. We have since split payments into a process that should occur *prior to* invoking the checkout workflow. The only part that happens within the checkout workflow is an activity that ensures that the entire order has been paid for and attempts to confirm any unconfirmed transactions.
 
