@@ -4,4 +4,5 @@
 - [[Creating a Payment Gateway Module]]
 - [[Payment Domain]]
 - [[Payment and Pricing Activities]]
+- [[Payment Rollback Handlers]]
 - [[Payment Security and PCI Compliance]]
