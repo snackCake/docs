@@ -32,6 +32,12 @@ Allows for easy reference to what gateway was used for this particular payment f
 ### Transactions
 A transaction represent a state or modification for a particular payment. For instance, a customer might say that they intend to pay for an order with $20 from a credit card (which would be an `OrderPayment`) but then actually *authorizing* or *capturing* the card would occur within a transaction.
 
+Let's say you've integrated with the Broadleaf OMS system and wanted to perform a *refund* of the transaction mentioned above. The system will now create a NEW `REFUND` transaction with a parent transaction that references the original `AUTHORIZE_AND_CAPTURE` mentioned above on the same `OrderPayment`
+
+The Broadleaf Admin also gives the ability to look at the logs for any particular transaction and inspect the responses coming back from a particular gateway:
+
+![Payment Transactions in the Admin](payment-transactions-admin.png)
+
 Read more about [[Payment Transactions]]
 
 ## Checkout Workflow Activity
