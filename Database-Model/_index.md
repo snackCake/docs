@@ -1,8 +1,50 @@
 # Database Model
 
 ### 3.0 to 3.1 Model Changes
+- In [[Admin | Admin Model]]
+    - New Table: `BLC_ADMIN_USER_ADDTL_FIELDS`
+- In [[Customer | Customer Detail]]
+    - New Fields in `BLC_CUSTOMER`: IS_PREVIEW
+- In [[Category | Catalog Category]]
+    - New Table: `BLC_CAT_SITE_MAP_GEN_CFG`
+    - New Fields in `BLC_CATEGORY_PRODUCT_XREF`: CATEGORY_PRODUCT_ID
+    - New Fields in `BLC_CATEGORY_XREF`: CATEGORY_XREF_ID
+- In [[Product | Catalog Product]]
+    - New Fields in `BLC_PRODUCT`: DEFAULT_SKU_ID
+    - New Fields in `BLC_PRODUCT_OPTION_XREF`: PRODUCT_OPTION_XREF_ID
+    - New Fields in `BLC_PRODUCT_OPTION`: VALIDATION_STRATEGY_TYPE
+- In [[Offer | Offer Detail]]
+    - New Fields in `BLC_OFFER`: REQUIRES_RELATED_TAR_QUAL
+- In [[Order | Order]]
+    - New Table: `BLC_ORDER_PAYMENT_TRANSACTION`
+    - New Table: `BLC_TRANS_ADDITNL_FIELDS`
+    - New Fields in `BLC_ORDER`: IS_PREVIEW
+    - New Fields in `BLC_ORDER_ITEM`: PARENT_ORDER_ITEM_ID
+    - New Fields in `BLC_ORDER_PAYMENT`: ARCHIVED
+    - New Fields in `BLC_ORDER_PAYMENT`: GATEWAY_TYPE
+    - New Fields in `BLC_ORDER_PAYMENT`: ORDER_PAYMENT_ID
+    - New Fields in `BLC_ORDER_PAYMENT`: REFERENCE_NUMBER
+    - New Fields in `BLC_PAYMENT_LOG`: ORDER_PAYMENT_REFERENCE_NUMBER
+- In [[Common]]
+    - New Table: `BLC_SANDBOX_MGMT`
+    - New Table: `BLC_CUST_SITE_MAP_GEN_CFG`
+    - New Table: `BLC_SITE_MAP_CFG`
+    - New Table: `BLC_SITE_MAP_GEN_CFG`
+    - New Table: `BLC_SITE_MAP_URL_ENTRY`
+    - New Fields in `BLC_SANDBOX`: COLOR
+    - New Fields in `BLC_SANDBOX`: DESCRIPTION
+    - New Fields in `BLC_SANDBOX`: GO_LIVE_DATE
+    - New Fields in `BLC_SANDBOX`: PARENT_SANDBOX_ID
+    - New Fields in `BLC_SYSTEM_PROPERTY`: FRIENDLY_GROUP
+    - New Fields in `BLC_SYSTEM_PROPERTY`: FRIENDLY_NAME
+    - New Fields in `BLC_SYSTEM_PROPERTY`: FRIENDLY_TAB
+    - New Fields in `BLC_SYSTEM_PROPERTY`: PROPERTY_TYPE
+- In [[CMS]]
+    - New Fields in `BLC_FLD_DEF`: ENUM_ID
+    - New Fields in `BLC_FLD_DEF`: REQUIRED_FLAG
+    - New Fields in `BLC_PAGE`: EXCLUDE_FROM_SITE_MAP
 
-
+    
 ### 2.3 to 3.0 Model Changes
 - In [[Customer | Customer Detail]]
     - New Fields in `BLC_ADDRESS`: ADDRESS_LINE3
