@@ -2,9 +2,9 @@
 
 ### 3.0 to 3.1 Model Changes
 - In [[Admin | Admin Model]]
-    - New Table: `BLC_ADMIN_USER_ADDTL_FIELDS`
+    - New Table: *`BLC_ADMIN_USER_ADDTL_FIELDS`*
 - In [[Customer | Customer Detail]]
-    - New Fields in `BLC_CUSTOMER` : `IS_PREVIEW`
+    - New Fields in *`BLC_CUSTOMER`* : `IS_PREVIEW`
 - In [[Category | Catalog Category]]
     - New Table: `BLC_CAT_SITE_MAP_GEN_CFG`
     - New Fields in `BLC_CATEGORY_PRODUCT_XREF`: `CATEGORY_PRODUCT_ID`
