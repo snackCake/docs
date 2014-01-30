@@ -4,127 +4,127 @@
 - In [[Admin | Admin Model]]
     - New Table: `BLC_ADMIN_USER_ADDTL_FIELDS`
 - In [[Customer | Customer Detail]]
-    - New Fields in `BLC_CUSTOMER`: IS_PREVIEW
+    - New Fields in `BLC_CUSTOMER` : `IS_PREVIEW`
 - In [[Category | Catalog Category]]
     - New Table: `BLC_CAT_SITE_MAP_GEN_CFG`
-    - New Fields in `BLC_CATEGORY_PRODUCT_XREF`: CATEGORY_PRODUCT_ID
-    - New Fields in `BLC_CATEGORY_XREF`: CATEGORY_XREF_ID
+    - New Fields in `BLC_CATEGORY_PRODUCT_XREF`: `CATEGORY_PRODUCT_ID`
+    - New Fields in `BLC_CATEGORY_XREF` : `CATEGORY_XREF_ID`
 - In [[Product | Catalog Product]]
-    - New Fields in `BLC_PRODUCT`: DEFAULT_SKU_ID
-    - New Fields in `BLC_PRODUCT_OPTION_XREF`: PRODUCT_OPTION_XREF_ID
-    - New Fields in `BLC_PRODUCT_OPTION`: VALIDATION_STRATEGY_TYPE
+    - New Fields in `BLC_PRODUCT` : `DEFAULT_SKU_ID`
+    - New Fields in `BLC_PRODUCT_OPTION_XREF` : `PRODUCT_OPTION_XREF_ID`
+    - New Fields in `BLC_PRODUCT_OPTION` : `VALIDATION_STRATEGY_TYPE`
 - In [[Offer | Offer Detail]]
-    - New Fields in `BLC_OFFER`: REQUIRES_RELATED_TAR_QUAL
-- In [[Order | Order]]
+    - New Fields in `BLC_OFFER` : `REQUIRES_RELATED_TAR_QUAL`
+- In [[Order | Order Detail]]
     - New Table: `BLC_ORDER_PAYMENT_TRANSACTION`
     - New Table: `BLC_TRANS_ADDITNL_FIELDS`
-    - New Fields in `BLC_ORDER`: IS_PREVIEW
-    - New Fields in `BLC_ORDER_ITEM`: PARENT_ORDER_ITEM_ID
-    - New Fields in `BLC_ORDER_PAYMENT`: ARCHIVED
-    - New Fields in `BLC_ORDER_PAYMENT`: GATEWAY_TYPE
-    - New Fields in `BLC_ORDER_PAYMENT`: ORDER_PAYMENT_ID
-    - New Fields in `BLC_ORDER_PAYMENT`: REFERENCE_NUMBER
-    - New Fields in `BLC_PAYMENT_LOG`: ORDER_PAYMENT_REF_NUM
+    - New Fields in `BLC_ORDER` : `IS_PREVIEW`
+    - New Fields in `BLC_ORDER_ITEM` : `PARENT_ORDER_ITEM_ID`
+    - New Fields in `BLC_ORDER_PAYMENT` : `ARCHIVED`
+    - New Fields in `BLC_ORDER_PAYMENT` : `GATEWAY_TYPE`
+    - New Fields in `BLC_ORDER_PAYMENT` : `ORDER_PAYMENT_ID`
+    - New Fields in `BLC_ORDER_PAYMENT` : `REFERENCE_NUMBER`
+    - New Fields in `BLC_PAYMENT_LOG` : `ORDER_PAYMENT_REF_NUM`
 - In [[Common]]
     - New Table: `BLC_SANDBOX_MGMT`
     - New Table: `BLC_CUST_SITE_MAP_GEN_CFG`
     - New Table: `BLC_SITE_MAP_CFG`
     - New Table: `BLC_SITE_MAP_GEN_CFG`
     - New Table: `BLC_SITE_MAP_URL_ENTRY`
-    - New Fields in `BLC_SANDBOX`: COLOR
-    - New Fields in `BLC_SANDBOX`: DESCRIPTION
-    - New Fields in `BLC_SANDBOX`: GO_LIVE_DATE
-    - New Fields in `BLC_SANDBOX`: PARENT_SANDBOX_ID
-    - New Fields in `BLC_SYSTEM_PROPERTY`: FRIENDLY_GROUP
-    - New Fields in `BLC_SYSTEM_PROPERTY`: FRIENDLY_NAME
-    - New Fields in `BLC_SYSTEM_PROPERTY`: FRIENDLY_TAB
-    - New Fields in `BLC_SYSTEM_PROPERTY`: PROPERTY_TYPE
-- In [[CMS]]
-    - New Fields in `BLC_FLD_DEF`: ENUM_ID
-    - New Fields in `BLC_FLD_DEF`: REQUIRED_FLAG
-    - New Fields in `BLC_PAGE`: EXCLUDE_FROM_SITE_MAP
+    - New Fields in `BLC_SANDBOX` : `COLOR`
+    - New Fields in `BLC_SANDBOX` : `DESCRIPTION`
+    - New Fields in `BLC_SANDBOX` : `GO_LIVE_DATE`
+    - New Fields in `BLC_SANDBOX` : `PARENT_SANDBOX_ID`
+    - New Fields in `BLC_SYSTEM_PROPERTY` : `FRIENDLY_GROUP`
+    - New Fields in `BLC_SYSTEM_PROPERTY` : `FRIENDLY_NAME`
+    - New Fields in `BLC_SYSTEM_PROPERTY` : `FRIENDLY_TAB`
+    - New Fields in `BLC_SYSTEM_PROPERTY` : `PROPERTY_TYPE`
+- In [[CMS | CMS Model]]
+    - New Fields in `BLC_FLD_DEF` : `ENUM_ID`
+    - New Fields in `BLC_FLD_DEF` : `REQUIRED_FLAG`
+    - New Fields in `BLC_PAGE` : `EXCLUDE_FROM_SITE_MAP`
 
     
 ### 2.3 to 3.0 Model Changes
 - In [[Customer | Customer Detail]]
-    - New Fields in `BLC_ADDRESS`: ADDRESS_LINE3
-    - New Fields in `BLC_CUSTOMER`: TAX_EXEMPTION_CODE
+    - New Fields in `BLC_ADDRESS` : `ADDRESS_LINE3`
+    - New Fields in `BLC_CUSTOMER` : `TAX_EXEMPTION_CODE`
 - In [[Admin | Admin Model]]
-    - New Fields in `BLC_ADMIN_SECTION': CEILING_ENTITY, DISPLAY_ORDER
-    - New Fields in `BLC_SITE': ARCHIVED, DEACTIVATED
+    - New Fields in `BLC_ADMIN_SECTION` : `CEILING_ENTITY`, `DISPLAY_ORDER`
+    - New Fields in `BLC_SITE` : `ARCHIVED`, `DEACTIVATED`
     - New Table: `BLC_CATALOG`
     - New Table: `BLC_SITE_CATALOG`
 - In [[Common]]
-    - New Fields in `BLC_LOCALE`: IS_TRANSLATABLE
+    - New Fields in `BLC_LOCALE` : `IS_TRANSLATABLE`
     - New Table: `BLC_TRANSLATION`
     - New Table: `BLC_MODULE_CONFIGURATION`
 - In [[Category | Catalog Category]]
-    - New Fields in `BLC_CATEGORY`: TAX_CODE
+    - New Fields in `BLC_CATEGORY` : `TAX_CODE`
 - In [[Product | Catalog Product]]
-    - New Fields in `BLC_PRODUCT`: TAX_CODE
-    - New Fields in `BLC_PRODUCT_OPTION`: ERROR_CODE, ERROR_MESSAGE, VALIDATION_TYPE, USE_IN_SKU_GENERATION, VALIDATION_STRING
+    - New Fields in `BLC_PRODUCT` : `TAX_CODE`
+    - New Fields in `BLC_PRODUCT_OPTION` : `ERROR_CODE`, `ERROR_MESSAGE`, `VALIDATION_TYPE`, `USE_IN_SKU_GENERATION`, `VALIDATION_STRING`
 - In [[Sku | Catalog Sku]]
-    - New Fields in `BLC_SKU`: TAX_CODE, CURRENCY_CODE
+    - New Fields in `BLC_SKU`: `TAX_CODE`, `CURRENCY_CODE`
 - In [[Fulfillment | Order Fulfillment]]
-    - New Fields in `BLC_FULFILLMENT_OPTION`: TAX_CODE, TAXABLE
+    - New Fields in `BLC_FULFILLMENT_OPTION`: `TAX_CODE`, `TAXABLE`
 - In [[Tax | Order Tax]]
-    - New Fields in `BLC_TAX_DETAIL`: TAX_COUNTRY, JURISDICTION_NAME, TAX_REGION, TAX_NAME, MODULE_CONFIG_ID
+    - New Fields in `BLC_TAX_DETAIL`: `TAX_COUNTRY`, `JURISDICTION_NAME`, `TAX_REGION`, `TAX_NAME`, `MODULE_CONFIG_ID`
 - In [[Offer | Offer Detail]]
-    - New Fields in `BLC_OFFER`: AUTOMATICALLY_ADDED
+    - New Fields in `BLC_OFFER`: `AUTOMATICALLY_ADDED`
 - In [[Static Asset | CMS Static Asset]]
-    - New Fields in `BLC_STATIC_ASSET`: ALT_TEXT, STORAGE_TYPE, TITLE
+    - New Fields in `BLC_STATIC_ASSET`: `ALT_TEXT`, `STORAGE_TYPE`, `TITLE`
 
 ### 2.2 to 2.3 Model Changes
 - In [[Customer | Customer Detail]]
-    - New Fields in `BLC_ADDRESS`: PHONE_FAX_ID, PHONE_PRIMARY_ID, PHONE_SECONDARY_ID
-    - New Fields in `BLC_CUSTOMER_PAYMENT`: IS_DEFAULT
+    - New Fields in `BLC_ADDRESS`: `PHONE_FAX_ID`, `PHONE_PRIMARY_ID`, `PHONE_SECONDARY_ID`
+    - New Fields in `BLC_CUSTOMER_PAYMENT`: `IS_DEFAULT`
 - In [[Fulfillment | Order Fulfillment]]
-    - New Fields in `BLC_FULFILLMENT_GROUP`: FULFILLMENT_GROUP_SEQUNCE
-    - New Fields in `BLC_FULFILLMENT_GROUP_ITEM`: PRORATED_ORDER_ADJ, TAXABLE_PRORATED_ORDER_ADJ, TOTAL_ITEM_AMOUNT, TOTAL_ITEM_TAXABLE_AMOUNT
+    - New Fields in `BLC_FULFILLMENT_GROUP`: `FULFILLMENT_GROUP_SEQUNCE`
+    - New Fields in `BLC_FULFILLMENT_GROUP_ITEM`: `PRORATED_ORDER_ADJ`, `TAXABLE_PRORATED_ORDER_ADJ`, `TOTAL_ITEM_AMOUNT`, `TOTAL_ITEM_TAXABLE_AMOUNT`
 - In [[Offer | Offer Detail]]
-    - New Fields in `BLC_OFFER`: MARKETING_MESSASGE
-- In [[Order | Order]]
-    - New Table: BLC_ITEM_OFFER_QUALIFIER
-    - New Table: BLC_ORDER_ITEM_DTL_ADJ
-    - New Table: BLC_ORDER_ITEM_PRICE_DTL
-    - New Table: BLC_ORDER_PAYMENT_DETAILS
-    - New Fields in `BLC_ORDER_ITEM`: DISCOUNTS_ALLOWED, RETAIL_PRICE_OVERRIDE, SALE_PRICE_OVERRIDE, TOTAL_TAX
-    - New Fields in `BLC_ORDER_PAYMENT`: CUSTOMER_PAYMENT_ID
-    - New Fields in `BLC_PAYMENT_RESPONSE_ITEM`: TRANSACTION_AMOUNT
+    - New Fields in `BLC_OFFER`: `MARKETING_MESSASGE`
+- In [[Order | Order Detail]]
+    - New Table: `BLC_ITEM_OFFER_QUALIFIER`
+    - New Table: `BLC_ORDER_ITEM_DTL_ADJ`
+    - New Table: `BLC_ORDER_ITEM_PRICE_DTL`
+    - New Table: `BLC_ORDER_PAYMENT_DETAILS`
+    - New Fields in `BLC_ORDER_ITEM`: `DISCOUNTS_ALLOWED`, `RETAIL_PRICE_OVERRIDE`, `SALE_PRICE_OVERRIDE`, `TOTAL_TAX`
+    - New Fields in `BLC_ORDER_PAYMENT`: `CUSTOMER_PAYMENT_ID`
+    - New Fields in `BLC_PAYMENT_RESPONSE_ITEM`: `TRANSACTION_AMOUNT`
 
 ### 2.1 to 2.2 Model Changes
 - In [[Admin | Admin Model]]
-    - New Table: BLC_ADMIN_MODULE
-    - New Table: BLC_ADMIN_SECTION
-    - New Table: BLC_ADMIN_SECTION_PERMISSION_XREF
+    - New Table: `BLC_ADMIN_MODULE`
+    - New Table: `BLC_ADMIN_SECTION`
+    - New Table: `BLC_ADMIN_SECTION_PERMISSION_XREF`
 - In [[Common]]
-    - New Table: BLC_CURRENCY
-    - New Fields in `BLC_LOCALE`: CURRENCY_CODE 
+    - New Table: `BLC_CURRENCY`
+    - New Fields in `BLC_LOCALE`: `CURRENCY_CODE `
 - In [[Category | Catalog Category]]
-    - New Fields in `BLC_CATEGORY`: FULFILLMENT_TYPE, INVENTORY_TYPE 
+    - New Fields in `BLC_CATEGORY`: `FULFILLMENT_TYPE`, `INVENTORY_TYPE` 
 - In [[Search | Catalog Search]]
-    - New Fields in `BLC_FIELD`: TRANSLATABLE
+    - New Fields in `BLC_FIELD`: `TRANSLATABLE`
 - In [[Fulfillment | Order Fulfillment]]
-    - New Fields in `BLC_FULFILLMENT_OPTION_FIXED`: CURRENCY_CODE
+    - New Fields in `BLC_FULFILLMENT_OPTION_FIXED`: `CURRENCY_CODE`
 - In [[Order | Order Detail]]
-    - New Fields in `BLC_ORDER`: LOCALE_CODE, CURRENCY_CODE
+    - New Fields in `BLC_ORDER`: `LOCALE_CODE`, `CURRENCY_CODE`
 - In [[Payment | Order Payment]]
-    - New Fields in `BLC_PAYMENT_RESPONSE_ITEM`: CURRENCY_CODE
-    - New Fields in `BLC_PAYMENT_LOG`: CURRENCY_CODE
+    - New Fields in `BLC_PAYMENT_RESPONSE_ITEM`: `CURRENCY_CODE`
+    - New Fields in `BLC_PAYMENT_LOG`: `CURRENCY_CODE`
 - In [[Tax | Order Tax]]
-    - New Fields in `BLC_TAX_DETAIL`: CURRENCY_CODE
+    - New Fields in `BLC_TAX_DETAIL`: `CURRENCY_CODE`
 - In [[Sku | Catalog Sku]]
-    - New Fields in `BLC_SKU`: FULFILLMENT_TYPE, INVENTORY_TYPE
-    - New Fields in `BLC_SKU_FEE`: CURRENCY_CODE
+    - New Fields in `BLC_SKU`: `FULFILLMENT_TYPE`, `INVENTORY_TYPE`
+    - New Fields in `BLC_SKU_FEE`: `CURRENCY_CODE`
 - In [[Social]]
-    - New Table: BLC_UserConnection     
+    - New Table: `BLC_UserConnection`    
 
 ### 2.0 to 2.1 Model Changes
 - In [[Customer | Customer Detail]]
-    - New Table: BLC\_CUSTOMER\_PAYMENT
+    - New Table: `BLC_CUSTOMER_PAYMENT`
 - In [[Search | Catalog Search]]
-    - New Table: BLC\_SEARCH\_FACET\_XREF
-    - New Fields in `BLC\_SEARCH\_FACET`: REQUIRES\_ALL\_DEPENDENT
+    - New Table: `BLC_SEARCH_FACET_XREF`
+    - New Fields in `BLC_SEARCH_FACET`: `REQUIRES_ALL_DEPENDENT`
 
 ### Diagrams
 - [[Admin | Admin Model]]
