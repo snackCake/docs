@@ -31,7 +31,7 @@ blPU.hibernate.hbm2ddl.auto=create
   <dependency>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-maven-plugin</artifactId>
-      <version>3.0.6</version>
+      <version>3.0.7</version>
   </dependency>
 ```
 
@@ -63,7 +63,7 @@ In this example, you must configure the following properties:
   <plugin>
       <groupId>org.liquibase</groupId>
       <artifactId>liquibase-maven-plugin</artifactId>
-      <version>3.0.6</version>
+      <version>3.0.7</version>
       <executions>
           <execution>
               <goals><goal>status</goal></goals>
