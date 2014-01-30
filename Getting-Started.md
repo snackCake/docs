@@ -6,9 +6,9 @@ Thanks for wanting to try out Broadleaf Commerce! By following this tutorial, yo
 
 ## <a name="wiki-prerequisites"></a> Prerequisites
 
-- First, you'll need the Java 6 or Java 7 SDK, which you can find [on Oracle's official Java site](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- First, you'll need the Java 7 Development Kit (JDK), which you can find [on Oracle's official Java site](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
 
-> If you don't explicitly require Java 6, we recommend utilizing Java 7.
+> While Broadleaf will still work with Java 6, we recommend using Java 7 unless there is an exceptional reason that your organization requires Java 6. Oracle marked Java 6 "end of life" in [February of 2013](http://www.oracle.com/technetwork/java/eol-135779.html)
 
 - You will also need the latest version of Maven, which you can get [on the official Apache Maven site](http://maven.apache.org/download.html)
 
@@ -38,13 +38,17 @@ Once the plugin is done installing, you will be prompted to restart Eclipse. Go 
 
 You'll once again be asked for a workspace. This time, we're going to pick a different one. To make getting started with Broadleaf as easy as possible, we've already set up a workspace with some reasonable defaults and tweaks to help you out. Let's download it!
 
-Broadleaf 3.0 workspace Download Link: [Broadleaf Eclipse Workspace](http://www.broadleafcommerce.org/workspace-download?workspaceVersion=DemoSite-3.0.6-GA-eclipse-workspace.zip&docsVersion=current)
+Broadleaf 3.0 workspace Download Link: [Broadleaf Eclipse Workspace](http://www.broadleafcommerce.org/workspace-download?workspaceVersion=DemoSite-3.0.8-GA-eclipse-workspace.zip&docsVersion=current)
 
 > Note: If you're not prompted for a workspace, simply go to **File --> Switch Workspace** and select the path
 
 Extract this archive to the location you want your workspace to live in, and point Eclipse to the appropriate path. This time, your workspace should look like this:
 
 ![Eclipse Initial Workspace](gs-eclipse-hc-workspace.png)
+
+Now we need to import the root ant targets. In the ant view pane, click the 'Add Build Files' button (the button farthest to the left). Select the build.xml from the root DemoSite project and then hit 'Ok':
+
+![Root ant targets](gs-add-root-ant.png)
 
 We now need to import the subprojects, core, site, and admin. We do this by going to **File --> Import**, and picking **Existing Maven Projects**, like this:
 

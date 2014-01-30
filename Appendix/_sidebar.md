@@ -6,5 +6,3 @@
 - [[Branching Strategy]]
 - [[Dealing With Money]]
 - [[Grails Plugin]]
-- [[Changelog]]
-- [[FAQ]]

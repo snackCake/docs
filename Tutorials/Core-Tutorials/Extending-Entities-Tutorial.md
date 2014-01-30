@@ -129,20 +129,25 @@ Broadleaf's entities are annotated with:
 @Inheritance(strategy = InheritanceType.JOINED)
 ```
 
-Since you aren't changing core Broadleaf code to accomplish this, how can you change a class definition or a compiled core Broadleaf entity?  Broadleaf provides a Java agent that has a hook to allow byte code transformation on JPA entities. The agent is provided as a standard jar file whose Maven artifact id is "broadleaf-instrument". This must be added to the command to start the JVM.  For example, in Tomcat's catalina.sh, you can add the following line:
+Since you aren't changing core Broadleaf code to accomplish this, how can you change a class definition or a compiled core Broadleaf entity?  Spring provides a jar called 'Spring Instrument' which you can download from https://github.com/BroadleafCommerce/DemoSite/raw/master/lib/spring-instrument-3.2.2.RELEASE.jar. You can hook this up as a JVM parameter with a -javaagent flag to `JAVA_OPTS` (or if you are on Tomcat, `CATALINA_OPTS`):
 
 ```java
-JAVA_OPTS=-javaagent:/path/to/broadleaf-instrument.jar
+-javaagent:/path/to/spring-instrument.jar
 ```
 
-In this case, when Tomcat starts, the instrumentation jar will be registered with the JVM. You must also modify the bean definition of the MergePersistenceUnitManager:
+In this case, when Tomcat starts, the instrumentation jar will be registered with the JVM. You must also add the class transformer to the bean list with the id `blMergedClassTransformers`:
 
 ```xml
-<bean id="blPersistenceUnitManager" class="org.broadleafcommerce.common.extensibility.jpa.MergePersistenceUnitManager">
-    ...
-    <property name="loadTimeWeaver">
-        <bean class="org.broadleafcommerce.common.extensibility.jpa.BroadleafLoadTimeWeaver"/>
+<bean id="customClassTransformers" class="org.springframework.beans.factory.config.ListFactoryBean">
+    <property name="sourceList">
+        <list>
+            <bean class="org.broadleafcommerce.common.extensibility.jpa.convert.inheritance.SingleTableInheritanceClassTransformer" />
+        </list>
     </property>
+</bean>
+<bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+    <property name="collectionRef" value="customClassTransformers" />
+    <property name="targetRef" value="blMergedClassTransformers" />
 </bean>
 ```
 
@@ -171,6 +176,8 @@ You also have to specify properties in your merged persistence.xml file:
         </properties>
 </persistence>
 ```
+
+> In this example, since we will be modifying the `ProductImpl` entity, we have included that after the `broadleaf.ejb` key. If you needed to instrument something like `CategoryImpl`, you would change this `broadleaf.ejb.CategoryImpl.discriminator.....`.
 
 Finally, you configure your entities without a table name and you will have to put an additional annotation on your extended entities:
 
