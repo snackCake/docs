@@ -4,28 +4,43 @@
 
 ## Hooking into the submit order workflow
 
-The first thing we need to do to override a Broadleaf Workflow is to place the default configuration into our possession. This is very easy -- just add the following to the bottom of  your `applicationContext.xml` file:
+First, let's look at the default checkout workflow provided by broadleaf:
 
 ```xml
-<bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
-    <property name="processContextFactory">
-        <bean class="org.broadleafcommerce.core.checkout.service.workflow.CheckoutProcessContextFactory"/>
-    </property>
-    <property name="activities">
-        <list>
-            <bean class="org.broadleafcommerce.core.offer.service.workflow.VerifyCustomerMaxOfferUsesActivity"/>
-            <bean class="org.broadleafcommerce.core.checkout.service.workflow.PaymentServiceActivity"/>
-            <bean class="org.broadleafcommerce.core.offer.service.workflow.RecordOfferUsageActivity"/>
-            <bean class="org.broadleafcommerce.core.checkout.service.workflow.CompleteOrderActivity"/>
-        </list>
-    </property>
-    <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/>
-</bean>
+    <bean p:order="1000" id="blVerifyCustomerMaxOfferUsesActivity" class="org.broadleafcommerce.core.offer.service.workflow.VerifyCustomerMaxOfferUsesActivity"/>
+    <bean p:order="2000" id="blValidateProductOptionsActivity" class="org.broadleafcommerce.core.checkout.service.workflow.ValidateProductOptionsActivity"/>
+    <bean p:order="3000" id="blValidateAndConfirmPaymentActivity" class="org.broadleafcommerce.core.checkout.service.workflow.ValidateAndConfirmPaymentActivity">
+        <property name="rollbackHandler" ref="blConfirmPaymentsRollbackHandler" />
+    </bean>
+    <bean p:order="4000" id="blRecordOfferUsageActivity" class="org.broadleafcommerce.core.offer.service.workflow.RecordOfferUsageActivity">
+        <property name="rollbackHandler" ref="blRecordOfferUsageRollbackHandler" />
+    </bean>
+    <bean p:order="5000" id="blCommitTaxActivity" class="org.broadleafcommerce.core.checkout.service.workflow.CommitTaxActivity">
+        <property name="rollbackHandler" ref="blCommitTaxRollbackHandler" />
+    </bean>
+    <bean p:order="6000" id="blCompleteOrderActivity" class="org.broadleafcommerce.core.checkout.service.workflow.CompleteOrderActivity">
+        <property name="rollbackHandler" ref="blCompleteOrderRollbackHandler" />
+    </bean>
+
+    <bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+        <property name="processContextFactory">
+            <bean class="org.broadleafcommerce.core.checkout.service.workflow.CheckoutProcessContextFactory"/>
+        </property>
+        <property name="activities">
+            <list>
+                <ref bean="blVerifyCustomerMaxOfferUsesActivity" />
+                <ref bean="blValidateProductOptionsActivity" />
+                <ref bean="blValidateAndConfirmPaymentActivity" />
+                <ref bean="blRecordOfferUsageActivity" />
+                <ref bean="blCommitTaxActivity" />
+                <ref bean="blCompleteOrderActivity" />
+            </list>
+        </property>
+        <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/>
+    </bean>
 ```
 
 > This is a copy of the default workflow. You can find the default workflows in the following place in the Broadleaf codebase: `core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml`
-
-When Broadleaf finds the `blCheckoutWorkflow` bean definition in your application context, it will use it to override the default one provided by Broadleaf.
 
 ## Create a new activity
 
@@ -70,18 +85,17 @@ Notice that the activity loops through all current products in the order and ass
 
 ## Add our activity to the workflow
 
-This is a one-liner:
+We want to add our new activity between the `RecordOfferUsageActivity` and the `CompleteOrderActivity`.
+In this example, we override the blCheckoutWorkflow and set the `p:order="5500"` in the bean declaration, like so:
 
 ```xml
-<bean class="com.mycompany.checkout.service.workflow.RecordHeatRangeActivity"/>
-```
-
-Just add that line between the `RecordOfferUsageActivity` and the `CompleteOrderActivity` like so:
-
-```xml
-<bean class="org.broadleafcommerce.core.offer.service.workflow.RecordOfferUsageActivity"/>
-<bean class="com.mycompany.checkout.service.workflow.RecordHeatRangeActivity"/>
-<bean class="org.broadleafcommerce.core.checkout.service.workflow.CompleteOrderActivity"/>
+    <bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+        <property name="activities">
+            <list>
+                <bean p:order="5500" class="com.mycompany.checkout.service.workflow.RecordHeatRangeActivity"/>
+            </list>
+        </property>
+    </bean>
 ```
 
 and our checkout workflow is complete. Check out the end result after checking out an order that had (1) level 6 sauce and (1) level 8 sauce:
