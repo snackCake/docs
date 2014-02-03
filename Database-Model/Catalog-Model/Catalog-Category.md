@@ -17,7 +17,7 @@
 |BLC\_PRODUCT\_CROSS\_SALE | ^[javadoc:org/broadleafcommerce/core/catalog/domain/RelatedProduct]        | Represents the products in the category.  |
 |BLC\_PRODUCT\_UP\_SALE    | ^[javadoc:org/broadleafcommerce/core/catalog/domain/RelatedProduct]         | Represents the products in the category.  |
 |BLC\_PRODUCT\_FEATURED   | ^[javadoc:org/broadleafcommerce/core/catalog/domain/PromotableProduct]      | Represents the products in the category.  |
-
+|BLC\_CAT\_SITE\_MAP\_GEN\_CFG   | ^[javadoc:org/broadleafcommerce/core/catalog/domain/CategorySiteMapGeneratorConfiguration]      | CategorySiteMapGenerator is controlled by this configuration.  |
 
 
 
