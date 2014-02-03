@@ -19,7 +19,13 @@
 |BLC\_CURRENCY                | ^[javadoc:org/broadleafcommerce/common/currency/domain/BroadleafCurrency]      | Contains currency information, such as code and if it's default  |
 |BLC\_TRANSLATION             | ^[javadoc:org/broadleafcommerce/common/i18n/domain/Translation]      | Contains currency information, such as code and if it's default  |
 |BLC\_MODULE\_CONFIGURATION    | ^[javadoc:org/broadleafcommerce/common/config/domain/ModuleConfiguration]      | Contains currency information, such as code and if it's default  |
-
+|BLC\_SANDBOX    | ^[javadoc:org/broadleafcommerce/common/sandbox/domain/SandBox]      | Represents a Sandbox  |
+|BLC\_SYSTEM\_PROPERTY    | ^[javadoc:org/broadleafcommerce/common/config/domain/SystemProperty]      | Represents a System Property (name/value pair) stored in the database  |
+|BLC\_SANDBOX\_MGMT    | ^[javadoc:org/broadleafcommerce/common/sandbox/domain/SandBoxManagement]      | required mostly as a workaround for an issue in Hibernate, see javadocs for more details  |
+|BLC\_SITE\_MAP\_CFG    | ^[javadoc:org/broadleafcommerce/common/sitemap/domain/SiteMapConfiguration]      | drives the building of the SiteMap. It contains general properties that drive the creation of the SiteMap such as directory paths, etc.  |
+|BLC\_CUST\_SITE\_MAP\_GEN\_CFG    | ^[javadoc:org/broadleafcommerce/common/sitemap/domain/CustomUrlSiteMapGeneratorConfiguration]      | CustomSiteMapGenerator is controlled by this configuration  |
+|BLC\_SITE\_MAP\_GEN\_CFG    | ^[javadoc:org/broadleafcommerce/common/sitemap/domain/SiteMapGeneratorConfiguration]      | URL tag generation controlled by this configuration. See javadocs for more details.  |
+|BLC\_SITE\_MAP\_URL\_ENTRY   | ^[javadoc:org/broadleafcommerce/common/sitemap/domain/SiteMapUrlEntry]      | Represents a SiteMap URL Entry.  |
 
 ###Related Tables
 
