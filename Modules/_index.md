@@ -41,8 +41,9 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/pricelist/current)
 
 ### Advanced Offers Module
-* Tiered Offers
-* Customer Specific TimeZone Offers
+* Tiered Offers (Allows a single offer that varies the discount based on quantity purchased)
+* Customer Specific TimeZone Offers (Ability to run a special from 5-6pm in the customer's timezone or a specific timezone)
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/advancedoffer/current)
 
 ### Custom Fields
 * Add new fields to product, customer from the Broadleaf admin
