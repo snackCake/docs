@@ -85,3 +85,13 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | :---------- | :------ | :---------- |
 | FedEx | Marketplace | Shipping quotes from [FedEx web services](http://www.fedex.com/us/developer/product/basics.html) |
 | [USPS] (http://docs.broadleafcommerce.org/usps/current)  | Marketplace | Shipping quotes from [USPS web tools](https://www.usps.com/business/web-tools-apis/welcome.htm) |
+
+
+## Community Modules
+### Amazon Module
+* Provides an S3 implementation of the FileServiceProvider interface
+* Allows the images loaded via the Broadleaf admin to go directly to amazon S3
+* Allows generated files like sitemap.xml to be stored on S3
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/amazon/current)
+
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/advancedoffer/current)
