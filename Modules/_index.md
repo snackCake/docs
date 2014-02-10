@@ -57,6 +57,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 ### Subscription
 * Adds subscription fields to the order and product domain
 * Supports subscription offers such as get 50% off for the first three months
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/subscription/current)
 
 ### OMS
 * Creates Fulfillment Orders after an order has been submitted
