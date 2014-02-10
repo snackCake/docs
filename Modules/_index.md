@@ -48,6 +48,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 ### Custom Fields
 * Add new fields to product, customer from the Broadleaf admin
 * Fields are automatically available for use in offer and content targeting rules
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/customfield/current)
 
 ### Advanced CMS
 * Extends the Broadleaf Structured Content concept with more intuitive admin organization
