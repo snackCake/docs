@@ -34,6 +34,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Flexible, extensible multi-tenant (multi-site) solution
 * Shared or separate customers and orders
 * Support for separate, shared, or partially shared catalogs per site
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/multitenant/current)
 
 ### Advanced Pricing (PriceList) Module 
 * Manage separate price lists
