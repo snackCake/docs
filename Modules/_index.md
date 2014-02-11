@@ -96,3 +96,8 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Allows the images loaded via the Broadleaf admin to go directly to amazon S3
 * Allows generated files like sitemap.xml to be stored on S3
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/amazon/current)
+* 
+
+### Basic Inventory Module
+* Provides basic inventory management for lower-volume sites
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/basic-inventory/current)
