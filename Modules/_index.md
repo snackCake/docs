@@ -71,7 +71,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | :---------- | :------ | :---------- |
 | [Authorize.net] (http://docs.broadleafcommerce.org/authorizenet/current) | Marketplace | Payments through CyberSource's [Authorize.net](http://www.authorize.net) gateway |
 | [Paypal] (http://docs.broadleafcommerce.org/paypal/current)  | Marketplace | Payments through PayPal's [express checkout](https://www.paypal.com/webapps/mpp/express-checkout) |
-| PayPal Payflow Pro | Marketplace | Payments through PayPal's [Payflow Pro](https://www.paypal.com/us/webapps/mpp/referral/paypal-payflow-pro) |
+| [PayPal Payflow Pro] (http://docs.broadleafcommerce.org/paypal-payflowpro/current) | Marketplace | Payments through PayPal's [Payflow Pro](https://www.paypal.com/us/webapps/mpp/referral/paypal-payflow-pro) |
 | [Braintree] (http://docs.broadleafcommerce.org/braintree/current) | Marketplace | Payments through [Braintree Payments](https://www.braintreepayments.com/) |
 | [CyberSource Payment] (http://docs.broadleafcommerce.org/cybersource-payment/current) | Marketplace | Payments through CyberSource's [Secure Acceptance Silent Order Post](http://www.cybersource.com/resources/collateral/pdf/SecureAcceptance_SilentOrderPost.pdf) and CyberSource's [SOAP API](http://www.cybersource.com/developers/learn/integration_methods/simple_order_api/learn_more.php) |
 | [Sagepay] (http://docs.broadleafcommerce.org/sagepay/current)  | Marketplace | Payments through [Sagepay](http://www.sagepay.co.uk/) |
@@ -98,6 +98,3 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/amazon/current)
 * 
 
-### Basic Inventory Module
-* Provides basic inventory management for lower-volume sites
-* [Full Module Documentation] (http://docs.broadleafcommerce.org/basic-inventory/current)
