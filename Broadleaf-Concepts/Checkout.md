@@ -4,6 +4,10 @@
 
 The checkout process in Broadleaf is controlled by a workflow, which is extensible like all other Broadleaf workflows. This workflow is responsible for some basic verification, validating and confirming payments, and completing the order. Let's dive in.
 
+### Important Considerations
+
+Note that the checkout workflow can be called asynchronously depending on what Payment Gateway you integrate with. The implication of this means that you need to be careful and not rely on any session state when calling `checkoutService.performCheckout()`. For example, some payment gateways like Authorize.net and PayPal PayFlow will issue a silent post to your server to complete the checkout process. In this case, the request will come directly from the gateway and not from the Customer's browser so you can't use `CartState.getCart()` or any other request/session based parameters reliably. Take this into consideration when customizing your checkout workflow.
+
 ## <a name="wiki-config"></a>Configuration
 
 Let's take a look at the default configuration in Broadleaf Commerce for Checkout:
