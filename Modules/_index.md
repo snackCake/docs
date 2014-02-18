@@ -65,6 +65,11 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Support for separate shipments, item cancellation, capture payment on fulfillment, and refunds
 
 
+### Content Tests
+* Allows creation of content tests in the admin using Google Experiments
+* Provides A/B testing functionality based on a test URL and multiple variations.
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/contentTest/current)
+
 ## Payment Modules
 
 | Module Name | License | Description |
@@ -96,5 +101,4 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Allows the images loaded via the Broadleaf admin to go directly to amazon S3
 * Allows generated files like sitemap.xml to be stored on S3
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/amazon/current)
-* 
 
