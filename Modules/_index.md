@@ -102,3 +102,8 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Allows generated files like sitemap.xml to be stored on S3
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/amazon/current)
 
+### Rackspace Modules
+* Provides a Cloud Files implementation of the FileServiceProvider interface. This allows uploaded admin images and generated site maps to be stored on Cloud Files rather than the local file system
+* Compatible with the automatic Cloud Files CDN through Akamai
+* [Full Module Documentation](http://docs.broadleafcommerce.org/rackspace/current)
+
