@@ -8,6 +8,7 @@ Liquibase (http://www.liquibase.org/index.html) is a powerful DB migration tool 
 
 ## Recent migration notes
 
+- [[3.1.0 to 3.1.1 Migration]]
 - [[3.0 to 3.1 Migration]]
 - [[3.0 to 3.0.1 Migration]]
 
