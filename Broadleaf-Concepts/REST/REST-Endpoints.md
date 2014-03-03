@@ -164,6 +164,15 @@ The following provides a list of current RESTful endpoints provided with Broadle
     <td>None</td>
   </tr>
   <tr>
+    <td>/catalog/sku/inventory</td>
+    <td>Returns a list of inventory for each Sku ID passed in</td>
+    <td>GET</td>
+    <td>
+      <ul>
+        <li>id - a list of Sku IDs to get inventory for</li>
+      </ul>
+    </td>
+  <tr>
     <td>/catalog/product/{id}/media</td>
     <td>Returns a list of media items for a particular catalog product</td>
     <td>GET</td>
