@@ -21,7 +21,7 @@ You can also inventory type on a per-category basis. For instance, you could lea
 
 ![category inventory](admin-category-inventory.png)
 
-## Enabling in Broadleaf 3.1.1
+## Enabling Inventory Management in Broadleaf 3.1.1+
 
 There are a few steps that you need to follow to enable the above functionality. You can find these steps within the [[3.1.0 to 3.1.1 Migration]] doc.
 
