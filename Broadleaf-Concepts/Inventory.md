@@ -34,3 +34,7 @@ The Broadleaf advanced inventory module expands upon the basic inventory functio
 - Optimistic row-locking in the database suitable for high-traffic sites
 
 The advanced inventory module is automatically included in all enterprise licenses.
+
+## Interfacing with 3rd-party Inventory Systems
+
+The starting point for these is in the ^[javadoc:org/broadleafcommerce/core/order/service/workflow/WorkflowInventoryExtensionHandler.java]. The methods on this interface are invoked in the `blAddItemWorkflow`, `blUpdateItemWorkflow` and `blCheckoutWorkflow`. See the javadoc for more information about when and how they are invoked.
