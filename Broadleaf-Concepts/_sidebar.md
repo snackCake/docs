@@ -2,6 +2,7 @@
 - [[Data and Service Models]]
 - [[Workflows and Activities]]
 - [[Catalog and Search]]
+- [[Inventory]]
 - [[Cart Operations]]
 - [[Pricing]]
 - [[Checkout Page Design]]
