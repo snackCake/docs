@@ -37,4 +37,4 @@ The advanced inventory module is automatically included in all enterprise licens
 
 ## Interfacing with 3rd-party Inventory Systems
 
-The starting point for these is in the ^[javadoc:org/broadleafcommerce/core/order/service/workflow/WorkflowInventoryExtensionHandler.java]. The methods on this interface are invoked in the `blAddItemWorkflow`, `blUpdateItemWorkflow` and `blCheckoutWorkflow`. See the javadoc for more information about when and how they are invoked.
+The starting point for these is in the ^[javadoc:org/broadleafcommerce/core/order/service/workflow/WorkflowInventoryExtensionHandler]. The methods on this interface are invoked in the `blAddItemWorkflow`, `blUpdateItemWorkflow` and `blCheckoutWorkflow`. See the javadoc for more information about when and how they are invoked.
