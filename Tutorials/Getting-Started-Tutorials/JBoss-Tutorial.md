@@ -134,7 +134,7 @@ Configure the Application
 3. Configure the application to exclude some unwanted JBoss modules
 
     1. Create a file called jboss-deployment-structure.xml at
-        1. [heat clinic installation]/admin/src/main/webapp/WEB-INF/jboss-deployment-structure.xml
+        1. [heat clinic installation]/site/src/main/webapp/WEB-INF/jboss-deployment-structure.xml
         2. [heat clinic installation]/admin/src/main/webapp/WEB-INF/jboss-deployment-structure.xml
     2. The contents of the file are:
     
