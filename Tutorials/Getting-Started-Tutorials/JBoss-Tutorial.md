@@ -16,7 +16,7 @@ Configure JBoss
 2. Setup datasources for Broadleaf Commerce.
 
     1. Edit standalone.xml ([jboss installation]/standalone/configuration/standalone.xml)
-    2. Add datasource definitions to the datasources subsystem element (change information as appropriate for your environment)
+    2. Add datasource definitions to the datasources subsystem element (change JDBC connection information as appropriate for your environment)
 
     ```xml
     <subsystem xmlns="urn:jboss:domain:datasources:1.0">
