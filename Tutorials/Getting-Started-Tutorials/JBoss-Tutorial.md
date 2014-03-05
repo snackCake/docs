@@ -3,10 +3,11 @@ number of reasons. This tutorial provides the steps necessary to use JBoss AS 7 
 Note, JBoss AS 7 compatibility for Broadleaf Commerce requires the latest snapshot of 3.1.1. 3.1.1-GA (when released) will also be compatible with JBoss AS 7.
 
 Assumptions:
-    1. You're using 3.1.1-SNAPSHOT (or 3.1.1-GA, when available)
-    2. You're using MySql (you can swap out the instructions below with the driver and JDBC information applicable to your RDBMS)
-    3. You're launching JBoss using the standalone configuration
-    4. You're installing the Broadleaf Commerce Heat Clinic demo on JBoss (or a project based on the Heat Clinic demo)
+
+1. You're using 3.1.1-SNAPSHOT (or 3.1.1-GA, when available)
+2. You're using MySql (you can swap out the instructions below with the driver and JDBC information applicable to your RDBMS)
+3. You're launching JBoss using the standalone configuration
+4. You're installing the Broadleaf Commerce Heat Clinic demo on JBoss (or a project based on the Heat Clinic demo)
 
 Configure JBoss
 
