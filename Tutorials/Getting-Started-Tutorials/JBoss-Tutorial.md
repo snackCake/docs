@@ -8,6 +8,7 @@ Assumptions:
 2. You're using MySql (you can swap out the instructions below with the driver and JDBC information applicable to your RDBMS)
 3. You're launching JBoss using the standalone configuration
 4. You're installing the Broadleaf Commerce Heat Clinic demo on JBoss (or a project based on the Heat Clinic demo)
+5. If you're using JRebel, make sure you're using version 5.5.1 (or later), as earlier versions cause significant delays during JBoss startup
 
 Configure JBoss
 
