@@ -1,6 +1,6 @@
 Our reference architecture specifies Tomcat as our default container. However, developers may wish to launch Broadleaf Commerce in JBoss for any
 number of reasons. This tutorial provides the steps necessary to use JBoss AS 7 as the container in which to launch an instance of Broadleaf Commerce version 3.1.x.
-Note, JBoss AS 7 compatibility for Broadleaf Commerce requires the latest snapshot of 3.1.1. 3.1.1-GA (when released) will also be compatible with JBoss AS 7.
+Note, JBoss AS 7 compatibility for Broadleaf Commerce requires the latest 3.1.1-SNAPSHOT version (or 3.1.1-GA, when available)
 
 Assumptions:
 
