@@ -23,6 +23,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Ability to modify products, offers, prices in a sandbox
 * Preview changes before they go live
 * Schedule when changes go live
+* [Full Module Documentation](http://docs.broadleafcommerce.org/enterprise/current/module-installation)
 
 ### Theme Module
 * Provides the ability to use configurable themes 
