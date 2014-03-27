@@ -182,7 +182,7 @@ In this example, we're specifying a rollbackHandler, some static state and telli
 
 By default, registered RollbackHandler instances are automatically executed upon exception in the workflow execution. However, there may be cases where it is advantageous to turn off this behavior and instead to call rollback explicitly from ActivityStateManager in code (e.g. you might want to rollback a specific region, instead of all rollback handlers). To engage explicit rollback behavior, declare
 
-```java
+```ini
 workflow.auto.rollback.on.error=false
 ```
 
