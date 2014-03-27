@@ -6,4 +6,3 @@
 - [[Removing Thymeleaf]]
 - [[Branching Strategy]]
 - [[Dealing With Money]]
-- [[Grails Plugin]]
