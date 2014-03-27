@@ -166,7 +166,7 @@ This allows you to pre-configure all of your persistence unit properties for the
 
 Commonly used properties: 
 
-```ini
+```
 blPU.hibernate.hbm2ddl.auto
 blPU.hibernate.dialect
 blPU.hibernate.show_sql
