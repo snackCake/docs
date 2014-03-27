@@ -10,7 +10,7 @@
 
 6. Update the runtime properties to use the correct dialect for the MS SQL Server. (see [[Database Configuration]]).
 
-    ```
+    ```ini
     blPU.hibernate.dialect="org.hibernate.dialect.SQLServer2008Dialect
     blSecurePU.hibernate.dialect="org.hibernate.dialect.SQLServer2008Dialect
     blCMSStorage.hibernate.dialect="org.hibernate.dialect.SQLServer2008Dialect
@@ -26,7 +26,7 @@
     - Save them to a new directory: `site/src/main/resources/sql/mssql`
     - In the environments that use MSSQL Server that require import scripts, configure the persistence provider to execute them:
 
-    ```
+    ```ini
     blPU.hibernate.dialect=org.hibernate.dialect.SQLServer2008Dialect
     blPU.hibernate.hbm2ddl.import_files=/sql/load_admin_security.sql,\
       /sql/mssql/load_admin_users.sql,\
