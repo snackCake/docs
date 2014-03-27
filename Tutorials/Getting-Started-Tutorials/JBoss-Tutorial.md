@@ -159,7 +159,7 @@ Configure the Application
 
     1. In [heat clinic installation]/core/src/main/resources/runtime-properties/common-shared.properties, you will want to update the three persistence unit dialects to say:
     
-    ```text
+    ```ini
     blPU.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
     blSecurePU.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
     blCMSStorage.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
