@@ -55,22 +55,37 @@ public class MyDynamicSkuPricingServiceImpl implements DynamicSkuPricingService 
 
 ```
 
-Lastly, we need to instruct the application to use our filter.
+Lastly, we need to instruct the application to use our filter, which means that we need to add it to all applicable filter chains. First, let's take a look at the `blPostSecurityFilterChain`. This filter chain is configured in `applicationContext-filter.xml` in the site project, and will typically look something like this:
 
 ```xml
-<filter>
-    <filter-name>dynamicSkuPricingFilter</filter-name>
-    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    <init-param>
-        <param-name>targetBeanName</param-name>
-        <param-value>myDynamicSkuPricingFilter</param-value>
-    </init-param>
-</filter>
-
-<filter-mapping>
-    <filter-name>dynamicSkuPricingFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-</filter-mapping>
+<bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+    <sec:filter-chain-map request-matcher="ant">
+        <sec:filter-chain pattern="/**" filters="
+           blRequestFilter,
+           blCustomerStateFilter,
+           blTranslationFilter,
+           blCartStateFilter,
+           blURLHandlerFilter"/>
+    </sec:filter-chain-map>
+</bean>
 ```
 
-And there you go -- any time you call .getPrice() on a Sku, it will be returning your dynamically calculate price!
+We'll add our new filter just before the `blCartStateFilter` so that the appropriate pricing context is set before the cart is loaded:
+
+```xml
+<bean id="blPostSecurityFilterChain" class="org.springframework.security.web.FilterChainProxy">
+    <sec:filter-chain-map request-matcher="ant">
+        <sec:filter-chain pattern="/**" filters="
+           blRequestFilter,
+           blCustomerStateFilter,
+           blTranslationFilter,
+           myDynamicSkuPricingFilter,
+           blCartStateFilter,
+           blURLHandlerFilter"/>
+    </sec:filter-chain-map>
+</bean>
+```
+
+> Note: If you are using REST services, you'll also want to add this filter to the `blRestPostSecurityFilterChain` filter chain before the `blCartStateFilter`.
+
+And that's it! Any time a call is made to .getPrice() on a Sku, it will invoke your DynamicSkuPricingService and retrieve your dynamic prices!
