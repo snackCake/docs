@@ -5,7 +5,7 @@ Setting up a locale is a very simple process by making use of the load sql files
 
 
 ###Adding a Locale
-To add a locale add the following statements to ```load_content_structure_international.sql``. 
+To add a locale add the following statements to `load_content_structure_international.sql`. 
 
 > You will need to add a currency before you can call it out in the locale insert statement (See 'USD', 'EUR', etc.). This allows the ```CURRENCY_CODE``` to exist before it's added to the locale.
 
