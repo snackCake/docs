@@ -13,7 +13,7 @@ you can use as a reference when upgrading versions of Broadleaf. You can referen
 
 If you aren't using Liquibase, here is an example of incorporating the Liquibase Maven plugin into the DemoSite. This will will show you how to create a Liquibase database changelog file that will upgrade your Broadleaf 3.0.x schema to the new schema required for Broadleaf 3.1.x. Of course, this can apply to upgrading from any version to another, for the purposes of this example, we will show you how to upgrade from 3.0 to 3.1
 
->> Note: This example implementation requires that you create a reference Database of the newest version (e.g. 3.1 schema) so that Liquibase can connect to it in order to generate the database diff. It, is also recommended that the two databases that you compare are of the same type. Even though the Liquibase changelog file is database agnostic, when you are comparing two databases of different types (e.g. HSQL and MySQL) you may get un-intended diff comparisons if they aren't of the same type.
+> Note: This example implementation requires that you create a reference Database of the newest version (e.g. 3.1 schema) so that Liquibase can connect to it in order to generate the database diff. It, is also recommended that the two databases that you compare are of the same type. Even though the Liquibase changelog file is database agnostic, when you are comparing two databases of different types (e.g. HSQL and MySQL) you may get un-intended diff comparisons if they aren't of the same type.
 
 1) If you don't have a reference DB set up of the new schema, you can clone the repo of the new version of the DemoSite and set the Hibernate properties file to `create` instead of `create-drop`, start-up the application, and create the reference Database. 
 
