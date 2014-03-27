@@ -45,7 +45,7 @@ Estimating is designed to return some generic DTO object representing a map of a
 
 Other tips for calculating/estimating costs for Fulfillment Groups:
 
-- Call fulfillmentGroup.getAddress() to get the shipping address.
-- Call fulfillmentGroup.getMethod() to get the general shipping method identifier.
-- Call fulfillmentGroup.getFulfillmentGroupItems() to get the list of all items in this fulfillment group.
+- Call `fulfillmentGroup.getAddress()` to get the shipping address.
+- Use the given `FulfillmentOption` to determine what the shipping speed and config should be
+- Call `fulfillmentGroup.getFulfillmentGroupItems()` to get the list of all items in this fulfillment group.
 - Once you have FulfillmentGroupItems, you can call getOrderItem. If the order item is an instance of DiscreteOrderItem, you can call getProduct, which gives you access to the ProductWeight and ProductDimension (if the order item is an instance of BundleOrderItem, then you'll need to iterate through the bundle to get at the DiscreteOrderItems it contains).
