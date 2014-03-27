@@ -6,7 +6,7 @@ Setting up a Currency is a very simple process by making use of the load sql fil
 
 
 ###Adding a Currency
-To add a Currency add the following statements to ```load_content_structure_international.sql``. 
+To add a Currency add the following statements to `load_content_structure_international.sql`. 
 
 > If no currency is set, it will default null. If this is the case, you will need to leave the ```CURRENCY_CODE``` field in ```BLC_LOCALE``` to ```null``` (Don't include it in the insert statement).
 
