@@ -132,7 +132,7 @@ By default, `common.properties` only specifies the `solr.source` and the `solr.s
 
 If you wanted to use a standalone server, you could configure the four properties as follows:
 
-```text
+```ini
 solr.url=http://localhost:8983/solr
 solr.url.reindex=http://localhost:8983/solr/reindex
 solr.source=solrServer
