@@ -34,12 +34,12 @@ Now, all instances of Order created and used by Broadleaf Commerce will be insta
 With the entity in place, we can proceed with creating our custom pricing activity implementation.
 
 ```java
-public class SurchargeActivity extends BaseActivity {
+public class SurchargeActivity extends BaseActivity<PricingContext> {
 
-    public ProcessContext execute(ProcessContext context) throws Exception {
-        MyOrderImpl order = (MyOrderImpl) ((PricingContext) context).getSeedData();
-        if (order.getSubTotal().doubleValue() < 10D) {
-            order.setSurcharge(new Money(20D));
+    public PricingContext execute(PricingContext context) throws Exception {
+        MyOrderImpl order = (MyOrderImpl) context.getSeedData();
+        if (order.getSubTotal().lessThan(new BigDecimal("10"))) {
+            order.setSurcharge(new Money("20"));
         }
 
         context.setSeedData(order);
@@ -54,12 +54,12 @@ This simple pricing activity casts the ProcessContext seed data to our MyOrderIm
 Now that you're supporting the surcharge, you'll probably also want to include the surcharge in the order total calculation. To accomplish this, we'll need to override the `OrderTotalActivity`.
 
 ```java
-public class MyTotalActivity extends TotalActivity {
+public class SurchargeTotalActivity extends TotalActivity<PricingContext> {
 
     @Override
-    public ProcessContext execute(ProcessContext context) throws Exception {
+    public PricingContext execute(PricingContext context) throws Exception {
         context = super.execute(context);
-        MyOrderImpl order = (MyOrderImpl) ((PricingContext) context).getSeedData();
+        MyOrderImpl order = (MyOrderImpl) context.getSeedData();
         if (order.getSurcharge() != null) {
             Money total = order.getTotal();
             order.setTotal(total.add(order.getSurcharge()));
@@ -74,30 +74,19 @@ public class MyTotalActivity extends TotalActivity {
 
 Here, we first call the parent execute method so that the order total can be calculated as normal. Then, we add in an additional step to reset the order total by adding in our surcharge value, if applicable.
 
-With the logic in place to handle the new calculation, all that's left is to re-configure the pricing workflow to include our new activities.
+With the logic in place to handle the new calculation, we need to override the `blTotalActivity` bean with our new `TotalActivity` as well as add in our `SurchargeActivity`. Since the `TotalActivity` is in position **8000** in the pricing workflow, this looks like the following inside of your applicationContext:
 
 ```xml
+<!-- Override the blTotalActivity with our custom totaling activity -->
+<bean p:order="8000" id="blTotalActivity" class="com.mycompany.core.workflow.SurchargeTotalActivity" />
+<!-- Add our new pricing activity that should occur immediately before the total activity -->
 <bean id="blPricingWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
-    <property name="processContextFactory">
-        <bean class="org.broadleafcommerce.core.pricing.service.workflow.PricingProcessContextFactory"/>
-    </property>
     <property name="activities">
         <list>
-            <bean class="org.broadleafcommerce.core.pricing.service.workflow.OfferActivity"/>
-            <bean class="org.broadleafcommerce.core.pricing.service.workflow.FulfillmentGroupTotalActivity"/>
-            <bean class="org.broadleafcommerce.core.pricing.service.workflow.ShippingActivity">
-                <property name="shippingService" ref="blShippingService"/>
-            </bean>
-            <bean class="org.broadleafcommerce.core.pricing.service.workflow.ShippingOfferActivity"/>
-            <bean class="org.broadleafcommerce.core.pricing.service.workflow.TaxActivity">
-                <property name="taxModule" ref="blTaxModule"/>
-            </bean>
-            <bean class="com.mycompany.pricing.service.workflow.SurchargeActivity"/>
-            <bean class="com.mycompany.pricing.service.workflow.TotalActivity"/>
+            <bean p:order="7999" class="com.mycompany.core.workflow.SurchargeActivity" />
         </list>
     </property>
-    <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/>
 </bean>
 ```
 
-In your application context, we override the key id `blPricingWorkflow` and provide our new custom workflow definition. The two changes are the addition of the SurchargeActivity, and changing the TotalActivity to reference our new example implementation.
+And that's it! Now you should have surcharges included in all of your order totals.
