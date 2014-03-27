@@ -57,7 +57,7 @@ These two divs are mutually exclusive. Notice that they both share the check for
 
 We can see in the non-anonymous div the line `#{home.welcome}`. This is a Thymeleaf expression that looks up a 'home.welcom' key in a Spring message bundle. The default file for this is `messages.properties` in the `src/main/resources` folder in the site project. Let's search for the `home.welcome` key and change the value to `Hello` and take a look!
 
-```
+```ini
 home.welcome=Hello
 ```
 
