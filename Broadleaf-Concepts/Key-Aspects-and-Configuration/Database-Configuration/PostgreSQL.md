@@ -10,7 +10,7 @@
 
 5. Update the runtime properties to use the correct dialect for PostgreSQL. (see [[Database Configuration]]).
 
-    ```
+    ```ini
     blPU.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
     blSecurePU.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
     blCMSStorage.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
