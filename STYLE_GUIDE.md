@@ -62,4 +62,4 @@ If the current documentation version is set to point to the 3.1.0-GA, the genera
 
 1. When making notes, use a single `>`, not double.
 
-1. Use proper language for code blocks, i.e. `ini` for properties files.
+1. Use proper language for code blocks, i.e. `ini` for properties files.  Check [this reference page](https://github.com/github/linguist/blob/master/lib/linguist/languages.yml) for all languages.
