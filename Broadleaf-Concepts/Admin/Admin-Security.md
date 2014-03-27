@@ -49,7 +49,8 @@ This can sometimes be quite involved.   For example, consider a user that can ed
 
 To handle this (and much more complex scenarios), Broadleaf has the following logical permission model.
 
-TODO: Image
+[![Admin Permissions Logical Model](admin-permissions.png)](_img/admin-permissions.png)
+
 
 Some notes about the above diagram.    
 - Both "Friendly" and "Child" Permissions live in the same BLC table.
