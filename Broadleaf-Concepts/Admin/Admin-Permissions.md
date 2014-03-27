@@ -1,3 +1,5 @@
+# Admin Permissions
+
 As of v3.1, there was a significant change made to the way permissions work in the Admin. Previously, in order to give security permissions for Users or Roles to view sections of the Admin, multiple permissions needed to be added to said User or Role, and it wasn't exactly clear which permissions were required.  To address this, an extra layer has been added for permissions, which acts as a grouping of the old permissions to match the sections. These groupings of permissions makes up what we refer to as "Friendly Permissions."
 
 Additionally, we have reduced the permission types from CRUD and "All" to be "Read" and "All", or the friendly versions "View" and "Manage."
