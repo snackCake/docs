@@ -59,7 +59,7 @@ Some notes about the above diagram.
 - EntityPermissions directly relate to the underlying JPA objects (like CategoryImpl.java).
 
 
-## Overview of the 3.1 permission and role structure
+## Permission and role structure
 For the lastest on this, consult your admin or look in the actual permission SQL files.
 
 
