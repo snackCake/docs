@@ -2,6 +2,6 @@
 - [[Custom Controllers | Admin Custom Controllers]]
 - [[Entity Type Selection]]
 - [[Validations | Admin Validations]]
-- [[Permissions | Admin Permissions]]
+- [[Admin Security | Admin Security]]
 - [[Custom Persistence Handlers]]
 - [[Admin Performance Suggestions]]
