@@ -16,30 +16,14 @@ The Broadleaf Content Management system was designed to support the needs of typ
 
 ### Structure of the CMS Data
 
-Page templates and structured content for a Broadleaf instance are data driven.
-
-The following tables define the structure of your CMS data.
-
-| Field                   | Description                                                                                                                                  |
-| :---------------------- | :------------------------------------------------------------------------------------------------------------------------------------------- |
-| BLC_PAGE_TMPLT          | Your page template name and association to underlying HTML file                                                                               |
-| BLC_PGTMPLT_FLDGRP_XREF | Custom fields used by your page template                                                                                                     |
-| BLC_SC_TYPE             | Your structured content types (e.g. Homepage Ad).   Typically used to define specific content placement.                                     |
-| BLC_SC_FLD_TMPLT        | Structured content field template (e.g. Fields for an Ad).                                                                                   |
-| BLC_SC_FLDGRP_XREF      | Fields associated with a structured content template.                                                                                        |
-| BLC_FLD_GROUP           | Defines a field grouping which is used for ordering and display of the fields in the admin                                                   |
-| BLC_FLD_DEF             | Defines a specific content managed field (e.g. what user's enter).   Can be one of many types including RichText, Date, Number, String, etc. |
+Page templates and structured content for a Broadleaf instance are data driven. You can find detailed ERD diagrams of these tables at [[CMS Model]]
 
 ### Storage of the actual CMS Data
 
-The following structures hold your ACTUAL instance data (e.g. actual pages, ads, etc.) that is managed by your business users.    You should bring this data over if you the data in your import.sql is appropriate and should be part of the conversion.
+The following structures hold your ACTUAL instance data (e.g. actual pages, ads, etc.) that is managed by your business users. You should bring this data over if you the data in your import.sql is appropriate and should be part of the conversion.
 
-- **Page Data** - BLC_PAGE, BLC_PAGE_FLD, BLC_PAGE_FLD_MAP
-- **Structured Content Data** - BLC_SC, BLC_SC_FLD, BLC_SC_FLD_MAP
-
-## Workflow and SandBoxes
-
-Modifications to CMS data are controlled within a user sandbox. The user must "promote" their changes for approval and then an "Approver" must approve them before they will show on the live site.
+- **Page Data** - BLC\_PAGE, BLC\_PAGE\_FLD, BLC\_PAGE\_FLD\_MAP
+- **Structured Content Data** - BLC\_SC, BLC\_SC\_FLD, BLC\_SC\_FLD\_MAP
 
 ## Example Developer Usage
 
