@@ -26,6 +26,7 @@ The first three properties are the most important when switching to another data
 However, Broadleaf provides a mechanism to allow you to configure all of your JPA properties per environment.  Rather than hard-code your properties, as above, you can provide a different configuration for each environment.  This is quite appealing, since you will typically need different properties for each environment, but it is often not ideal to build a new war file with different properties for each environment. First, remember that Broadleaf has a merge process that merges together multiple configuration files into a final configuration.  This happens at runtime. These merged files typically include Spring Application Context resources and JPA persistence.xml files.  This is what allows you to override and extend Broadleaf's core functionality. Broadleaf also provides a [[Runtime Environment Properties Configurer|Runtime Environment Configuration]] that injects the correct properties from properties files into the application context, depending on the environment. So here's how it works...
 
 Here is a typical JPA persistence.xml file that comes from the Broadleaf Archetype:
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
