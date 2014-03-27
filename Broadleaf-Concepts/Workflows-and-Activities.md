@@ -71,8 +71,10 @@ In all Broadleaf workflows each framework-defined activity goes up by 1000, allo
 
 ```xml
 <bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
-    <propety name="activities">
-        <bean p:order="3500" class="com.mycompany.core.workflow.DecrementInventoryActivity" />
+    <property name="activities">
+        <list>
+            <bean p:order="3500" class="com.mycompany.core.workflow.DecrementInventoryActivity" />
+        </list>
     </property>
 </bean>
 ```
