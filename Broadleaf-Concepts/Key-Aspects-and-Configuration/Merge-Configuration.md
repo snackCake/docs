@@ -87,7 +87,7 @@ If we wanted to add our own custom dialect, we could simply place the following 
 
 Because of this chunk in default.properties:
 
-```text
+```ini
 handler.14=org.broadleafcommerce.common.extensibility.context.merge.handlers.NodeReplaceInsert
 priority.14=14
 xpath.14=/beans/bean[@id='blWebTemplateEngine']/*
