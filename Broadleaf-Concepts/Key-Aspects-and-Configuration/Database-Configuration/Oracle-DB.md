@@ -10,7 +10,7 @@
 
 5. Update the runtime properties to use the correct dialect for the MS SQL Server. (see [[Database Configuration]]).
 
-    ```
+    ```ini
     blPU.hibernate.dialect="org.hibernate.dialect.Oracle10gDialect
     blSecurePU.hibernate.dialect="org.hibernate.dialect.Oracle10gDialect
     blCMSStorage.hibernate.dialect="org.hibernate.dialect.Oracle10gDialect
@@ -26,7 +26,7 @@
     - Save them to a new directory: `site/src/main/resources/sql/oracle`
     - In the environments that use Oracle that require import scripts, configure the persistence provider to execute them:
 
-    ```
+    ```ini
     blPU.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
     blPU.hibernate.hbm2ddl.import_files=/sql/load_admin_security.sql,\
       /sql/oracle/load_admin_users.sql,\
