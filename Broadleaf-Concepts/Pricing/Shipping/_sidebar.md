@@ -1,1 +1,1 @@
-- [[Creating a Shipping Module]]
+- [[Creating a Fulfillment Pricing Provider]]
