@@ -16,3 +16,7 @@ them in as appropriate.
 If there is a specific area in Broadleaf that you would like additional documentation for, please use the issues tab
 of this repository to identify them. We will do our best to provide documentation for the most requested features, so
 do comment on existing issues if you would like for us to prioritize that specific task.
+
+## Style Guide
+
+When writing documentation for Broadleaf Commerce, please follow the rules laid out in the [Style Guide](STYLE_GUIDE.md)
