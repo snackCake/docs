@@ -3,5 +3,6 @@
 - [[Entity Type Selection]]
 - [[Exporters | Admin Exporters]]
 - [[Validations | Admin Validations]]
+- [[Permissions | Admin Permissions]]
 - [[Custom Persistence Handlers]]
 - [[Admin Performance Suggestions]]
