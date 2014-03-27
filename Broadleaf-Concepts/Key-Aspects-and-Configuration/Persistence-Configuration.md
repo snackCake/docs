@@ -146,7 +146,7 @@ But you want this in production:
 
 Spring allows you to define Persistence Unit Post Processors on the Persistence Manager.  Broadleaf provides a JPAPropertiesPersistenceUnitPostProcessor to allow you to substitute the correct properties at runtime.  The property name is simply a property name defined by the persistence provider (e.g. [Hibernate](http://docs.jboss.org/hibernate/entitymanager/3.6/reference/en/html/configuration.html) in this case), pre-pended with the persistence unit name and a period (e.g. "blPU.").  The property names are matched and associated with the correct persistence unit.  The values are replaced according to the [[Runtime Environment Configuration|Runtime Environment Configuration]].  If you wish to remove a property or ensure that it is simply not considered, set the value to "null" in the runtime properties. So, the following persistenceUnitPostProcessor property:
 
-```
+```xml
 <entry key="blPU.hibernate.dialect" value="${blPU.hibernate.dialect}"/>
 ```
 
@@ -158,7 +158,7 @@ blPU.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
 
 Will result in a persistence unit property, for the blPU persistence unit only, that looks like this:
 
-```
+```xml
 <property key="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
 ```
 
