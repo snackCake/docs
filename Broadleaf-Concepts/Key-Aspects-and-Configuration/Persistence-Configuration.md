@@ -152,7 +152,7 @@ Spring allows you to define Persistence Unit Post Processors on the Persistence 
 
 And a properly configured runtime properties file with the following entry:
 
-```
+```ini
 blPU.hibernate.dialect=org.hibernate.dialect.Oracle10gDialect
 ```
 
@@ -166,7 +166,7 @@ This allows you to pre-configure all of your persistence unit properties for the
 
 Commonly used properties: 
 
-```text
+```ini
 blPU.hibernate.hbm2ddl.auto
 blPU.hibernate.dialect
 blPU.hibernate.show_sql
