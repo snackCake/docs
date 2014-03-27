@@ -1,3 +1,5 @@
+# Style Guide
+
 ## Headers
 
 1. The very first line in every markdown file should be the title of the page. In most cases, the title will be the same as the name of the page in the sidebar. This should be represented by an H1 tag, which is generated with the following syntax:
