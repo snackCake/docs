@@ -30,16 +30,23 @@ Let's take a look at the relevant chunk:
 
 ```html
 <div th:if="${customer.anonymous}"  th:remove="tag">
-    <a class="account" th:href="@{/login}">Login</a> 
+
+    <a class="account" th:href="@{/login}">
+        <span th:text="#{home.login}">Login</span>
+    </a>
     &nbsp;|&nbsp; 
-    <a class="account" th:href="@{/register}">Register</a> 
+    <a class="account" th:href="@{/register}">
+        <span th:text="#{home.register}">Register</span>
+    </a>
     &nbsp;|&nbsp; 
 </div>
 
 <div th:unless="${customer.anonymous}" th:remove="tag">
-    <span>Welcome, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>  
+    <span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
     &nbsp;|&nbsp; 
-    <a th:href="@{/logout}">Logout</a> 
+    <a th:href="@{/logout}">
+        <span th:text="#{home.logout}">Logout</span>
+    </a>
     &nbsp;|&nbsp; 
 </div>
 ```
@@ -48,7 +55,13 @@ These two divs are mutually exclusive. Notice that they both share the check for
 
 > Unfamiliar users will definitely want to review the [Thymeleaf Documentation](http://www.thymeleaf.org/doc/Tutorial%20-%20Using%20Thymeleaf%2020120517.pdf) to learn more about this templating engine.
 
-We can see in the non-anonymous div the line `Welcome, ...`. Let's simply change that to `Hello, ...` and take a look!
+We can see in the non-anonymous div the line `#{home.welcome}`. This is a Thymeleaf expression that looks up a 'home.welcom' key in a Spring message bundle. The default file for this is `messages.properties` in the `src/main/resources` folder in the site project. Let's search for the `home.welcome` key and change the value to `Hello` and take a look!
+
+```
+home.welcome=Hello
+```
+
+> You will also see a `messages_es.properties` and a `messages_fr.properties`. These are for the Spanish and French locales.
 
 ![Modified Header Greeting](customize-ui-tutorial-2.png)
 
