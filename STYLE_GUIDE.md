@@ -57,3 +57,9 @@
     ^[javadoc:org/broadleafcommerce/core/catalog/domain/Product]
     ```
 If the current documentation version is set to point to the 3.1.0-GA, the generated link will be http://javadocs.broadleafcommerce.com/core/3.1.0-GA/index.html?org/broadleafcommerce/core/catalog/domain/Product.html
+
+## Misc. Formatting Rules
+
+1. When making notes, use a single `>`, not double.
+
+1. Use proper language for code blocks, i.e. `ini` for properties files.
