@@ -34,9 +34,9 @@ Now, all instances of Order created and used by Broadleaf Commerce will be insta
 With the entity in place, we can proceed with creating our custom pricing activity implementation.
 
 ```java
-public class SurchargeActivity extends BaseActivity<PricingContext> {
+public class SurchargeActivity extends BaseActivity<ProcessContext<Order>> {
 
-    public PricingContext execute(PricingContext context) throws Exception {
+    public ProcessContext<Order> execute(ProcessContext<Order> context) throws Exception {
         MyOrderImpl order = (MyOrderImpl) context.getSeedData();
         if (order.getSubTotal().lessThan(new BigDecimal("10"))) {
             order.setSurcharge(new Money("20"));
@@ -54,10 +54,10 @@ This simple pricing activity casts the ProcessContext seed data to our MyOrderIm
 Now that you're supporting the surcharge, you'll probably also want to include the surcharge in the order total calculation. To accomplish this, we'll need to override the `OrderTotalActivity`.
 
 ```java
-public class SurchargeTotalActivity extends TotalActivity<PricingContext> {
+public class SurchargeTotalActivity extends TotalActivity<ProcessContext<Order>> {
 
     @Override
-    public PricingContext execute(PricingContext context) throws Exception {
+    public ProcessContext<Order> execute(ProcessContext<Order> context) throws Exception {
         context = super.execute(context);
         MyOrderImpl order = (MyOrderImpl) context.getSeedData();
         if (order.getSurcharge() != null) {
