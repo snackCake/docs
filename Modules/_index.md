@@ -65,6 +65,11 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Creates Fulfillment Orders after an order has been submitted
 * Support for separate shipments, item cancellation, capture payment on fulfillment, and refunds
 
+### Advanced Inventory
+* Manage inventory at different Fulfillment Locations
+* Allow customers to subscribe to be notified when inventory is available for out-of-stock Skus
+* Deal with high-contention inventory scenarios
+* [Full Module Documentation](http://docs.broadleafcommerce.org/advancedinventory/current)
 
 ### Content Tests
 * Allows creation of content tests in the admin using Google Experiments
