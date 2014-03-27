@@ -70,7 +70,7 @@ A very common step that users may want to do is switch away from the bundled HSQ
 
 5. Update the runtime properties to use the correct MySQL dialect. In `core/src/main/resources/runtime-properties/common-shared.properties`, you will want to update the three persistence unit dialects to say:
 
-    ```text
+    ```ini
     blPU.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
     blSecurePU.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
     blCMSStorage.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
@@ -78,7 +78,7 @@ A very common step that users may want to do is switch away from the bundled HSQ
 
 6. Update the build properties to use the correct MySQL dialect. In `build.properties`, you will want to update the following:
 
-    ```text
+    ```ini
     ant.hibernate.sql.ddl.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
     ...
     ant.blPU.url=jdbc:mysql://localhost:3306/broadleaf
