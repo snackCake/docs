@@ -76,6 +76,11 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Provides A/B testing functionality based on a test URL and multiple variations.
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/contentTests/current)
 
+### Gift Card and Account Credit
+* Allows customers to purchase and pay for items with a gift card
+* Allows a CSR (or by some other means) add store credit for a customer
+* [Full Module Documentation](http://docs.broadleafcommerce.org/giftcardandcustomercredit/current)
+
 ## Payment Modules
 
 | Module Name | License | Description |
