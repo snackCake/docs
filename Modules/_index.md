@@ -81,6 +81,10 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Allows a CSR (or by some other means) add store credit for a customer
 * [Full Module Documentation](http://docs.broadleafcommerce.org/giftcardandcustomercredit/current)
 
+### Scheduled Jobs and Events
+* Allow for jobs to be taken and events to be dispatched across multiple application servers
+* [Full Module Documentation](http://docs.broadleafcommerce.org/scheduledjobs/current)
+
 ## Payment Modules
 
 | Module Name | License | Description |
