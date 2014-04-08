@@ -2,8 +2,6 @@
 
 If your tax needs are simple, you can configure the simple tax module to provide a specific tax-rate for items based on the shipping address. You can specify a rate for specific postal-codes, cities, states, or countries.
 
-> This provider will only execute if no `ModuleConfigurationType.TAX_CALCULATION` exists in the database. 
-
 ## SimpleTaxProvider Configuration
 To configure your site to use `SimpleTaxProvider`, include the following bean definition within your Spring application context file.   
 

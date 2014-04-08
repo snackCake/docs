@@ -1,6 +1,6 @@
 # Tax
 
-Broadleaf Commerce can be configured for tax calculation in a number of ways. You can use the simple tax provider or  create your own custom tax provider.
+Broadleaf Commerce can be configured for tax calculation in a number of ways. You can use the simple tax provider or  create your own custom tax provider. No tax provider is hooked up out of the box, but it is pretty trivial to hook one up yourself.
 
 ## Tax Service
 
