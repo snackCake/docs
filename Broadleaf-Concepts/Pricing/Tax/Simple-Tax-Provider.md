@@ -1,21 +1,23 @@
-# Simple Tax Module
+# Simple Tax Provider
 
-If your tax needs are simple, you can configure the simple tax module to provide a specific tax-rate for items based on the shipping address.    You can specify a rate for specific postal-codes, cities, states, or countries.
+If your tax needs are simple, you can configure the simple tax module to provide a specific tax-rate for items based on the shipping address. You can specify a rate for specific postal-codes, cities, states, or countries.
 
-## SimpleTaxModule Configuration
-To configure your site to use `SimpleTaxModule`, include the following bean definition within your Spring application context file.   
+> This provider will only execute if no `ModuleConfigurationType.TAX_CALCULATION` exists in the database. 
+
+## SimpleTaxProvider Configuration
+To configure your site to use `SimpleTaxProvider`, include the following bean definition within your Spring application context file.   
 
 ```xml
-<bean id="blTaxModule" class="org.broadleafcommerce.core.pricing.service.module.SimpleTaxModule">
+<bean id="blSimpleTaxProvider" class="org.broadleafcommerce.core.pricing.service.tax.provider.SimpleTaxProvider">
    <!-- Set properties for your specific tax configuration.  -->
 </bean>
 ```
 
 ## Example:
-In the following  example, the `SimpleTaxModule` is configured to charge 8.5% for addresses with postal-code 75033 and 75034.   For other addresses in the state of Texas, the module is configured to charge 8.25% sales tax.
+In the following  example, the `SimpleTaxProvider` is configured to charge 8.5% for addresses with postal-code 75033 and 75034. For other addresses in the state of Texas, the provider is configured to charge 8.25% sales tax.
 
 ```xml
-<bean id="blTaxModule" class="org.broadleafcommerce.core.pricing.service.module.SimpleTaxModule">
+<bean id="blSimpleTaxProvider" class="org.broadleafcommerce.core.pricing.service.tax.provider.SimpleTaxProvider">
   <property name="itemPostalCodeTaxRateMap">
     <map>
       <entry key="75033" value=".085" />
@@ -31,7 +33,7 @@ In the following  example, the `SimpleTaxModule` is configured to charge 8.5% fo
 ```
 
 ## Other Properties
-The simple tax module supports the following properties.    Only one rate will be applied for an item.   The precedence is postal-code then city then state then country then default rate.   When configuring cities, states, and countries, the value must be uppercase.
+The simple tax provider supports the following properties. Only one rate will be applied for an item. The precedence is postal-code then city then state then country then default rate. When configuring cities, states, and countries, the value must be uppercase.
 
 |Property                              |Description                                                  | 
 |:-------------------------------------|:------------------------------------------------------------|

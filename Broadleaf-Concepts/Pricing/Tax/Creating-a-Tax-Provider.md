@@ -1,37 +1,34 @@
-# Creating a Tax Module
+# Creating a Tax Provider
 
-## Anatomy of a Tax Module
+## Anatomy of a Tax Provider
 
-Tax modules are utilized by Broadleaf Commerce to interface with an external provider (or some custom algorithm) for tax calculation. The cost of tax can be based on a number of factors including region and dollar total. If you encounter a situation where there is no existing Broadleaf Commerce tax module for your desired tax calculation method, you may find it necessary to develop your own custom tax module. Let's review the TaxModule interface from Broadleaf Commerce.
+Tax providers are utilized by Broadleaf Commerce to interface with an external provider (or some custom algorithm) for tax calculation. The cost of tax can be based on a number of factors including region and dollar total. If you encounter a situation where there is no existing Broadleaf Commerce tax module for your desired tax calculation method, you may find it necessary to develop your own custom tax provider. Let's review the `TaxProvider` interface from the framework:
 
 ```java
-public interface TaxModule {
+public Order calculateTaxForOrder(Order order, ModuleConfiguration config) throws TaxException;
 
-    public String getName();
+public Order commitTaxForOrder(Order order, ModuleConfiguration config) throws TaxException;
 
-    public void setName(String name);
-
-    public Order calculateTaxForOrder(Order order);
-
-}
+public void cancelTax(Order order, ModuleConfiguration config) throws TaxException;
 ```
 
-All tax modules must implement the TaxModule interface to be used by Broadleaf Commerce. The interface describes the basic set of tax calculation operations Broadleaf Commerce might expect to be available.
+* `calculateTaxForOrder` - invoked during the `blPricingWorkflow` to associate `TaxDetail` objects to the `FulfillmentGroup`s and `FulfillmentGroupItem`s within the given order
+* `commitTaxForOrder` - invoked during the `blCheckoutWorkflow` in the `CommitTaxActivity` to communicate with an external tax provider that might need to manage tax documents
+* `cancelTax` - if an order has already gone through the `CommitTaxActivity` but did not complete the entire `blCheckoutWorkflow` and taxes that have might have been committed to the external provider need to be rolled back
 
-- The `getName` and `setName` methods are used to retrieve and set the arbitrary name of the module.
-- `calculateTaxForOrder` is used to set the tax cost values on the Order instance.
+> Some providers (or your custom implementation) may not use the `commitTaxForOrder` or `cancelTax` methods. At a minimum, your `TaxProvider` should create `TaxDetail` objects for the `FulfillmentGroup`s in an order via the `calculateTaxForOrder` method.
 
-### Calculating  Taxes
+###Calculating Taxes
 
-When implementing a TaxModule, the key to communicating the tax cost to Broadleaf Commerce is the Order instance passed into the calculateTaxForOrder method. While the specific informational needs for each tax calculation method will differ, you should have access here to the building blocks necessary to calculate any form of tax. Here are some hints:
+When implementing a `TaxProvider`, the key to communicating the tax cost to Broadleaf Commerce is the Order instance passed into the calculateTaxForOrder method. While the specific informational needs for each tax calculation method will differ, you should have access here to the building blocks necessary to calculate any form of tax. Here are some hints:
 
-- Call order.getFulfillmentGroups() to get all the fulfillment groups for the order. Multiple fulfillment groups mean that parts of the order are shipping to different locations.
-- Call fulfillmentGroup.getAddress() to get the shipping address.
-- Call fulfillmentGroup.getItems() to get all the FulfillmentGroupItems in a FulfillmentGroup
-- Call fulfillmentGroupItem.getOrderItem() to get an OrderItem
-- Call orderItem.getTaxablePrice() to get the taxable amount for the item
+* Call `order.getFulfillmentGroups()` to get all the fulfillment groups for the order. Multiple fulfillment groups mean that parts of the order are shipping to different locations.
+* Call `fulfillmentGroup.getAddress()` to get the shipping address.
+- Call `fulfillmentGroup.getItems()` to get all the `FulfillmentGroupItem`s in a `FulfillmentGroup`
+- Call `fulfillmentGroupItem.getOrderItem()` to get an OrderItem
+- Call `orderItem.getTaxablePrice()` to get the taxable amount for the item
 
-You'll want to iterate through all the OrderItem and FulfillmentGroupFee objects in every FulfillmentGroup of the Order, building and setting your tax totals when appropriate. You may also have additional taxes that reside on FulfillmentGroup, such as a shippingTax.
+You'll want to iterate through all the `FulfillmentGroupItem` and `FulfillmentGroupFee` objects in every FulfillmentGroup of the Order, creating and setting `TaxDetail` objects when appropriate. You may also have additional taxes that reside on a `FulfillmentGroup`, such as a shipping tax.
 
 ### Responding with Tax
 
