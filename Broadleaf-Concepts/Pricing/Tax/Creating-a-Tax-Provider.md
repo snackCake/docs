@@ -18,7 +18,43 @@ public void cancelTax(Order order, ModuleConfiguration config) throws TaxExcepti
 
 > Some providers (or your custom implementation) may not use the `commitTaxForOrder` or `cancelTax` methods. At a minimum, your `TaxProvider` should create `TaxDetail` objects for the `FulfillmentGroup`s in an order via the `calculateTaxForOrder` method.
 
-###Calculating Taxes
+### Selecting a provider
+
+Multiple `TaxProviders` can exist in the framework at once. In order to decide which provider to use, `blTaxService` looks up `ModuleConfiguration`s (a database entity) to get a list of the configured modules in the system. The logic works like this:
+
+* Look up all the Module Configurations that have a type of `ModuleConfigurationType.TAX\_CALCULATION`, sorted by `priority`
+* Loop through each configuration
+* If a configuration is set to the default, use that configuration
+* If there is not a default configuration, use the first one in resulting list (the one with the highest priority)
+* Take the determined configuration and try to invoke the delegate method by checking `canRespond` for each provider
+* If no provider could respond to the determined configuration and there is a requirement to calculate tax (via the `mustCalculate` property on `blTaxService`) then throw a TaxException
+
+This pattern means that each provider has a unique Module Configuration instance to go along with it.
+
+
+### Hooking up your provider
+
+Add your provider to the `blTaxProviders` bean:
+
+```xml
+<bean id="myTaxProviders" class="org.springframework.beans.factory.config.ListFactoryBean">
+    <property name="sourceList">
+        <list>
+            <bean class="com.mycompany.core.tax.provider.MyCustomTaxProvider" />
+        </list>
+    </property>
+</bean>
+<bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+    <property name="collectionRef" value="myTaxProviders"/>
+    <property name="targetRef" value="blTaxProviders"/>
+</bean>
+```
+
+You will also need a database table subclass of `AbstractModuleConiguration`. See the docs for [[Extending Entities]] for more information on how to do this. 
+
+> If you want to bypass the database step for `ModuleConfiguration` you can simply override the `blTaxService` bean with a subclass of `TaxServiceImpl` and implement those methods yourself. Rather than a custom `TaxProvider` you would then have a custom `TaxService`
+
+###Calculating tax
 
 When implementing a `TaxProvider`, the key to communicating the tax cost to Broadleaf Commerce is the Order instance passed into the calculateTaxForOrder method. While the specific informational needs for each tax calculation method will differ, you should have access here to the building blocks necessary to calculate any form of tax. Here are some hints:
 
@@ -30,11 +66,11 @@ When implementing a `TaxProvider`, the key to communicating the tax cost to Broa
 
 You'll want to iterate through all the `FulfillmentGroupItem` and `FulfillmentGroupFee` objects in every FulfillmentGroup of the Order, creating and setting `TaxDetail` objects when appropriate. You may also have additional taxes that reside on a `FulfillmentGroup`, such as a shipping tax.
 
-### Responding with Tax
+### Responding with tax
 
-Broadleaf Commerce expects that the Order instance returned from the calculateTaxForOrder method of your tax module has the pertinent tax cost totals assigned. Your tax module is on the hook for setting TaxDetail objects (if applicable) on:
+Broadleaf Commerce expects that the Order instance returned from the calculateTaxForOrder method of your tax module has the pertinent tax cost totals assigned. Your tax module is on the hook for setting the list of `TaxDetail` objects  on:
 
-- Every `FulfillmentGroup` (Such as a shipping tax)
+- Every `FulfillmentGroup`
 - Every `FulfillmentGroupItem`
 - Every `FulfillmentGroupFee`
 
