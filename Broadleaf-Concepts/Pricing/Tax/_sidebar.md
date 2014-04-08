@@ -1,2 +1,2 @@
-- [[Simple Tax Module]]
-- [[Creating a Tax Module]]
+- [[Simple Tax Provider]]
+- [[Creating a Tax Provider]]
