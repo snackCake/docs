@@ -18,7 +18,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | [Tax Modules](#tax-modules) | Provide tax calculations. |
 | [Shipping Modules](#shipping-modules) | Provide shipping options and calculations. |
 
-## Commercial Modules 
+## <a name="commercial-modules"></a>Commercial Modules 
 ### Workflows and Approvals
 * Ability to modify products, offers, prices in a sandbox
 * Preview changes before they go live
@@ -85,7 +85,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Allow for jobs to be taken and events to be dispatched across multiple application servers
 * [Full Module Documentation](http://docs.broadleafcommerce.org/scheduledjobs/current)
 
-## Payment Modules
+## <a name="payment-modules"></a>Payment Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
@@ -96,13 +96,13 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | [CyberSource Payment] (http://docs.broadleafcommerce.org/cybersource-payment/current) | Marketplace | Payments through CyberSource's [Secure Acceptance Silent Order Post](http://www.cybersource.com/resources/collateral/pdf/SecureAcceptance_SilentOrderPost.pdf) and CyberSource's [SOAP API](http://www.cybersource.com/developers/learn/integration_methods/simple_order_api/learn_more.php) |
 | [Sagepay] (http://docs.broadleafcommerce.org/sagepay/current)  | Marketplace | Payments through [Sagepay](http://www.sagepay.co.uk/) |
 
-## Tax Modules
+## <a name="tax-modules"></a>Tax Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
 | [Avalara] (http://docs.broadleafcommerce.org/avalara/current)  | Marketplace | Sales tax through [Avalara] (http://www.avalara.com/) |
 
-## Shipping Modules
+## <a name="shipping-modules"></a>Shipping Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
