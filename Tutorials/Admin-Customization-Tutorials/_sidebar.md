@@ -1,1 +1,2 @@
-- [[ Customizing Admin Templates | Customizing Templates]]
+- [[ Customizing Templates | Customizing Admin Templates]]
+ 
