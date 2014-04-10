@@ -77,4 +77,4 @@ With this information, actually overriding the template itself can be completed 
 
     > Note: this is up to date as of Broadleaf 3.1.1-GA. This may differ slightly depending on the version of Broadleaf you are using
 
-You can utilize this same paradigm to override any other templates in the admin, as long as the path matches the same template path that we have defined in Broadleaf.
+You can utilize this same paradigm to override any other templates in the admin, as long as the path matches the same template path that we have defined in Broadleaf. You can find all of the Broadleaf admin-managed templates available for overriding [on GitHub](https://github.com/BroadleafCommerce/BroadleafCommerce/tree/master/admin/broadleaf-open-admin-platform/src/main/resources/open_admin_style/templates).
