@@ -1,3 +1,3 @@
 - [[ Customizing Templates | Customizing Admin Templates]]
-- [[Adding Help Text]]
-- [[Calling An External Service Using A Custom Persistence Handler]]
+- [[ Adding Help Text]]
+- [[ Customizing Persistence Handlers | Calling An External Service Using A Custom Persistence Handler]]
