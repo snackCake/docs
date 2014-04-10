@@ -1,4 +1,4 @@
 - [[Getting Started | Getting Started Tutorials]]
 - [[Core | Core Tutorials]]
 - [[Admin Customization | Admin Customization Tutorials]]
-- [[Admin | Admin Usage Tutorials]]
+- [[Admin Usage | Admin Usage Tutorials]]
