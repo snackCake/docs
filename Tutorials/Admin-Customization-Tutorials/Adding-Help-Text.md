@@ -6,7 +6,7 @@ Broadleaf Commerce can be configured to show help text, tooltips, and hints for 
 
 The following image shows the different types of help that are supported by default.
 
-![Field Help Examples](_img/help-examples.png)
+![Field Help Examples](/help-examples.png)
 
 **Help Text** 
 Help Text will appear just below the input field.    In the image above, see the phrase, "This is the help text." 
