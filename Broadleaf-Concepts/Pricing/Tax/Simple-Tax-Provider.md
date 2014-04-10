@@ -9,6 +9,17 @@ To configure your site to use `SimpleTaxProvider`, include the following bean de
 <bean id="blSimpleTaxProvider" class="org.broadleafcommerce.core.pricing.service.tax.provider.SimpleTaxProvider">
    <!-- Set properties for your specific tax configuration.  -->
 </bean>
+<bean id="myTaxProviders" class="org.springframework.beans.factory.config.ListFactoryBean">
+    <property name="sourceList">
+        <list>
+            <ref bean="blSimpleTaxProvider" />
+        </list>
+    </property>
+</bean>
+<bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
+    <property name="collectionRef" value="myTaxProviders"/>
+    <property name="targetRef" value="blTaxProviders"/>
+</bean>
 ```
 
 ## Example:
