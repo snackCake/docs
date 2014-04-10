@@ -5,3 +5,4 @@
 - [[Admin Roles and Permissions]]
 - [[Custom Persistence Handlers]]
 - [[Admin Performance Suggestions]]
+- [[Metadata Overrides | Admin Metadata Overrides]]
