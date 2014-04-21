@@ -1,6 +1,6 @@
 # Admin Metadata Overrides
 
-All of the form fields in the admin are built dynamically using `@AdminPresentation` annotations. All of the Broadleaf framework entities are mmarked up with their own annotations to give a good base line for how forms are displayed.
+All of the form fields in the admin are built dynamically using `@AdminPresentation` annotations. All of the Broadleaf framework entities are marked up with their own annotations to give a good base line for how forms are displayed.
 
 However, you might want to customize how these are presented depending on your needs. This can be achieved in a couple of different ways:
 
