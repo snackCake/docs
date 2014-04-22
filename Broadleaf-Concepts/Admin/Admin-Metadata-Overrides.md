@@ -95,7 +95,7 @@ public class MyCompanyProduct extends ProductImpl {
 
 In some instances, you may find that the Broadleaf out of the box entities are sufficient for your needs but you still want to override some of the display attributes of the entity properties themselves.
 
-This is acheivable through the `mo:override` XML namespace. To utilize the namespace, you need to make sure that you have the proper `schemaLocation` and `xmlns` difined within the `<beans>` element in your `applicationContext`:
+This is acheivable through the `mo:override` XML namespace. To utilize the namespace, you need to make sure that you have the proper `schemaLocation` and `xmlns` namespace defined within the `<beans>` element in your `applicationContext`:
 
 ```xml
 <beans xmlns="http://www.springframework.org/schema/beans"
@@ -116,4 +116,19 @@ This is acheivable through the `mo:override` XML namespace. To utilize the names
 
 > The web URL schema.broadleafcommerce.org is an internal address resolved through the Broadleaf jars
 
- 
+The same overrides above can now be represented with this XML:
+
+```xml
+<mo:override id="blMetadataOverrides">
+    <mo:overrideItem ceilingEntity="org.broadleafcommerce.core.catalog.domain.Product">
+        <mo:field name="defaultSku.description">
+            <mo:property name="excluded" value="false" />
+            <mo:property name="fieldType" value="HTML_BASIC" />
+        </mo:field>
+        <mo:field name="url">
+            <mo:property name="excluded" value="true" />
+        </mo:field>
+    </mo:overrideItem>
+</mo:override>
+```
+
