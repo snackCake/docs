@@ -24,25 +24,44 @@ When you need to add help to a custom entity or extension in your codebase, the 
 For example, see the following code shows a field that has been annotated to produce the result in the image above.
 
 ```java
-    @Column(name = "NAME", nullable=false)
-    @AdminPresentation(group = "Info"            
-            helpText = "This is help text",
-            hint = "This is a hint.",
-            tooltip = "This is a tooltip.")
-    protected String name;
+@Column(name = "NAME", nullable=false)
+@AdminPresentation(group = "Info"            
+        helpText = "This is help text",
+        hint = "This is a hint.",
+        tooltip = "This is a tooltip.")
+protected String name;
 ```
 
 
 ### Adding Help to Broadleaf Out of Box Fields 
 [[Admin Metadata Overrides]] can be used to add or modify help to the out of box Broadleaf domain.
 
-For example, to add tooltip help to the out of box Category domain, the following would work. 
+For example, to add tooltip help to the 'Name' field in the out of box Category domain, the following would work:
 
-```java
-Example
-
+```xml
+<mo:override id="blMetadataOverrides">
+    <mo:overrideItem ceilingEntity="org.broadleafcommerce.core.catalog.domain.Category">
+        <mo:field name="name">
+            <mo:property name="helpText" value="Help text for the name field" />
+        </mo:field>
+    </mo:overrideItem>
+</mo:override>
 ```
 
+If you had already extended Category, you could also add `@AdminPresentationMergeOverrides` annotations:
+
+```java
+@Entity
+@AdminPresentationMergeOverrides({
+    @AdminPresentationMergeOverride(name = "name", mergeEntries =
+        @AdminPresentationMergeEntry(propertyType = PropertyType.AdminPresentation.HELPTEXT, overrideValue = "Help text for the name field"))
+})
+public class MyCustomCategory extends CategoryImpl {
+   
+   ...
+
+}
+```
 
 ### Internationalization Considerations 
 In the examples above, the text was provided directly in the annotation or override.    Broadleaf will first attempt to resolve the text by looking in _Message Property_ files.
@@ -50,12 +69,12 @@ In the examples above, the text was provided directly in the annotation or overr
 So, if the code above was changed to use the following ... 
 
 ```java
-    @Column(name = "NAME", nullable=false)
-    @AdminPresentation(group = "Info"            
-            helpText = "myfield_helptext",
-            hint = "myfield_hint",
-            tooltip = "myfield_tooltip")
-    protected String name;
+@Column(name = "NAME", nullable=false)
+@AdminPresentation(group = "Info"            
+        helpText = "myfield_helptext",
+        hint = "myfield_hint",
+        tooltip = "myfield_tooltip")
+protected String name;
 ```
 
 Then in your message files _(admin-messages.properties)_ in the sample Broadleaf Demo Site.  
