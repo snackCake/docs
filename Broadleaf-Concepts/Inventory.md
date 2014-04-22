@@ -37,4 +37,6 @@ The advanced inventory module is automatically included in all enterprise licens
 
 ## Interfacing with 3rd-party Inventory Systems
 
-The starting point for these is in the ^[javadoc:org/broadleafcommerce/core/order/service/workflow/WorkflowInventoryExtensionHandler]. The methods on this interface are invoked in the `blAddItemWorkflow`, `blUpdateItemWorkflow` and `blCheckoutWorkflow`. See the javadoc for more information about when and how they are invoked.
+The starting point for interfacing with 3rd-party systems is in the ^[javadoc:org/broadleafcommerce/core/inventory/service/InventoryServiceExtensionHandler]. If there is an active inventory extension handler then this will intercept all calls to the `ContextualInventoryService` and thus the `InventoryService` interface. This is how you can override all of the framework checks for handling inventory in just one place.
+
+If that override is insufficient for your needs it might be more appropriate to wholesale override the `CheckAvailabilityActivity`, `DecrementInventoryActivity` and `DecrementInventoryRollbackHandler`. If you decide to go this route then you can determine if Skus within an Order are eligible for an inventory check via `sku.getInventoryType()`.
