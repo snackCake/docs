@@ -15,8 +15,8 @@ retrieval.
 Broadleaf Commerce predefines several cache regions that can be tweaked by each implementation for peak performance. Most of the
 settings are in regard to time-to-live, and the like. These settings define how long Hibernate will keep the information in
 memory before considering it "stale" and refreshing the data from the database. If you have relaxed real-time data requirements,
-then tweaking the timeout settings in your own cache override configuration xml is probably enough. See [[Persistence-Configuration]],
-as well as the cache configuration in the demo application [[Getting-Started]], for more info about ehcache configuration.
+then tweaking the timeout settings in your own cache override configuration xml is probably enough. See [[Database Configuration]],
+as well as the cache configuration in the demo application [[Getting Started]], for more info about ehcache configuration.
 
 For implementations that have realtime data changes requirements to all nodes in the production cluster (e.g. a change
 made in the admin is immediately visible in all cluster nodes), a more exotic setup is called for. We have some upcoming
@@ -50,7 +50,7 @@ development phases. This is supported in the default state of the Broadleaf Comm
 will cause the database schema to be rebuilt and imported when the demo is launched.
 
 Integrated Dev and QA will likely more closely resemble real production data, as they will be useful for testing. In these
-environments (including production), the auto rebuild and re-import feature should be disabled. Refer to [[Database-Configuration]]
+environments (including production), the auto rebuild and re-import feature should be disabled. Refer to [[Database Configuration]]
 for more information.
 
 As for previewing data changes before promoting to production, we are currently working on a change set feature for the admin tool
@@ -81,7 +81,7 @@ In addition to the above, general care should be taken to protect sensitive user
 be encrypted. Also, depending on the PCI scope your implementation is targeted for, you may have to take extra measures
 to protect user payment information. We suggest that all Broadleaf Commerce implementations utilize a payment gateway that
 offers a complete PCI certified solution and data center. In such a case, you will not need to store sensitive user payment
-information locally, thereby lessening your overall risk. Refer to [[Payment-Security-and-PCI-Compliance]] for more information.
+information locally, thereby lessening your overall risk. Refer to [[Payment Security and PCI Compliance]] for more information.
 
 Also, third party security providers also offer services including frequent site security scans that can be used to remotely
 test your site for common vulnerabilities and risks. This is a great extra measure to help harden the security for your

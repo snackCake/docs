@@ -4,7 +4,7 @@
 
 In this tutorial, we're going to examine adding a custom workflow that leverages the powerful `SequenceProcessor` in Broadleaf. We will describe the steps necessary to create the `MyAwesomeAddItemWorkflow` that will perform an inventory check, and if successful add the item to the cart. This is similar to the already existing `blAddItemWorkflow` but will be easier to follow along for the tutorial.
 
-> **NOTE**: The workflow we're creating is not actually awesome. You would never actually want to use this particular workflow in your application -- Broadleaf already provides workflows that are utilized for adding / updating / removing items from cart. We're just using this as a basis for a tutorial that demonstrates creating custom workflows. Learn more about the [[Cart Operation Workflows]].
+> **NOTE**: The workflow we're creating is not actually awesome. You would never actually want to use this particular workflow in your application -- Broadleaf already provides workflows that are utilized for adding / updating / removing items from cart. We're just using this as a basis for a tutorial that demonstrates creating custom workflows. Learn more about the [[Cart Operations]].
 
 We'll start by examining the XML configuration piece that we will need to activate the workflow. After that, we'll go ahead and implement all of the necessary elements defined in the configuration and test it out. Additional documentation can be found at the [[Workflows and Activities]] page.
 

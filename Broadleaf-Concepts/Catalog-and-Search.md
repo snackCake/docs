@@ -82,7 +82,7 @@ For Solr to be able to give you possible values for a given facet along with a c
 
 `CategorySearchFacets` establish a relationship between a given `SearchFacet` and a `Category`. Note that a Category can have many facets, and a facet can belong to many Categories. If a category has a Facet on the same field as a parent category, the subcategory facet will override the parent facet. Furthermore, a category can exclude parent facets.
 
-This is completely data-driven and controlled via the database. Administration of Fields / SearchFacets / CategorySearchFacets is a [[Commercial Feature | Commercial Features]]
+This is completely data-driven and controlled via the database. Administration of Fields / SearchFacets / CategorySearchFacets is a [[commercial feature | Modules]]
 
 ### Adding a sort clause
 
