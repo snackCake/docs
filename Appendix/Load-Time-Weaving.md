@@ -33,3 +33,9 @@ For all other application servers, consult the server documentation for how to p
 [Spring instrument jar download](https://github.com/BroadleafCommerce/DemoSite/raw/master/lib/spring-instrument-3.2.2.RELEASE.jar)
 
 > Note: the recommended version for Spring instrument might change as the version of Spring that Broadleaf targets changes
+
+## Important Note
+
+There have been known issues with instrumentation when the Spring Instrument JAR is located either in the Tomcat lib directory or inside of the WAR of the application.
+
+It is *strongly* recommended to keep the spring-instrument JAR in a separate directory from Tomcat.
