@@ -4,7 +4,7 @@
 
 In this tutorial, we're going to examine adding a custom workflow that leverages the powerful `SequenceProcessor` in Broadleaf. We will describe the steps necessary to create the `MyAwesomeAddItemWorkflow` that will perform an inventory check, and if successful add the item to the cart. This is similar to the already existing `blAddItemWorkflow` but will be easier to follow along for the tutorial.
 
-> **NOTE**: The workflow we're creating is not actually awesome. You would never actually want to use this particular workflow in your application -- Broadleaf already provides workflows that are utilized for adding / updating / removing items from cart. We're just using this as a basis for a tutorial that demonstrates creating custom workflows. Learn more about the [[Cart Operation Workflows]].
+> **NOTE**: The workflow we're creating is not actually awesome. You would never actually want to use this particular workflow in your application -- Broadleaf already provides workflows that are utilized for adding / updating / removing items from cart. We're just using this as a basis for a tutorial that demonstrates creating custom workflows. Learn more about the [[Cart Operations]].
 
 We'll start by examining the XML configuration piece that we will need to activate the workflow. After that, we'll go ahead and implement all of the necessary elements defined in the configuration and test it out. Additional documentation can be found at the [[Workflows and Activities]] page.
 
@@ -19,8 +19,8 @@ Here's the chunk of code we're going to need:
     </property>
     <property name="activities">
         <list>
-            <bean class="com.mycompany.core.order.service.workflow.CheckInventoryActivity"/>
-            <bean class="com.mycompany.core.order.service.workflow.AddOrderItemActivity"/>
+            <bean p:order="100" class="com.mycompany.core.order.service.workflow.CheckInventoryActivity"/>
+            <bean p:order="200" class="com.mycompany.core.order.service.workflow.AddOrderItemActivity"/>
         </list>
     </property>
     <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/>
@@ -42,106 +42,95 @@ Before we can create our custom implementation of a `ProcessContextFactory`, we 
 Let's go ahead and create an our context:
 
 ```java
-public class AddItemContext implements ProcessContext {
-    public final static long serialVersionUID = 1L;
+public class AddItemSeed {
 
-    protected boolean stopEntireProcess = false;
-    protected Map<String, Object> seedData;
+    protected OrderItemRequest orderItemRequest;
+    protected Order order;
 
-    @SuppressWarnings("unchecked")
-    public void setSeedData(Object seedObject) {
-        seedData = (Map<String, Object>) seedObject;
+    public AddItemSeed(OrderItemRequest request, Order order) {
+        this.request = request;
+        this.order = order;
     }
 
-    public boolean stopProcess() {
-        this.stopEntireProcess = true;
-        return stopEntireProcess;
+    public Order getOrder() {
+        return order;
     }
 
-    public boolean isStopped() {
-        return stopEntireProcess;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
-    public Map<String, Object> getSeedData(){
-        return seedData;
+    public OrderItemRequest getRequest() {
+        return request;
     }
+
+    public void setRequest(OrderItemRequest request) {
+        this.request = request;
+    }
+
 }
 ```
 
 Boom, done. Let's take a look at what was important
 
-- We have a class that is an implementation of `ProcessContext`
-- It stores some data structure as the `seedData`. This will hold all of the information required by all activities in this workflow to properly execute
+- We have a generic DTO seed class that will be passed around to the workflow. This stores all of the information required by all of the activities in the workflow to properly execute.
 
-> Note: For this example, we are going to use a simple Map as our `seedData`. In more complicated workflows, you would want to utilize a custom DTO object to make management easier.
 
 And now we can create our factory:
 
 ```java
-public class AddItemProcessContextFactory implements ProcessContextFactory {
-    public ProcessContext createContext(Object seedData) throws WorkflowException {
-        if (!(seedData instanceof Map)){
-            throw new WorkflowException("Seed data instance is incorrect. " +
-                    "Required class is "+Map.class.getName()+" " +
-                    "but found class: "+seedData.getClass().getName());
-        }
-        
-        AddItemContext context = new AddItemContext();
+public class AddItemProcessContextFactory implements ProcessContextFactory<AddItemSeed, AddItemSeed> {
+
+    public ProcessContext<AddItemSeed> createContext(AddItemSeed seedData) throws WorkflowException {
+        ProcessContext<AddItemSeed> context = new DefaultProcessContextImpl<AddItemSeed>();
         context.setSeedData(seedData);
         return context;
     }
 }
 ```
 
-Nothing special here, we're just creating an instance of our context if it passes a type check.
-
-> Note: This is a weak type check since we are using a Map and we cannot parameterize the check. Again, using a custom DTO would be better as the type check would be stronger.
+Nothing special here, we're just creating an instance of a generic context with the seed data.
 
 ## The Activities
 
 Recall that in our XML we defined two activities for our `AddItemWorkflow`
 
 ```xml
-<bean class="com.mycompany.core.order.service.workflow.CheckInventoryActivity"/>
-<bean class="com.mycompany.core.order.service.workflow.AddOrderItemActivity"/>
+<bean p:order="100" class="com.mycompany.core.order.service.workflow.CheckInventoryActivity"/>
+<bean p:order="200" class="com.mycompany.core.order.service.workflow.AddOrderItemActivity"/>
 ```
 
 Let's implement them!
 
 ```java
-public class CheckInventoryActivity extends BaseActivity {
+public class CheckInventoryActivity extends BaseActivity<ProcessContext<AddItemSeed>> {
     private static Log LOG = LogFactory.getLog(AddOrderItemActivity.class);
     
-    public ProcessContext execute(ProcessContext context) throws Exception {
-        Map<String, Object> request = ((Map<String, Object>) context).getSeedData();
-
-        OrderItemRequest orderItemRequest = (OrderItemRequest) request.get("orderItemRequest");
+    public ProcessContext<AddItemSeed> execute(ProcessContext<AddItemSeed> context) throws Exception {
+        OrderItemRequest orderItemRequest = context.getSeedData().getRequest();
 
         ... logic to check inventory for the current item ...
         ... if no inventory, you would throw an exception ...
         
-        ((AddItemContext) context).setSeedData(request);
         return context;
     }
 }
 ```
 
 ```java
-public class AddOrderItemActivity extends BaseActivity {
+public class AddOrderItemActivity extends BaseActivity<ProcessContext<AddItemSeed>> {
     private static Log LOG = LogFactory.getLog(AddOrderItemActivity.class);
     
-    @Resource(name = "blOrderService")
-    protected OrderService orderService;
-
-    public ProcessContext execute(ProcessContext context) throws Exception {
-        Map<String, Object> request = ((Map<String, Object>) context).getSeedData();
-
-        OrderItemRequest orderItemRequest = (OrderItemRequest) request.get("orderItemRequest");
-        Order order = orderService.findOrderbyId((Long) request.get("orderId"));
+    
+    public ProcessContext<AddItemSeed> execute(ProcessContext<AddItemSeed> context) throws Exception {
+        AddItemSeed seed = context.getSeedData();
+        OrderItemRequest orderItemRequest = seed.getRequest();
+        Order order = seed.getOrder();
 
         ... logic to add the order item to the current order ...
         
-        ((AddItemContext) context).setSeedData(request);
+        // if we saved the order, put the saved instance back on the seed
+        seed.setOrder(order);
         return context;
     }
 }
@@ -154,16 +143,20 @@ Review time! What did we do here? We created two different activities, `CheckInv
 One last thing -- actually executing this workflow! Let's take a look:
 
 ```java
+
+@Resource(name = "blOrderService")
+protected OrderService orderService;
+
 @Resource(name = "myAwesomeAddItemWorkflow")
 protected SequenceProcessor myAwesomeAddItemWorkflow;
 
 public boolean addItem(OrderItemRequest orderItemRequest, Long orderId) {
-    Map<String, Object> request = new HashMap<String, Object>();
-    request.put("orderItemRequest", orderItemRequest);
-    request.put("orderId", orderId);
+    Order order = orderService.findOrderById(orderId);
+
+    AddItemSeed seed = new AddItemSeed(orderItemRequest, order);
 
     try {
-        AddItemContext context = (AddItemContext) myAwesomeAddItemWorkflow.doActivities(request);
+        ProcessContext<AddItemSeed> context = (ProcessContext<AddItemSeed>) myAwesomeAddItemWorkflow.doActivities(seed);
         return true;
     } catch (WorkflowException e) {
         return false;
@@ -171,4 +164,4 @@ public boolean addItem(OrderItemRequest orderItemRequest, Long orderId) {
 }
 ```
 
-That's it! We create our object for the `seedData` and invoke the workflow! Any changes to the the `AddItemContext` would be returned by the workflow execution and could be utilized after it's complete.
+That's it! We create our object for the `seedData` and invoke the workflow! Any changes to the the `AddItemSeed` would be returned by the workflow execution and could be utilized after it's complete.

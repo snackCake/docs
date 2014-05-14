@@ -1,6 +1,6 @@
 # Checkout
 
->> Note: Please read the [[Checkout Page Design]] doc if you haven't yet familiarized yourself with the Checkout Flow provided out-of-the-box by Broadleaf.
+> Note: Please read the [[Checkout Page Design]] doc if you haven't yet familiarized yourself with the Checkout Flow provided out-of-the-box by Broadleaf.
 
 The checkout process in Broadleaf is controlled by a workflow, which is extensible like all other Broadleaf workflows. This workflow is responsible for some basic verification, validating and confirming payments, and completing the order. Let's dive in.
 

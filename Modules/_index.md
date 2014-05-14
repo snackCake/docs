@@ -18,11 +18,12 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | [Tax Modules](#tax-modules) | Provide tax calculations. |
 | [Shipping Modules](#shipping-modules) | Provide shipping options and calculations. |
 
-## Commercial Modules 
+## <a name="commercial-modules"></a>Commercial Modules 
 ### Workflows and Approvals
 * Ability to modify products, offers, prices in a sandbox
 * Preview changes before they go live
 * Schedule when changes go live
+* [Full Module Documentation](http://docs.broadleafcommerce.org/enterprise/current/module-installation)
 
 ### Theme Module
 * Provides the ability to use configurable themes 
@@ -64,13 +65,27 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Creates Fulfillment Orders after an order has been submitted
 * Support for separate shipments, item cancellation, capture payment on fulfillment, and refunds
 
+### Advanced Inventory
+* Manage inventory at different Fulfillment Locations
+* Allow customers to subscribe to be notified when inventory is available for out-of-stock Skus
+* Deal with high-contention inventory scenarios
+* [Full Module Documentation](http://docs.broadleafcommerce.org/advancedinventory/current)
 
 ### Content Tests
 * Allows creation of content tests in the admin using Google Experiments
 * Provides A/B testing functionality based on a test URL and multiple variations.
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/contentTests/current)
 
-## Payment Modules
+### Gift Card and Account Credit
+* Allows customers to purchase and pay for items with a gift card
+* Allows a CSR (or by some other means) add store credit for a customer
+* [Full Module Documentation](http://docs.broadleafcommerce.org/giftcardandcustomercredit/current)
+
+### Scheduled Jobs and Events
+* Allow for jobs to be taken and events to be dispatched across multiple application servers
+* [Full Module Documentation](http://docs.broadleafcommerce.org/scheduledjobs/current)
+
+## <a name="payment-modules"></a>Payment Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
@@ -81,13 +96,13 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | [CyberSource Payment] (http://docs.broadleafcommerce.org/cybersource-payment/current) | Marketplace | Payments through CyberSource's [Secure Acceptance Silent Order Post](http://www.cybersource.com/resources/collateral/pdf/SecureAcceptance_SilentOrderPost.pdf) and CyberSource's [SOAP API](http://www.cybersource.com/developers/learn/integration_methods/simple_order_api/learn_more.php) |
 | [Sagepay] (http://docs.broadleafcommerce.org/sagepay/current)  | Marketplace | Payments through [Sagepay](http://www.sagepay.co.uk/) |
 
-## Tax Modules
+## <a name="tax-modules"></a>Tax Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
 | [Avalara] (http://docs.broadleafcommerce.org/avalara/current)  | Marketplace | Sales tax through [Avalara] (http://www.avalara.com/) |
 
-## Shipping Modules
+## <a name="shipping-modules"></a>Shipping Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |

@@ -82,7 +82,7 @@ For Solr to be able to give you possible values for a given facet along with a c
 
 `CategorySearchFacets` establish a relationship between a given `SearchFacet` and a `Category`. Note that a Category can have many facets, and a facet can belong to many Categories. If a category has a Facet on the same field as a parent category, the subcategory facet will override the parent facet. Furthermore, a category can exclude parent facets.
 
-This is completely data-driven and controlled via the database. Administration of Fields / SearchFacets / CategorySearchFacets is a [[Commercial Feature | Commercial Features]]
+This is completely data-driven and controlled via the database. Administration of Fields / SearchFacets / CategorySearchFacets is a [[commercial feature | Modules]]
 
 ### Adding a sort clause
 
@@ -108,26 +108,35 @@ The products, facets, and additional paging attributes get set in the `ProductSe
 
 ## Configuring Solr
 
-We have provided a way to easily configure different Solr servers for different environments. There are two properties that are configured via [[Runtime Environment Configuration]]
+We have provided a way to easily configure different Solr servers for different environments. There are four properties that are configured via [[Runtime Environment Configuration]]:
 
 ```text
-solr.source=
-solr.url=
+solr.url
+solr.url.reindex
+solr.source
+solr.source.reindex
 ```
 
-By default, `common.properties` only specifies the `solr.source` property to solrEmbedded. This then corresponds to the bean in `applicationContext.xml`:
+By default, `common.properties` only specifies the `solr.source` and the `solr.source.reindex` properties, and sets both of them to `solrEmbedded`. This then corresponds to the beans in `applicationContext.xml`:
 
 ```xml
 <bean id="solrEmbedded" class="java.lang.String">
     <constructor-arg value="solrhome"/>
 </bean>
+
+<bean id="blSearchService" class="org.broadleafcommerce.core.search.service.solr.SolrSearchServiceImpl">
+    <constructor-arg name="solrServer" ref="${solr.source}" />
+    <constructor-arg name="reindexServer" ref="${solr.source.reindex}" />
+</bean> 
 ```
 
-If you wanted to use a standalone server, you could configure the two properties as follows:
+If you wanted to use a standalone server, you could configure the four properties as follows:
 
-```text
-solr.url=http://localhost:8081/solr
+```ini
+solr.url=http://localhost:8983/solr
+solr.url.reindex=http://localhost:8983/solr/reindex
 solr.source=solrServer
+solr.source.reindex=solrReindexServer
 ```
 
 and then add the appropriate xml:
@@ -136,6 +145,9 @@ and then add the appropriate xml:
 <bean id="solrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
     <constructor-arg value="${solr.url}"/>
 </bean>
+<bean id="solrReindexServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+    <constructor-arg value="${solr.url.reindex}"/>
+</bean>
 ```
 
-And now you have different Solr servers per your environments!
+This would now utilize a two-core Solr standalone server for that environment! 

@@ -19,6 +19,13 @@ The following filter operations are supported directly by Broadleaf Commerce:
 7. Rotate - Rotate the image around a center axis any degree amount
 8. Unsharp Mask - Add a high-quality sharpening effect to an image
 
+All of these methods are enabled by 2 mechanisms:
+
+1. Dynamic URL parameters
+2. Application context XML configuration **recommended**
+
+> If you 
+
 ### Working With An Asset
 
 Assets are generally introduced into the system via the asset tab (part of the CMS module) in the Broadleaf Commerce admin tool. Once uploaded, assets are available for reference from anywhere in your Broadleaf Commerce implementation. This means you can refer to uploaded assets for your product and category media, in CMS managed structured content and pages, as well as direct url references from other locations - like a JSP page. The only important part is how the URL that references your image asset is structured, since information in this url is used by the asset server to retrieve (and in the case of images - manipulate) your uploaded files.
@@ -91,7 +98,7 @@ There are set parameters required for each of the different filter effects provi
 | unsharpmask     | radius-amount      | An Integer amount from 1 to 16 used to define the scope of the effect - try a value of 7 to start                   |                | 
 |                 | value-amount       | A positive Float value that describes the intensity of the effect - try a value of 3 to start                       |                |
  
-## Named Operations
+## Named Operations (recommended approach)
 
 To achieve complex effects (or even simple effects, for that matter), using the approach described above can lead to some very complex and long URLs. Because of this, we have provided a feature that allows you to bundle up a list of filter operations under a single name, which you can use instead in your asset request URL. Before you can refer to the named operation in your URL, you first must configure it in your Spring application context.
 

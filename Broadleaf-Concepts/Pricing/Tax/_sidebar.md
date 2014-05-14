@@ -1,3 +1,2 @@
-- [[Simple Tax Module]]
-- [[CyberSource SOAP Tax Module | CyberSource SOAP API Tax Module]]
-- [[Creating a Tax Module]]
+- [[Simple Tax Provider]]
+- [[Creating a Tax Provider]]

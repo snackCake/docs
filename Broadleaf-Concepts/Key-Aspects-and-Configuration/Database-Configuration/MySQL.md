@@ -10,7 +10,7 @@
 
 6. Update the runtime properties to use the correct dialect for the MySQL. (see [[Database Configuration]]).
 
-    ```
+    ```ini
     blPU.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
     blSecurePU.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
     blCMSStorage.hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect

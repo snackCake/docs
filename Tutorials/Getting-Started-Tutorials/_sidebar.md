@@ -5,5 +5,6 @@
 - [[Customizing Add to Cart | Add To Cart Workflow For Heat Clinic Tutorial]]
 - [[Customizing Checkout]]
 - [[Switching To MySQL | Switch To MySQL Tutorial]]
+- [[JBoss Tutorial]]
 - [[Export Database Schema | Export Schema Script]]
 

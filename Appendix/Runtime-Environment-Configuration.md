@@ -58,3 +58,14 @@ These environments will suffice for the majority of users. However, if you would
 ```
 
 > Note: If you are customizing the `blConfiguration` bean in any way, you will need to define it in both `applicationContext.xml` and `applicationContext-servlet.xml` (and again for the admin applicaation). This is a known issue in the servlet configuration in Spring.
+
+## Configuration Overrides
+
+Additionally, it's possible to specify computer specific overrides for both the application level and shared level. This is controlled by the following two JVM args:
+
+```text
+-Dproperty-shared-override=/some/path/computer1-shared.properties
+-Dproperty-override=/some/path/computer1-admin.properties
+```
+
+In this scenario, regardless of the environment that the application starts up under, any properties specified in computer1-shared.properties would overwrite properties from the WAR. Additionally, you could further overwrite properties with computer1-admin.properties. For example, a common use case for this could be a developer that wanted to use MySQL for their local environment. They could create developername-shared.properties, and specify the appropriate MySQL dialects in that file. Another use case would be the ability to maintain secret application keys directly on the application servers and not checked into source control.
