@@ -8,7 +8,6 @@ However, there are other reasons to have multiple fulfillment groups that may ha
 
 One final example is non physical products such as a digital product.  Since a customer may sell physical and digital products, the fulfillment of these are very different.  If a customer were to purchase physcal and digital products in a single order, splitting them into fulfillment groups is very beneficial for managing the meta data for each group and discretely integrating with various back-end fulfillment systems as required.
 
-
 ## Shipping and Taxes
 
 Taxes, special fees, and shipping (fulfillment fees) are calculated for each fulfillment group.  The reason is that, if in a singe order order you are shipping to multiple states or countries, the shipping and / or taxe calculations might be different for each destination.  If you are fulfilling digital products, for example, there may be no shipping or taxes required.
@@ -39,8 +38,6 @@ In order to implement a custom Fulfillment Group Item Strategy, you can simply e
 ```
 
 One note about this... You may prefer to programmatically construct fulfillment groups during the checkout flow rather than during a cart operation.  A key reason may be that you often don't know the customer's shipping address until some point in the checkout process.  In order to do this, you will want to create a [[custom service method | Extending Services]] and invoke this directly from a Controller, the Order Service, or from the [[checkout workflow | Workflows and Activities]].
-
-
 ## Fulfillment
 
 Finally, when the order is submitted, it is usually a requirement to notify a fulfillment or warehouse system, ERP, or accounting system.  In some cases these systems know how to split order items into appropriate groups for fulfillment.  If this is the case, then your fulfillment group strategy is generally less important.  However, when it is the responsibility of Broadleaf to notify different fulfillment systems depending on the type of fulfillment, then it is quite helpful to have fulfillment groups constructed accordingly so that you can integrate with the appropriate fulfillment system(s). This is typically a custom integration.  After the order is submitted (completed), there are several options for sending the fulfillment groups for fulfillemnt:
