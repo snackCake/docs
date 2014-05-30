@@ -50,5 +50,6 @@ Finally, when the order is submitted, it is usually a requirement to notify a fu
 
 The first option is preferred as it is a background task and therefore will have minimal impact on performance.  In addition, if there is an error or some issue, then a retry can occur, again, without affecting performance.
 
-There are any number of possibilities with respect to this kind of integration.  Some customers integrate with complex ERP systems such as SAP.  Others send the order or fulfillment group details in the form a PDF via email to a warehouse or drop ship vendor.  Yet others integrate with custom systems using protocols such as JMS, AMQP, REST, SOAP, and RPC and data formats such as XML, JSON, CSV, etc.
+There are any number of possibilities with respect to this kind of integration.  Some customers integrate with complex ERP systems such as SAP.  Others send the order or fulfillment group details in the form a PDF via email to a warehouse or drop ship vendor.  Yet others integrate with custom systems using protocols such as JMS, AMQP, REST, SOAP, EDI, and RPC, and data formats such as XML, JSON, CSV, etc.
+
 
