@@ -38,7 +38,7 @@ In order to implement a custom Fulfillment Group Item Strategy, you can simply e
 <bean id="blFulfillmentGroupItemStrategy" class="com.mycompany.mypackage.MyFulfillmentGroupItemStrategy"/>
 ```
 
-One note about this... You may prefer to programmatically construct fulfillment groups during the checkout flow rather than during a cart operation.  A key reason may be that you often don't know the customer's shipping address until some point in the checkout process.  In order to do this, you will want to create a [[custom service method | Extending-Services]] and invoke this directly from a Controller, the Order Service, or from the [[checkout workflow | Workflows-and-Activities]].
+One note about this... You may prefer to programmatically construct fulfillment groups during the checkout flow rather than during a cart operation.  A key reason may be that you often don't know the customer's shipping address until some point in the checkout process.  In order to do this, you will want to create a [[custom service method | Extending Services]] and invoke this directly from a Controller, the Order Service, or from the [[checkout workflow | Workflows and Activities]].
 
 
 ## Fulfillment
