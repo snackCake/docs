@@ -38,9 +38,17 @@ In order to implement a custom Fulfillment Group Item Strategy, you can simply e
 <bean id="blFulfillmentGroupItemStrategy" class="com.mycompany.mypackage.MyFulfillmentGroupItemStrategy"/>
 ```
 
-One note about this... You may prefer to programmatically construct fulfillment groups during the checkout flow rather than during a cart operation.  A key reason may be that you often don't know the customer's shipping address until some point in the checkout process.  In order to do this, you will want to create a [[custom service method | Extending-Services]].
+One note about this... You may prefer to programmatically construct fulfillment groups during the checkout flow rather than during a cart operation.  A key reason may be that you often don't know the customer's shipping address until some point in the checkout process.  In order to do this, you will want to create a [[custom service method | Extending-Services]] and invoke this directly from a Controller, the Order Service, or from the [[checkout workflow | Workflows-and-Activities]].
 
 
 ## Fulfillment
 
+Finally, when the order is submitted, it is usually a requirement to notify a fulfillment or warehouse system, ERP, or accounting system.  In some cases these systems know how to split order items into appropriate groups for fulfillment.  If this is the case, then your fulfillment group strategy is generally less important.  However, when it is the responsibility of Broadleaf to notify different fulfillment systems depending on the type of fulfillment, then it is quite helpful to have fulfillment groups constructed accordingly so that you can integrate with the appropriate fulfillment system(s). This is typically a custom integration.  After the order is submitted (completed), there are several options for sending the fulfillment groups for fulfillemnt:
+
+- Create a background job that searches for submitted orders and then iterates over the fulfillment groups, sending each one to the OMS or fulfillment system based on the fulfillment type, vendor, or some other criteria
+- Create a Checkout Workflow Activity that integrates with various fulfillment systems at the completion of checkout and sends each fulfillment group to the OMS or fulfillment system based on the fulfillment type, vendor, or some other criteria
+
+The first option is preferred as it is a background task and therefore will have minimal impact on performance.  In addition, if there is an error or some issue, then a retry can occur, again, without affecting performance.
+
+There are any number of possibilities with respect to this kind of integration.  Some customers integrate with complex ERP systems such as SAP.  Others send the order or fulfillment group details in the form a PDF via email to a warehouse or drop ship vendor.  Yet others integrate with custom systems using protocols such as JMS, AMQP, REST, SOAP, and RPC and data formats such as XML, JSON, CSV, etc.
 
