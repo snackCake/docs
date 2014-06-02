@@ -10,7 +10,7 @@ One final example is non physical products such as a digital product.  Since a B
 
 ## Shipping and Taxes
 
-Taxes, special fees, and shipping (fulfillment fees) are calculated for each fulfillment group.  The reason is that, if in a singe order order you are shipping to multiple states or countries, the shipping and / or taxe calculations might be different for each destination.  If you are fulfilling digital products, for example, there may be no shipping or taxes required.
+Taxes, special fees, and shipping (fulfillment fees) are calculated for each fulfillment group.  The reason is that, if in a single order order you are shipping to multiple states or countries, the shipping and / or tax calculations might be different for each destination.  If you are fulfilling digital products, for example, there may be no shipping or taxes required.
 
 ## Fulfillment Group Item Strategy
 
@@ -18,7 +18,7 @@ Of course you can allow your customers to ship to multiple addresses, effectivel
 
 Broadleaf, by default, constructs fulfillment groups during cart operations (e.g. add to cart) using the interface ```org.broadleafcommerce.core.order.strategy.FulfillmentGroupItemStrategy```.  There are two out of the box implementations:
 
-- ```org.broadleafcommerce.core.order.strategy.NullFulfillmentGroupItemStrategyImpl``` which does not create fulfillemnt groups at all
+- ```org.broadleafcommerce.core.order.strategy.NullFulfillmentGroupItemStrategyImpl``` which does not create fulfillment groups at all
 - ```org.broadleafcommerce.core.order.strategy.FulfillmentGroupItemStrategyImpl``` which attempts to create fulfillment groups based on the fulfillment type
 
 Fulfillment type is a property of the Sku and is an extensible Broadleaf Enumeration that, by default, has the following values:
@@ -47,6 +47,6 @@ Finally, when the order is submitted, it is usually a requirement to notify a fu
 
 The first option is preferred as it is a background task and therefore will have minimal impact on performance.  In addition, if there is an error or some issue, then a retry can occur, again, without affecting performance.
 
-There are any number of possibilities with respect to this kind of integration.  Some customers integrate with complex ERP systems such as SAP.  Others send the order or fulfillment group details in the form a PDF via email to a warehouse or drop ship vendor.  Yet others integrate with custom systems using protocols such as JMS, AMQP, REST, SOAP, EDI, and RPC, and data formats such as XML, JSON, CSV, etc.
+There are any number of possibilities with respect to this kind of integration.  Some Broadleaf implementors integrate with complex ERP systems such as SAP.  Others send the order or fulfillment group details in the form a PDF via email to a warehouse or drop ship vendor.  Yet others integrate with custom systems using protocols such as JMS, AMQP, REST, SOAP, EDI, and RPC, and use data formats such as XML, JSON, CSV, etc.
 
 
