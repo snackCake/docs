@@ -72,6 +72,8 @@ If the filter has no parameters, the filter key can be safely appended to the UR
 http://localhost:8080/broadleafdemo/cmsstatic/test.jpg?auto-levels-rgb
 ```
 
+> Note: allowing straight URL parameters to manipulate images can have unwanted side effects. Since Broadleaf caches all modified images, an attacker could write a script to perform many image operations very quickly and fill up a hard drive. This can be controlled in Broadleaf 3.0.11-GA+ and 3.1.3-GA+ with the `asset.server.allow.unnamed.image.manipulation` system property. This URL parameter behavior is defaulted to false in Broadleaf 3.2.0-GA and above.
+
 There are set parameters required for each of the different filter effects provided by Broadleaf Commerce. Please refer to the table below for a reference of the filters and parameters offered.
 
 | Filter Key      | Filter Param       | Definition                                                                                                          | Default        |
