@@ -1,6 +1,7 @@
 - [[3.1.1 to 3.1.2 Migration]]
 - [[3.1.0 to 3.1.1 Migration]]
 - [[3.0 to 3.1 Migration]]
+- [[3.0.10 to 3.0.11 Migration]]
 - [[3.0 to 3.0.1 Migration]]
 - [[2.3 to 3.0 Migration]]
 - [[2.2 to 3.0 Migration]]
