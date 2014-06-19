@@ -4,4 +4,4 @@
 - [[Exporters | Admin Exporters]]
 - [[Validations | Admin Validations]]
 - [[Custom Persistence Handlers]]
-- [[Security | Admin Security]]
+- [[Security]]
