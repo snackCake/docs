@@ -4,6 +4,8 @@
 - [[Validations | Admin Validations]]
 - [[Admin Roles and Permissions]]
 - [[Custom Persistence Handlers]]
+- [[Admin Roles and Permissions]]
 - [[Admin Performance Suggestions]]
 - [[Metadata Overrides | Admin Metadata Overrides]]
+- [[Security]]
 - [[Row Level Security | Admin Row Level Security]]

@@ -52,7 +52,7 @@ Once the maven install is complete, you have several options for running the sit
 
 ### Ant Support
 
-If you want to use the ant scripts for whatever reason, separate build.xml files are included in the ***admin*** and ***site*** modules that launch each app under a standalone version of jetty listening on ports 8081 and 8080, respectively. Make sure these ports are not already in use on your computer before attempting to launch. You can mount these ant files in the **Ant Build** view in intellij and execute the **jetty-demo** task from each. When both jetty instances have completed starting up, you can access the admin and site at [http://localhost:8081/admin/admin.html](http://localhost:8081/admin/admin.html) and [http://localhost:8080](http://localhost:8080), respectively. The username and password for the admin login is admin/admin.
+If you want to use the ant scripts for whatever reason, separate build.xml files are included in the ***admin*** and ***site*** modules that launch each app under a standalone version of jetty listening on ports 8081 and 8080, respectively. Make sure these ports are not already in use on your computer before attempting to launch. You can mount these ant files in the **Ant Build** view in intellij and execute the **jetty-demo** task from each. When both jetty instances have completed starting up, you can access the admin and site at [http://localhost:8081/admin](http://localhost:8081/admin) and [http://localhost:8080](http://localhost:8080), respectively. The username and password for the admin login is admin/admin.
 
 ### Native Intellij Support
 
@@ -78,7 +78,7 @@ Once the demo database is started, you're ready to launch Tomcat. Make sure your
 
 ![Launch Tomcat](intellij-launch-tomcat.png)
 
-Intellij will proceed to launch Tomcat with our combined site/admin application. When Tomcat has finished starting, you can access the admin at [http://localhost:8080/admin/admin.html](http://localhost:8080/admin/admin.html) and the demosite at [http://localhost:8080](http://localhost:8080). The username and password for the admin login is admin/admin.
+Intellij will proceed to launch Tomcat with our combined site/admin application. When Tomcat has finished starting, you can access the admin at [http://localhost:8080/admin](http://localhost:8080/admin) and the demosite at [http://localhost:8080](http://localhost:8080). The username and password for the admin login is admin/admin.
 
 ## JRebel Development Enhancement
 
