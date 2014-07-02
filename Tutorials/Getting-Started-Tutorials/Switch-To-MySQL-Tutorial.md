@@ -35,7 +35,7 @@ A very common step that users may want to do is switch away from the bundled HSQ
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
                 <Set name="driverClassName">com.mysql.jdbc.Driver</Set>
-                <Set name="url">jdbc:mysql://localhost:3306/broadleaf</Set>
+                <Set name="url">jdbc:mysql://localhost:3306/broadleaf?useUnicode=true&amp;characterEncoding=utf8</Set>
                 <Set name="username">root</Set>
                 <Set name="password"></Set>
             </New>
@@ -47,7 +47,7 @@ A very common step that users may want to do is switch away from the bundled HSQ
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
                 <Set name="driverClassName">com.mysql.jdbc.Driver</Set>
-                <Set name="url">jdbc:mysql://localhost:3306/broadleaf</Set>
+                <Set name="url">jdbc:mysql://localhost:3306/broadleaf?useUnicode=true&amp;characterEncoding=utf8</Set>
                 <Set name="username">root</Set>
                 <Set name="password"></Set>
             </New>
@@ -59,7 +59,7 @@ A very common step that users may want to do is switch away from the bundled HSQ
         <Arg>
             <New class="org.apache.commons.dbcp.BasicDataSource">
                 <Set name="driverClassName">com.mysql.jdbc.Driver</Set>
-                <Set name="url">jdbc:mysql://localhost:3306/broadleaf</Set>
+                <Set name="url">jdbc:mysql://localhost:3306/broadleaf?useUnicode=true&amp;characterEncoding=utf8</Set>
                 <Set name="username">root</Set>
                 <Set name="password"></Set>
             </New>
