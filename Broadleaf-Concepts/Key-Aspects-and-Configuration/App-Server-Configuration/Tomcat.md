@@ -52,3 +52,34 @@ You can then optionally modify build.xml to add a new ant task for this:
 ```
 
 For admin, the configuration is similar but you would change the ```port``` to ```8081```. For more information on this plugin, check out the [plugin documentation](http://tomcat.apache.org/maven-plugin-2.0-SNAPSHOT/run-mojo-features.html).
+
+## Character Encoding
+
+We will make a few configuration changes to enable `UTF-8` character encoding in Tomcat. 
+
+Configure your **Resources** in `context.xml` to include `connectionProperties`. The format of the string will need to be in the `propertyName=property;` format. Here is a sample resource using MySql and UTF-8 encoding:
+
+```xml
+<Resource name="jdbc/web" auth="Container" type="javax.sql.DataSource"
+               maxActive="30" maxIdle="60" maxWait="10000"
+               username="username" password="password" driverClassName="com.mysql.jdbc.Driver"
+               connectionProperties="useUnicode=true;characterEncoding=utf8;"
+               url="jdbc:mysql://localhost/broadleaf"/>
+```
+
+Alternatively the `url` can be expanded to include the connection properties:
+
+```xml
+url="jdbc:mysql://localhost:3306/broadleaf?useUnicode=true&characterEncoding=utf8"
+```
+
+Configure your **Connectors** in `server.xml` with `URIEncoding="UTF-8"` to encode url (GET request) parameters. This ensures that Tomcat handles all incoming GET parameters as UTF-8 encoded. Here is sample Connector tag:
+
+```xml
+<Connector port="8080" protocol="HTTP/1.1"
+              connectionTimeout="20000"
+              redirectPort="8443" 
+              URIEncoding="UTF-8"/>
+```
+
+> Note : You will need to set up your database to UTF-8 Collation as well.
