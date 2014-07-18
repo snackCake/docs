@@ -283,8 +283,8 @@ Below are some of the items that Broadleaf has workflow concepts for out of of t
 
 | Workflow Bean ID | Description
 | :----------------- | :-----------------------
-| [blAddItemWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L84)  | Used when an item is added to the cart
-| [blUpdateItemWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L108) | Used when an item is updated in the cart
-| [blRemoveItemWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L133) | Used when an item is removed from the cart
-| [blPricingWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L50) | Used by `blPricingService` (which is used by OrderService) to price an Order
-| [blCheckoutWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L163) | Invoked by `blCheckoutService` in order to complete checkout for an Order (charge payments, decrement inventory, change status to SUBMITTED, etc)
+| [blAddItemWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L92)  | Used when an item is added to the cart
+| [blUpdateItemWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L123) | Used when an item is updated in the cart
+| [blRemoveItemWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L174) | Used when an item is removed from the cart
+| [blPricingWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L52) | Used by `blPricingService` (which is used by OrderService) to price an Order
+| [blCheckoutWorkflow](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/core/broadleaf-framework/src/main/resources/bl-framework-applicationContext-workflow.xml#L199) | Invoked by `blCheckoutService` in order to complete checkout for an Order (charge payments, decrement inventory, change status to SUBMITTED, etc)
