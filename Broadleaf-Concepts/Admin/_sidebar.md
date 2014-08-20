@@ -1,5 +1,6 @@
 - [[Provided Controllers | Admin Controllers]]
 - [[New Custom Controllers and Sections| Admin Custom Controllers]]
+- [[Managing Custom Entities| Admin Custom Entities]]
 - [[Entity Type Selection]]
 - [[Validations | Admin Validations]]
 - [[Admin Roles and Permissions]]
