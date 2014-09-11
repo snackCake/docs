@@ -93,6 +93,14 @@ using the default *.cloudfront.net URL for your images.
 
 
 ## Verifying CDN Configuration
+
+In your page templates, you need to use "blc:src" in order to have the URL's rewritten for use with the CDN.   
+
+Here is an example,
+```
+<img blc:src="@{/img/broadleaf-seal.png}" alt="Broadleaf Commerce" />
+```
+
 Broadleaf provides a UrlRewriteProcessor that rewrites assets created through the Broadleaf admin.   The processor manipulates the "src" attribute of any item whose source starts with "/cmsstatic/" replacing it with the values configured by the _asset.server_ properties defined above.
 
 Once you have everything setup, Test your page by right clicking on a product image from your browser (e.g. chrome) and choosing inspect.   Ensure that the image is prefixed with your CDN configured value ... 
