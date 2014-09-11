@@ -2,5 +2,6 @@
 - [[Offers | Offers Configuration]]
 - [[CMS | CMS Configuration]]
 - [[Caching | Caching Configuration]]
+- [[CDN Configuration| CDN Configuration]]
 - [[Asset Server | Asset Server Configuration]]
 - [[QoS | QoS Configuration]]
