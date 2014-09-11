@@ -33,6 +33,7 @@ When a CDN requests an image from Broadleaf, Broadleaf must load the image from 
 
 > Note that the default Broadleaf FileProvider uses the file system and assumes that the file location is set to a shared network drive for distributed systems.    It is also possible to use the database, Amazon-S3, or Rackspace-CloudFiles as your file provider.
 
+
 ## Configuring Broadleaf for CDN access
 Broadleaf relies on a few properties to configure CDN setup.
 
@@ -54,6 +55,8 @@ asset.server.url.prefix=http://static.mysite.com/cmsstatic
 # a DNS managed URL
 #
 asset.server.url.prefix.secure=https://static.mysite.com/cmsstatic
+
+
 ```
 
 ## Example: Setting up Amazon Cloud Front as your Broadleaf CDN
@@ -89,7 +92,7 @@ using the default *.cloudfront.net URL for your images.
 - For initial testing, you should ignore this section, get the CDN working and then circle back to this step.  Note that you'll want to review the section on SSL certificates in advance of moving to production if you plan to use a custom URL
 
 
-## Testing URL Rewrites 
+## Verifying CDN Configuration
 Broadleaf provides a UrlRewriteProcessor that rewrites assets created through the Broadleaf admin.   The processor manipulates the "src" attribute of any item whose source starts with "/cmsstatic/" replacing it with the values configured by the _asset.server_ properties defined above.
 
 Once you have everything setup, Test your page by right clicking on a product image from your browser (e.g. chrome) and choosing inspect.   Ensure that the image is prefixed with your CDN configured value ... 
@@ -100,3 +103,5 @@ For example,
 ```
 
 
+## Summary  
+Using a CDN can greatly reduce the hardware and network requirements in the Broadleaf infrastructure and improve overall end user performance through page load times.
