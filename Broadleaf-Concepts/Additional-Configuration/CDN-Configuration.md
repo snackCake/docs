@@ -49,7 +49,10 @@ asset.server.url.prefix.internal=cmsstatic
 asset.server.url.prefix=http://static.mysite.com/cmsstatic
 
 # This is the URL that customers will see when rendering static assets
-# from secure (https) pages. 
+# from secure (https) pages.  Note, you'll need a valid SSL certificate 
+# so you may want to use your CDN's default https option here instead of 
+# a DNS managed URL
+#
 asset.server.url.prefix.secure=https://static.mysite.com/cmsstatic
 ```
 
@@ -70,7 +73,7 @@ Steps to provision a CDN vary by provider.    Here are steps for setting up Amaz
 - Origin Domain :  www.mybroadleafsite.com
 - Origin ID:  You can use the default value
 - Origin Policy:  Choose HTTP Only
-- HTTP Port/HTTP Port:   Match your server configuration (typically 80/443)
+- HTTP Port/HTTPS Port:   Match your server configuration (typically 80/443)
 
 
 *Step 5* : Fill out the "Origin Settings" on the "Create Distribution" form
@@ -86,7 +89,7 @@ using the default *.cloudfront.net URL for your images.
 - For initial testing, you should ignore this section, get the CDN working and then circle back to this step.  Note that you'll want to review the section on SSL certificates in advance of moving to production if you plan to use a custom URL
 
 
-## Rewriting URLs 
+## Testing URL Rewrites 
 Broadleaf provides a UrlRewriteProcessor that rewrites assets created through the Broadleaf admin.   The processor manipulates the "src" attribute of any item whose source starts with "/cmsstatic/" replacing it with the values configured by the _asset.server_ properties defined above.
 
 Once you have everything setup, Test your page by right clicking on a product image from your browser (e.g. chrome) and choosing inspect.   Ensure that the image is prefixed with your CDN configured value ... 
