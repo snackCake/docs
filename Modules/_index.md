@@ -15,6 +15,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | :----------- | :---------- |
 | [Commercial Modules](#commercial-modules) | Provide enterprise feature add-ons to Broadleaf |
 | [Payment Modules](#payment-modules) | Provide payment processing. |
+| [Wallet Modules](#wallet-modules) | Provide digital wallet solutions for easy checkout. |
 | [Tax Modules](#tax-modules) | Provide tax calculations. |
 | [Shipping Modules](#shipping-modules) | Provide shipping options and calculations. |
 
@@ -95,6 +96,11 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | [Braintree] (http://docs.broadleafcommerce.org/braintree/current) | Marketplace | Payments through [Braintree Payments](https://www.braintreepayments.com/) |
 | [CyberSource Payment] (http://docs.broadleafcommerce.org/cybersource-payment/current) | Marketplace | Payments through CyberSource's [Secure Acceptance Silent Order Post](http://www.cybersource.com/resources/collateral/pdf/SecureAcceptance_SilentOrderPost.pdf) and CyberSource's [SOAP API](http://www.cybersource.com/developers/learn/integration_methods/simple_order_api/learn_more.php) |
 | [Sagepay] (http://docs.broadleafcommerce.org/sagepay/current)  | Marketplace | Payments through [Sagepay](http://www.sagepay.co.uk/) |
+
+## <a name="wallet-modules"></a>Wallet Modules
+| Module Name | License | Description |
+| :---------- | :------ | :---------- |
+| [MasterPass] (http://docs.broadleafcommerce.org/masterpass/current)  | Marketplace | Digital wallet solution through [MasterPass by MasterCard](https://masterpass.com/) |
 
 ## <a name="tax-modules"></a>Tax Modules
 
