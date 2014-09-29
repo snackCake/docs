@@ -127,11 +127,12 @@ The following provides a list of current RESTful endpoints provided with Broadle
 - **/cart**: POST
     - Creates a new cart for the customer. If the customer ID is unknown because a customer record does not yet exist, it need not be passed in. A new customer will be created. The new cart along with the customer will be returned.
   
-- **/cart/{categoryId}/{productId}/{skuId}**: POST
-    - Adds the sku and its associated category and product references to the shopping cart. Optionally reprices the order. Returns a representation of the cart.
+- **/cart/{productId}**: POST
+    - Adds the product to the shopping cart. Optionally reprices the order. Returns a representation of the cart.
     - Query Params:
         - `quantity` (default 1)
         - `priceOrder` (default true)
+        - `productOption.NAME_OF_THE_PRODUCT_OPTION` (e.g. `productOption.COLOR=Red&productOption.SIZE=S`)
   
 - **/cart/items/{itemId}**: DELETE
     - Deletes the item from the cart and optionally reprices the order
