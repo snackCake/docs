@@ -33,7 +33,7 @@ The Broadleaf advanced inventory module expands upon the basic inventory functio
 - Selecting which fulfillment location to take inventory from
 - Optimistic row-locking in the database suitable for high-traffic sites
 
-The advanced inventory module is automatically included in all enterprise licenses.
+The advanced inventory module is automatically included in all enterprise licenses. [Full module documenation](http://www.broadleafcommerce.com/docs/advancedinventory/current)
 
 ## Interfacing with 3rd-party Inventory Systems
 
