@@ -39,7 +39,7 @@ This will set up the appropriate merging of properties between your different ap
 - staging
 - production
 
-> **Note - to specify an environment, a system property entitled `runtime.environment` should be set. This is normally accomplished via a Java startup parameter for your application container (i.e. `-Druntime.environment=production`)**
+> **Note - to specify an environment, a system property entitled `runtime.environment` should be set. This is normally accomplished via a Java startup parameter for your application container (i.e. `-Druntime-environment=production`)**
 
 ## Advanced Configuration
 
