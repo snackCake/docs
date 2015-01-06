@@ -22,7 +22,7 @@
     blPU.hibernate.hbm2ddl.import_files_sql_extractor=org.broadleafcommerce.common.util.sql.importsql.DemoSqlServerSingleLineSqlCommandExtractor
     ```
     
-7. If the Jobs and Events module (commercial module) is in play as well, you would define this property as well:
+7. If the Jobs and Events module (commercial module) is in play, you would define this property as well:
 
     ```ini
     blEventPU.hibernate.hbm2ddl.import_files_sql_extractor=org.broadleafcommerce.common.util.sql.importsql.DemoSqlServerSingleLineSqlCommandExtractor
