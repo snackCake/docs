@@ -20,7 +20,12 @@
 
     ```ini
     blPU.hibernate.hbm2ddl.import_files_sql_extractor=org.broadleafcommerce.common.util.sql.importsql.DemoOracleSingleLineSqlCommandExtractor
+    ```
+    
+7. If the Jobs and Events module (commercial module) is in play as well, you would define this property as well:
+
+    ```ini
     blEventPU.hibernate.hbm2ddl.import_files_sql_extractor=org.broadleafcommerce.common.util.sql.importsql.DemoOracleSingleLineSqlCommandExtractor
     ```
 
-7. If you are using different database platforms in different environments, then you can move the config from #6 to an environment specific property file (e.g. development-shared.properties).
+8. If you are using different database platforms in different environments, then you can move the config from #6 to an environment specific property file (e.g. development-shared.properties).
