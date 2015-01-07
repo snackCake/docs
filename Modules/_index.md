@@ -107,6 +107,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
 | [Avalara] (http://docs.broadleafcommerce.org/avalara/current)  | Marketplace | Sales tax through [Avalara] (http://www.avalara.com/) |
+| [TaxCloud] (http://docs.broadleafcommerce.org/taxcloud/current)  | Marketplace | Sales tax through [TaxCloud] (http://www.taxcloud.net) |
 
 ## <a name="shipping-modules"></a>Shipping Modules
 

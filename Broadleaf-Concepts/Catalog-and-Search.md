@@ -151,3 +151,9 @@ and then add the appropriate xml:
 ```
 
 This would now utilize a two-core Solr standalone server for that environment! 
+
+## Browse by Sku
+
+Out of the box, Broadleaf is setup to index Products and search for Products.  
+
+However, if indexing and searching by Sku is desired, the property `solr.index.use.sku=true` will cause Broadleaf to index Skus instead of Products.  By default, `solr.index.use.sku=false`.
