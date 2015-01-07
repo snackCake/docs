@@ -115,7 +115,7 @@ With the dependencies, we want to use some new plugins to help with testing in g
 </build>
 ```
 
->Make sure you have the GMaven plugin set up or else it won't recognize the groovy files.
+> Make sure you have the GMaven plugin set up or else it won't recognize the groovy files.
 
 With these plugins, we can now do the following:
 
