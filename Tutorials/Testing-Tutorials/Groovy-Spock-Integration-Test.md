@@ -11,57 +11,57 @@ To use this new method of integration test creation, you will need to modify you
 Before we move into the test class's configuration, we need to include some dependencies in the project's pom.xml. Please make sure you have the following:
 ```xml
 ...    
-  <repositories>
-      <repository>
-          <id>maven central snapshots</id>
-          <name>maven central snapshots</name>
-          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      </repository>
-  </repositories>
-  
-  ...
-  
-  <dependency>
-    <groupId>org.broadleafcommerce</groupId>
-    <artifactId>integration</artifactId>
-    <version>3.2.0-SNAPSHOT</version>
-    <type>jar</type>
-    <classifier>tests</classifier>
+<repositories>
+    <repository>
+        <id>maven central snapshots</id>
+        <name>maven central snapshots</name>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+</repositories>
+
+...
+
+<dependency>
+  <groupId>org.broadleafcommerce</groupId>
+  <artifactId>integration</artifactId>
+  <version>3.2.0-SNAPSHOT</version>
+  <type>jar</type>
+  <classifier>tests</classifier>
+  <scope>test</scope>
+  <optional>true</optional>
+</dependency>
+<dependency>
+  <groupId>org.broadleafcommerce</groupId>
+  <artifactId>integration</artifactId>
+  <version>3.2.0-SNAPSHOT</version>
+  <type>jar</type>
+  <scope>test</scope>
+  <optional>true</optional>
+</dependency>
+<dependency>
+  <groupId>org.codehaus.groovy</groupId>
+  <artifactId>groovy-all</artifactId>
+  <version>2.1.8</version>
+  <scope>test</scope>
+</dependency>
+<dependency>
+    <groupId>org.spockframework</groupId>
+    <artifactId>spock-spring</artifactId>
+    <version>1.0-groovy-2.0-SNAPSHOT</version>
     <scope>test</scope>
-    <optional>true</optional>
-  </dependency>
-  <dependency>
-    <groupId>org.broadleafcommerce</groupId>
-    <artifactId>integration</artifactId>
-    <version>3.2.0-SNAPSHOT</version>
-    <type>jar</type>
-    <scope>test</scope>
-    <optional>true</optional>
-  </dependency>
-  <dependency>
-    <groupId>org.codehaus.groovy</groupId>
-    <artifactId>groovy-all</artifactId>
-    <version>2.1.8</version>
-    <scope>test</scope>
-  </dependency>
-  <dependency>
-      <groupId>org.spockframework</groupId>
-      <artifactId>spock-spring</artifactId>
-      <version>1.0-groovy-2.0-SNAPSHOT</version>
-      <scope>test</scope>
-      <exclusions>
-          <exclusion>
-              <groupId>org.codehaus.groovy</groupId>
-              <artifactId>groovy-all</artifactId>
-          </exclusion>
-      </exclusions>
-  </dependency>
-  <dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
-    <version>3.0.1</version>
-    <scope>test</scope>
-  </dependency>
+    <exclusions>
+        <exclusion>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+  <groupId>javax.servlet</groupId>
+  <artifactId>javax.servlet-api</artifactId>
+  <version>3.0.1</version>
+  <scope>test</scope>
+</dependency>
 ```
 ###Plugins
 
