@@ -9,6 +9,7 @@ To use this new method of integration test creation, you will need to modify you
 ####Dependencies
 
 Before we move into the test class's configuration, we need to include some dependencies in the project's pom.xml. Please make sure you have the following:
+
 ```xml
 ...    
 <repositories>
