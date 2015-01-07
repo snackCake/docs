@@ -1,1 +1,2 @@
 - [[Thymeleaf Processors]]
+- [[Resource Bundling]]

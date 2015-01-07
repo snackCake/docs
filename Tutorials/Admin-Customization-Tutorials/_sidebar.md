@@ -2,3 +2,6 @@
 - [[ Adding Help Text]]
 - [[ Customizing Persistence Handlers | Calling An External Service Using A Custom Persistence Handler]]
 - [[ Filtering To-One Lookups | Filtering ToOne Lookup List Grids]]
+- [[ Adding JavaScript ]]
+- [[ Dynamic Field Visibility ]]
+- [[ Using LDAP for Admin Security | Using LDAP Admin Security ]]

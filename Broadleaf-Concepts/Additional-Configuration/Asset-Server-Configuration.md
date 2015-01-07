@@ -24,7 +24,7 @@ All of these methods are enabled by 2 mechanisms:
 1. Dynamic URL parameters
 2. Application context XML configuration **recommended**
 
-> If you 
+> Note: allowing straight URL parameters to manipulate images can have unwanted side effects. Since Broadleaf caches all modified images, an attacker could write a script to perform many image operations very quickly and fill up a hard drive. This can be controlled in Broadleaf 3.0.11-GA+ and 3.1.3-GA+ with the `asset.server.allow.unnamed.image.manipulation` system property. This URL parameter behavior is defaulted to false in Broadleaf 3.2.0-GA and above.
 
 ### Working With An Asset
 
