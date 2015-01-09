@@ -6,11 +6,16 @@ Thanks for wanting to try out Broadleaf Commerce! By following this tutorial, yo
 
 ## <a name="wiki-prerequisites"></a> Prerequisites
 
-- First, you'll need the Java 7 Development Kit (JDK), which you can find [on Oracle's official Java site](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
+- First, you'll need either Java 7 or Java 8 Development Kit (JDK)
+
+    - [Java 7 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
+    - [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+
+> Java 8 bytecode is not fully supported until Broadleaf 4.0 with Spring 4. Broadleaf 3.0+ will run on the Java 8 JVM with Java 6/7-compatible bytecode
 
 > While Broadleaf will still work with Java 6, we recommend using Java 7 unless there is an exceptional reason that your organization requires Java 6. Oracle marked Java 6 "end of life" in [February of 2013](http://www.oracle.com/technetwork/java/eol-135779.html)
 
-- You will also need the latest version of Maven, which you can get [on the official Apache Maven site](http://maven.apache.org/download.html)
+- You will also need the latest version of Maven (at least version 3.1, version 3.2 is recommended), which you can get [on the official Apache Maven site](http://maven.apache.org/download.html)
 
 ## <a name="wiki-eclipse"></a> IDE Setup
 
@@ -18,7 +23,9 @@ Thanks for wanting to try out Broadleaf Commerce! By following this tutorial, yo
 
 Once you have the Java SDK installed, we're ready to get your IDE up and running. Let's start by downloading Eclipse.
 
-Download Link: [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/packages/eclipse-ide-java-developers/junosr2)
+Download Link: [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunar)
+
+> For Java 8 users you must use at least Eclipse Luna. Previous releases do not support Java 8
 
 Once Eclipse is done downloading, extract the archive and start it up. You'll be prompted for a workspace:
 
