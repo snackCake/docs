@@ -1,0 +1,167 @@
+    <!--    The following changes have the possibility of harming the database,
+            or not working if data is present in the tables being modified.
+            These changesets should be modified by hand on a case by case basis.
+            Each changeset will include a list of concerns that should be taken
+            into account for modifications being made. -->
+    <changeSet author="blcmigration (generated)" id="1420821322556-25">
+    <!-- This changeset is taking a column from a map table and placing it on the main data table.
+         Due to this, data existing could cause an issue during migration. Edits of the sql block should
+         be made on a client by client basis. -->
+        <addColumn tableName="BLC_PAGE_FLD">
+            <column name="PAGE_ID" type="BIGINT(19)" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <sql>
+            update BLC_PAGE_FLD,BLC_PAGE_FLD_MAP set BLC_PAGE_FLD.PAGE_ID = BLC_PAGE_FLD_MAP.PAGE_ID where BLC_PAGE_FLD.PAGE_FLD_ID = BLC_PAGE_FLD_MAP.PAGE_FLD_ID;
+        </sql>
+        <addForeignKeyConstraint constraintName="FK86433AD4883C2667" referencedTableName="BLC_PAGE" baseColumnNames="PAGE_ID" baseTableName="BLC_PAGE_FLD" referencedColumnNames="PAGE_ID"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-26>
+    <!--This changeset is modifying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropPrimaryKey tableName="BLC_ADMIN_USER_ADDTL_FIELDS" />
+        <sql>ALTER TABLE BLC_ADMIN_USER_ADDTL_FIELDS AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_ADMIN_USER_ADDTL_FIELDS">
+            <column name="ATTRIBUTE_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-28">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropPrimaryKey tableName="BLC_SC_FLD_MAP" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="SC_FLD_ID" tableName="BLC_SC_FLD_MAP" />
+        <sql>ALTER TABLE BLC_SC_FLD_MAP AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_SC_FLD_MAP">
+            <column name="BLC_SC_SC_FIELD_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-29">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropPrimaryKey tableName="BLC_CATEGORY_MEDIA_MAP" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="MEDIA_ID" tableName="BLC_CATEGORY_MEDIA_MAP" />
+        <sql>ALTER TABLE BLC_CATEGORY_MEDIA_MAP AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_CATEGORY_MEDIA_MAP">
+            <column name="CATEGORY_MEDIA_ID" type="BIGINT(19)" autoIncrement="true" >
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-30">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropPrimaryKey tableName="BLC_OFFER_RULE_MAP" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_RULE_ID" tableName="BLC_OFFER_RULE_MAP" />
+        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_OFFER_RULE_MAP">
+            <column name="OFFER_OFFER_RULE_ID" type="BIGINT(19)" autoIncrement="true" >
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-31">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropUniqueConstraint constraintName="UK_D592E919E7AB0252" tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_ITEM_CRITERIA_ID"
+            tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <dropPrimaryKey tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_QUAL_CRIT_OFFER_XREF">
+            <column name="OFFER_QUAL_CRIT_ID" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+        <!-- To fix the possible blcmigration failure, populate the OFFER_QUAL_CRIT_ID column with unique values before
+             the following "addPrimaryKey" entry. -->
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-32">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropPrimaryKey tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <dropUniqueConstraint constraintName="UK_125F5803E7AB0252" tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_ITEM_CRITERIA_ID"
+            tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_TAR_CRIT_OFFER_XREF">
+            <column name="OFFER_TAR_CRIT_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-33">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropPrimaryKey tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="FLD_GROUP_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <modifyDataType columnName="GROUP_ORDER" newDataType="decimal(10,6)" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="decimal(10,6)" columnName="GROUP_ORDER" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="PAGE_TMPLT_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_PGTMPLT_FLDGRP_XREF">
+            <column name="PG_TMPLT_FLD_GRP_ID" type="BIGINT(19)" autoIncrement="true" >
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-34">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropPrimaryKey tableName="BLC_SKU_MEDIA_MAP" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="MEDIA_ID" tableName="BLC_SKU_MEDIA_MAP" />
+        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_SKU_MEDIA_MAP">
+            <column name="SKU_MEDIA_ID" type="BIGINT(19)" autoIncrement="true" >
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-35">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        <dropPrimaryKey tableName="BLC_SKU_OPTION_VALUE_XREF" />
+        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
+        <addColumn tableName="BLC_SKU_OPTION_VALUE_XREF">
+            <column name="SKU_OPTION_VALUE_XREF_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-36">
+        <dropForeignKeyConstraint baseTableName="BLC_CATEGORY_IMAGE" constraintName="FK27CF3E8015D1A13D" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-37">
+        <dropForeignKeyConstraint baseTableName="BLC_PAGE_FLD_MAP" constraintName="FKE9EE09515AEDD08A" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-38">
+        <dropForeignKeyConstraint baseTableName="BLC_PAGE_FLD_MAP" constraintName="FKE9EE0951883C2667" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-39">
+        <dropForeignKeyConstraint baseTableName="BLC_PRODUCT_SKU_XREF" constraintName="FKF2DBF6D35F11A0B7" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-40">
+        <dropForeignKeyConstraint baseTableName="BLC_PRODUCT_SKU_XREF" constraintName="FKF2DBF6D3B78C9977" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-41">
+        <dropTable tableName="BLC_CATEGORY_IMAGE" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-42">
+        <dropTable tableName="BLC_PAGE_FLD_MAP" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-43">
+        <dropTable tableName="BLC_PRODUCT_SKU_XREF" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-44">
+        <modifyDataType columnName="FIELD_VALUE" newDataType="clob" tableName="BLC_CUSTOMER_PAYMENT_FIELDS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-45">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="PROPERTY_VALUE" tableName="BLC_SYSTEM_PROPERTY" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-46">
+        <addNotNullConstraint columnDataType="bigint(19)" columnName="SEARCH_FACET_ID" tableName="BLC_SEARCH_FACET_XREF" />
+    </changeSet>
