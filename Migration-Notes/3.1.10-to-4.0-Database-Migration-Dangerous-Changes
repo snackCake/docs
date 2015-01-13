@@ -3,7 +3,7 @@
             These changesets should be modified by hand on a case by case basis.
             Each changeset will include a list of concerns that should be taken
             into account for modifications being made. -->
-    <changeSet author="blcmigration (generated)" id="1420821322556-25">
+    <changeSet author="blcmigration (generated)" id="1420821322556-26">
     <!-- This changeset is taking a column from a map table and placing it on the main data table.
          Due to this, data existing could cause an issue during migration. Edits of the sql block should
          be made on a client by client basis. -->
@@ -17,120 +17,180 @@
         </sql>
         <addForeignKeyConstraint constraintName="FK86433AD4883C2667" referencedTableName="BLC_PAGE" baseColumnNames="PAGE_ID" baseTableName="BLC_PAGE_FLD" referencedColumnNames="PAGE_ID"/>
     </changeSet>
-    <changeSet author="blcmigration (generated)" id="1420821322556-26>
+    <changeSet author="blcmigration (generated)" id="1420821322556-27">
     <!--This changeset is modifying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropPrimaryKey tableName="BLC_ADMIN_USER_ADDTL_FIELDS" />
-        <sql>ALTER TABLE BLC_ADMIN_USER_ADDTL_FIELDS AUTO_INCREMENT=1000</sql>
         <addColumn tableName="BLC_ADMIN_USER_ADDTL_FIELDS">
             <column name="ATTRIBUTE_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_ADMIN_USER_ADDTL_FIELDS ADD MC BIGINT NOT NULL;
+        UPDATE BLC_ADMIN_USER_ADDTL_FIELDS SET MC = ATTRIBUTE_ID;
+        ALTER TABLE BLC_ADMIN_USER_ADDTL_FIELDS DROP COLUMN ATTRIBUTE_ID;
+        ALTER TABLE BLC_ADMIN_USER_ADDTL_FIELDS CHANGE MC ATTRIBUTE_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_ADMIN_USER_ADDTL_FIELDS" columnName="ATTRIBUTE_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="ATTRIBUTE_ID" tableName="BLC_ADMIN_USER_ADDTL_FIELDS" />
+        <createIndex tableName="BLC_ADMIN_USER_ADDTL_FIELDS" indexName="ADMINUSERATTRIBUTE_INDEX">
+            <column name="ADMIN_USER_ID" />
+        </createIndex>
+        <createIndex tableName="BLC_ADMIN_USER_ADDTL_FIELDS" indexName="ADMINUSERATTRIBUTE_NAME_INDEX">
+            <column name="FIELD_NAME" />
+        </createIndex>
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-28">
     <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropPrimaryKey tableName="BLC_SC_FLD_MAP" />
         <dropNotNullConstraint columnDataType="bigint(19)" columnName="SC_FLD_ID" tableName="BLC_SC_FLD_MAP" />
-        <sql>ALTER TABLE BLC_SC_FLD_MAP AUTO_INCREMENT=1000</sql>
         <addColumn tableName="BLC_SC_FLD_MAP">
             <column name="BLC_SC_SC_FIELD_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_SC_FLD_MAP ADD MC BIGINT NOT NULL;
+        UPDATE BLC_SC_FLD_MAP SET MC = BLC_SC_SC_FIELD_ID;
+        ALTER TABLE BLC_SC_FLD_MAP DROP COLUMN BLC_SC_SC_FIELD_ID;
+        ALTER TABLE BLC_SC_FLD_MAP CHANGE MC BLC_SC_SC_FIELD_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_SC_FLD_MAP" columnName="BLC_SC_SC_FIELD_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="BLC_SC_SC_FIELD_ID" tableName="BLC_SC_FLD_MAP" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-29">
     <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropPrimaryKey tableName="BLC_CATEGORY_MEDIA_MAP" />
         <dropNotNullConstraint columnDataType="bigint(19)" columnName="MEDIA_ID" tableName="BLC_CATEGORY_MEDIA_MAP" />
-        <sql>ALTER TABLE BLC_CATEGORY_MEDIA_MAP AUTO_INCREMENT=1000</sql>
         <addColumn tableName="BLC_CATEGORY_MEDIA_MAP">
-            <column name="CATEGORY_MEDIA_ID" type="BIGINT(19)" autoIncrement="true" >
+            <column name="CATEGORY_MEDIA_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_CATEGORY_MEDIA_MAP ADD MC BIGINT NOT NULL;
+        UPDATE BLC_CATEGORY_MEDIA_MAP SET MC = CATEGORY_MEDIA_ID;
+        ALTER TABLE BLC_CATEGORY_MEDIA_MAP DROP COLUMN CATEGORY_MEDIA_ID;
+        ALTER TABLE BLC_CATEGORY_MEDIA_MAP CHANGE MC CATEGORY_MEDIA_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_CATEGORY_MEDIA_MAP" columnName="CATEGORY_MEDIA_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="CATEGORY_MEDIA_ID" tableName="BLC_CATEGORY_MEDIA_MAP" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-30">
     <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropPrimaryKey tableName="BLC_OFFER_RULE_MAP" />
         <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_RULE_ID" tableName="BLC_OFFER_RULE_MAP" />
-        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
         <addColumn tableName="BLC_OFFER_RULE_MAP">
-            <column name="OFFER_OFFER_RULE_ID" type="BIGINT(19)" autoIncrement="true" >
+            <column name="OFFER_OFFER_RULE_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_OFFER_RULE_MAP ADD MC BIGINT NOT NULL;
+        UPDATE BLC_OFFER_RULE_MAP SET MC = OFFER_OFFER_RULE_ID;
+        ALTER TABLE BLC_OFFER_RULE_MAP DROP COLUMN OFFER_OFFER_RULE_ID;
+        ALTER TABLE BLC_OFFER_RULE_MAP CHANGE MC OFFER_OFFER_RULE_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_OFFER_RULE_MAP" columnName="OFFER_OFFER_RULE_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="OFFER_OFFER_RULE_ID" tableName="BLC_OFFER_RULE_MAP" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-31">
     <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropUniqueConstraint constraintName="UK_D592E919E7AB0252" tableName="BLC_QUAL_CRIT_OFFER_XREF" />
         <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_ITEM_CRITERIA_ID"
             tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <dropDefaultValue tableName="BLC_QUAL_CRIT_OFFER_XREF" columnName="OFFER_ITEM_CRITERIA_ID" columnDataType="BIGINT(19)" />
         <dropPrimaryKey tableName="BLC_QUAL_CRIT_OFFER_XREF" />
-        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
         <addColumn tableName="BLC_QUAL_CRIT_OFFER_XREF">
-            <column name="OFFER_QUAL_CRIT_ID" type="BIGINT(19)">
+            <column name="OFFER_QUAL_CRIT_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
-        <!-- To fix the possible blcmigration failure, populate the OFFER_QUAL_CRIT_ID column with unique values before
-             the following "addPrimaryKey" entry. -->
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_QUAL_CRIT_OFFER_XREF ADD MC BIGINT NOT NULL;
+        UPDATE BLC_QUAL_CRIT_OFFER_XREF SET MC = OFFER_QUAL_CRIT_ID;
+        ALTER TABLE BLC_QUAL_CRIT_OFFER_XREF DROP COLUMN OFFER_QUAL_CRIT_ID;
+        ALTER TABLE BLC_QUAL_CRIT_OFFER_XREF CHANGE MC OFFER_QUAL_CRIT_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_QUAL_CRIT_OFFER_XREF" columnName="OFFER_QUAL_CRIT_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="OFFER_QUAL_CRIT_ID" tableName="BLC_QUAL_CRIT_OFFER_XREF" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-32">
     <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropPrimaryKey tableName="BLC_TAR_CRIT_OFFER_XREF" />
         <dropUniqueConstraint constraintName="UK_125F5803E7AB0252" tableName="BLC_TAR_CRIT_OFFER_XREF" />
         <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_ITEM_CRITERIA_ID"
             tableName="BLC_TAR_CRIT_OFFER_XREF" />
-        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
+        <dropDefaultValue tableName="BLC_TAR_CRIT_OFFER_XREF" columnName="OFFER_ITEM_CRITERIA_ID" columnDataType="BIGINT(19)" />
         <addColumn tableName="BLC_TAR_CRIT_OFFER_XREF">
             <column name="OFFER_TAR_CRIT_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_TAR_CRIT_OFFER_XREF ADD MC BIGINT NOT NULL;
+        UPDATE BLC_TAR_CRIT_OFFER_XREF SET MC = OFFER_TAR_CRIT_ID;
+        ALTER TABLE BLC_TAR_CRIT_OFFER_XREF DROP COLUMN OFFER_TAR_CRIT_ID;
+        ALTER TABLE BLC_TAR_CRIT_OFFER_XREF CHANGE MC OFFER_TAR_CRIT_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_TAR_CRIT_OFFER_XREF" columnName="OFFER_TAR_CRIT_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="OFFER_TAR_CRIT_ID" tableName="BLC_TAR_CRIT_OFFER_XREF" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-33">
     <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropPrimaryKey tableName="BLC_PGTMPLT_FLDGRP_XREF" />
         <dropNotNullConstraint columnDataType="bigint(19)" columnName="FLD_GROUP_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
         <modifyDataType columnName="GROUP_ORDER" newDataType="decimal(10,6)" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
         <dropNotNullConstraint columnDataType="decimal(10,6)" columnName="GROUP_ORDER" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
         <dropNotNullConstraint columnDataType="bigint(19)" columnName="PAGE_TMPLT_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
-        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
         <addColumn tableName="BLC_PGTMPLT_FLDGRP_XREF">
-            <column name="PG_TMPLT_FLD_GRP_ID" type="BIGINT(19)" autoIncrement="true" >
+            <column name="PG_TMPLT_FLD_GRP_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF ADD MC BIGINT NOT NULL;
+        UPDATE BLC_PGTMPLT_FLDGRP_XREF SET MC = PG_TMPLT_FLD_GRP_ID;
+        ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF DROP COLUMN PG_TMPLT_FLD_GRP_ID;
+        ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF CHANGE MC PG_TMPLT_FLD_GRP_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_PGTMPLT_FLDGRP_XREF" columnName="PG_TMPLT_FLD_GRP_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="PG_TMPLT_FLD_GRP_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-34">
     <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropPrimaryKey tableName="BLC_SKU_MEDIA_MAP" />
         <dropNotNullConstraint columnDataType="bigint(19)" columnName="MEDIA_ID" tableName="BLC_SKU_MEDIA_MAP" />
-        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
         <addColumn tableName="BLC_SKU_MEDIA_MAP">
-            <column name="SKU_MEDIA_ID" type="BIGINT(19)" autoIncrement="true" >
+            <column name="SKU_MEDIA_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_SKU_MEDIA_MAP ADD MC BIGINT NOT NULL;
+        UPDATE BLC_SKU_MEDIA_MAP SET MC = SKU_MEDIA_ID;
+        ALTER TABLE BLC_SKU_MEDIA_MAP DROP COLUMN SKU_MEDIA_ID;
+        ALTER TABLE BLC_SKU_MEDIA_MAP CHANGE MC SKU_MEDIA_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_SKU_MEDIA_MAP" columnName="SKU_MEDIA_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="SKU_MEDIA_ID" tableName="BLC_SKU_MEDIA_MAP" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-35">
     <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
-        Due to this change, if data exists in this table, it will fail blcmigration. -->
+        Due to this change, if data exists in this table, it will fail migration. -->
         <dropPrimaryKey tableName="BLC_SKU_OPTION_VALUE_XREF" />
-        <sql>alter table BLC_OFFER_RULE_MAP AUTO_INCREMENT=1000</sql>
         <addColumn tableName="BLC_SKU_OPTION_VALUE_XREF">
             <column name="SKU_OPTION_VALUE_XREF_ID" type="BIGINT(19)" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true" />
             </column>
         </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_SKU_OPTION_VALUE_XREF ADD MC BIGINT NOT NULL;
+        UPDATE BLC_SKU_OPTION_VALUE_XREF SET MC = SKU_OPTION_VALUE_XREF_ID;
+        ALTER TABLE BLC_SKU_OPTION_VALUE_XREF DROP COLUMN SKU_OPTION_VALUE_XREF_ID;
+        ALTER TABLE BLC_SKU_OPTION_VALUE_XREF CHANGE MC SKU_OPTION_VALUE_XREF_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_SKU_OPTION_VALUE_XREF" columnName="SKU_OPTION_VALUE_XREF_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="SKU_OPTION_VALUE_XREF_ID" tableName="BLC_SKU_OPTION_VALUE_XREF" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-36">
         <dropForeignKeyConstraint baseTableName="BLC_CATEGORY_IMAGE" constraintName="FK27CF3E8015D1A13D" />
@@ -164,4 +224,7 @@
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-46">
         <addNotNullConstraint columnDataType="bigint(19)" columnName="SEARCH_FACET_ID" tableName="BLC_SEARCH_FACET_XREF" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-47">
+        <dropIndex tableName="BLC_SEARCH_INTERCEPT" indexName="SEARCH_PRIORITY_INDEX" />
     </changeSet>
