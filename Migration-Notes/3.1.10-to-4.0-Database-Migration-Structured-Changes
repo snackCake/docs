@@ -124,3 +124,84 @@
             <column name="URL_KEY" type="VARCHAR(255)" />
         </addColumn>
     </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-10">
+        <addColumn tableName="BLC_STORE">
+            <column name="ARCHIVED" type="CHAR(1)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-11">
+        <addColumn tableName="BLC_CUSTOMER_ADDRESS">
+            <column name="ARCHIVED" type="CHAR(1)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-12">
+        <dropUniqueConstraint constraintName="CSTMR_ADDR_UNIQUE_CNSTRNT" tableName="BLC_CUSTOMER_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-13">
+        <addColumn tableName="BLC_PHONE">
+            <column name="COUNTRY_CODE" type="VARCHAR(255)" />
+            <column name="EXTENSION" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-14">
+        <addColumn tableName="BLC_CATEGORY">
+            <column name="EXTERNAL_ID" type="VARCHAR(255)" />
+            <column name="OVERRIDE_GENERATED_URL" type="BIT" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-15">
+        <addColumn tableName="BLC_FIELD">
+            <column name="FRIENDLY_NAME" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-16">
+        <addColumn tableName="BLC_FLD_DEF">
+            <column name="HELP_TEXT" type="VARCHAR(255)" />
+            <column name="HINT" type="VARCHAR(255)" />
+            <column name="TOOLTIP" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-17">
+        <addColumn tableName="BLC_ADDRESS">
+            <column name="FULL_NAME" type="VARCHAR(255)" />
+            <column name="ISO_COUNTRY_ALPHA2" type="VARCHAR(255)">
+                <constraints foreignKeyName="FK299F86CE3A39A488" references="BLC_ISO_COUNTRY(ALPHA_2)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="ISO_COUNTRY_SUB" type="VARCHAR(255)" />
+            <column name="IS_STREET" type="BIT" />
+            <column name="IS_MAILING" type="BOOLEAN" />
+            <column name="SUB_STATE_PROV_REG" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-18">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="COUNTRY" tableName="BLC_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-19">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="POSTAL_CODE" tableName="BLC_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-20">
+        <addColumn tableName="BLC_PRODUCT">
+            <column name="OVERRIDE_GENERATED_URL" type="BIT" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-21">
+        <addColumn tableName="BLC_SC_ITEM_CRITERIA">
+            <column name="SC_ID" type="BIGINT(19)">
+                <constraints foreignKeyName="FK6D52BDA213D95585" references="BLC_SC(SC_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-22">
+        <addColumn tableName="BLC_CAT_SEARCH_FACET_EXCL_XREF">
+            <column name="SEQUENCE" type="DECIMAL(19, 2)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-23">
+        <addColumn tableName="BLC_SITE_CATALOG">
+            <column name="SITE_CATALOG_XREF_ID" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PRIMARY" />
+            </column>
+        </addColumn>
+    </changeSet>
