@@ -1,0 +1,838 @@
+    <changeSet author="blcmigration (generated)" id="1420821322556-24">
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="1" />
+            <column name="NAME" value="Administration" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="2" />
+            <column name="NAME" value="Administrative Atoll" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="3" />
+            <column name="NAME" value="Administrative Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="4" />
+            <column name="NAME" value="Area" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="5" />
+            <column name="NAME" value="Autonomous City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="6" />
+            <column name="NAME" value="Autonomous Community" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="7" />
+            <column name="NAME" value="Autonomous District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="8" />
+            <column name="NAME" value="Autonomous Municipality" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="9" />
+            <column name="NAME" value="Autonomous Province" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="10" />
+            <column name="NAME" value="Autonomous Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="11" />
+            <column name="NAME" value="Autonomous Republic" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="12" />
+            <column name="NAME" value="Autonomous Sector" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="13" />
+            <column name="NAME" value="Autonomous Territorial Unit" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="14" />
+            <column name="NAME" value="Borough" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="15" />
+            <column name="NAME" value="Canton" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="16" />
+            <column name="NAME" value="Capital" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="17" />
+            <column name="NAME" value="Capital City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="18" />
+            <column name="NAME" value="Capital District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="19" />
+            <column name="NAME" value="Capital Metropolitan City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="20" />
+            <column name="NAME" value="City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="21" />
+            <column name="NAME" value="City of County Right" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="22" />
+            <column name="NAME" value="Commune" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="23" />
+            <column name="NAME" value="Constitutional Province" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="24" />
+            <column name="NAME" value="Corporation" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="25" />
+            <column name="NAME" value="Council Area" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="26" />
+            <column name="NAME" value="Country" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="27" />
+            <column name="NAME" value="County" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="28" />
+            <column name="NAME" value="Department" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="29" />
+            <column name="NAME" value="Dependency" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="30" />
+            <column name="NAME" value="Development Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="31" />
+            <column name="NAME" value="District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="32" />
+            <column name="NAME" value="District With Special Status" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="33" />
+            <column name="NAME" value="Division" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="34" />
+            <column name="NAME" value="Economic Prefecture" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="35" />
+            <column name="NAME" value="Emirate" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="36" />
+            <column name="NAME" value="Entity" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="37" />
+            <column name="NAME" value="Federal Capital Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="38" />
+            <column name="NAME" value="Federal Dependency" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="39" />
+            <column name="NAME" value="Federal District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="40" />
+            <column name="NAME" value="Federal Land" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="41" />
+            <column name="NAME" value="Federal Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="42" />
+            <column name="NAME" value="Federated States" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="43" />
+            <column name="NAME" value="Geographical Entity" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="44" />
+            <column name="NAME" value="Geographical Regions" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="45" />
+            <column name="NAME" value="Governorate" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="46" />
+            <column name="NAME" value="Indigenous Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="47" />
+            <column name="NAME" value="Island" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="48" />
+            <column name="NAME" value="Island Council" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="49" />
+            <column name="NAME" value="Local Council" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="50" />
+            <column name="NAME" value="Metropolitan Administration" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="51" />
+            <column name="NAME" value="Metropolitan City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="52" />
+            <column name="NAME" value="Metropolitan Department" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="53" />
+            <column name="NAME" value="Metropolitan Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="54" />
+            <column name="NAME" value="Municipality" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="55" />
+            <column name="NAME" value="Oblast" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="56" />
+            <column name="NAME" value="Outlying Area" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="57" />
+            <column name="NAME" value="Outlying Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="58" />
+            <column name="NAME" value="Overseas Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="59" />
+            <column name="NAME" value="Overseas Territorial Collectivity" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="60" />
+            <column name="NAME" value="Parish" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="61" />
+            <column name="NAME" value="Popularate" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="62" />
+            <column name="NAME" value="Prefecture" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="63" />
+            <column name="NAME" value="Province" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="64" />
+            <column name="NAME" value="Quarter" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="65" />
+            <column name="NAME" value="Rayon" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="66" />
+            <column name="NAME" value="Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="67" />
+            <column name="NAME" value="Regional Council" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="68" />
+            <column name="NAME" value="Republic" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="69" />
+            <column name="NAME" value="Republican City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="70" />
+            <column name="NAME" value="Self-governed Part" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="71" />
+            <column name="NAME" value="Special Administrative City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="72" />
+            <column name="NAME" value="Special Administrative Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="73" />
+            <column name="NAME" value="Special City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="74" />
+            <column name="NAME" value="Special District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="75" />
+            <column name="NAME" value="Special Island Authority" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="76" />
+            <column name="NAME" value="Special Municipality" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="77" />
+            <column name="NAME" value="Special Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="78" />
+            <column name="NAME" value="Special Zone" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="79" />
+            <column name="NAME" value="State" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="80" />
+            <column name="NAME" value="Territorial Unit" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="81" />
+            <column name="NAME" value="Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="82" />
+            <column name="NAME" value="Town Council" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="83" />
+            <column name="NAME" value="Union Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="84" />
+            <column name="NAME" value="Unitary Authority" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="85" />
+            <column name="NAME" value="Urban Community" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="86" />
+            <column name="NAME" value="Zone" />
+        </insert>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-25">
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-AB" />
+            <column name="ALT_ABBREVIATION" value="AB" />
+            <column name="NAME" value="ALBERTA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-BC" />
+            <column name="ALT_ABBREVIATION" value="BC" />
+            <column name="NAME" value="BRITISH COLUMBIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-MB" />
+            <column name="ALT_ABBREVIATION" value="MB" />
+            <column name="NAME" value="MANITOBA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NB" />
+            <column name="ALT_ABBREVIATION" value="NB" />
+            <column name="NAME" value="NEW BRUNSWICK" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NL" />
+            <column name="ALT_ABBREVIATION" value="NL" />
+            <column name="NAME" value="NEWFOUNDLAND" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NS" />
+            <column name="ALT_ABBREVIATION" value="NS" />
+            <column name="NAME" value="NOVA SCOTIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NT" />
+            <column name="ALT_ABBREVIATION" value="NT" />
+            <column name="NAME" value="NORTHWEST TERRITORIES" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="81" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NU" />
+            <column name="ALT_ABBREVIATION" value="NU" />
+            <column name="NAME" value="NUNAVUT" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="81" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-ON" />
+            <column name="ALT_ABBREVIATION" value="ON" />
+            <column name="NAME" value="ONTARIO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-PE" />
+            <column name="ALT_ABBREVIATION" value="PE" />
+            <column name="NAME" value="PRINCE EDWARD ISLAND" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-QC" />
+            <column name="ALT_ABBREVIATION" value="QC" />
+            <column name="NAME" value="QUEBEC" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-SK" />
+            <column name="ALT_ABBREVIATION" value="SK" />
+            <column name="NAME" value="SASKATCHEWAN" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-YT" />
+            <column name="ALT_ABBREVIATION" value="YT" />
+            <column name="NAME" value="YUKON" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="81" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AK" />
+            <column name="ALT_ABBREVIATION" value="AK" />
+            <column name="NAME" value="ALASKA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AL" />
+            <column name="ALT_ABBREVIATION" value="AL" />
+            <column name="NAME" value="ALABAMA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AR" />
+            <column name="ALT_ABBREVIATION" value="AR" />
+            <column name="NAME" value="ARKANSAS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AS" />
+            <column name="ALT_ABBREVIATION" value="AS" />
+            <column name="NAME" value="AMERICAN SAMOA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AZ" />
+            <column name="ALT_ABBREVIATION" value="AZ" />
+            <column name="NAME" value="ARIZONA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-CA" />
+            <column name="ALT_ABBREVIATION" value="CA" />
+            <column name="NAME" value="CALIFORNIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-CO" />
+            <column name="ALT_ABBREVIATION" value="CO" />
+            <column name="NAME" value="COLORADO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-CT" />
+            <column name="ALT_ABBREVIATION" value="CT" />
+            <column name="NAME" value="CONNECTICUT" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-DC" />
+            <column name="ALT_ABBREVIATION" value="DC" />
+            <column name="NAME" value="DISTRICT OF COLUMBIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="31" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-DE" />
+            <column name="ALT_ABBREVIATION" value="DE" />
+            <column name="NAME" value="DELAWARE" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-FL" />
+            <column name="ALT_ABBREVIATION" value="FL" />
+            <column name="NAME" value="FLORIDA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-GA" />
+            <column name="ALT_ABBREVIATION" value="GA" />
+            <column name="NAME" value="GEORGIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-GU" />
+            <column name="ALT_ABBREVIATION" value="GU" />
+            <column name="NAME" value="GUAM" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-HI" />
+            <column name="ALT_ABBREVIATION" value="HI" />
+            <column name="NAME" value="HAWAII" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-IA" />
+            <column name="ALT_ABBREVIATION" value="IA" />
+            <column name="NAME" value="IOWA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-ID" />
+            <column name="ALT_ABBREVIATION" value="ID" />
+            <column name="NAME" value="IDAHO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-IL" />
+            <column name="ALT_ABBREVIATION" value="IL" />
+            <column name="NAME" value="ILLINOIS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-IN" />
+            <column name="ALT_ABBREVIATION" value="IN" />
+            <column name="NAME" value="INDIANA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-KS" />
+            <column name="ALT_ABBREVIATION" value="KS" />
+            <column name="NAME" value="KANSAS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-KY" />
+            <column name="ALT_ABBREVIATION" value="KY" />
+            <column name="NAME" value="KENTUCKY" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-LA" />
+            <column name="ALT_ABBREVIATION" value="LA" />
+            <column name="NAME" value="LOUISIANA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MA" />
+            <column name="ALT_ABBREVIATION" value="MA" />
+            <column name="NAME" value="MASSACHUSETTS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MD" />
+            <column name="ALT_ABBREVIATION" value="MD" />
+            <column name="NAME" value="MARYLAND" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-ME" />
+            <column name="ALT_ABBREVIATION" value="ME" />
+            <column name="NAME" value="MAINE" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MI" />
+            <column name="ALT_ABBREVIATION" value="MI" />
+            <column name="NAME" value="MICHIGAN" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MN" />
+            <column name="ALT_ABBREVIATION" value="MN" />
+            <column name="NAME" value="MINNESOTA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MO" />
+            <column name="ALT_ABBREVIATION" value="MO" />
+            <column name="NAME" value="MISSOURI" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MP" />
+            <column name="ALT_ABBREVIATION" value="MP" />
+            <column name="NAME" value="NORTHERN MARIANA ISLANDS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MS" />
+            <column name="ALT_ABBREVIATION" value="MS" />
+            <column name="NAME" value="MISSISSIPPI" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MT" />
+            <column name="ALT_ABBREVIATION" value="MT" />
+            <column name="NAME" value="MONTANA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NC" />
+            <column name="ALT_ABBREVIATION" value="NC" />
+            <column name="NAME" value="NORTH CAROLINA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-ND" />
+            <column name="ALT_ABBREVIATION" value="ND" />
+            <column name="NAME" value="NORTH DAKOTA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NE" />
+            <column name="ALT_ABBREVIATION" value="NE" />
+            <column name="NAME" value="NEBRASKA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NH" />
+            <column name="ALT_ABBREVIATION" value="NH" />
+            <column name="NAME" value="NEW HAMPSHIRE" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NJ" />
+            <column name="ALT_ABBREVIATION" value="NJ" />
+            <column name="NAME" value="NEW JERSEY" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NM" />
+            <column name="ALT_ABBREVIATION" value="NM" />
+            <column name="NAME" value="NEW MEXICO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NV" />
+            <column name="ALT_ABBREVIATION" value="NV" />
+            <column name="NAME" value="NEVADA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NY" />
+            <column name="ALT_ABBREVIATION" value="NY" />
+            <column name="NAME" value="NEW YORK" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-OH" />
+            <column name="ALT_ABBREVIATION" value="OH" />
+            <column name="NAME" value="OHIO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-OK" />
+            <column name="ALT_ABBREVIATION" value="OK" />
+            <column name="NAME" value="OKLAHOMA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-OR" />
+            <column name="ALT_ABBREVIATION" value="OR" />
+            <column name="NAME" value="OREGON" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-PA" />
+            <column name="ALT_ABBREVIATION" value="PA" />
+            <column name="NAME" value="PENNSYLVANIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-PR" />
+            <column name="ALT_ABBREVIATION" value="PR" />
+            <column name="NAME" value="PUERTO RICO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-RI" />
+            <column name="ALT_ABBREVIATION" value="RI" />
+            <column name="NAME" value="RHODE ISLAND" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-SC" />
+            <column name="ALT_ABBREVIATION" value="SC" />
+            <column name="NAME" value="SOUTH CAROLINA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-SD" />
+            <column name="ALT_ABBREVIATION" value="SD" />
+            <column name="NAME" value="SOUTH DAKOTA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-TN" />
+            <column name="ALT_ABBREVIATION" value="TN" />
+            <column name="NAME" value="TENNESSEE" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-TX" />
+            <column name="ALT_ABBREVIATION" value="TX" />
+            <column name="NAME" value="TEXAS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-UM" />
+            <column name="ALT_ABBREVIATION" value="UM" />
+            <column name="NAME" value="UNITED STATES MINOR OUTLYING ISLANDS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-UT" />
+            <column name="ALT_ABBREVIATION" value="UT" />
+            <column name="NAME" value="UTAH" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-VA" />
+            <column name="ALT_ABBREVIATION" value="VA" />
+            <column name="NAME" value="VIRGINIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-VI" />
+            <column name="ALT_ABBREVIATION" value="VI" />
+            <column name="NAME" value="VIRGIN ISLANDS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-VT" />
+            <column name="ALT_ABBREVIATION" value="VT" />
+            <column name="NAME" value="VERMONT" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-WA" />
+            <column name="ALT_ABBREVIATION" value="WA" />
+            <column name="NAME" value="WASHINGTON" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-WI" />
+            <column name="ALT_ABBREVIATION" value="WI" />
+            <column name="NAME" value="WISCONSIN" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-WV" />
+            <column name="ALT_ABBREVIATION" value="WV" />
+            <column name="NAME" value="WEST VIRGINIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-WY" />
+            <column name="ALT_ABBREVIATION" value="WY" />
+            <column name="NAME" value="WYOMING" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+    </changeSet>
