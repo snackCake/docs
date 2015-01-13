@@ -1,4 +1,4 @@
-        <changeSet author="blcmigration (generated)" id="1420821322556-1">
+    <changeSet author="blcmigration (generated)" id="1420821322556-1">
         <createTable tableName="BLC_CMS_MENU">
             <column name="MENU_ID" type="BIGINT">
                 <constraints nullable="false" primaryKey="true" primaryKeyName="PRIMARY" />
@@ -65,6 +65,12 @@
                     deferrable="false" initiallyDeferred="false" deleteCascade="false" />
             </column>
         </createTable>
+        <createIndex tableName="BLC_COUNTRY_SUB" indexName="COUNTRY_SUB_ALT_ABRV_IDX">
+            <column name="ALT_ABBREVIATION"/>
+        </createIndex>
+        <createIndex tableName="BLC_COUNTRY_SUB" indexName="COUNTRY_SUB_NAME_IDX">
+            <column name="NAME"/>
+        </createIndex>
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-5">
         <createTable tableName="BLC_ISO_COUNTRY">
@@ -111,18 +117,37 @@
                     deferrable="false" initiallyDeferred="false" deleteCascade="false" />
             </column>
         </createTable>
+        <createIndex tableName="BLC_PAGE_ATTRIBUTES" indexName="PAGEATTRIBUTE_NAME_INDEX">
+            <column name="FIELD_NAME"/>
+        </createIndex>
+        <createIndex tableName="BLC_PAGE_ATTRIBUTES" indexName="PAGEATTRIBUTE_INDEX">
+            <column name="PAGE_ID"/>
+        </createIndex>
+        <createIndex tableName="BLC_PAGE_ATTRIBUTES" indexName="FK4FE27601883C2667">
+            <column name="PAGE_ID"/>
+        </createIndex>
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-9">
         <addColumn tableName="BLC_SKU">
-            <column name="ADDL_PRODUCT_ID" type="BIGINT(19)">
-                <constraints foreignKeyName="FK28E82CF750D6498B" references="BLC_PRODUCT(PRODUCT_ID)"
-                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
-            </column>
+            <column name="ADDL_PRODUCT_ID" type="BIGINT(19)" />
             <column name="DISPLAY_TEMPLATE" type="VARCHAR(255)" />
             <column name="EXTERNAL_ID" type="VARCHAR(255)" />
             <column name="UPC" type="VARCHAR(255)" />
             <column name="URL_KEY" type="VARCHAR(255)" />
         </addColumn>
+        <createIndex tableName="BLC_SKU" indexName="SKU_EXTERNAL_ID_INDEX">
+            <column name="EXTERNAL_ID"/>
+        </createIndex>
+        <createIndex tableName="BLC_SKU" indexName="SKU_UPC_INDEX">
+            <column name="UPC"/>
+        </createIndex>
+        <createIndex tableName="BLC_SKU" indexName="SKU_URL_KEY_INDEX">
+            <column name="URL_KEY"/>
+        </createIndex>
+        <createIndex tableName="BLC_SKU" indexName="FK28E82CF750D6498B">
+            <column name="ADDL_PRODUCT_ID"/>
+        </createIndex>
+        <addForeignKeyConstraint constraintName="FK28E82CF750D6498B" referencedTableName="BLC_PRODUCT" baseColumnNames="ADDL_PRODUCT_ID" baseTableName="BLC_SKU" referencedColumnNames="PRODUCT_ID"/>
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-10">
         <addColumn tableName="BLC_STORE">
@@ -148,6 +173,9 @@
             <column name="EXTERNAL_ID" type="VARCHAR(255)" />
             <column name="OVERRIDE_GENERATED_URL" type="BIT" />
         </addColumn>
+        <createIndex tableName="BLC_CATEGORY" indexName="CATEGORY_E_ID_INDEX">
+            <column name="EXTERNAL_ID"/>
+        </createIndex>
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-15">
         <addColumn tableName="BLC_FIELD">
@@ -164,15 +192,19 @@
     <changeSet author="blcmigration (generated)" id="1420821322556-17">
         <addColumn tableName="BLC_ADDRESS">
             <column name="FULL_NAME" type="VARCHAR(255)" />
-            <column name="ISO_COUNTRY_ALPHA2" type="VARCHAR(255)">
-                <constraints foreignKeyName="FK299F86CE3A39A488" references="BLC_ISO_COUNTRY(ALPHA_2)"
-                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
-            </column>
+            <column name="ISO_COUNTRY_ALPHA2" type="VARCHAR(255)" />
             <column name="ISO_COUNTRY_SUB" type="VARCHAR(255)" />
             <column name="IS_STREET" type="BIT" />
             <column name="IS_MAILING" type="BOOLEAN" />
             <column name="SUB_STATE_PROV_REG" type="VARCHAR(255)" />
         </addColumn>
+        <createIndex tableName="BLC_ADDRESS" indexName="ADDRESS_ISO_COUNTRY_IDX">
+            <column name="ISO_COUNTRY_ALPHA2"/>
+        </createIndex>
+        <createIndex tableName="BLC_ADDRESS" indexName="FK299F86CE3A39A488">
+            <column name="ISO_COUNTRY_ALPHA2"/>
+        </createIndex>
+        <addForeignKeyConstraint constraintName="FK299F86CE3A39A488" referencedTableName="BLC_ISO_COUNTRY" baseColumnNames="ISO_COUNTRY_ALPHA2" baseTableName="BLC_ADDRESS" referencedColumnNames="ALPHA_2" />
     </changeSet>
     <changeSet author="blcmigration (generated)" id="1420821322556-18">
         <dropNotNullConstraint columnDataType="varchar(255)" columnName="COUNTRY" tableName="BLC_ADDRESS" />
