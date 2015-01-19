@@ -44,7 +44,7 @@ First, let's look at the default checkout workflow provided by broadleaf:
 
 ## Create a new activity
 
-We need to add a new activity to record the average heat level for a given customer. Let's create that activity. In the `site` project, we'll create `RecordHeatLevelActivity.java` in the `com.mycompany.checkout.service.workflow` package with the following contents:
+We need to add a new activity to record the average heat level for a given customer. Let's create that activity. In the `site` project, we'll create `RecordHeatRangeActivity.java` in the `com.mycompany.checkout.service.workflow` package with the following contents:
 
 ```java
 public class RecordHeatRangeActivity extends BaseActivity {
@@ -55,13 +55,13 @@ public class RecordHeatRangeActivity extends BaseActivity {
 
     @Override
     public ProcessContext execute(ProcessContext context) throws Exception {
-        CheckoutSeed seed = ((CheckoutContext) context).getSeedData();
+        CheckoutSeed seed = (CheckoutSeed) context.getSeedData();
         Order order = seed.getOrder();
         int orderTotalHeatRating = 0;
         int productCount = 0;
         
         for (DiscreteOrderItem doi : order.getDiscreteOrderItems()) {
-            ProductAttribute heatRating = doi.getProduct().getProductAttributeByName("heatRange");
+            ProductAttribute heatRating = doi.getProduct().getProductAttributes().get("heatRange");
             try {
                 orderTotalHeatRating += (doi.getQuantity() * Integer.parseInt(heatRating.getValue()));
                 productCount += doi.getQuantity();
@@ -81,12 +81,14 @@ public class RecordHeatRangeActivity extends BaseActivity {
 }
 ```
 
+> Note: You should choose `org.broadleafcommerce.core.order.domain.Order`, `org.apache.juli.logging.Log`, and `org.apache.juli.logging.LogFactory` as imports.
+
 Notice that the activity loops through all current products in the order and assigns the appropriate heat range to the customer.
 
 ## Add our activity to the workflow
 
 We want to add our new activity between the `RecordOfferUsageActivity` and the `CompleteOrderActivity`.
-In this example, we override the blCheckoutWorkflow and set the `p:order="5500"` in the bean declaration, like so:
+In this example, within `applicationContext.xml`, we override the blCheckoutWorkflow and set the `p:order="5500"` in the bean declaration, like so:
 
 ```xml
     <bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
