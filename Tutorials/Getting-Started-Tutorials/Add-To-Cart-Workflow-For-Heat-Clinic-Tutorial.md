@@ -44,7 +44,7 @@ public class ValidateHeatRangeRestrictionActivity extends BaseActivity {
     @Override
     public ProcessContext execute(ProcessContext context) throws Exception {
         // Get our seed data
-        CartOperationRequest request = ((CartOperationContext) context).getSeedData();
+        CartOperationRequest request = (CartOperationRequest) context.getSeedData();
         Long skuId = request.getItemRequest().getSkuId();
         Order cart = request.getOrder();
         
@@ -69,7 +69,7 @@ public class ValidateHeatRangeRestrictionActivity extends BaseActivity {
      * @return the heatRange attribute of a product if it exists -- null otherwise
      */
     protected Integer getHeatRange(Product product) {
-        ProductAttribute heatRangeAttr = product.getProductAttributeByName("heatRange");
+        ProductAttribute heatRangeAttr = product.getProductAttributes().get("heatRange");
         
         // Heat Range will be null for non-hot sauce products
         if (heatRangeAttr != null) {
