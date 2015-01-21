@@ -1,0 +1,230 @@
+    <changeSet author="blcmigration (generated)" id="1420821322556-1">
+        <createTable tableName="BLC_CMS_MENU">
+            <column name="MENU_ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CMS_MENU_PK" />
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-2">
+        <createTable tableName="BLC_CMS_MENU_ITEM">
+            <column name="MENU_ITEM_ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CMS_MENU_ITEM_PK" />
+            </column>
+            <column name="ACTION_URL" type="VARCHAR(255)" />
+            <column name="ALT_TEXT" type="VARCHAR(255)" />
+            <column name="CUSTOM_HTML" type="VARCHAR(max)" />
+            <column name="LABEL" type="VARCHAR(255)" />
+            <column name="SEQUENCE" type="NUMERIC(10, 6)" />
+            <column name="MENU_ITEM_TYPE" type="VARCHAR(255)" />
+            <column name="MEDIA_ID" type="bigint">
+                <constraints foreignKeyName="FKFC9BDD76E4720E0" references="BLC_MEDIA(MEDIA_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="LINKED_MENU_ID" type="bigint">
+                <constraints foreignKeyName="FKFC9BDD7A8D0E60C" references="BLC_CMS_MENU(MENU_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="LINKED_PAGE_ID" type="bigint">
+                <constraints foreignKeyName="FKFC9BDD77BB4A41" references="BLC_PAGE(PAGE_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="PARENT_MENU_ID" type="bigint">
+                <constraints foreignKeyName="FKFC9BDD73876279D" references="BLC_CMS_MENU(MENU_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-3">
+        <createTable tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="COUNTRY_SUB_CAT_PK" />
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-4">
+        <createTable tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="COUNTRY_SUB_PK" />
+            </column>
+            <column name="ALT_ABBREVIATION" type="VARCHAR(255)" />
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="COUNTRY_SUB_CAT" type="bigint">
+                <constraints foreignKeyName="FKA804FBD172AAB3C0" references="BLC_COUNTRY_SUB_CAT(COUNTRY_SUB_CAT_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="COUNTRY" type="VARCHAR(255)">
+                <constraints nullable="false" foreignKeyName="FKA804FBD1A46E16CF" references="BLC_COUNTRY(ABBREVIATION)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+        <createIndex tableName="BLC_COUNTRY_SUB" indexName="COUNTRY_SUB_ALT_ABRV_IDX">
+            <column name="ALT_ABBREVIATION"/>
+        </createIndex>
+        <createIndex tableName="BLC_COUNTRY_SUB" indexName="COUNTRY_SUB_NAME_IDX">
+            <column name="NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-5">
+        <createTable tableName="BLC_ISO_COUNTRY">
+            <column name="ALPHA_2" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ISO_COUNTRY_PK" />
+            </column>
+            <column name="ALPHA_3" type="VARCHAR(255)" />
+            <column name="NAME" type="VARCHAR(255)" />
+            <column name="NUMERIC_CODE" type="INT" />
+            <column name="STATUS" type="VARCHAR(255)" />
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-6">
+        <createTable tableName="BLC_ORDER_LOCK">
+            <column name="LOCK_KEY" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ORDER_LOCK_PK" />
+            </column>
+            <column name="ORDER_ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ORDER_LOCK_PK" />
+            </column>
+            <column name="LAST_UPDATED" type="bigint" />
+            <column name="LOCKED" type="CHAR(1)" />
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-7">
+        <addColumn tableName="BLC_PAGE">
+            <column name="ACTIVE_END_DATE" type="DATETIME2(7)" />
+            <column name="ACTIVE_START_DATE" type="DATETIME2(7)" />
+            <column name="META_DESCRIPTION" type="VARCHAR(255)" />
+            <column name="META_TITLE" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-8">
+        <createTable tableName="BLC_PAGE_ATTRIBUTES">
+            <column name="ATTRIBUTE_ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PAGE_ATTRIBUTES_PK" />
+            </column>
+            <column name="FIELD_NAME" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="FIELD_VALUE" type="VARCHAR(255)" />
+            <column name="PAGE_ID" type="bigint">
+                <constraints nullable="false" foreignKeyName="FK4FE27601883C2667" references="BLC_PAGE(PAGE_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+        <createIndex tableName="BLC_PAGE_ATTRIBUTES" indexName="PAGEATTRIBUTE_NAME_INDEX">
+            <column name="FIELD_NAME"/>
+        </createIndex>
+        <createIndex tableName="BLC_PAGE_ATTRIBUTES" indexName="PAGEATTRIBUTE_INDEX">
+            <column name="PAGE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-9">
+        <addColumn tableName="BLC_SKU">
+            <column name="ADDL_PRODUCT_ID" type="bigint" />
+            <column name="DISPLAY_TEMPLATE" type="VARCHAR(255)" />
+            <column name="EXTERNAL_ID" type="VARCHAR(255)" />
+            <column name="UPC" type="VARCHAR(255)" />
+            <column name="URL_KEY" type="VARCHAR(255)" />
+        </addColumn>
+        <createIndex tableName="BLC_SKU" indexName="SKU_EXTERNAL_ID_INDEX">
+            <column name="EXTERNAL_ID"/>
+        </createIndex>
+        <createIndex tableName="BLC_SKU" indexName="SKU_UPC_INDEX">
+            <column name="UPC"/>
+        </createIndex>
+        <createIndex tableName="BLC_SKU" indexName="SKU_URL_KEY_INDEX">
+            <column name="URL_KEY"/>
+        </createIndex>
+        <addForeignKeyConstraint constraintName="FK28E82CF750D6498B" referencedTableName="BLC_PRODUCT" baseColumnNames="ADDL_PRODUCT_ID" baseTableName="BLC_SKU" referencedColumnNames="PRODUCT_ID"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-10">
+        <addColumn tableName="BLC_STORE">
+            <column name="ARCHIVED" type="CHAR(1)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-11">
+        <addColumn tableName="BLC_CUSTOMER_ADDRESS">
+            <column name="ARCHIVED" type="CHAR(1)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-12">
+        <dropUniqueConstraint constraintName="CSTMR_ADDR_UNIQUE_CNSTRNT" tableName="BLC_CUSTOMER_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-13">
+        <addColumn tableName="BLC_PHONE">
+            <column name="COUNTRY_CODE" type="VARCHAR(255)" />
+            <column name="EXTENSION" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-14">
+        <addColumn tableName="BLC_CATEGORY">
+            <column name="EXTERNAL_ID" type="VARCHAR(255)" />
+            <column name="OVERRIDE_GENERATED_URL" type="BIT" />
+        </addColumn>
+        <createIndex tableName="BLC_CATEGORY" indexName="CATEGORY_E_ID_INDEX">
+            <column name="EXTERNAL_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-15">
+        <addColumn tableName="BLC_FIELD">
+            <column name="FRIENDLY_NAME" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-16">
+        <addColumn tableName="BLC_FLD_DEF">
+            <column name="HELP_TEXT" type="VARCHAR(255)" />
+            <column name="HINT" type="VARCHAR(255)" />
+            <column name="TOOLTIP" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-17">
+        <addColumn tableName="BLC_ADDRESS">
+            <column name="FULL_NAME" type="VARCHAR(255)" />
+            <column name="ISO_COUNTRY_ALPHA2" type="VARCHAR(255)" />
+            <column name="ISO_COUNTRY_SUB" type="VARCHAR(255)" />
+            <column name="IS_STREET" type="BIT" />
+            <column name="IS_MAILING" type="BOOLEAN" />
+            <column name="SUB_STATE_PROV_REG" type="VARCHAR(255)" />
+        </addColumn>
+        <createIndex tableName="BLC_ADDRESS" indexName="ADDRESS_ISO_COUNTRY_IDX">
+            <column name="ISO_COUNTRY_ALPHA2"/>
+        </createIndex>
+        <addForeignKeyConstraint constraintName="FK299F86CE3A39A488" referencedTableName="BLC_ISO_COUNTRY" baseColumnNames="ISO_COUNTRY_ALPHA2" baseTableName="BLC_ADDRESS" referencedColumnNames="ALPHA_2" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-18">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="COUNTRY" tableName="BLC_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-19">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="POSTAL_CODE" tableName="BLC_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-20">
+        <addColumn tableName="BLC_PRODUCT">
+            <column name="OVERRIDE_GENERATED_URL" type="BIT" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-21">
+        <addColumn tableName="BLC_SC_ITEM_CRITERIA">
+            <column name="SC_ID" type="bigint">
+                <constraints foreignKeyName="FK6D52BDA213D95585" references="BLC_SC(SC_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-22">
+        <addColumn tableName="BLC_CAT_SEARCH_FACET_EXCL_XREF">
+            <column name="SEQUENCE" type="NUMERIC(19, 2)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-23">
+        <addColumn tableName="BLC_SITE_CATALOG">
+            <column name="SITE_CATALOG_XREF_ID" type="bigint">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SITE_CATALOG_PK" />
+            </column>
+        </addColumn>
+    </changeSet>
