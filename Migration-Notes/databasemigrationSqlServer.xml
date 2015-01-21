@@ -1087,7 +1087,7 @@
             </column>
         </addColumn>
         <sql>
-            UPDATE dbo.BLC_PAGE_FLD SET PAGE_ID = B.PAGE_ID FROM dbo.BLC_PAGE_FLD_MAP AS B WHERE B.PAGE_FLD_ID = dbo.BLC_PAGE_FLD.PAGE_FLD_ID;
+            UPDATE BLC_PAGE_FLD SET PAGE_ID = B.PAGE_ID FROM BLC_PAGE_FLD_MAP AS B WHERE B.PAGE_FLD_ID = BLC_PAGE_FLD.PAGE_FLD_ID;
         </sql>
         <dropDefaultValue columnName="PAGE_ID" tableName="BLC_PAGE_FLD" />
         <addForeignKeyConstraint constraintName="FK86433AD4883C2667" referencedTableName="BLC_PAGE" baseColumnNames="PAGE_ID" baseTableName="BLC_PAGE_FLD" referencedColumnNames="PAGE_ID"/>
@@ -1123,7 +1123,7 @@
         </addColumn>
         <!-- populate indexes here -->
         <sql>
-            UPDATE dbo.BLC_SC_FLD_MAP set BLC_SC_SC_FIELD_ID = rows.new_sid from (select BLC_SC_SC_FIELD_ID, rank() over (order BY SC_FLD_ID) as new_sid, SC_FLD_ID from BLC_SC_FLD_MAP) as rows where rows.SC_FLD_ID = dbo.BLC_SC_FLD_MAP.SC_FLD_ID;
+            UPDATE BLC_SC_FLD_MAP set BLC_SC_SC_FIELD_ID = rows.new_sid from (select BLC_SC_SC_FIELD_ID, rank() over (order BY SC_FLD_ID) as new_sid, SC_FLD_ID from BLC_SC_FLD_MAP) as rows where rows.SC_FLD_ID = BLC_SC_FLD_MAP.SC_FLD_ID;
         </sql>
         <dropDefaultValue tableName="BLC_SC_FLD_MAP" columnName="BLC_SC_SC_FIELD_ID" columnDataType="bigint" />
         <addPrimaryKey columnNames="BLC_SC_SC_FIELD_ID" tableName="BLC_SC_FLD_MAP" constraintName="SC_FLD_MAP_PK" />
