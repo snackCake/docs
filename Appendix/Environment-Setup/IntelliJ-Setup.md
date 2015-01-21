@@ -40,7 +40,7 @@ You can check out the demosite project directly through Intellij or through exte
 
 ![Select SDK](intellij-select-sdk.png)
 
-> Note: If you haven't set one, Intellij will ask you to add an SDK. You can also change the SDK via the **Project Structure** menu.
+> Note: If you haven't set one, Intellij will ask you to add an SDK. You can also change the SDK via the **Project Structure** menu. You can easily do this by right-clicking on the project root folder and selecting **Open Module Settings**. Select the **Project** option on the left and select the 1.6 JDK option in the **Project SDK** dropdown.
 
 ![Project JDK](intellij-project-jdk.png)
 
@@ -48,7 +48,7 @@ You can check out the demosite project directly through Intellij or through exte
 
 ![Project Name](intellij-enter-name.png)
 
- - Click on the **Maven Projects** button on the right side of the IDE. This will bring up the maven projects. We recommend you **Group by Modules** to simplify the view.
+ - Click on the **Maven Projects** button on the right side of the IDE. This will bring up the maven projects. We recommend you **Group Modules** to simplify the view.
  
 ![Group by modules](intellij-group-modules.png)
  
