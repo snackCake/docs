@@ -1,0 +1,1307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!-- Safe easy changes -->
+    <changeSet author="blcmigration (generated)" id="1420821322556-1">
+        <createTable tableName="BLC_CMS_MENU">
+            <column name="MENU_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CMS_MENU_PK" />
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-2">
+        <createTable tableName="BLC_CMS_MENU_ITEM">
+            <column name="MENU_ITEM_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CMS_MENU_ITEM_PK" />
+            </column>
+            <column name="ACTION_URL" type="VARCHAR(255)" />
+            <column name="ALT_TEXT" type="VARCHAR(255)" />
+            <column name="CUSTOM_HTML" type="LONGTEXT" />
+            <column name="LABEL" type="VARCHAR(255)" />
+            <column name="SEQUENCE" type="DECIMAL(10, 6)" />
+            <column name="MENU_ITEM_TYPE" type="VARCHAR(255)" />
+            <column name="MEDIA_ID" type="BIGINT">
+                <constraints foreignKeyName="FKFC9BDD76E4720E0" references="BLC_MEDIA(MEDIA_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="LINKED_MENU_ID" type="BIGINT">
+                <constraints foreignKeyName="FKFC9BDD7A8D0E60C" references="BLC_CMS_MENU(MENU_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="LINKED_PAGE_ID" type="BIGINT">
+                <constraints foreignKeyName="FKFC9BDD77BB4A41" references="BLC_PAGE(PAGE_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="PARENT_MENU_ID" type="BIGINT">
+                <constraints foreignKeyName="FKFC9BDD73876279D" references="BLC_CMS_MENU(MENU_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-3">
+        <createTable tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="COUNTRY_SUB_CAT_PK" />
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-4">
+        <createTable tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="COUNTRY_SUB_PK" />
+            </column>
+            <column name="ALT_ABBREVIATION" type="VARCHAR(255)" />
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="COUNTRY_SUB_CAT" type="BIGINT">
+                <constraints foreignKeyName="FKA804FBD172AAB3C0" references="BLC_COUNTRY_SUB_CAT(COUNTRY_SUB_CAT_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="COUNTRY" type="VARCHAR(255)">
+                <constraints nullable="false" foreignKeyName="FKA804FBD1A46E16CF" references="BLC_COUNTRY(ABBREVIATION)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+        <createIndex tableName="BLC_COUNTRY_SUB" indexName="COUNTRY_SUB_ALT_ABRV_IDX">
+            <column name="ALT_ABBREVIATION"/>
+        </createIndex>
+        <createIndex tableName="BLC_COUNTRY_SUB" indexName="COUNTRY_SUB_NAME_IDX">
+            <column name="NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-5">
+        <createTable tableName="BLC_ISO_COUNTRY">
+            <column name="ALPHA_2" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ISO_COUNTRY_PK" />
+            </column>
+            <column name="ALPHA_3" type="VARCHAR(255)" />
+            <column name="NAME" type="VARCHAR(255)" />
+            <column name="NUMERIC_CODE" type="INT" />
+            <column name="STATUS" type="VARCHAR(255)" />
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-6">
+        <createTable tableName="BLC_ORDER_LOCK">
+            <column name="LOCK_KEY" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ORDER_LOCK_PK" />
+            </column>
+            <column name="ORDER_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ORDER_LOCK_PK" />
+            </column>
+            <column name="LAST_UPDATED" type="BIGINT" />
+            <column name="LOCKED" type="CHAR(1)" />
+        </createTable>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-7">
+        <addColumn tableName="BLC_PAGE">
+            <column name="ACTIVE_END_DATE" type="DATETIME(19)" />
+            <column name="ACTIVE_START_DATE" type="DATETIME(19)" />
+            <column name="META_DESCRIPTION" type="VARCHAR(255)" />
+            <column name="META_TITLE" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-8">
+        <createTable tableName="BLC_PAGE_ATTRIBUTES">
+            <column name="ATTRIBUTE_ID" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PAGE_ATTRIBUTES_PK" />
+            </column>
+            <column name="FIELD_NAME" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="FIELD_VALUE" type="VARCHAR(255)" />
+            <column name="PAGE_ID" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="FK4FE27601883C2667" references="BLC_PAGE(PAGE_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+        <createIndex tableName="BLC_PAGE_ATTRIBUTES" indexName="PAGEATTRIBUTE_NAME_INDEX">
+            <column name="FIELD_NAME"/>
+        </createIndex>
+        <createIndex tableName="BLC_PAGE_ATTRIBUTES" indexName="PAGEATTRIBUTE_INDEX">
+            <column name="PAGE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-9">
+        <addColumn tableName="BLC_SKU">
+            <column name="ADDL_PRODUCT_ID" type="BIGINT(19)" />
+            <column name="DISPLAY_TEMPLATE" type="VARCHAR(255)" />
+            <column name="EXTERNAL_ID" type="VARCHAR(255)" />
+            <column name="UPC" type="VARCHAR(255)" />
+            <column name="URL_KEY" type="VARCHAR(255)" />
+        </addColumn>
+        <createIndex tableName="BLC_SKU" indexName="SKU_EXTERNAL_ID_INDEX">
+            <column name="EXTERNAL_ID"/>
+        </createIndex>
+        <createIndex tableName="BLC_SKU" indexName="SKU_UPC_INDEX">
+            <column name="UPC"/>
+        </createIndex>
+        <createIndex tableName="BLC_SKU" indexName="SKU_URL_KEY_INDEX">
+            <column name="URL_KEY"/>
+        </createIndex>
+        <addForeignKeyConstraint constraintName="FK28E82CF750D6498B" referencedTableName="BLC_PRODUCT" baseColumnNames="ADDL_PRODUCT_ID" baseTableName="BLC_SKU" referencedColumnNames="PRODUCT_ID"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-10">
+        <addColumn tableName="BLC_STORE">
+            <column name="ARCHIVED" type="CHAR(1)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-11">
+        <addColumn tableName="BLC_CUSTOMER_ADDRESS">
+            <column name="ARCHIVED" type="CHAR(1)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-12">
+        <dropUniqueConstraint constraintName="CSTMR_ADDR_UNIQUE_CNSTRNT" tableName="BLC_CUSTOMER_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-13">
+        <addColumn tableName="BLC_PHONE">
+            <column name="COUNTRY_CODE" type="VARCHAR(255)" />
+            <column name="EXTENSION" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-14">
+        <addColumn tableName="BLC_CATEGORY">
+            <column name="EXTERNAL_ID" type="VARCHAR(255)" />
+            <column name="OVERRIDE_GENERATED_URL" type="BIT" />
+        </addColumn>
+        <createIndex tableName="BLC_CATEGORY" indexName="CATEGORY_E_ID_INDEX">
+            <column name="EXTERNAL_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-15">
+        <addColumn tableName="BLC_FIELD">
+            <column name="FRIENDLY_NAME" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-16">
+        <addColumn tableName="BLC_FLD_DEF">
+            <column name="HELP_TEXT" type="VARCHAR(255)" />
+            <column name="HINT" type="VARCHAR(255)" />
+            <column name="TOOLTIP" type="VARCHAR(255)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-17">
+        <addColumn tableName="BLC_ADDRESS">
+            <column name="FULL_NAME" type="VARCHAR(255)" />
+            <column name="ISO_COUNTRY_ALPHA2" type="VARCHAR(255)" />
+            <column name="ISO_COUNTRY_SUB" type="VARCHAR(255)" />
+            <column name="IS_STREET" type="BIT" />
+            <column name="IS_MAILING" type="BOOLEAN" />
+            <column name="SUB_STATE_PROV_REG" type="VARCHAR(255)" />
+        </addColumn>
+        <createIndex tableName="BLC_ADDRESS" indexName="ADDRESS_ISO_COUNTRY_IDX">
+            <column name="ISO_COUNTRY_ALPHA2"/>
+        </createIndex>
+        <addForeignKeyConstraint constraintName="FK299F86CE3A39A488" referencedTableName="BLC_ISO_COUNTRY" baseColumnNames="ISO_COUNTRY_ALPHA2" baseTableName="BLC_ADDRESS" referencedColumnNames="ALPHA_2" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-18">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="COUNTRY" tableName="BLC_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-19">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="POSTAL_CODE" tableName="BLC_ADDRESS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-20">
+        <addColumn tableName="BLC_PRODUCT">
+            <column name="OVERRIDE_GENERATED_URL" type="BIT" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-21">
+        <addColumn tableName="BLC_SC_ITEM_CRITERIA">
+            <column name="SC_ID" type="BIGINT(19)">
+                <constraints foreignKeyName="FK6D52BDA213D95585" references="BLC_SC(SC_ID)" deferrable="false"
+                    initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-22">
+        <addColumn tableName="BLC_CAT_SEARCH_FACET_EXCL_XREF">
+            <column name="SEQUENCE" type="DECIMAL(19, 2)" />
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-23">
+        <addColumn tableName="BLC_SITE_CATALOG">
+            <column name="SITE_CATALOG_XREF_ID" type="BIGINT(19)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SITE_CATALOG_PK" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-24">
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="1" />
+            <column name="NAME" value="Administration" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="2" />
+            <column name="NAME" value="Administrative Atoll" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="3" />
+            <column name="NAME" value="Administrative Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="4" />
+            <column name="NAME" value="Area" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="5" />
+            <column name="NAME" value="Autonomous City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="6" />
+            <column name="NAME" value="Autonomous Community" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="7" />
+            <column name="NAME" value="Autonomous District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="8" />
+            <column name="NAME" value="Autonomous Municipality" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="9" />
+            <column name="NAME" value="Autonomous Province" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="10" />
+            <column name="NAME" value="Autonomous Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="11" />
+            <column name="NAME" value="Autonomous Republic" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="12" />
+            <column name="NAME" value="Autonomous Sector" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="13" />
+            <column name="NAME" value="Autonomous Territorial Unit" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="14" />
+            <column name="NAME" value="Borough" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="15" />
+            <column name="NAME" value="Canton" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="16" />
+            <column name="NAME" value="Capital" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="17" />
+            <column name="NAME" value="Capital City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="18" />
+            <column name="NAME" value="Capital District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="19" />
+            <column name="NAME" value="Capital Metropolitan City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="20" />
+            <column name="NAME" value="City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="21" />
+            <column name="NAME" value="City of County Right" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="22" />
+            <column name="NAME" value="Commune" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="23" />
+            <column name="NAME" value="Constitutional Province" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="24" />
+            <column name="NAME" value="Corporation" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="25" />
+            <column name="NAME" value="Council Area" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="26" />
+            <column name="NAME" value="Country" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="27" />
+            <column name="NAME" value="County" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="28" />
+            <column name="NAME" value="Department" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="29" />
+            <column name="NAME" value="Dependency" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="30" />
+            <column name="NAME" value="Development Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="31" />
+            <column name="NAME" value="District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="32" />
+            <column name="NAME" value="District With Special Status" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="33" />
+            <column name="NAME" value="Division" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="34" />
+            <column name="NAME" value="Economic Prefecture" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="35" />
+            <column name="NAME" value="Emirate" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="36" />
+            <column name="NAME" value="Entity" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="37" />
+            <column name="NAME" value="Federal Capital Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="38" />
+            <column name="NAME" value="Federal Dependency" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="39" />
+            <column name="NAME" value="Federal District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="40" />
+            <column name="NAME" value="Federal Land" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="41" />
+            <column name="NAME" value="Federal Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="42" />
+            <column name="NAME" value="Federated States" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="43" />
+            <column name="NAME" value="Geographical Entity" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="44" />
+            <column name="NAME" value="Geographical Regions" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="45" />
+            <column name="NAME" value="Governorate" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="46" />
+            <column name="NAME" value="Indigenous Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="47" />
+            <column name="NAME" value="Island" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="48" />
+            <column name="NAME" value="Island Council" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="49" />
+            <column name="NAME" value="Local Council" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="50" />
+            <column name="NAME" value="Metropolitan Administration" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="51" />
+            <column name="NAME" value="Metropolitan City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="52" />
+            <column name="NAME" value="Metropolitan Department" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="53" />
+            <column name="NAME" value="Metropolitan Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="54" />
+            <column name="NAME" value="Municipality" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="55" />
+            <column name="NAME" value="Oblast" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="56" />
+            <column name="NAME" value="Outlying Area" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="57" />
+            <column name="NAME" value="Outlying Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="58" />
+            <column name="NAME" value="Overseas Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="59" />
+            <column name="NAME" value="Overseas Territorial Collectivity" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="60" />
+            <column name="NAME" value="Parish" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="61" />
+            <column name="NAME" value="Popularate" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="62" />
+            <column name="NAME" value="Prefecture" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="63" />
+            <column name="NAME" value="Province" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="64" />
+            <column name="NAME" value="Quarter" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="65" />
+            <column name="NAME" value="Rayon" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="66" />
+            <column name="NAME" value="Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="67" />
+            <column name="NAME" value="Regional Council" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="68" />
+            <column name="NAME" value="Republic" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="69" />
+            <column name="NAME" value="Republican City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="70" />
+            <column name="NAME" value="Self-governed Part" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="71" />
+            <column name="NAME" value="Special Administrative City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="72" />
+            <column name="NAME" value="Special Administrative Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="73" />
+            <column name="NAME" value="Special City" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="74" />
+            <column name="NAME" value="Special District" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="75" />
+            <column name="NAME" value="Special Island Authority" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="76" />
+            <column name="NAME" value="Special Municipality" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="77" />
+            <column name="NAME" value="Special Region" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="78" />
+            <column name="NAME" value="Special Zone" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="79" />
+            <column name="NAME" value="State" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="80" />
+            <column name="NAME" value="Territorial Unit" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="81" />
+            <column name="NAME" value="Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="82" />
+            <column name="NAME" value="Town Council" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="83" />
+            <column name="NAME" value="Union Territory" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="84" />
+            <column name="NAME" value="Unitary Authority" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="85" />
+            <column name="NAME" value="Urban Community" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" valueNumeric="86" />
+            <column name="NAME" value="Zone" />
+        </insert>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-25">
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-AB" />
+            <column name="ALT_ABBREVIATION" value="AB" />
+            <column name="NAME" value="ALBERTA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-BC" />
+            <column name="ALT_ABBREVIATION" value="BC" />
+            <column name="NAME" value="BRITISH COLUMBIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-MB" />
+            <column name="ALT_ABBREVIATION" value="MB" />
+            <column name="NAME" value="MANITOBA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NB" />
+            <column name="ALT_ABBREVIATION" value="NB" />
+            <column name="NAME" value="NEW BRUNSWICK" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NL" />
+            <column name="ALT_ABBREVIATION" value="NL" />
+            <column name="NAME" value="NEWFOUNDLAND" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NS" />
+            <column name="ALT_ABBREVIATION" value="NS" />
+            <column name="NAME" value="NOVA SCOTIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NT" />
+            <column name="ALT_ABBREVIATION" value="NT" />
+            <column name="NAME" value="NORTHWEST TERRITORIES" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="81" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-NU" />
+            <column name="ALT_ABBREVIATION" value="NU" />
+            <column name="NAME" value="NUNAVUT" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="81" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-ON" />
+            <column name="ALT_ABBREVIATION" value="ON" />
+            <column name="NAME" value="ONTARIO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-PE" />
+            <column name="ALT_ABBREVIATION" value="PE" />
+            <column name="NAME" value="PRINCE EDWARD ISLAND" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-QC" />
+            <column name="ALT_ABBREVIATION" value="QC" />
+            <column name="NAME" value="QUEBEC" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-SK" />
+            <column name="ALT_ABBREVIATION" value="SK" />
+            <column name="NAME" value="SASKATCHEWAN" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="63" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="CA-YT" />
+            <column name="ALT_ABBREVIATION" value="YT" />
+            <column name="NAME" value="YUKON" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="81" />
+            <column name="COUNTRY" value="CA" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AK" />
+            <column name="ALT_ABBREVIATION" value="AK" />
+            <column name="NAME" value="ALASKA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AL" />
+            <column name="ALT_ABBREVIATION" value="AL" />
+            <column name="NAME" value="ALABAMA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AR" />
+            <column name="ALT_ABBREVIATION" value="AR" />
+            <column name="NAME" value="ARKANSAS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AS" />
+            <column name="ALT_ABBREVIATION" value="AS" />
+            <column name="NAME" value="AMERICAN SAMOA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-AZ" />
+            <column name="ALT_ABBREVIATION" value="AZ" />
+            <column name="NAME" value="ARIZONA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-CA" />
+            <column name="ALT_ABBREVIATION" value="CA" />
+            <column name="NAME" value="CALIFORNIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-CO" />
+            <column name="ALT_ABBREVIATION" value="CO" />
+            <column name="NAME" value="COLORADO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-CT" />
+            <column name="ALT_ABBREVIATION" value="CT" />
+            <column name="NAME" value="CONNECTICUT" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-DC" />
+            <column name="ALT_ABBREVIATION" value="DC" />
+            <column name="NAME" value="DISTRICT OF COLUMBIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="31" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-DE" />
+            <column name="ALT_ABBREVIATION" value="DE" />
+            <column name="NAME" value="DELAWARE" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-FL" />
+            <column name="ALT_ABBREVIATION" value="FL" />
+            <column name="NAME" value="FLORIDA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-GA" />
+            <column name="ALT_ABBREVIATION" value="GA" />
+            <column name="NAME" value="GEORGIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-GU" />
+            <column name="ALT_ABBREVIATION" value="GU" />
+            <column name="NAME" value="GUAM" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-HI" />
+            <column name="ALT_ABBREVIATION" value="HI" />
+            <column name="NAME" value="HAWAII" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-IA" />
+            <column name="ALT_ABBREVIATION" value="IA" />
+            <column name="NAME" value="IOWA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-ID" />
+            <column name="ALT_ABBREVIATION" value="ID" />
+            <column name="NAME" value="IDAHO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-IL" />
+            <column name="ALT_ABBREVIATION" value="IL" />
+            <column name="NAME" value="ILLINOIS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-IN" />
+            <column name="ALT_ABBREVIATION" value="IN" />
+            <column name="NAME" value="INDIANA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-KS" />
+            <column name="ALT_ABBREVIATION" value="KS" />
+            <column name="NAME" value="KANSAS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-KY" />
+            <column name="ALT_ABBREVIATION" value="KY" />
+            <column name="NAME" value="KENTUCKY" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-LA" />
+            <column name="ALT_ABBREVIATION" value="LA" />
+            <column name="NAME" value="LOUISIANA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MA" />
+            <column name="ALT_ABBREVIATION" value="MA" />
+            <column name="NAME" value="MASSACHUSETTS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MD" />
+            <column name="ALT_ABBREVIATION" value="MD" />
+            <column name="NAME" value="MARYLAND" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-ME" />
+            <column name="ALT_ABBREVIATION" value="ME" />
+            <column name="NAME" value="MAINE" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MI" />
+            <column name="ALT_ABBREVIATION" value="MI" />
+            <column name="NAME" value="MICHIGAN" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MN" />
+            <column name="ALT_ABBREVIATION" value="MN" />
+            <column name="NAME" value="MINNESOTA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MO" />
+            <column name="ALT_ABBREVIATION" value="MO" />
+            <column name="NAME" value="MISSOURI" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MP" />
+            <column name="ALT_ABBREVIATION" value="MP" />
+            <column name="NAME" value="NORTHERN MARIANA ISLANDS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MS" />
+            <column name="ALT_ABBREVIATION" value="MS" />
+            <column name="NAME" value="MISSISSIPPI" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-MT" />
+            <column name="ALT_ABBREVIATION" value="MT" />
+            <column name="NAME" value="MONTANA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NC" />
+            <column name="ALT_ABBREVIATION" value="NC" />
+            <column name="NAME" value="NORTH CAROLINA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-ND" />
+            <column name="ALT_ABBREVIATION" value="ND" />
+            <column name="NAME" value="NORTH DAKOTA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NE" />
+            <column name="ALT_ABBREVIATION" value="NE" />
+            <column name="NAME" value="NEBRASKA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NH" />
+            <column name="ALT_ABBREVIATION" value="NH" />
+            <column name="NAME" value="NEW HAMPSHIRE" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NJ" />
+            <column name="ALT_ABBREVIATION" value="NJ" />
+            <column name="NAME" value="NEW JERSEY" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NM" />
+            <column name="ALT_ABBREVIATION" value="NM" />
+            <column name="NAME" value="NEW MEXICO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NV" />
+            <column name="ALT_ABBREVIATION" value="NV" />
+            <column name="NAME" value="NEVADA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-NY" />
+            <column name="ALT_ABBREVIATION" value="NY" />
+            <column name="NAME" value="NEW YORK" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-OH" />
+            <column name="ALT_ABBREVIATION" value="OH" />
+            <column name="NAME" value="OHIO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-OK" />
+            <column name="ALT_ABBREVIATION" value="OK" />
+            <column name="NAME" value="OKLAHOMA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-OR" />
+            <column name="ALT_ABBREVIATION" value="OR" />
+            <column name="NAME" value="OREGON" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-PA" />
+            <column name="ALT_ABBREVIATION" value="PA" />
+            <column name="NAME" value="PENNSYLVANIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-PR" />
+            <column name="ALT_ABBREVIATION" value="PR" />
+            <column name="NAME" value="PUERTO RICO" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-RI" />
+            <column name="ALT_ABBREVIATION" value="RI" />
+            <column name="NAME" value="RHODE ISLAND" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-SC" />
+            <column name="ALT_ABBREVIATION" value="SC" />
+            <column name="NAME" value="SOUTH CAROLINA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-SD" />
+            <column name="ALT_ABBREVIATION" value="SD" />
+            <column name="NAME" value="SOUTH DAKOTA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-TN" />
+            <column name="ALT_ABBREVIATION" value="TN" />
+            <column name="NAME" value="TENNESSEE" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-TX" />
+            <column name="ALT_ABBREVIATION" value="TX" />
+            <column name="NAME" value="TEXAS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-UM" />
+            <column name="ALT_ABBREVIATION" value="UM" />
+            <column name="NAME" value="UNITED STATES MINOR OUTLYING ISLANDS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-UT" />
+            <column name="ALT_ABBREVIATION" value="UT" />
+            <column name="NAME" value="UTAH" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-VA" />
+            <column name="ALT_ABBREVIATION" value="VA" />
+            <column name="NAME" value="VIRGINIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-VI" />
+            <column name="ALT_ABBREVIATION" value="VI" />
+            <column name="NAME" value="VIRGIN ISLANDS" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="57" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-VT" />
+            <column name="ALT_ABBREVIATION" value="VT" />
+            <column name="NAME" value="VERMONT" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-WA" />
+            <column name="ALT_ABBREVIATION" value="WA" />
+            <column name="NAME" value="WASHINGTON" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-WI" />
+            <column name="ALT_ABBREVIATION" value="WI" />
+            <column name="NAME" value="WISCONSIN" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-WV" />
+            <column name="ALT_ABBREVIATION" value="WV" />
+            <column name="NAME" value="WEST VIRGINIA" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+        <insert tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" value="US-WY" />
+            <column name="ALT_ABBREVIATION" value="WY" />
+            <column name="NAME" value="WYOMING" />
+            <column name="COUNTRY_SUB_CAT" valueNumeric="79" />
+            <column name="COUNTRY" value="US" />
+        </insert>
+    </changeSet>
+    <!-- Dangerous Changes -->
+    <!--    The following changes have the possibility of harming the database,
+            or not working if data is present in the tables being modified.
+            These changesets should be modified by hand on a case by case basis.
+            Each changeset will include a list of concerns that should be taken
+            into account for modifications being made. -->
+    <changeSet author="blcmigration (generated)" id="1420821322556-26">
+    <!-- This changeset is taking a column from a map table and placing it on the main data table.
+         Due to this, data existing could cause an issue during migration. Edits of the sql block should
+         be made on a client by client basis. -->
+        <addColumn tableName="BLC_PAGE_FLD">
+            <column name="PAGE_ID" type="BIGINT(19)" defaultValueNumeric="0" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <sql>
+        UPDATE BLC_PAGE_FLD,BLC_PAGE_FLD_MAP SET BLC_PAGE_FLD.PAGE_ID = BLC_PAGE_FLD_MAP.PAGE_ID WHERE BLC_PAGE_FLD.PAGE_FLD_ID = BLC_PAGE_FLD_MAP.PAGE_FLD_ID;
+            update BLC_PAGE_FLD a SET a.PAGE_ID = (SELECT b.PAGE_ID FROM BLC_PAGE_FLD_MAP b WHERE b.PAGE_FLD_ID = a.PAGE_FLD_ID);
+        </sql>
+        <dropDefaultValue columnName="PAGE_ID" tableName="BLC_PAGE_FLD" />
+        <addForeignKeyConstraint constraintName="FK86433AD4883C2667" referencedTableName="BLC_PAGE" baseColumnNames="PAGE_ID" baseTableName="BLC_PAGE_FLD" referencedColumnNames="PAGE_ID"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-27">
+    <!--This changeset is modifying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_ADMIN_USER_ADDTL_FIELDS" />
+        <addColumn tableName="BLC_ADMIN_USER_ADDTL_FIELDS">
+            <column name="ATTRIBUTE_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ADMIN_USER_ADDTL_FIELDS_PK"/>
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_ADMIN_USER_ADDTL_FIELDS ADD MC BIGINT NOT NULL;
+        UPDATE BLC_ADMIN_USER_ADDTL_FIELDS SET MC = ATTRIBUTE_ID;
+        ALTER TABLE BLC_ADMIN_USER_ADDTL_FIELDS DROP COLUMN ATTRIBUTE_ID;
+        ALTER TABLE BLC_ADMIN_USER_ADDTL_FIELDS CHANGE MC ATTRIBUTE_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_ADMIN_USER_ADDTL_FIELDS" columnName="ATTRIBUTE_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="ATTRIBUTE_ID" tableName="BLC_ADMIN_USER_ADDTL_FIELDS" constraintName="ADMIN_USER_ADDTL_FIELDS_PK" />
+        <createIndex tableName="BLC_ADMIN_USER_ADDTL_FIELDS" indexName="ADMINUSERATTRIBUTE_INDEX">
+            <column name="ADMIN_USER_ID" />
+        </createIndex>
+        <createIndex tableName="BLC_ADMIN_USER_ADDTL_FIELDS" indexName="ADMINUSERATTRIBUTE_NAME_INDEX">
+            <column name="FIELD_NAME" />
+        </createIndex>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-28">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_SC_FLD_MAP" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="SC_FLD_ID" tableName="BLC_SC_FLD_MAP" />
+        <addColumn tableName="BLC_SC_FLD_MAP">
+            <column name="BLC_SC_SC_FIELD_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SC_FLD_MAP_PK" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_SC_FLD_MAP ADD MC BIGINT NOT NULL;
+        UPDATE BLC_SC_FLD_MAP SET MC = BLC_SC_SC_FIELD_ID;
+        ALTER TABLE BLC_SC_FLD_MAP DROP COLUMN BLC_SC_SC_FIELD_ID;
+        ALTER TABLE BLC_SC_FLD_MAP CHANGE MC BLC_SC_SC_FIELD_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_SC_FLD_MAP" columnName="BLC_SC_SC_FIELD_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="BLC_SC_SC_FIELD_ID" tableName="BLC_SC_FLD_MAP" constraintName="SC_FLD_MAP_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-29">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_CATEGORY_MEDIA_MAP" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="MEDIA_ID" tableName="BLC_CATEGORY_MEDIA_MAP" />
+        <addColumn tableName="BLC_CATEGORY_MEDIA_MAP">
+            <column name="CATEGORY_MEDIA_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CATEGORY_MEDIA_MAP_PK" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_CATEGORY_MEDIA_MAP ADD MC BIGINT NOT NULL;
+        UPDATE BLC_CATEGORY_MEDIA_MAP SET MC = CATEGORY_MEDIA_ID;
+        ALTER TABLE BLC_CATEGORY_MEDIA_MAP DROP COLUMN CATEGORY_MEDIA_ID;
+        ALTER TABLE BLC_CATEGORY_MEDIA_MAP CHANGE MC CATEGORY_MEDIA_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_CATEGORY_MEDIA_MAP" columnName="CATEGORY_MEDIA_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="CATEGORY_MEDIA_ID" tableName="BLC_CATEGORY_MEDIA_MAP" constraintName="CATEGORY_MEDIA_MAP_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-30">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_OFFER_RULE_MAP" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_RULE_ID" tableName="BLC_OFFER_RULE_MAP" />
+        <addColumn tableName="BLC_OFFER_RULE_MAP">
+            <column name="OFFER_OFFER_RULE_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="OFFER_RULE_MAP_PK" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_OFFER_RULE_MAP ADD MC BIGINT NOT NULL;
+        UPDATE BLC_OFFER_RULE_MAP SET MC = OFFER_OFFER_RULE_ID;
+        ALTER TABLE BLC_OFFER_RULE_MAP DROP COLUMN OFFER_OFFER_RULE_ID;
+        ALTER TABLE BLC_OFFER_RULE_MAP CHANGE MC OFFER_OFFER_RULE_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_OFFER_RULE_MAP" columnName="OFFER_OFFER_RULE_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="OFFER_OFFER_RULE_ID" tableName="BLC_OFFER_RULE_MAP" constraintName="OFFER_RULE_MAP_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-31">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropUniqueConstraint constraintName="UK_D592E919E7AB0252" tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_ITEM_CRITERIA_ID"
+            tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <dropDefaultValue tableName="BLC_QUAL_CRIT_OFFER_XREF" columnName="OFFER_ITEM_CRITERIA_ID" columnDataType="BIGINT(19)" />
+        <dropPrimaryKey tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <addColumn tableName="BLC_QUAL_CRIT_OFFER_XREF">
+            <column name="OFFER_QUAL_CRIT_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="QUAL_CRIT_OFFER_XREF_PK" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_QUAL_CRIT_OFFER_XREF ADD MC BIGINT NOT NULL;
+        UPDATE BLC_QUAL_CRIT_OFFER_XREF SET MC = OFFER_QUAL_CRIT_ID;
+        ALTER TABLE BLC_QUAL_CRIT_OFFER_XREF DROP COLUMN OFFER_QUAL_CRIT_ID;
+        ALTER TABLE BLC_QUAL_CRIT_OFFER_XREF CHANGE MC OFFER_QUAL_CRIT_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_QUAL_CRIT_OFFER_XREF" columnName="OFFER_QUAL_CRIT_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="OFFER_QUAL_CRIT_ID" tableName="BLC_QUAL_CRIT_OFFER_XREF" constraintName="QUAL_CRIT_OFFER_XREF_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-32">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <dropUniqueConstraint constraintName="UK_125F5803E7AB0252" tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="OFFER_ITEM_CRITERIA_ID"
+            tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <dropDefaultValue tableName="BLC_TAR_CRIT_OFFER_XREF" columnName="OFFER_ITEM_CRITERIA_ID" columnDataType="BIGINT(19)" />
+        <addColumn tableName="BLC_TAR_CRIT_OFFER_XREF">
+            <column name="OFFER_TAR_CRIT_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="TAR_CRIT_OFFER_XREF_PK" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_TAR_CRIT_OFFER_XREF ADD MC BIGINT NOT NULL;
+        UPDATE BLC_TAR_CRIT_OFFER_XREF SET MC = OFFER_TAR_CRIT_ID;
+        ALTER TABLE BLC_TAR_CRIT_OFFER_XREF DROP COLUMN OFFER_TAR_CRIT_ID;
+        ALTER TABLE BLC_TAR_CRIT_OFFER_XREF CHANGE MC OFFER_TAR_CRIT_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_TAR_CRIT_OFFER_XREF" columnName="OFFER_TAR_CRIT_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="OFFER_TAR_CRIT_ID" tableName="BLC_TAR_CRIT_OFFER_XREF" constraintName="TAR_CRIT_OFFER_XREF_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-33">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="FLD_GROUP_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <modifyDataType columnName="GROUP_ORDER" newDataType="decimal(10,6)" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="decimal(10,6)" columnName="GROUP_ORDER" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="PAGE_TMPLT_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <addColumn tableName="BLC_PGTMPLT_FLDGRP_XREF">
+            <column name="PG_TMPLT_FLD_GRP_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PGTMPLT_FLDGRP_XREF_PK" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF ADD MC BIGINT NOT NULL;
+        UPDATE BLC_PGTMPLT_FLDGRP_XREF SET MC = PG_TMPLT_FLD_GRP_ID;
+        ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF DROP COLUMN PG_TMPLT_FLD_GRP_ID;
+        ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF CHANGE MC PG_TMPLT_FLD_GRP_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_PGTMPLT_FLDGRP_XREF" columnName="PG_TMPLT_FLD_GRP_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="PG_TMPLT_FLD_GRP_ID" tableName="PGTMPLT_FLDGRP_XREF_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-34">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_SKU_MEDIA_MAP" />
+        <dropNotNullConstraint columnDataType="bigint(19)" columnName="MEDIA_ID" tableName="BLC_SKU_MEDIA_MAP" />
+        <addColumn tableName="BLC_SKU_MEDIA_MAP">
+            <column name="SKU_MEDIA_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SKU_MEDIA_MAP_PK" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_SKU_MEDIA_MAP ADD MC BIGINT NOT NULL;
+        UPDATE BLC_SKU_MEDIA_MAP SET MC = SKU_MEDIA_ID;
+        ALTER TABLE BLC_SKU_MEDIA_MAP DROP COLUMN SKU_MEDIA_ID;
+        ALTER TABLE BLC_SKU_MEDIA_MAP CHANGE MC SKU_MEDIA_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_SKU_MEDIA_MAP" columnName="SKU_MEDIA_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="SKU_MEDIA_ID" tableName="BLC_SKU_MEDIA_MAP" constraintName="SKU_MEDIA_MAP_PK"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-35">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_SKU_OPTION_VALUE_XREF" />
+        <addColumn tableName="BLC_SKU_OPTION_VALUE_XREF">
+            <column name="SKU_OPTION_VALUE_XREF_ID" type="BIGINT(19)" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="SKU_OPTION_VALUE_XREF_PK"/>
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>ALTER TABLE BLC_SKU_OPTION_VALUE_XREF ADD MC BIGINT NOT NULL;
+        UPDATE BLC_SKU_OPTION_VALUE_XREF SET MC = SKU_OPTION_VALUE_XREF_ID;
+        ALTER TABLE BLC_SKU_OPTION_VALUE_XREF DROP COLUMN SKU_OPTION_VALUE_XREF_ID;
+        ALTER TABLE BLC_SKU_OPTION_VALUE_XREF CHANGE MC SKU_OPTION_VALUE_XREF_ID BIGINT;</sql>
+        <dropDefaultValue tableName="BLC_SKU_OPTION_VALUE_XREF" columnName="SKU_OPTION_VALUE_XREF_ID" columnDataType="BIGINT(19)" />
+        <addPrimaryKey columnNames="SKU_OPTION_VALUE_XREF_ID" tableName="BLC_SKU_OPTION_VALUE_XREF" constraintName="SKU_OPTION_VALUE_XREF_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-36">
+        <dropForeignKeyConstraint baseTableName="BLC_CATEGORY_IMAGE" constraintName="FK27CF3E8015D1A13D" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-37">
+        <dropForeignKeyConstraint baseTableName="BLC_PAGE_FLD_MAP" constraintName="FKE9EE09515AEDD08A" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-38">
+        <dropForeignKeyConstraint baseTableName="BLC_PAGE_FLD_MAP" constraintName="FKE9EE0951883C2667" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-39">
+        <dropForeignKeyConstraint baseTableName="BLC_PRODUCT_SKU_XREF" constraintName="FKF2DBF6D35F11A0B7" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-40">
+        <dropForeignKeyConstraint baseTableName="BLC_PRODUCT_SKU_XREF" constraintName="FKF2DBF6D3B78C9977" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-41">
+        <dropTable tableName="BLC_CATEGORY_IMAGE" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-42">
+        <dropTable tableName="BLC_PAGE_FLD_MAP" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-43">
+        <dropTable tableName="BLC_PRODUCT_SKU_XREF" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-44">
+        <modifyDataType columnName="FIELD_VALUE" newDataType="clob" tableName="BLC_CUSTOMER_PAYMENT_FIELDS" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-45">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="PROPERTY_VALUE" tableName="BLC_SYSTEM_PROPERTY" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-46">
+        <addNotNullConstraint columnDataType="bigint(19)" columnName="SEARCH_FACET_ID" tableName="BLC_SEARCH_FACET_XREF" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-47">
+        <dropIndex tableName="BLC_SEARCH_INTERCEPT" indexName="SEARCH_PRIORITY_INDEX" />
+    </changeSet>
+</databaseChangeLog>
