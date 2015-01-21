@@ -1,0 +1,214 @@
+    <!-- Dangerous Changes -->
+    <!--    The following changes have the possibility of harming the database,
+            or not working if data is present in the tables being modified.
+            These changesets should be modified by hand on a case by case basis.
+            Each changeset will include a list of concerns that should be taken
+            into account for modifications being made. -->
+    <changeSet author="blcmigration (generated)" id="1420821322556-26">
+    <!-- This changeset is taking a column from a map table and placing it on the main data table.
+         Due to this, data existing could cause an issue during migration. Edits of the sql block should
+         be made on a client by client basis. -->
+        <addColumn tableName="BLC_PAGE_FLD">
+            <column name="PAGE_ID" type="bigint" defaultValueNumeric="0" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <sql>
+            UPDATE BLC_PAGE_FLD SET PAGE_ID = B.PAGE_ID FROM BLC_PAGE_FLD_MAP AS B WHERE B.PAGE_FLD_ID = BLC_PAGE_FLD.PAGE_FLD_ID;
+        </sql>
+        <dropDefaultValue columnName="PAGE_ID" tableName="BLC_PAGE_FLD" />
+        <addForeignKeyConstraint constraintName="FK86433AD4883C2667" referencedTableName="BLC_PAGE" baseColumnNames="PAGE_ID" baseTableName="BLC_PAGE_FLD" referencedColumnNames="PAGE_ID"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-27">
+    <!--This changeset is modifying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_ADMIN_USER_ADDTL_FIELDS" />
+        <addColumn tableName="BLC_ADMIN_USER_ADDTL_FIELDS">
+            <column name="ATTRIBUTE_ID" type="bigint" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <addPrimaryKey columnNames="ATTRIBUTE_ID" tableName="BLC_ADMIN_USER_ADDTL_FIELDS" constraintName="ADMIN_USER_ADDTL_FIELDS_PK" />
+        <createIndex tableName="BLC_ADMIN_USER_ADDTL_FIELDS" indexName="ADMINUSERATTRIBUTE_INDEX">
+            <column name="ADMIN_USER_ID" />
+        </createIndex>
+        <createIndex tableName="BLC_ADMIN_USER_ADDTL_FIELDS" indexName="ADMINUSERATTRIBUTE_NAME_INDEX">
+            <column name="FIELD_NAME" />
+        </createIndex>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-28">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_SC_FLD_MAP" />
+        <dropForeignKeyConstraint baseTableName="BLC_SC_FLD_MAP" constraintName="FKD9480192DD6FD28A" />
+        <dropNotNullConstraint columnDataType="bigint" columnName="SC_FLD_ID" tableName="BLC_SC_FLD_MAP" />
+        <addColumn tableName="BLC_SC_FLD_MAP">
+            <column name="BLC_SC_SC_FIELD_ID" type="bigint" defaultValueNumeric="0">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>
+            UPDATE BLC_SC_FLD_MAP set BLC_SC_SC_FIELD_ID = rows.new_sid from (select BLC_SC_SC_FIELD_ID, rank() over (order BY SC_FLD_ID) as new_sid, SC_FLD_ID from BLC_SC_FLD_MAP) as rows where rows.SC_FLD_ID = BLC_SC_FLD_MAP.SC_FLD_ID;
+        </sql>
+        <dropDefaultValue tableName="BLC_SC_FLD_MAP" columnName="BLC_SC_SC_FIELD_ID" columnDataType="bigint" />
+        <addPrimaryKey columnNames="BLC_SC_SC_FIELD_ID" tableName="BLC_SC_FLD_MAP" constraintName="SC_FLD_MAP_PK" />
+        <addForeignKeyConstraint constraintName="FKD9480192DD6FD28A" referencedTableName="BLC_SC_FLD" baseColumnNames="SC_FLD_ID" baseTableName="BLC_SC_FLD_MAP" referencedColumnNames="SC_FLD_ID"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-29">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_CATEGORY_MEDIA_MAP" />
+        <dropNotNullConstraint columnDataType="bigint" columnName="MEDIA_ID" tableName="BLC_CATEGORY_MEDIA_MAP" />
+        <addColumn tableName="BLC_CATEGORY_MEDIA_MAP">
+            <column name="CATEGORY_MEDIA_ID" type="bigint" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <addPrimaryKey columnNames="CATEGORY_MEDIA_ID" tableName="BLC_CATEGORY_MEDIA_MAP" constraintName="CATEGORY_MEDIA_MAP_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-30">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_OFFER_RULE_MAP" />
+        <dropNotNullConstraint columnDataType="bigint" columnName="OFFER_RULE_ID" tableName="BLC_OFFER_RULE_MAP" />
+        <addColumn tableName="BLC_OFFER_RULE_MAP">
+            <column name="OFFER_OFFER_RULE_ID" type="bigint" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <addPrimaryKey columnNames="OFFER_OFFER_RULE_ID" tableName="BLC_OFFER_RULE_MAP" constraintName="OFFER_RULE_MAP_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-31">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <dropUniqueConstraint constraintName="UK_D592E919E7AB0252" tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <dropNotNullConstraint columnDataType="bigint" columnName="OFFER_ITEM_CRITERIA_ID"
+            tableName="BLC_QUAL_CRIT_OFFER_XREF" />
+        <addColumn tableName="BLC_QUAL_CRIT_OFFER_XREF">
+            <column name="OFFER_QUAL_CRIT_ID" type="bigint" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <addPrimaryKey columnNames="OFFER_QUAL_CRIT_ID" tableName="BLC_QUAL_CRIT_OFFER_XREF" constraintName="QUAL_CRIT_OFFER_XREF_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-32">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <dropUniqueConstraint constraintName="UK_125F5803E7AB0252" tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <dropNotNullConstraint columnDataType="bigint" columnName="OFFER_ITEM_CRITERIA_ID"
+            tableName="BLC_TAR_CRIT_OFFER_XREF" />
+        <addColumn tableName="BLC_TAR_CRIT_OFFER_XREF">
+            <column name="OFFER_TAR_CRIT_ID" type="bigint" defaultValueNumeric="0" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>
+            UPDATE BLC_TAR_CRIT_OFFER_XREF set OFFER_TAR_CRIT_ID = rows.new_sid from (select OFFER_TAR_CRIT_ID, rank() over (order BY OFFER_ITEM_CRITERIA_ID) as new_sid, OFFER_ITEM_CRITERIA_ID from BLC_TAR_CRIT_OFFER_XREF) as rows where rows.OFFER_ITEM_CRITERIA_ID = BLC_TAR_CRIT_OFFER_XREF.OFFER_ITEM_CRITERIA_ID;
+        </sql>
+        <dropDefaultValue tableName="BLC_TAR_CRIT_OFFER_XREF" columnName="OFFER_TAR_CRIT_ID" columnDataType="bigint" />
+        <addPrimaryKey columnNames="OFFER_TAR_CRIT_ID" tableName="BLC_TAR_CRIT_OFFER_XREF" constraintName="TAR_CRIT_OFFER_XREF_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-33">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="bigint" columnName="FLD_GROUP_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <modifyDataType columnName="GROUP_ORDER" newDataType="numeric(10,6)" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="numeric(10,6)" columnName="GROUP_ORDER" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <dropNotNullConstraint columnDataType="bigint" columnName="PAGE_TMPLT_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" />
+        <addColumn tableName="BLC_PGTMPLT_FLDGRP_XREF">
+            <column name="PG_TMPLT_FLD_GRP_ID" type="bigint" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>
+            UPDATE BLC_PGTMPLT_FLDGRP_XREF set PG_TMPLT_FLD_GRP_ID = rows.new_sid from (select PG_TMPLT_FLD_GRP_ID, rank() over (order BY PAGE_TMPLT_ID, GROUP_ORDER, FLD_GROUP_ID) as new_sid, PAGE_TMPLT_ID from BLC_PGTMPLT_FLDGRP_XREF) as rows where rows.PAGE_TMPLT_ID = BLC_PGTMPLT_FLDGRP_XREF.PAGE_TMPLT_ID;
+        </sql>
+        <dropDefaultValue tableName="BLC_PGTMPLT_FLDGRP_XREF" columnName="PG_TMPLT_FLD_GRP_ID" columnDataType="bigint" />
+        <addPrimaryKey columnNames="PG_TMPLT_FLD_GRP_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF" constraintName="PGTMPLT_FLDGRP_XREF_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-34">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_SKU_MEDIA_MAP" />
+        <dropNotNullConstraint columnDataType="bigint" columnName="MEDIA_ID" tableName="BLC_SKU_MEDIA_MAP" />
+        <addColumn tableName="BLC_SKU_MEDIA_MAP">
+            <column name="SKU_MEDIA_ID" type="bigint" defaultValueNumeric="0" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>
+            UPDATE BLC_SKU_MEDIA_MAP set SKU_MEDIA_ID = rows.new_sid from (select SKU_MEDIA_ID, rank() over (order BY MEDIA_ID) as new_sid, MEDIA_ID from BLC_SKU_MEDIA_MAP) as rows where rows.MEDIA_ID = BLC_SKU_MEDIA_MAP.MEDIA_ID;
+        </sql>
+        <dropDefaultValue tableName="BLC_SKU_MEDIA_MAP" columnName="SKU_MEDIA_ID" columnDataType="NUMBER(19, 0)" />
+        <addPrimaryKey columnNames="SKU_MEDIA_ID" tableName="BLC_SKU_MEDIA_MAP" constraintName="SKU_MEDIA_MAP_PK"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-35">
+    <!--This changeset is modfying the primary key of this table, making a brand new column the primary key.
+        Due to this change, if data exists in this table, it will fail migration. -->
+        <dropPrimaryKey tableName="BLC_SKU_OPTION_VALUE_XREF" />
+        <addColumn tableName="BLC_SKU_OPTION_VALUE_XREF">
+            <column name="SKU_OPTION_VALUE_XREF_ID" type="bigint" defaultValueNumeric="0" >
+                <constraints nullable="false" />
+            </column>
+        </addColumn>
+        <!-- populate indexes here -->
+        <sql>
+            UPDATE BLC_SKU_OPTION_VALUE_XREF set SKU_OPTION_VALUE_XREF_ID = rows.new_sid from (select SKU_ID, rank() over (order BY SKU_ID, PRODUCT_OPTION_VALUE_ID) as new_sid, PRODUCT_OPTION_VALUE_ID from BLC_SKU_OPTION_VALUE_XREF) as rows where rows.SKU_ID = BLC_SKU_OPTION_VALUE_XREF.SKU_ID AND rows.PRODUCT_OPTION_VALUE_ID = BLC_SKU_OPTION_VALUE_XREF.PRODUCT_OPTION_VALUE_ID;
+        </sql>
+        <dropDefaultValue tableName="BLC_SKU_OPTION_VALUE_XREF" columnName="SKU_OPTION_VALUE_XREF_ID" columnDataType="NUMBER(19, 0)" />
+        <addPrimaryKey columnNames="SKU_OPTION_VALUE_XREF_ID" tableName="BLC_SKU_OPTION_VALUE_XREF" constraintName="SKU_OPTION_VALUE_XREF_PK" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-36">
+        <dropForeignKeyConstraint baseTableName="BLC_CATEGORY_IMAGE" constraintName="FK27CF3E8015D1A13D" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-37">
+        <dropForeignKeyConstraint baseTableName="BLC_PAGE_FLD_MAP" constraintName="FKE9EE09515AEDD08A" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-38">
+        <dropForeignKeyConstraint baseTableName="BLC_PAGE_FLD_MAP" constraintName="FKE9EE0951883C2667" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-39">
+        <dropForeignKeyConstraint baseTableName="BLC_PRODUCT_SKU_XREF" constraintName="FKF2DBF6D35F11A0B7" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-40">
+        <dropForeignKeyConstraint baseTableName="BLC_PRODUCT_SKU_XREF" constraintName="FKF2DBF6D3B78C9977" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-41">
+        <dropTable tableName="BLC_CATEGORY_IMAGE" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-42">
+        <dropTable tableName="BLC_PAGE_FLD_MAP" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-43">
+        <dropTable tableName="BLC_PRODUCT_SKU_XREF" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-44">
+        <addColumn tableName="BLC_CUSTOMER_PAYMENT_FIELDS">
+            <column name="FIELD_VALUE_TEMP" type="VARCHAR(max)"/>
+        </addColumn>
+        <sql endDelimiter="" splitStatements="false" stripComments="true">
+            UPDATE BLC_CUSTOMER_PAYMENT_FIELDS SET FIELD_VALUE_TEMP = FIELD_VALUE
+        </sql>
+        <dropColumn tableName="BLC_CUSTOMER_PAYMENT_FIELDS" columnName="FIELD_VALUE"/>
+        <renameColumn tableName="BLC_CUSTOMER_PAYMENT_FIELDS" oldColumnName="FIELD_VALUE_TEMP" newColumnName="FIELD_VALUE"/>
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-45">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="PROPERTY_VALUE" tableName="BLC_SYSTEM_PROPERTY" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-46">
+        <addNotNullConstraint columnDataType="bigint" columnName="SEARCH_FACET_ID" tableName="BLC_SEARCH_FACET_XREF" />
+    </changeSet>
+    <changeSet author="blcmigration (generated)" id="1420821322556-47">
+        <dropIndex tableName="BLC_SEARCH_INTERCEPT" indexName="SEARCH_PRIORITY_INDEX" />
+    </changeSet>
