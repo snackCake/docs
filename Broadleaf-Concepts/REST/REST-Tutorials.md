@@ -15,7 +15,21 @@ If you are starting with the DemoSite project or the Eclipse workspace, all of t
 
 
 ```xml
-
+<context-param>
+    <param-name>patchConfigLocation</param-name>
+    <param-value>
+        classpath:/bl-open-admin-contentClient-applicationContext.xml
+        ...
+        ...
+        
+        /WEB-INF/applicationContext-rest-api.xml
+        /WEB-INF/applicationContext-security.xml
+        /WEB-INF/applicationContext-filter.xml
+        
+        ...
+        ...
+    </param-value>
+</context-param>
 ```
 
 ## Getting Started
