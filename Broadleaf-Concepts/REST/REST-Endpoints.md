@@ -73,8 +73,8 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Returns a representation of a product category, keyed by ID. Parameters allow one to control how much additional, nested data is returned.
     - Query Params:
         - `productLimit` (default 20)
-        - `productOffset` (default 0)
-        - `subcategoryOffset` (default 0)
+        - `productOffset` (default 1)
+        - `subcategoryOffset` (default 1)
         - `subcategoryDepth` (default 1)
       
 - **/catalog/product/{id}/related-products/upsale**: GET
