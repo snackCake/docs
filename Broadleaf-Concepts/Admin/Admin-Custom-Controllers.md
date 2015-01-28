@@ -18,14 +18,18 @@ If you are trying to add a new section to the Broadleaf admin application and yo
         
         @RequestMapping(value = "", method = RequestMethod.GET)
         public String test(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+            model.addAttribute("customView", "views/test");
+            
             setModelAttributes(model, SECTION_KEY);
-            return "myTemplates/test";
+            return "modules/emptyContainer";
         }
             
     }
     ```
 
     > **Important Notes**: Note that this controller is extending `AdminAbstractController` and calling the `setModelAttributes()` method before returning a template. This line is responsible for setting the currently active menu element and should be invoked in all controller requests.
+    
+    > We are also returning a special `modules/emptyContainer` template path is a sort of place-holder template which ensures that you are ready to start writing your custom HTML. This template expects a `customView` model attribute that corresponds to a template path
 
 2. Make sure your controller is picked up by Spring. We're using the annotation driven approach in the example above, so we just need to make sure that the class is component scanned. We'll add this to `applicationContext-servlet-admin.xml`:
 
@@ -53,7 +57,21 @@ If you are trying to add a new section to the Broadleaf admin application and yo
 5. Create your template. By default, Broadleaf comes configured to leverage templates found in the admin project. So, given the string that the controller returns, we'll create a file at the path that Thymeleaf is configured to look for templates in:
 
     ```text
-    admin/src/main/webapp/WEB-INF/templates/admin/myTemplates/test.html
+    admin/src/main/webapp/WEB-INF/templates/admin/views/test.html
     ```
+    
+    with these contents:
+    
+    ```html
+    <div class="row">
+        <div class="twelve columns">
+            <p>This is a test</p>
+        </div>
+    </div>
+    ```
+    
+    > Note: The Broadleaf admin is configured to use [Zurb Foundation 2.2.1](http://foundation.zurb.com/docs/v/2.2.1/index.php). The CSS classes above reference that Foundation grid system.
 
-That's it! At this point, your admin menu should be generated appropriately and your controller should be successfully invoked at the `/test` URL.
+That's it! At this point, your admin menu should be generated appropriately and your controller should be successfully invoked at the `/test` URL:
+
+![Custom Admin Template](custom-admin-template.png)
