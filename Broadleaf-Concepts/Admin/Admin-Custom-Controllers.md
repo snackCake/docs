@@ -33,7 +33,7 @@ If you are trying to add a new section to the Broadleaf admin application and yo
 
     > **Important Notes**: Note that this controller is extending `AdminAbstractController` and calling the `setModelAttributes()` method before returning a template. This line is responsible for setting the currently active menu element and should be invoked in all controller requests.
     
-    > We are also returning a special `modules/emptyContainer` template path is a sort of place-holder template which ensures that you are ready to start writing your custom HTML. This template expects a `customView` model attribute that corresponds to a template path
+    > The `modules/emptyContainer` template path is included in the Broadleaf admin jars and serves as a sort of place-holder template that builds the view scaffolding so that you can focus on just writing your custom HTML. This template expects a `customView` model attribute that corresponds to a template path that it will include.
 
 2. Make sure your controller is picked up by Spring. We're using the annotation driven approach in the example above, so we just need to make sure that the class is component scanned. We'll add this to `applicationContext-servlet-admin.xml`:
 
@@ -58,7 +58,7 @@ If you are trying to add a new section to the Broadleaf admin application and yo
 
     > **Important Note**: When creating a custom controller that doesn't leverage the annotation-driven approach, you are responsible for setting the appropriate security values. The record inserted into the above table will only control which users are able to see the admin section in the menu. The `@Secured` annotation on the controller method is reponsible for actually enforcing the required permissions/roles to enter that method.
 
-5. Create your template. By default, Broadleaf comes configured to leverage templates found in the admin project. So, given the string that the controller returns, we'll create a file at the path that Thymeleaf is configured to look for templates in:
+5. Create your template. By default, Broadleaf comes configured to leverage templates found in the admin project. So, given the string is referenced in the `customView` attribute, we'll create a file at the path that Thymeleaf is configured to look for templates in:
 
     ```text
     admin/src/main/webapp/WEB-INF/templates/admin/views/test.html
