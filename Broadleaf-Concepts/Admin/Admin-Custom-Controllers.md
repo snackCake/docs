@@ -41,7 +41,7 @@ If you are trying to add a new section to the Broadleaf admin application and yo
 
     ```sql
     INSERT INTO `blc_admin_module` (`ADMIN_MODULE_ID`, `DISPLAY_ORDER`, `ICON`, `MODULE_KEY`, `NAME`) VALUES (1, 7, 'icon-barcode', 'MyCustomModule', 'My Custom Module');
-    INSERT INTO `blc_admin_section` (`ADMIN_SECTION_ID`, `CEILING_ENTITY`, `DISPLAY_CONTROLLER`, `DISPLAY_ORDER`, `NAME`, `SECTION_KEY`, `URL`, `USE_DEFAULT_HANDLER`, `ADMIN_MODULE_ID`) VALUES (1, NULL, NULL, 1000, 'My Custom Section', 'MyCustomSection', '/test', NULL, 1);
+    INSERT INTO `blc_admin_section` (`ADMIN_SECTION_ID`, `DISPLAY_ORDER`, `NAME`, `SECTION_KEY`, `URL`, `ADMIN_MODULE_ID`) VALUES (1, 1000, 'My Custom Section', 'MyCustomSection', '/test', 1);
     ```
 
     > Note: We left the `ceiling_entity` column blank on purpose because this custom controller is not leveraging the annotation-driven approach. Also note that the configured URL for this row matches our controller.
