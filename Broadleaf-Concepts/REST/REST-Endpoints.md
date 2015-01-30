@@ -37,7 +37,7 @@ The following provides a list of current RESTful endpoints provided with Broadle
         - `pageSize` - the number of records to return per page (default=15)
         - Accepts search facets (see note below)
 
-- **/catalog/search/category/{categoryId}/products**: GET
+- **/catalog/search/category/{categoryId}**: GET
     - Returns a representation of a paginated list of products within a category, along with any search facets that may be used to filter the search.
     - Query Params:
         - `categoryId` - the category that you wish to search
