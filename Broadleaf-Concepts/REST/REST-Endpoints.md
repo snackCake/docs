@@ -29,10 +29,10 @@ The following provides a list of current RESTful endpoints provided with Broadle
 - **/catalog/product/{id}**: GET
     - Returns a representation of a Broadleaf product by its ID
 
-- **/catalog/search/products**: GET
+- **/catalog/search**: GET
     - Returns a representation of a paginated list of products along with any search facets that may be used to filter the search
     - Query Params:
-        - `q` - a query parameter such as product name or keyword(s)
+        - `q` - a query parameter such as product name or keyword(s) (required)
         - `page` - the page to return in a paginated situation (default=1)
         - `pageSize` - the number of records to return per page (default=15)
         - Accepts search facets (see note below)
@@ -41,7 +41,7 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Returns a representation of a paginated list of products within a category, along with any search facets that may be used to filter the search.
     - Query Params:
         - `categoryId` - the category that you wish to search
-        - `q` - a query parameter such as product name or keyword(s)
+        - `q` - a query parameter such as product name or keyword(s) (required)
         - `page` - the page to return in a paginated situation (default=1)
         - `pageSize` - the number of records to return per page (default=15)
         - Accepts search facets (see note below)
@@ -50,9 +50,9 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Returns a list of skus for a particular product
   
 - **/catalog/categories**: GET
-    - Returns a representation of a paginated list of product categories
+    - Returns a representation of a paginated list of product categories with a given name
     - Query Params:
-        - `name`
+        - `name` (required)
         - `limit` (default 20)
         - `offset` (default 0)
        
@@ -74,9 +74,21 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Query Params:
         - `productLimit` (default 20)
         - `productOffset` (default 1)
+        - `subcategoryLimit` (default 20)
         - `subcategoryOffset` (default 1)
-        - `subcategoryDepth` (default 1)
-      
+
+- **/catalog/category**: GET
+    - Returns a representation of a product category, searched by either ID or name. Parameters allow one to control how much additional, nested data is returned.
+    - Query Params:
+        - `searchParameter` (required)
+        - `productLimit` (default 20)
+        - `productOffset` (default 1)
+        - `subcategoryLimit` (default 20)
+        - `subcategoryOffset` (default 1)
+
+- **/catalog/category/{id}/category-attributes**: GET
+    - Returns the attributes of a category, keyed by ID.
+    
 - **/catalog/product/{id}/related-products/upsale**: GET
     - Returns a list of related upsale products for a particular catalog product
     - Query Params:
@@ -104,7 +116,7 @@ The following provides a list of current RESTful endpoints provided with Broadle
 - **/catalog/sku/inventory**: GET
     Returns a list of inventory for each Sku ID passed in
     - Query Params:
-        - `id` - a list of Sku IDs to get inventory for
+        - `id` - a comma-delimited list of Sku IDs to get inventory for (required)
       
 - **/catalog/product/{id}/media**: GET
     - Returns a list of media items for a particular catalog product
