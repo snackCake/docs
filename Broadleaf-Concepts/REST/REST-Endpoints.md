@@ -142,7 +142,7 @@ The following provides a list of current RESTful endpoints provided with Broadle
 - **/cart/{productId}**: POST
     - Adds the sku and its associated category and product references to the shopping cart. Optionally reprices the order. Returns a representation of the cart.
     - Query Params:
-        - `categoryId`
+        - `categoryId` (required)
         - `quantity` (default 1)
         - `priceOrder` (default true)
   
@@ -168,13 +168,13 @@ The following provides a list of current RESTful endpoints provided with Broadle
 - **/cart/offer**: POST
     - Adds a promotional code to an order
     - Query Params:
-        - `promoCode`
+        - `promoCode` (required)
         - `priceOrder` (default true)
   
 - **/cart/offer**: DELETE
     - Deletes a promotional code from an order
     - Query Params:
-        - `promoCode`
+        - `promoCode` (required)
         - `priceOrder` (default true)
   
 - **/cart/offers**: DELETE
@@ -199,6 +199,16 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Updates the fulfillment group identified by the ID in the URI. Accepts a fulfillment group representation in JSON or XML format.
     - Query Params:
         - `priceOrder` (default true)
+
+- **/cart/fulfillment/group/{fulfillmentGroupId}/option/{fulfillmentOptionId}**: PUT
+    - Updates the fulfillment group identified by the ID in the URI. Sets the fulfillment option ID to the one provided.
+    - Query Params:
+        - `priceOrder` (default true)
+
+- **/cart/fulfillment/options**: GET
+    - Returns the list of fulfillment options on the cart.
+    - Query Params:
+        - `fulfillmentType` (required)
   
 - **/orders**: GET
     - Returns a list of orders. The order history is for the customer who's ID is passed in.
