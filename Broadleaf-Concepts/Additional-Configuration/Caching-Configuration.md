@@ -214,9 +214,11 @@ The above configuration assigns a random external port for RMI which makes it im
     ![add JMX remote](http://cl.ly/image/231y1n1h2Y3n/Screen%20Shot%202015-02-01%20at%209.35.13%20AM.png)
 
 
-## Disabling Caches
+## Disabling the Cache
 
-You can also add configuration to completely disable all caching in Broadleaf. If you started from the DemoSite Heat Clinic starter project you should have a `bl-override-ehcache` file in the `site` project. If not, the below changes should be in the file that you configured at the top of this document.
+You can also add configuration to completely disable all caching in Broadleaf. If you started from the DemoSite Heat Clinic starter project you should have a `bl-override-ehcache.xml` file in the `site` project (in the admin, this is `bl-override-ehcache-admin.xml`). If not, the below changes should be in the file that you configured at the top of this document.
+
+This sets all of the caches in Broadleaf to expire after 10 seconds. This might be useful in a development environment but **should not be checked into version control**.
 
 ```xml
 <cache
