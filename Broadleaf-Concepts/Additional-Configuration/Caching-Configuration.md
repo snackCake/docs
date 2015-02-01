@@ -1,4 +1,4 @@
-# Caching Configuration
+## Caching Configuration
 
 Configuring cache settings follows the same pattern as other configuration in Broadleaf.
 
@@ -18,17 +18,25 @@ Broadleaf will then pick up this definition and merge it with the default config
 
 > Note: if you have started using Broadleaf with the DemoSite "Heat Clinic" project then this is already configured for you
 
+## Caching with Enterprise
+
+With the Broadleaf Enterprise license caches are expired whenever you make edits in the admin panel. This allows you to set caches extremely 
+
 ## Default Cache Configurations
 
-Broadleaf provides a number of ehcache regions out of the box. These are defined in the following locations:
+Broadleaf provides a number of ehcache regions out of the box with sensible defaults. These are defined in the following locations:
 
 - [Common](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/90ef66abba898fbb70e8246d1ab194572d803a2b/common/src/main/resources/bl-common-ehcache.xml)
 - [Profile](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/a4fa1e56d363860b566115b1c782f1b7e1a8fbba/core/broadleaf-profile/src/main/resources/bl-ehcache.xml)
 - [CMS](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/919241ae50c7c201a41817b047aae69fb4fcc62d/admin/broadleaf-contentmanagement-module/src/main/resources/bl-cms-ehcache.xml)
 
-## Additional Cache Regions with Enterprise
+These default settings were determined empirically using load testing results from [our scalability white paper](http://www.broadleafcommerce.com/scalability).
 
-### Theme:
+### Additional Cache Regions with Enterprise
+
+Beyond the above default cache configurations, various modules that are included with the Enterprise license define new regions. These are notated below.
+
+#### Theme:
 
 ```xml
 <!-- 1 hour cache -->
@@ -39,7 +47,7 @@ Broadleaf provides a number of ehcache regions out of the box. These are defined
     overflowToDisk="false"
     timeToLiveSeconds="3600"/>
 
-    <!-- 1 hour cache -->
+<!-- 1 hour cache -->
 <cache
     name="blThemeFiles"
     maxElementsInMemory="10000"
@@ -54,7 +62,7 @@ Broadleaf provides a number of ehcache regions out of the box. These are defined
     timeToLiveSeconds="3600"/>
 ```
 
-### Account Credit
+#### Account Credit
 
 ```xml
 <cache
@@ -66,7 +74,7 @@ Broadleaf provides a number of ehcache regions out of the box. These are defined
     timeToIdleSeconds="10"/>
 ```
 
-### i18nEnterprise
+#### i18nEnterprise
 
 ```xml
 <cache
@@ -83,7 +91,7 @@ Broadleaf provides a number of ehcache regions out of the box. These are defined
    timeToLiveSeconds="600"/>
 ```
 
-### Price Lists
+#### Price Lists
 
 ```xml
 <diskStore path="java.io.tmpdir"/>
@@ -97,7 +105,7 @@ Broadleaf provides a number of ehcache regions out of the box. These are defined
     timeToLiveSeconds="3600"/>
 ```
 
-### Subscription
+#### Subscription
 
 ```xml
 <!-- 1 hour cache -->
@@ -115,81 +123,359 @@ The below methodology exposes the `EHCache` regions over JMX as MBeans for contr
 
 One drawback with this is that you will get duplicate MBean exceptions if you are running the `site` and `admin` on the same JVM (deploying to the same Tomcat instance).
 
-1. Add the following to an `applicationContext`, either `site` or `admin`:
+1. Add the following to an `applicationContext` (either `site` or `admin`):
 
-```xml
-<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
-    <!-- indicate to first look for a server -->
-    <property name="locateExistingServerIfPossible" value="true"/>
-</bean>
+    ```xml
+    <bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+        <!-- indicate to first look for a server -->
+        <property name="locateExistingServerIfPossible" value="true"/>
+    </bean>
+    
+    <bean id="managementService"
+        class="net.sf.ehcache.management.ManagementService"
+        init-method="init"
+        destroy-method="dispose">
+        <constructor-arg ref="blCacheManager"/>
+        <constructor-arg ref="mbeanServer"/>
+        <constructor-arg index="2" value="true"/>
+        <constructor-arg index="3" value="true"/>
+        <constructor-arg index="4" value="true"/>
+        <constructor-arg index="5" value="true"/>
+    </bean>
+    ```
 
-<bean id="managementService"
-    class="net.sf.ehcache.management.ManagementService"
-    init-method="init"
-    destroy-method="dispose">
-    <constructor-arg ref="blCacheManager"/>
-    <constructor-arg ref="mbeanServer"/>
-    <constructor-arg index="2" value="true"/>
-    <constructor-arg index="3" value="true"/>
-    <constructor-arg index="4" value="true"/>
-    <constructor-arg index="5" value="true"/>
-</bean>
+2. Start up the server, and connect to it via a JMX listener like VisualVM. If you are running locally, VisualVM will display all local Java processes on the lefthand side that you can easily attach to. In this screenshot, I have attached to my locally running Broadleaf instance that I started via Ant/Maven on the command line:
+
+    ![VisualVM](https://s3.amazonaws.com/f.cl.ly/items/000w0m1q1V1E2s1g0A1w/Screen%20Shot%202015-01-31%20at%2010.06.12%20AM.png)
+
+    If you go over to the MBeans tab, you will see the exports from the server. We are interested in the **net.sf.ehcache** folder and the **Cache -> __DEFAULT__** MBean:
+
+    ![ehcachebean](https://s3.amazonaws.com/f.cl.ly/items/1u100o260g3y0k041E2S/Screen%20Shot%202015-01-31%20at%2010.10.58%20AM.png)
+
+    If you click on a specific MBean you can hit the `removeAll` button to clear the cache:
+
+    ![removecache](https://s3.amazonaws.com/f.cl.ly/items/440z3j1Y011n3U0S2g2u/Screen%20Shot%202015-01-31%20at%2010.12.48%20AM.png)
+
+### Simple Remote JMX Connections
+
+Add the following arguments to your JVM (if you are using Tomcat, this is `CATALINA_OPTS`):
+
+```console
+-Dcom.sun.management.jmxremote 
+-Dcom.sun.management.jmxremote.port=4446 
+-Dcom.sun.management.jmxremote.authenticate=false 
+-Dcom.sun.management.jmxremote.ssl=false 
 ```
 
-2. Start up the server, and connect to it via a JMX listener like VisualVM. Assuming that you are running locally, VisualVM will display all local Java processes on the lefthand side that you can easily attach to. In this screenshot, I have attached to my locally running Broadleaf instance that I started via Ant/Maven on the command line:
+This opens port 4446 for remote connection
 
-![VisualVM](https://s3.amazonaws.com/f.cl.ly/items/000w0m1q1V1E2s1g0A1w/Screen%20Shot%202015-01-31%20at%2010.06.12%20AM.png)
+#### Remote JMX Connections Securely behind a Firewall
 
-If you go over to the MBeans tab, you will see the exports from the server. We are interested in the **net.sf.ehcache** folder and the **Cache -> __DEFAULT__** MBean:
+The above configuration assigns a random external port for RMI which makes it impossible to securely connect to the running application and only whitelist a specific port. The below instructions assume Tomcat, but there are likely equivalents on other application servers.
 
-![ehcachebean](https://s3.amazonaws.com/f.cl.ly/items/1u100o260g3y0k041E2S/Screen%20Shot%202015-01-31%20at%2010.10.58%20AM.png)
+1. In `server.xml`, add this line anywhere in the `<Server>` tag, replacing the placeholder ports. The `rmiRegistryPortPlatfor` is the JMX remote port to connect to while the `rmiServerPortPlatform` is internally used by Tomcat.
 
-If you click on a specific MBean you can hit the `removeAll` button to clear the cache:
+    ```xml
+    <Listener className="org.apache.catalina.mbeans.JmxRemoteLifecycleListener" rmiRegistryPortPlatform="30000" rmiServerPortPlatform="30001"/>
+    ```
 
-![removecache](https://s3.amazonaws.com/f.cl.ly/items/440z3j1Y011n3U0S2g2u/Screen%20Shot%202015-01-31%20at%2010.12.48%20AM.png)
+2. Create a `jmxremote.access` if one does not already exist 
 
-// Queries
-query.Offer
-query.Order
-query.ContentTest
-query.Catalog
-query.Cms
+    ```console
+    controlRole   readwrite \
+                  create javax.management.monitor.*,javax.management.timer.* \
+                  unregister
+    ```
+    
+3. Create a `jmxremote.access` if one does not already exist **with a chmod of 0600**
 
+    ```console
+    controlRole  somepassword
+    ```
 
-// Entity annotation caches and others
-blConfigurationModuleElements
-blCMSElements
-blProducts
-blOffers
-blStandardElements
-blOfferElements
-blTranslationElements
-blCategories
-blOrderElements
+4. Change the system properties above to authenticate and specify the password and access file.
 
-blSandBoxElements
+    ```console
+    -Dcom.sun.management.jmxremote.ssl=false
+    -Dcom.sun.management.jmxremote.authenticate=true
+    -Dcom.sun.management.jmxremote.password.file=/etc/java-7-openjdk/management/jmxremote.password
+    -Dcom.sun.management.jmxremote.access.file=/etc/java-7-openjdk/management/jmxremote.access
+    -Djava.rmi.server.hostname=1.2.3.4
+    ```
+    
+    > Note: you could also use `com.sun.management.jmxremote.ssl=true` and use the domain name for the hostname if you have a valid SSL certificate
+    
+5. In VisualVM right click on "Remote" and hit "Add Remote Host..."
 
-blCreditAccountElements
+    ![remote host](https://s3.amazonaws.com/f.cl.ly/items/2Z1Q2F1C3S1L141R0O1c/Screen%20Shot%202015-02-01%20at%209.33.32%20AM.png)
 
-blThemeFiles
+6. Select the host that you just added and go to "Add JMX Connection"
 
-// Explicit Cache Stuff
-blProductUrlCache - findProductByUrl
-blCategoryUrlCache - findCategoryByUrl
-blSystemPropertyElements - lookup system property from DB
-blTranslationElements - translations from TranslationService
-blBundleElements - resource bundling/minification
-generatedResourceCache - admin-managed css files and theme files
-cmsPageCache - findPageByURI
-cmsPageMapCache - after resolving a page, doing a lookup to populate the properties of the page
-cmsStructuredContentCache - structured content
-cmsUrlHandlerCache - URL redirects
-blTemplateElements - caching individual parts of a page
-blInternationalMessageElements - i18n property translations
-blThemeConfigurationUpdated - cache for bundles that happen when resolving files from the db
+    ![add JMX remote](http://cl.ly/image/231y1n1h2Y3n/Screen%20Shot%202015-02-01%20at%209.35.13%20AM.png)
 
 
+## Disabling Caches
 
+You can also add configuration to completely disable all caching in Broadleaf. If you started from the DemoSite Heat Clinic starter project you should have a `bl-override-ehcache` file in the `site` project. If not, the below changes should be in the file that you configured at the top of this document.
 
+```xml
+<cache
+    name="blTranslationElements"
+    maxElementsInMemory="10000000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+    
+<cache
+    name="blConfigurationModuleElements"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>      
+
+<cache
+    name="blSystemPropertyElements"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache name="blSystemPropertyNullCheckCache"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+    
+<cache
+    name="blBundleElements"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<diskStore path="java.io.tmpdir"/>
+
+<defaultCache
+    maxElementsInMemory="100000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"
+    timeToIdleSeconds="30"/>
+
+<cache
+    name="blStandardElements"
+    maxElementsInMemory="100000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10">
+    <cacheEventListenerFactory class="org.broadleafcommerce.common.cache.engine.HydratedCacheEventListenerFactory"/>
+</cache>
+
+<cache
+    name="blProducts"
+    maxElementsInMemory="100000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10">
+    <cacheEventListenerFactory class="org.broadleafcommerce.common.cache.engine.HydratedCacheEventListenerFactory"/>
+</cache>
+
+<cache name="blProductUrlCache"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="blCategories"
+    maxElementsInMemory="100000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10">
+    <cacheEventListenerFactory class="org.broadleafcommerce.common.cache.engine.HydratedCacheEventListenerFactory"/>
+</cache>
+
+<cache name="blCategoryUrlCache"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="blOffers"
+    maxElementsInMemory="100000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10">
+    <cacheEventListenerFactory class="org.broadleafcommerce.common.cache.engine.HydratedCacheEventListenerFactory"/>
+</cache>
+
+<cache
+    name="blInventoryElements"
+    maxElementsInMemory="100000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+    
+<cache
+    name="org.hibernate.cache.internal.StandardQueryCache"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="query.Catalog"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+    
+<cache
+    name="query.Cms"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="query.Offer"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="blOrderElements"
+    maxElementsInMemory="100000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+    
+ <cache
+    name="blCustomerElements"
+    maxElementsInMemory="100000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="query.Order"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+    
+ <cache
+    name="generatedResourceCache"
+    maxElementsInMemory="100"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+    
+ <!-- This is required by Hibernate to ensure that query caches return 
+      corrrect results. It must contain at least as many entries as there are 
+      DB tables. -->
+ <cache name="org.hibernate.cache.spi.UpdateTimestampsCache" 
+    maxElementsInMemory="5000" 
+    eternal="true" 
+    overflowToDisk="true"/>
+
+<cache name="blTemplateElements"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="blCMSElements"
+    maxElementsInMemory="10000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+
+<cache name="cmsPageCache"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+
+<cache name="cmsStructuredContentCache"
+    maxElementsInMemory="5000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+
+<!--  URLHandlerCache -->
+<cache name="cmsUrlHandlerCache"
+    maxElementsInMemory="5000"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+    
+    
+<cache
+    name="blThemeConfigurationUpdated"
+    maxElementsInMemory="100"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+    <!-- 1 hour cache -->
+<cache
+    name="blThemeFiles"
+    maxElementsInMemory="10000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache name="blThemeFileNullCheckCache"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="blCreditAccountElements"
+    maxElementsInMemory="100"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"
+    timeToIdleSeconds="10"/>
+
+<cache
+    name="blInternationalMessageElements"
+    maxElementsInMemory="1000"
+    eternal="false"
+    overflowToDisk="false"
+    timeToLiveSeconds="10"/>
+
+<cache name="blInternationalMessageNullCheckCache"
+   maxElementsInMemory="1000"
+   eternal="false"
+   overflowToDisk="false"
+   timeToLiveSeconds="10"/>
+   
+<cache
+    name="blPriceListCache"
+    maxElementsInMemory="100"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+
+<cache
+    name="blSubscriptionCache"
+    maxElementsInMemory="100"
+    eternal="false"
+    overflowToDisk="true"
+    timeToLiveSeconds="10"/>
+```
+
+## Other cache settings
+
+Broadleaf also uses various other caching configured by system properties. Add this to your environment-specific properties files to change the behavior.
+
+```properties
 cache.page.templates
 cache.page.templates.ttl
+```
