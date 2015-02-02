@@ -146,7 +146,7 @@ One drawback with this is that you will get duplicate MBean exceptions if you ar
 
 2. Start up the server, and connect to it via a JMX listener like VisualVM. If you are running locally, VisualVM will display all local Java processes on the lefthand side that you can easily attach to. In this screenshot, I have attached to my locally running Broadleaf instance that I started via Ant/Maven on the command line:
 
-    ![visualvm-local](caching/visual-vm-local.png
+    ![visualvm-local](caching/visual-vm-local.png)
 
     If you go over to the MBeans tab, you will see the exports from the server. We are interested in the **net.sf.ehcache** folder and the **Cache -> __DEFAULT__** MBean:
 
