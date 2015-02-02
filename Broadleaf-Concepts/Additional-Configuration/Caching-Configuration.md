@@ -146,15 +146,15 @@ One drawback with this is that you will get duplicate MBean exceptions if you ar
 
 2. Start up the server, and connect to it via a JMX listener like VisualVM. If you are running locally, VisualVM will display all local Java processes on the lefthand side that you can easily attach to. In this screenshot, I have attached to my locally running Broadleaf instance that I started via Ant/Maven on the command line:
 
-    ![VisualVM](https://s3.amazonaws.com/f.cl.ly/items/000w0m1q1V1E2s1g0A1w/Screen%20Shot%202015-01-31%20at%2010.06.12%20AM.png)
+    ![visualvm-local](caching/visual-vm-local.png
 
     If you go over to the MBeans tab, you will see the exports from the server. We are interested in the **net.sf.ehcache** folder and the **Cache -> __DEFAULT__** MBean:
 
-    ![ehcachebean](https://s3.amazonaws.com/f.cl.ly/items/1u100o260g3y0k041E2S/Screen%20Shot%202015-01-31%20at%2010.10.58%20AM.png)
+    ![visual-vm-ehcache](caching/visual-vm-ehcache-mbean.png)
 
     If you click on a specific MBean you can hit the `removeAll` button to clear the cache:
 
-    ![removecache](https://s3.amazonaws.com/f.cl.ly/items/440z3j1Y011n3U0S2g2u/Screen%20Shot%202015-01-31%20at%2010.12.48%20AM.png)
+    ![visual-vm-cmscache](caching/visual-vm-cmscache.png)
 
 ### Simple Remote JMX Connections
 
@@ -207,11 +207,11 @@ The above configuration assigns a random external port for RMI which makes it im
     
 5. In VisualVM right click on "Remote" and hit "Add Remote Host..."
 
-    ![remote host](https://s3.amazonaws.com/f.cl.ly/items/2Z1Q2F1C3S1L141R0O1c/Screen%20Shot%202015-02-01%20at%209.33.32%20AM.png)
+    ![remote host](caching/visual-vm-remotehost.png)
 
 6. Select the host that you just added and go to "Add JMX Connection"
 
-    ![add JMX remote](http://cl.ly/image/231y1n1h2Y3n/Screen%20Shot%202015-02-01%20at%209.35.13%20AM.png)
+    ![add JMX remote](caching/visual-vm-jmx.png)
 
 
 ## Disabling the Cache
