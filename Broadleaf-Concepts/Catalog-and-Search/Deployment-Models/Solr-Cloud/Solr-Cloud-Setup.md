@@ -9,15 +9,31 @@ This documentation assumes you are using Solr 4.10.3. Download Solr [here](http:
 - From `$SOLR_HOME/example/solr/collection1`, copy `solrconfig.xml` and `elevate.xml` to `blcSolrConfig`
 - From the Broadleaf Demo Site distribution, copy ```site/src/main/resources/schema.xml` to `blcSolrConfig`
 - Now you are ready to let Zookeeper know about Solr's configuration files using a Solr [utility for Zookeeper](https://cwiki.apache.org/confluence/display/solr/Command+Line+Utilities)
-- Make sure Zookeeper is running and execute the following command from the command line: `./$SOLR_HOME/example/scripts/cloud-scripts/zkcli.sh -zkhost localhost:2181 -cmd upconfig -confname blc /path/to/blcSolrConfig`
+- Make sure Zookeeper is running and execute the following command from the command line: 
+
+```
+./$SOLR_HOME/example/scripts/cloud-scripts/zkcli.sh -zkhost localhost:2181 -cmd upconfig -confname blc /path/to/blcSolrConfig
+```
+
 - The above command uploads the contents of the `blcSolrConfig` directory to the Zookeeper Quorum using a configuration name of "blc" (more on this later)
 - Now, Zookeeper has most of the files that Solr will need
 - Create a directory called `blcSolrHome0` anywhere on the file system (e.g. `$SOLR_HOME/myServer/blcSolrHome0`)
 - Copy the ```solr.xml``` file from `blcSolrConfig` to `blcSolrHome0`
 - Create a directory called `blcSolrHome1` anywhere on the file system (e.g. `$SOLR_HOME/myServer/blcSolrHome1`)
 - Copy the `solr.xml` file from `blcSolrConfig` to `blcSolrHome1`
-- Start an instance of Solr on port 8983 connecting to the Zookeeper Quorum and using `blcSolrHome0` as the home directory: `./$SOLR_HOME/bin/solr start -cloud -p 8983 -s /path/to/blcSolrHome0 -z localhost:8981,localhost:8982,localhost:8983`
-- Start an instance of Solr on port 8984 connecting to the Zookeeper Quorum and using `blcSolrHome1` as the home directory: `./$SOLR_HOME/bin/solr start -cloud -p 8984 -s /path/to/blcSolrHome1 -z localhost:8981,localhost:8982,localhost:8983`
+- Start an instance of Solr on port 8983 connecting to the Zookeeper Quorum and using `blcSolrHome0` as the home directory: 
+
+```
+./$SOLR_HOME/bin/solr start -cloud -p 8983 -s /path/to/blcSolrHome0 -z localhost:8981,localhost:8982,localhost:8983
+```
+
+
+- Start an instance of Solr on port 8984 connecting to the Zookeeper Quorum and using `blcSolrHome1` as the home directory: 
+
+```
+./$SOLR_HOME/bin/solr start -cloud -p 8984 -s /path/to/blcSolrHome1 -z localhost:8981,localhost:8982,localhost:8983
+```
+
 - Now you have 2 nodes or instances of SolrCloud running, with a 3-node Quorum (cluster) of Zookeeper instances managing the Solr cluster
 
 Note that each of the Zookeeper instances can be configured on a different physical machine, as can each of the SolrCloud instances.  The configuration name "blc" is used, when creating collections, to specify the configuration for the collection.  See the [collection API](https://cwiki.apache.org/confluence/display/solr/Collections+API) for more information on creating collections.  One thing to note: You do not need to create any collections or aliases at this point.  Broadleaf will evaluate your cluster state and create the necessary collections and aliases as needed.  That said, this is a good time to talk about collections and aliases in case you want to create them yourself.

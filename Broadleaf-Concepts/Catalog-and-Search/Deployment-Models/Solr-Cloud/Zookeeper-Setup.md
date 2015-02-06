@@ -70,7 +70,13 @@ server.3=localhost:2890:3890
 
 ```
 ./$ZK_HOME/bin/zkServer.sh start $ZK_HOME/conf/zoo1.cfg -noprompt
+```
+
+```
 ./$ZK_HOME/bin/zkServer.sh start $ZK_HOME/conf/zoo2.cfg -noprompt
+```
+
+```
 ./$ZK_HOME/bin/zkServer.sh start $ZK_HOME/conf/zoo3.cfg -noprompt
 ```
 
