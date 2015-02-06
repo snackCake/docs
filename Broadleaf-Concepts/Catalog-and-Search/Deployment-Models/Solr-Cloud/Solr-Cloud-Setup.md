@@ -56,19 +56,41 @@ You can create the collections and aliases in advance if you would like.  You ca
 
 This can be done using the following URLs in a browswer, for example to create the collections:
 
-- `http://localhost:8983/solr/admin/collections?action=CREATE&name=blcCollection0&numShards=2&collection.configName=blc`
-- `http://localhost:8983/solr/admin/collections?action=CREATE&name=blcCollection1&numShards=2&collection.configName=blc`
+```
+http://localhost:8983/solr/admin/collections?action=CREATE&name=blcCollection0&numShards=2&collection.configName=blc
+```
+
+```
+http://localhost:8983/solr/admin/collections?action=CREATE&name=blcCollection1&numShards=2&collection.configName=blc
+```
 
 And to create the aliases:
-- `http://localhost:8983/solr/admin/collections?action=CREATEALIAS&name=primary&collections=blcCollection0`
-- `http://localhost:8983/solr/admin/collections?action=CREATEALIAS&name=reindex&collections=blcCollection1`
+
+```
+http://localhost:8983/solr/admin/collections?action=CREATEALIAS&name=primary&collections=blcCollection0
+```
+
+```
+http://localhost:8983/solr/admin/collections?action=CREATEALIAS&name=reindex&collections=blcCollection1
+```
 
 Notice, that you are only creating the collections and aliases on a single Solr node, but you will be able access the collections via their aliases on both nodes:
 
-- `http://localhost:8983/solr/primary/select?q=*`
-- `http://localhost:8983/solr/reindex/select?q=*`
-- `http://localhost:8984/solr/primary/select?q=*`
-- `http://localhost:8984/solr/reindex/select?q=*`
+```
+http://localhost:8983/solr/primary/select?q=*
+```
+
+```
+http://localhost:8983/solr/reindex/select?q=*
+```
+
+```
+http://localhost:8984/solr/primary/select?q=*
+```
+
+```
+http://localhost:8984/solr/reindex/select?q=*
+```
 
 Remember that creating the collections and aliases is not necessary as Broadleaf will happily do this for you if they do not exist.
 
