@@ -1,0 +1,3 @@
+- [[Embedded]]
+- [[Solr Cloud]]
+- [[Stand-Alone]]
