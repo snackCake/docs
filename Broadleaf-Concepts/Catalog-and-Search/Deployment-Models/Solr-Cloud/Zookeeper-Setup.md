@@ -17,7 +17,7 @@ This documentation assumes the use of Solr 4.10.3 and Zookeeper 3.4.6.  This doc
 /$ZK_HOME/data/3/myid -- This file should contain nothing but the digit 3
 ```
 - Under the ```conf``` directory, create a new file called zoo1.cfg:
-```java
+```xml
 tickTime=2000
 initTime=10
 initLimit=5
@@ -29,7 +29,7 @@ server.2=localhost:2889:3889
 server.3=localhost:2890:3890
 ```
 - Under the ```conf``` directory, create a new file called zoo2.cfg. Notice that the ```clientPort``` and ```dataDir``` are different:
-```java
+```xml
 tickTime=2000
 initTime=10
 initLimit=5
@@ -41,7 +41,7 @@ server.2=localhost:2889:3889
 server.3=localhost:2890:3890
 ```
 - Under the ```conf``` directory, create a new file called zoo3.cfg. Notice that the ```clientPort``` and ```dataDir``` are different:
-```java
+```xml
 tickTime=2000
 initTime=10
 initLimit=5
@@ -53,7 +53,7 @@ server.2=localhost:2889:3889
 server.3=localhost:2890:3890
 ```
 - Now you can start each of the Zookeeper instances:
-```java
+```xml
 ./$ZK_HOME/bin/zkServer.sh start $ZK_HOME/conf/zoo1.cfg -noprompt
 ./$ZK_HOME/bin/zkServer.sh start $ZK_HOME/conf/zoo2.cfg -noprompt
 ./$ZK_HOME/bin/zkServer.sh start $ZK_HOME/conf/zoo3.cfg -noprompt
