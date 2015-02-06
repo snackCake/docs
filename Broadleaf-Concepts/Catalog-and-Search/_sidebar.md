@@ -1,3 +1,3 @@
-- [[Deployment Models]]
+- [[Solr Deployment Models | Deployment Models]]
 - [[Indexing]]
 - [[Searching]]
