@@ -148,6 +148,8 @@ In this case, when Tomcat starts, the instrumentation jar will be registered wit
 <bean class="org.broadleafcommerce.common.extensibility.context.merge.LateStageMergeBeanPostProcessor">
     <property name="collectionRef" value="customClassTransformers" />
     <property name="targetRef" value="blMergedClassTransformers" />
+    <property name="placement" value="SPECIFIC"/>
+    <property name="position" value="0"/>
 </bean>
 ```
 
@@ -183,19 +185,19 @@ Finally, you configure your entities without a table name and you will have to p
 
 ```java
 @Entity
-@Inheritance(discriminatorValue="GIFT_BASKET")
+@DiscriminatorValue("GIFT_BASKET")
 public class GiftBasketImpl extends ProductImpl implements GiftBaset {
     ...
 }
 
 @Entity
-@Inheritance(discriminatorValue="T_SHIRT")
+@DiscriminatorValue("T_SHIRT")
 public class TShirtImpl extends ProductImpl implements TShirt {
     ...
 }
 
 @Entity
-@Inheritance(discriminatorValue="COOKING_CLASS")
+@DiscriminatorValue("COOKING_CLASS")
 public class CookingClassImpl extends ProductImpl implements CookingClass {
     ...
 }

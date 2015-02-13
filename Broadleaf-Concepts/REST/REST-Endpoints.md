@@ -32,7 +32,7 @@ The following provides a list of current RESTful endpoints provided with Broadle
 - **/catalog/search**: GET
     - Returns a representation of a paginated list of products along with any search facets that may be used to filter the search
     - Query Params:
-        - `q` - a query parameter such as product name or keyword(s)
+        - `q` - a query parameter such as product name or keyword(s) (required)
         - `page` - the page to return in a paginated situation (default=1)
         - `pageSize` - the number of records to return per page (default=15)
         - Accepts search facets (see note below)
@@ -41,7 +41,7 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Returns a representation of a paginated list of products within a category, along with any search facets that may be used to filter the search.
     - Query Params:
         - `categoryId` - the category that you wish to search
-        - `q` - a query parameter such as product name or keyword(s)
+        - `q` - a query parameter such as product name or keyword(s) (required)
         - `page` - the page to return in a paginated situation (default=1)
         - `pageSize` - the number of records to return per page (default=15)
         - Accepts search facets (see note below)
@@ -50,9 +50,9 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Returns a list of skus for a particular product
   
 - **/catalog/categories**: GET
-    - Returns a representation of a paginated list of product categories
+    - Returns a representation of a paginated list of product categories with a given name
     - Query Params:
-        - `name`
+        - `name` (required)
         - `limit` (default 20)
         - `offset` (default 0)
        
@@ -73,10 +73,22 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Returns a representation of a product category, keyed by ID. Parameters allow one to control how much additional, nested data is returned.
     - Query Params:
         - `productLimit` (default 20)
-        - `productOffset` (default 0)
-        - `subcategoryOffset` (default 0)
-        - `subcategoryDepth` (default 1)
-      
+        - `productOffset` (default 1)
+        - `subcategoryLimit` (default 20)
+        - `subcategoryOffset` (default 1)
+
+- **/catalog/category**: GET
+    - Returns a representation of a product category, searched by either ID or name. Parameters allow one to control how much additional, nested data is returned.
+    - Query Params:
+        - `searchParameter` (required)
+        - `productLimit` (default 20)
+        - `productOffset` (default 1)
+        - `subcategoryLimit` (default 20)
+        - `subcategoryOffset` (default 1)
+
+- **/catalog/category/{id}/category-attributes**: GET
+    - Returns the attributes of a category, keyed by ID.
+    
 - **/catalog/product/{id}/related-products/upsale**: GET
     - Returns a list of related upsale products for a particular catalog product
     - Query Params:
@@ -104,7 +116,7 @@ The following provides a list of current RESTful endpoints provided with Broadle
 - **/catalog/sku/inventory**: GET
     Returns a list of inventory for each Sku ID passed in
     - Query Params:
-        - `id` - a list of Sku IDs to get inventory for
+        - `id` - a comma-delimited list of Sku IDs to get inventory for (required)
       
 - **/catalog/product/{id}/media**: GET
     - Returns a list of media items for a particular catalog product
@@ -128,8 +140,9 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Creates a new cart for the customer. If the customer ID is unknown because a customer record does not yet exist, it need not be passed in. A new customer will be created. The new cart along with the customer will be returned.
   
 - **/cart/{productId}**: POST
-    - Adds the product to the shopping cart. Optionally reprices the order. Returns a representation of the cart.
+    - Adds the sku and its associated category and product references to the shopping cart. Optionally reprices the order. Returns a representation of the cart.
     - Query Params:
+        - `categoryId` (required)
         - `quantity` (default 1)
         - `priceOrder` (default true)
         - `productOption.NAME_OF_THE_PRODUCT_OPTION` (e.g. `productOption.COLOR=Red&productOption.SIZE=S`)
@@ -142,18 +155,27 @@ The following provides a list of current RESTful endpoints provided with Broadle
 - **/cart/items/{itemId}**: PUT
     - Updates the quantity of an item and optionally reprices the cart
     - Query Params:
+        - `quantity` (required)
+        - `priceOrder` (default true)
+
+- **/cart/items/{itemId}/options**: PUT
+    - Updates the product options for a cart item
+    - URI Info:
+        - Contains info about updated options in the format `productOption.myProductOption`, where `myProductOption` is the option key
+    - Query Params:
+        - `itemId` (required)
         - `priceOrder` (default true)
   
 - **/cart/offer**: POST
     - Adds a promotional code to an order
     - Query Params:
-        - `promoCode`
+        - `promoCode` (required)
         - `priceOrder` (default true)
   
 - **/cart/offer**: DELETE
     - Deletes a promotional code from an order
     - Query Params:
-        - `promoCode`
+        - `promoCode` (required)
         - `priceOrder` (default true)
   
 - **/cart/offers**: DELETE
@@ -178,6 +200,16 @@ The following provides a list of current RESTful endpoints provided with Broadle
     - Updates the fulfillment group identified by the ID in the URI. Accepts a fulfillment group representation in JSON or XML format.
     - Query Params:
         - `priceOrder` (default true)
+
+- **/cart/fulfillment/group/{fulfillmentGroupId}/option/{fulfillmentOptionId}**: PUT
+    - Updates the fulfillment group identified by the ID in the URI. Sets the fulfillment option ID to the one provided.
+    - Query Params:
+        - `priceOrder` (default true)
+
+- **/cart/fulfillment/options**: GET
+    - Returns the list of fulfillment options on the cart.
+    - Query Params:
+        - `fulfillmentType` (required)
   
 - **/orders**: GET
     - Returns a list of orders. The order history is for the customer who's ID is passed in.

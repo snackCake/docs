@@ -80,7 +80,7 @@ public class HCCustomerImpl extends CustomerImpl implements HCCustomer {
 
 ### Notify the persistence unit
 
-In `core/src/main/resources/META-INF/persistence.xml`, add the following line to the `blPU` 
+In `core/src/main/resources/META-INF/persistence-core.xml`, add the following line to the `blPU` 
 
 ```xml
 <class>com.mycompany.profile.core.domain.HCCustomerImpl</class>
@@ -104,18 +104,31 @@ I chose the path `core/src/main/resources/applicationContext-entity.xml`. Here a
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <!-- This file will contain bean overrides for extensions of Broadleaf -->
-    <!-- entities For example, if you have a custom class that extends -->
-    <!-- CustomerImpl, you would note that here -->
-    
-    <bean id="org.broadleafcommerce.profile.core.domain.Customer"
-        class="com.mycompany.profile.core.domain.HCCustomerImpl"
-        scope="prototype"/>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/jee
+        http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+        
+        <!-- This file will contain bean overrides for extensions of Broadleaf entities -->
+        <!-- For example, if you have a custom class that extends CustomerImpl, you would note that here -->
+        
+        <bean id="org.broadleafcommerce.profile.core.domain.Customer"
+        	class="com.heatclinic.profile.core.domain.HCCustomerImpl"
+        	scope="prototype"/>
 </beans>
 ```
 
@@ -134,18 +147,14 @@ The welcome message is in `site/src/main/webapp/templates/partials/header.html`.
 All we need to do is change this line:
 
 ```html
-<span th:text="${'Welcome, ' + customer.firstName}"></span>  
+<span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a></span>
 ```
 
 to 
 
 ```html
-<span th:inline="text">
-    Welcome, [[${customer.firstName}]] ([[${customer.averageHeatRatingBought}]])
-</span>
+<span><span th:text="#{home.welcome}">Welcome</span>, <a class="my-account" th:href="@{/account}" th:text="${customer.firstName}"></a><span th:text=" (${customer.averageHeatRatingBought})"></span></span>
 ```
-
-> Notice how since we are trying to output a more complex expression, we can use the `th:inline="text"` attribute to simplify our code.
 
 and we'll be in business. Yep, it's really that easy!
 

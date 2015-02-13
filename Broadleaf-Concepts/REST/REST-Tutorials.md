@@ -9,6 +9,29 @@ The approach and design was meant to provide out-of-the-box services, but with t
 
 2. Allows us to override the marshaling and unmarshaling of data (allowing you to add or remove data that will be exposed, depending on your requirements.
 
+## Important Note
+
+If you are starting with the DemoSite project or the Eclipse workspace, all of the below steps have been implemented. All you have to do is add the `/WEB-INF/applicationContext-rest-api.xml` in your `patchConfigLocations` parameter of your web.xml, **above the /WEB-INF/applicationContext-security.xml**:
+
+
+```xml
+<context-param>
+    <param-name>patchConfigLocation</param-name>
+    <param-value>
+        classpath:/bl-open-admin-contentClient-applicationContext.xml
+        ...
+        ...
+        
+        /WEB-INF/applicationContext-rest-api.xml
+        /WEB-INF/applicationContext-security.xml
+        /WEB-INF/applicationContext-filter.xml
+        
+        ...
+        ...
+    </param-value>
+</context-param>
+```
+
 ## Getting Started
 In order to use Broadleaf's default RESTful services, all that is required is some configuration in your application's /WEB-INF/web.xml file.  You will need to define a new Servlet and Servlet mapping:
 
@@ -60,6 +83,29 @@ Lastly, it is recommended that you configure a filter to set the customer state,
 
 > as well as provide some type of security other than http-basic.
 
+### Exception Handling
+
+We have included a JAXRS provider that will auto-serialize the exceptions that could occur in your endpoints. Add this bean in a root applicationContext.xml (like `applicationContext-rest-api.xml`) to enable it:
+
+```xml
+<!-- This generic JAX-RS exception mapper can be commented out, and/or can be replaced with a custom 
+     exception mapper or mappers.
+     This MUST be marked as singleton. -->
+<bean class="org.broadleafcommerce.core.web.api.BroadleafRestExceptionMapper" scope="singleton"/>
+```
+
+### Auto Type Selection
+
+If you are using the endpoints that are out of the box but just want more information to be sent through them, you can add the following JAXRS `MessageBodyReaderWriter` bean for JAXRS to auto-select wrappers that you have overridden:
+
+```xml
+<!-- This adds (optional) support for serializing and deserializing Broadleaf extensions.  This can be commented out, especially if specifying 
+     custom endpoint method signatures. If you've extended BLC API wrapper classes, then class does it's best to serialize the right information.  
+     Deserialization does not always work, especially when polymorphic possibilities are involved.  In these cases, it is best to explicitly provide 
+     specific method signatures (URIs) for each polymorphic type that will be deserialized.
+     This MUST be marked as singleton. -->
+<bean class="org.broadleafcommerce.core.web.api.BroadleafMessageBodyReaderWriter" scope="singleton"/>
+```
 
 ## Running a Basic Checkout Scenario in Heat Clinic
 
