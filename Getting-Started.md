@@ -2,7 +2,7 @@
 
 ## <a name="wiki-overview"></a> Overview
 
-Thanks for wanting to try out Broadleaf Commerce! By following this tutorial, you'll have your very own eCommerce site up and running in no time. We'll get your environment up and running, show you where things live, and walk you through a few examples of some of the cool things you can do with Broadleaf.
+Thanks for exploring Broadleaf Commerce!  With this tutorial, you'll have your eCommerce site launched in no time.  We'll get your environment up and running, show you where things live, and walk you through a few examples of some of the cool things you can do with Broadleaf.
 
 ## <a name="wiki-prerequisites"></a> Prerequisites
 
