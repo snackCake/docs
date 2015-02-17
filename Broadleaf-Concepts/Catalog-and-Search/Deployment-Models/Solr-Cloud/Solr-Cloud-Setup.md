@@ -105,7 +105,7 @@ The above instructions are generally portable to Windows.  However, there are a 
 - When uploading the the configuration to Zookeeper, on Windows, use the following:
 
 ```
-%SOLR_HOME%\example\scripts\cloud-scripts\zkcli.bat -zkhost localhost:2181 -cmd upconfig -confname blc -confdir /path/to/blcSolrConfig
+%SOLR_HOME%\example\scripts\cloud-scripts\zkcli.bat -zkhost localhost:2181 -cmd upconfig -confname blc -confdir "C:\path\to\blcSolrConfig"
 ```
 
 - When starting the first instance of Solr on a Windows machine, use the following:
