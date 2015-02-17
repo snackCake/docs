@@ -101,20 +101,20 @@ Remember that creating the collections and aliases is not necessary as Broadleaf
 
 The above instructions are generally portable to Windows.  However, there are a few things to note:
 
-1. You should use corresponding `*.cmd` or `*.bat` instead of `*.sh` files
-2. When uploading the the configuration to Zookeeper, on Windows, use the following:
+- You should use corresponding `*.cmd` or `*.bat` instead of `*.sh` files
+- When uploading the the configuration to Zookeeper, on Windows, use the following:
 
 ```
 %SOLR_HOME%\example\scripts\cloud-scripts\zkcli.bat -zkhost localhost:2181 -cmd upconfig -confname blc -confdir /path/to/blcSolrConfig
 ```
 
-3. When starting the first instance of Solr on a Windows machine, use the following:
+- When starting the first instance of Solr on a Windows machine, use the following:
  
 ```
 %SOLR_HOME%\bin\solr.cmd start -p 8983 -s "C:\path\to\blcSolrHome0" -z "localhost:2181,localhost:2182,localhost:2183"
 ```
 
-4. And to start the second instance of Solr (on the same Windows machine) use the following:
+- And to start the second instance of Solr (on the same Windows machine) use the following:
 
 ```
 %SOLR_HOME%\bin\solr.cmd start -p 8984 -s "C:\path\to\blcSolrHome1" -z "localhost:2181,localhost:2182,localhost:2183"
