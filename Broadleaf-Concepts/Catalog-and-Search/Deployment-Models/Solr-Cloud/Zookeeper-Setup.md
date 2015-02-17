@@ -90,7 +90,7 @@ At this point, your Zookeeper Quarum is set up with 3 instances (or nodes) and i
 
 The above setup generally applies to Windows as well.  However, out of the box Windows requires a few things that don't port directly from the instructions above.  
 
-1. First, all of the above references to `*.sh` files are for Linux and Unix flavors of operating systems.  Windows users should use `*.cmd` files instead.
+1. First, all of the above references to `*.sh` files are for Linux and Unix flavors of operating systems.  Windows users should use corresponding `*.cmd` or `*.bat` files instead.
 2. The `zkServer.cmd` file does not properly allow you to pass in the `zoo*.cfg` location from the command line.  Rather it requires that you have a single `zoo.cfg` file located at `%ZK_HOME%\conf`.  As a result, in order to allow multiple Zookeeper instances to run on a single machine, you can unzip Zookeeper to multiple locations and create a separate file for each:
     - Unzip to a directory called zookeeper-1
     - Unzip to a directory called zookeeper-2
