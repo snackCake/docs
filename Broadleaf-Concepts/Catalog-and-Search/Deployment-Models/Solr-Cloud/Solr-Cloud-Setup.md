@@ -2,7 +2,7 @@
 
 Assuming you have Zookeeper installed and started, you can install and configure Solr.  For additional information on SolrCloud setup, see the [SolrCloud documentation](https://cwiki.apache.org/confluence/display/solr/SolrCloud).
 
-This documentation assumes you are using Solr 4.10.3. Download Solr [here](http://lucene.apache.org/solr/downloads.html) and unzip it to the local file system.  We'll call this location SOLR_HOME.  Solr provides a number of examples and features out of the box.  To simplify things and get to lean setup procedure, follow these steps"
+This documentation assumes you are using Solr 4.10.3. Download Solr [here](http://lucene.apache.org/solr/downloads.html) and unzip it to the local file system.  We'll call this location SOLR_HOME.  Solr provides a number of examples and features out of the box.  To simplify things and get to lean setup procedure, follow these steps:
 
 - Create an empty directory on the file system wherever you like called `blcSolrConfig` (e.g. `$SOLR_HOME/blcSolrConfig`)
 - From `$SOLR_HOME/example/solr`, copy `solr.xml` to `blcSolrConfig`
@@ -12,8 +12,10 @@ This documentation assumes you are using Solr 4.10.3. Download Solr [here](http:
 - Make sure Zookeeper is running and execute the following command from the command line: 
 
 ```
-./$SOLR_HOME/example/scripts/cloud-scripts/zkcli.sh -zkhost localhost:2181 -cmd upconfig -confname blc /path/to/blcSolrConfig
+./$SOLR_HOME/example/scripts/cloud-scripts/zkcli.sh -zkhost localhost:2181 -cmd upconfig -confname blc -confdir /path/to/blcSolrConfig
 ```
+
+The above command (`zkcli.sh`) may require that you have aleady run Solr as a stand-alone server (using the `$SOLR_HOME/example/start.jar`), or that you have unzipped the `$SOLR_HOME/example/webapps/solr.war` file to `$SOLR_HOME/examplesolr-webapp/webapp`).  This is a bit awkward, but the scripts(s) require the exploded war to be in that location.
 
 - The above command uploads the contents of the `blcSolrConfig` directory to the Zookeeper Quorum using a configuration name of "blc" (more on this later)
 - Now, Zookeeper has most of the files that Solr will need
@@ -24,14 +26,14 @@ This documentation assumes you are using Solr 4.10.3. Download Solr [here](http:
 - Start an instance of Solr on port 8983 connecting to the Zookeeper Quorum and using `blcSolrHome0` as the home directory: 
 
 ```
-./$SOLR_HOME/bin/solr start -cloud -p 8983 -s /path/to/blcSolrHome0 -z localhost:8981,localhost:8982,localhost:8983
+./$SOLR_HOME/bin/solr start -cloud -p 8983 -s /path/to/blcSolrHome0 -z localhost:2181,localhost:2182,localhost:2183
 ```
 
 
 - Start an instance of Solr on port 8984 connecting to the Zookeeper Quorum and using `blcSolrHome1` as the home directory: 
 
 ```
-./$SOLR_HOME/bin/solr start -cloud -p 8984 -s /path/to/blcSolrHome1 -z localhost:8981,localhost:8982,localhost:8983
+./$SOLR_HOME/bin/solr start -cloud -p 8984 -s /path/to/blcSolrHome1 -z localhost:2181,localhost:2182,localhost:2183
 ```
 
 - Now you have 2 nodes or instances of SolrCloud running, with a 3-node Quorum (cluster) of Zookeeper instances managing the Solr cluster
@@ -95,3 +97,25 @@ http://localhost:8984/solr/reindex/select?q=*
 Remember that creating the collections and aliases is not necessary as Broadleaf will happily do this for you if they do not exist.
 
 
+## Notes for deployment on Windows
+
+The above instructions are generally portable to Windows.  However, there are a few things to note:
+
+1. You should use corresponding `*.cmd` or `*.bat` instead of `*.sh` files
+2. When uploading the the configuration to Zookeeper, on Windows, use the following:
+
+```
+%SOLR_HOME%\example\scripts\cloud-scripts\zkcli.bat -zkhost localhost:2181 -cmd upconfig -confname blc -confdir /path/to/blcSolrConfig
+```
+
+3. When starting the first instance of Solr on a Windows machine, use the following:
+ 
+```
+%SOLR_HOME%\bin\solr.cmd start -p 8983 -s "C:\path\to\blcSolrHome0" -z "localhost:2181,localhost:2182,localhost:2183"
+```
+
+4. And to start the second instance of Solr (on the same Windows machine) use the following:
+
+```
+%SOLR_HOME%\bin\solr.cmd start -p 8984 -s "C:\path\to\blcSolrHome1" -z "localhost:2181,localhost:2182,localhost:2183"
+```
