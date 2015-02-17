@@ -6,6 +6,8 @@ Download the appropriate [version of Zookeeper](https://cwiki.apache.org/conflue
 
 This documentation assumes the use of Solr 4.10.3 and Zookeeper 3.4.6.  This documentation will also explain the set up the Zookeeper and Solr nodes on a single physical machine.  This can (and should) be done, in reality, on independent machines.  However, it is quite acceptable to put a Zookeeper instance on a machine with each Solr instance.  Here are the steps to get it set up with 3 Zookeeper instances:
 
+## Linux Setup
+
 - Download [Zookeeper](http://zookeeper.apache.org/releases.html) and unzip it to the local file system. We'll call this Zookeeper Home, or ZK_HOME.
 - Under Zookeeper Home, create a new directory called "data"
 - Under the "data" directory, create 3 new directories, called "1", "2", "3" respectively
@@ -40,7 +42,7 @@ server.3=localhost:2890:3890
 
 - Under the `conf` directory, create a new file called zoo2.cfg. Notice that the `clientPort` and `dataDir` are different:
 
-```xml
+```
 tickTime=2000
 initTime=10
 initLimit=5
@@ -80,8 +82,23 @@ server.3=localhost:2890:3890
 ./$ZK_HOME/bin/zkServer.sh start $ZK_HOME/conf/zoo3.cfg -noprompt
 ```
 
-You can also start them in the foreground using `start-foreground` instead of `start`. If you start in the foreground, you'll see logs indicating that the instances have connected to one another and have elected a leader.
+You can also start them in the foreground using `start-foreground` instead of `start`. If you start in the foreground, you'll see logs indicating that the instances have connected to one another and have elected a leader.  Note that there may be connectivity errors in the logs until more than one Zookeeper instance is running.  This is because the running instance(s) cannot connect to the others.
 
 At this point, your Zookeeper Quarum is set up with 3 instances (or nodes) and is ready for Solr!
 
+## Windows Setup
 
+The above setup generally applies to Windows as well.  However, out of the box Windows requires a few things that don't port directly from the instructions above.  
+
+1. First, all of the above references to `*.sh` files are for Linux and Unix flavors of operating systems.  Windows users should use `*.cmd` files instead.
+2. The `zkServer.cmd` file does not properly allow you to pass in the `zoo*.cfg` location from the command line.  Rather it requires that you have a single `zoo.cfg` file located at `%ZK_HOME%\conf`.  As a result, in order to allow multiple Zookeeper instances to run on a single machine, you can unzip Zookeeper to multiple locations and create a separate file for each:
+    - Unzip to a directory called zookeeper-1
+    - Unzip to a directory called zookeeper-2
+    - Unzip to a directory called zookeeper-3
+    - Under each of these new Zookeeper directories, create a data directory
+    - Under each of these new Zookeeper directories' respective conf directories, create a `zoo.cfg` (without a number in the file name) file as directed above
+    - The data director in each of the respective Zookeeper directories should contain a `myid` file as described above (Note there is no need to put the `myid` files under a subdirectory like `1`, `2`, or `3` because they each live under their own Zookeeper data directory)
+    - Each of the respective `zoo.cfg` files' `dataDir` property should reflect or reference the file location of the data directory for that zookeeper installation (e.g. `dataDir=/path/to/zookeeper-1/data`)
+    - Start Zookeeper 1 : `C:\path\to\zookeeper-1\bin\zkServer.cmd` - (Note that this will use the `zoo.cfg` file under the `conf` directory for this this installation of Zookeeper)
+    - Start Zookeeper 2 : `C:\path\to\zookeeper-2\bin\zkServer.cmd` - (Note that this will use the `zoo.cfg` file under the `conf` directory for this this installation of Zookeeper)
+    - Start Zookeeper 3 : `C:\path\to\zookeeper-3\bin\zkServer.cmd` - (Note that this will use the `zoo.cfg` file under the `conf` directory for this this installation of Zookeeper)
