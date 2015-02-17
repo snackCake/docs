@@ -95,10 +95,10 @@ The above setup generally applies to Windows as well.  However, out of the box W
     - Unzip to a directory called zookeeper-1
     - Unzip to a directory called zookeeper-2
     - Unzip to a directory called zookeeper-3
-    - Under each of these new Zookeeper directories, create a data directory
-    - Under each of these new Zookeeper directories' respective conf directories, create a `zoo.cfg` (without a number in the file name) file as directed above
+    - Under each of these new Zookeeper directories, create a `data` directory
+    - Under each of these new Zookeeper directories' respective `conf` directories, create a `zoo.cfg` (without a number in the file name) file as directed above
     - The data director in each of the respective Zookeeper directories should contain a `myid` file as described above (Note there is no need to put the `myid` files under a subdirectory like `1`, `2`, or `3` because they each live under their own Zookeeper data directory)
-    - Each of the respective `zoo.cfg` files' `dataDir` property should reflect or reference the file location of the data directory for that zookeeper installation (e.g. `dataDir=/path/to/zookeeper-1/data`)
+    - The `dataDir` property in each of the `zoo.cfg` files should reflect or reference the file location of their respective `data` directory for that zookeeper installation (e.g. `dataDir=/path/to/zookeeper-1/data`)
     - Start Zookeeper 1 : `C:\path\to\zookeeper-1\bin\zkServer.cmd` - (Note that this will use the `zoo.cfg` file under the `conf` directory for this this installation of Zookeeper)
     - Start Zookeeper 2 : `C:\path\to\zookeeper-2\bin\zkServer.cmd` - (Note that this will use the `zoo.cfg` file under the `conf` directory for this this installation of Zookeeper)
     - Start Zookeeper 3 : `C:\path\to\zookeeper-3\bin\zkServer.cmd` - (Note that this will use the `zoo.cfg` file under the `conf` directory for this this installation of Zookeeper)
