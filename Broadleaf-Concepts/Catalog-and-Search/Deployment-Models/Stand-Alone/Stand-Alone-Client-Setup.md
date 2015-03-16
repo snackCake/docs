@@ -51,14 +51,22 @@ solr.url.reindex=http://localhost:8983/solr/reindex
 solr.url.admin=http://localhost:8983/solr
 ```
 
-Again, property substitution will be used to replace the `solr.url.*` properties with the correct values.  Alternatively, if you are using a Master / Slave configuration, you can use a comma-delimited list of Solr servers:
+Again, property substitution will be used to replace the `solr.url.*` properties with the correct values.  These values can be different in each environment.  For example, if you change `site/src/main/resources/runtime-properties/production.properties`, then the production URLs will be used in that environment. For example:
+
+```
+solr.url.primary=http://solr.prod:8983/solr/primary
+solr.url.reindex=http://solr.prod:8983/solr/reindex
+solr.url.admin=http://solr.prod:8983/solr
+```
+
+Alternatively, if you are using a Master / Slave configuration, or multiple Solr nodes, you can use a comma-delimited list of Solr servers.  The instance of the client that you are using is `org.apache.solr.client.solrj.impl.LBHttpSolrServer` which is a load balanced wrapper around `org.apache.solr.client.solrj.impl.HttpSolrServer`. For example:
 
 ```
 solr.url.primary=http://slave1:8983/solr/primary,http://slave2:8983/solr/primary
-solr.url.reindex=http://slave1:8983/solr/reindex,http://slave2:8983/solr/reindex
+solr.url.reindex=http://master:8983/solr/reindex
 solr.url.admin=http://master:8983/solr
 ```
 
-Broadleaf will now happily connect to your Stand-Alone Solr Server.
+Broadleaf will now happily connect to your Stand-Alone Solr Server(s).
 
 
