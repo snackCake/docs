@@ -13,37 +13,50 @@ Note that the checkout workflow can be called asynchronously depending on what P
 Let's take a look at the default configuration in Broadleaf Commerce for Checkout:
 
 ```xml
-    <bean p:order="1000" id="blVerifyCustomerMaxOfferUsesActivity" class="org.broadleafcommerce.core.offer.service.workflow.VerifyCustomerMaxOfferUsesActivity"/>
-    <bean p:order="2000" id="blValidateProductOptionsActivity" class="org.broadleafcommerce.core.checkout.service.workflow.ValidateProductOptionsActivity"/>
-    <bean p:order="3000" id="blValidateAndConfirmPaymentActivity" class="org.broadleafcommerce.core.checkout.service.workflow.ValidateAndConfirmPaymentActivity">
-        <property name="rollbackHandler" ref="blConfirmPaymentsRollbackHandler" />
-    </bean>
-    <bean p:order="4000" id="blRecordOfferUsageActivity" class="org.broadleafcommerce.core.offer.service.workflow.RecordOfferUsageActivity">
-        <property name="rollbackHandler" ref="blRecordOfferUsageRollbackHandler" />
-    </bean>
-    <bean p:order="5000" id="blCommitTaxActivity" class="org.broadleafcommerce.core.checkout.service.workflow.CommitTaxActivity">
-        <property name="rollbackHandler" ref="blCommitTaxRollbackHandler" />
-    </bean>
-    <bean p:order="6000" id="blCompleteOrderActivity" class="org.broadleafcommerce.core.checkout.service.workflow.CompleteOrderActivity">
-        <property name="rollbackHandler" ref="blCompleteOrderRollbackHandler" />
-    </bean>
+<!-- Checkout Workflow Configuration -->
+<bean p:order="1000" id="blVerifyCustomerMaxOfferUsesActivity" class="org.broadleafcommerce.core.offer.service.workflow.VerifyCustomerMaxOfferUsesActivity"/>
+<bean p:order="2000" id="blValidateProductOptionsActivity" class="org.broadleafcommerce.core.checkout.service.workflow.ValidateProductOptionsActivity"/>
+<bean p:order="3000" id="blValidateAndConfirmPaymentActivity" class="org.broadleafcommerce.core.checkout.service.workflow.ValidateAndConfirmPaymentActivity">
+    <property name="rollbackHandler" ref="blConfirmPaymentsRollbackHandler" />
+</bean>
+<bean p:order="4000" id="blRecordOfferUsageActivity" class="org.broadleafcommerce.core.offer.service.workflow.RecordOfferUsageActivity">
+    <property name="rollbackHandler" ref="blRecordOfferUsageRollbackHandler" />
+</bean>
+<bean p:order="5000" id="blCommitTaxActivity" class="org.broadleafcommerce.core.checkout.service.workflow.CommitTaxActivity">
+    <property name="rollbackHandler" ref="blCommitTaxRollbackHandler" />
+</bean>
+<bean p:order="6000" id="blDecrementInventoryActivity" class="org.broadleafcommerce.core.checkout.service.workflow.DecrementInventoryActivity">
+    <property name="rollbackHandler" ref="blDecrementInventoryRollbackHandler" />
+</bean>
+<bean p:order="7000" id="blCompleteOrderActivity" class="org.broadleafcommerce.core.checkout.service.workflow.CompleteOrderActivity">
+    <property name="rollbackHandler" ref="blCompleteOrderRollbackHandler" />
+</bean>
 
-    <bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
-        <property name="processContextFactory">
-            <bean class="org.broadleafcommerce.core.checkout.service.workflow.CheckoutProcessContextFactory"/>
-        </property>
-        <property name="activities">
-            <list>
-                <ref bean="blVerifyCustomerMaxOfferUsesActivity" />
-                <ref bean="blValidateProductOptionsActivity" />
-                <ref bean="blValidateAndConfirmPaymentActivity" />
-                <ref bean="blRecordOfferUsageActivity" />
-                <ref bean="blCommitTaxActivity" />
-                <ref bean="blCompleteOrderActivity" />
-            </list>
-        </property>
-        <property name="defaultErrorHandler" ref="blDefaultErrorHandler"/>
-    </bean>
+<bean id="blCheckoutWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
+    <property name="processContextFactory">
+        <bean class="org.broadleafcommerce.core.checkout.service.workflow.CheckoutProcessContextFactory"/>
+    </property>
+    <property name="activities">
+        <list>
+            <ref bean="blVerifyCustomerMaxOfferUsesActivity" />
+            <ref bean="blValidateProductOptionsActivity" />
+            <ref bean="blValidateAndConfirmPaymentActivity" />
+            <ref bean="blRecordOfferUsageActivity" />
+            <ref bean="blCommitTaxActivity" />
+            <ref bean="blDecrementInventoryActivity" />
+            <ref bean="blCompleteOrderActivity" />
+        </list>
+    </property>
+    <property name="defaultErrorHandler">
+        <bean class="org.broadleafcommerce.core.workflow.DefaultErrorHandler">
+            <property name="unloggedExceptionClasses">
+                <list>
+                    <value>org.broadleafcommerce.core.inventory.service.InventoryUnavailableException</value>
+                </list>
+            </property>
+        </bean>
+    </property>
+</bean>
 ```
 
 Checkout workflows are similar to workflows in general in that they require a ProcessContextFactory, a list of activities and an error handler to be configured. Checkout workflows will use an instance of CheckoutProcessContextFactory. By default, Broadleaf Commerce supplies activities for executing pricing, payment and order reset. In addition, Broadleaf utilizes the DefaultErrorHandler implementation, which simply logs any exceptions to the console and bubbles the exceptions.
