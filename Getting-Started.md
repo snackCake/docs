@@ -145,7 +145,7 @@ You'll see some logging messages in the Console scroll by, and eventually stop o
 
 That's it! The server's up! Let's check it out: <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a>
 
-![Tomcat Site](gs-tomcat-site.png)
+![Tomcat Site](gs-tomcat-admin.png)
 
 ## <a name="wiki-starting-admin"></a> Running Admin
 
