@@ -166,8 +166,9 @@ This console will end up at
 [artifact:mvn] INFO: Starting ProtocolHandler ["http-bio-8444"]
 ```
 
-And now we can hit the admin! <a href="https://localhost:8444/admin" target="_blank">https://localhost:8444/admin</a>.  At the login prompt, enter the default username/password of **admin/admin** and you should see the below screen:
-> Note: The admin to serves all of its pages over https by default. This means that you will encounter a security exception in your browser because the certificates do not match up.  You should be able to safely ignore this warning (when running locally).  The admin also listens on port 8081 for http (non-SSL) connections, but this will not operate unless you make the necessary modifications to `applicationContext-admin-security.xml`.
+And now we can hit the admin! <a href="https://localhost:8081/admin" target="_blank">https://localhost:8081/admin</a>.  At the login prompt, enter the default username/password of **admin/admin** and you should see the below screen:
+
+> Note: The admin to serves all of its pages over https by default. This means that you will encounter a security exception in your browser because the certificates do not match up.  You should be able to safely ignore this warning (when running locally).
 
 ![Tomcat Admin](gs-tomcat-admin.png)
 
