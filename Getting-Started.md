@@ -11,9 +11,7 @@ Thanks for exploring Broadleaf Commerce!  With this tutorial, you'll have your e
     - [Java 7 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
     - [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-> Java 8 bytecode is not fully supported until Broadleaf 4.0 with Spring 4. Broadleaf 3.0+ will run on the Java 8 JVM with Java 6/7-compatible bytecode
-
-> While Broadleaf will still work with Java 6, we recommend using Java 7 unless there is an exceptional reason that your organization requires Java 6. Oracle marked Java 6 "end of life" in [February of 2013](http://www.oracle.com/technetwork/java/eol-135779.html)
+> Broadleaf offically recommends using Java 8. As of version 4.0, Broadleaf is not compatible with Java 6.
 
 - You will also need the latest version of Maven (at least version 3.1, version 3.2 is recommended), which you can get [on the official Apache Maven site](http://maven.apache.org/download.html)
 
@@ -45,7 +43,7 @@ Once the plugin is done installing, you will be prompted to restart Eclipse. Go 
 
 You'll once again be asked for a workspace. This time, we're going to pick a different one. To make getting started with Broadleaf as easy as possible, we've already set up a workspace with some reasonable defaults and tweaks to help you out. Let's download it!
 
-Broadleaf 3.1 workspace Download Link: [Broadleaf Eclipse Workspace](http://www.broadleafcommerce.org/workspace-download?workspaceVersion=DemoSite-3.1.13-GA-eclipse-workspace.zip&docsVersion=current)
+Broadleaf 4.0 workspace Download Link: [Broadleaf Eclipse Workspace](http://www.broadleafcommerce.org/workspace-download?workspaceVersion=DemoSite-4.0.0-RC1-eclipse-workspace.zip&docsVersion=current)
 
 > Note: If you're not prompted for a workspace, simply go to **File --> Switch Workspace** and select the path
 
@@ -132,20 +130,22 @@ This process will take a few minutes to execute, and will end on the following s
 [INFO] Final Memory: 13M/81M
 ```
 
-At this point, we're ready to start up! Let's run the `jetty-demo` Ant task for the site.
+At this point, we're ready to start up! Let's run the `tomcat` Ant task for the site.
 
-![Jetty Demo](gs-jetty-demo.png)
+![Tomcat](gs-tomcat-site.png)
 
 You'll see some logging messages in the Console scroll by, and eventually stop on
 
 ```text
-[artifact:mvn] 2012-07-06 11:03:20.005:INFO::Started SelectChannelConnector@0.0.0.0:8080
-[artifact:mvn] [INFO] Started Jetty Server
+[artifact:mvn] Apr 19, 2015 11:16:24 PM org.apache.coyote.AbstractProtocol start
+[artifact:mvn] INFO: Starting ProtocolHandler ["http-bio-8080"]
+[artifact:mvn] Apr 19, 2015 11:16:24 PM org.apache.coyote.AbstractProtocol start
+[artifact:mvn] INFO: Starting ProtocolHandler ["http-bio-8443"]
 ```
 
 That's it! The server's up! Let's check it out: <a href="http://localhost:8080/" target="_blank">http://localhost:8080/</a>
 
-![Startup Site](gs-startup-site.png)
+![Tomcat Site](gs-tomcat-site.png)
 
 ## <a name="wiki-starting-admin"></a> Running Admin
 
@@ -153,21 +153,23 @@ Once the site has been started up, we can start up the admin as well
 
 > Note: The site startup will conveniently populate some database tables, including the admin users tables. Therefore, the site must be running before starting up the admin.
 
-This time, we'll hit the `jetty-demo` Ant task for the admin.
+This time, we'll hit the `tomcat` Ant task for the admin.
 
-![Jetty Demo Admin](gs-admin-jetty-demo.png)
+![Tomcat Admin](gs-tomcat-admin.png)
 
-This console will end up on
+This console will end up at
 
 ```text
-[artifact:mvn] 2012-07-06 11:07:11.218:INFO::Started SelectChannelConnector@0.0.0.0:8081
-[artifact:mvn] [INFO] Started Jetty Server
+[artifact:mvn] Apr 19, 2015 11:16:24 PM org.apache.coyote.AbstractProtocol start
+[artifact:mvn] INFO: Starting ProtocolHandler ["http-bio-8081"]
+[artifact:mvn] Apr 19, 2015 11:16:24 PM org.apache.coyote.AbstractProtocol start
+[artifact:mvn] INFO: Starting ProtocolHandler ["http-bio-8444"]
 ```
 
 And now we can hit the admin! <a href="https://localhost:8444/admin" target="_blank">https://localhost:8444/admin</a>.  At the login prompt, enter the default username/password of **admin/admin** and you should see the below screen:
 > Note: The admin to serves all of its pages over https by default. This means that you will encounter a security exception in your browser because the certificates do not match up.  You should be able to safely ignore this warning (when running locally).  The admin also listens on port 8081 for http (non-SSL) connections, but this will not operate unless you make the necessary modifications to `applicationContext-admin-security.xml`.
 
-![Startup Admin](gs-startup-admin.png)
+![Tomcat Admin](gs-tomcat-admin.png)
 
 > Any issues? Please come post in the [Broadleaf forums](http://forum.broadleafcommerce.org) - We would love to help you out!
 
