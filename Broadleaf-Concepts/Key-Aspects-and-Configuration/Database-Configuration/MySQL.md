@@ -17,3 +17,12 @@
     ```
 
 > You may also want to check out the more detailed [[Switch To MySQL Tutorial]]
+
+At a minimum, we also recommend using the following settings for proper UTF-8 configuration for MySQL in `my.cnf`:
+
+```ini
+[mysqld]
+lower_case_table_names=1
+character-set-server=utf8
+collation-server=utf8_general_ci
+```
