@@ -4,14 +4,14 @@ A very common step that users may want to do is switch away from the bundled HSQ
 
 1. Download and install MySQL Database (http://dev.mysql.com/downloads/mysql/)
 
-    - For proper UTF8 configuration and easy of use across multiple platforms (Linux, MySQL, Windows) we also recommend these minimum settings in `my.cnf`:
+    > For proper UTF8 configuration and easy of use across multiple platforms (Linux, MySQL, Windows) we also recommend these minimum settings in `my.cnf`:
 
-        ```ini
-        [mysqld]
-        lower_case_table_names=1
-        character-set-server=utf8
-        collation-server=utf8_general_ci
-        ```
+    ```ini
+    [mysqld]
+    lower_case_table_names=1
+    character-set-server=utf8
+    collation-server=utf8_general_ci
+    ```
 
 
 2. Create a new database and a user capable of accessing this database with privileges for creating tables included (see MySQL documentation if you have questions about how to administrate databases and users).
