@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="austinrooke (generated)" id="1430153784520-1">
+        <createTable tableName="BLC_CMS_MENU">
+            <column name="MENU_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CMS_MENU_PK" />
+            </column>
+            <column name="NAME" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-2">
+        <createTable tableName="BLC_CMS_MENU_ITEM">
+            <column name="MENU_ITEM_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="CMS_MENU_ITEM_PK" />
+            </column>
+            <column name="ACTION_URL" type="VARCHAR2(255 CHAR)"/>
+            <column name="ALT_TEXT" type="VARCHAR2(255 CHAR)"/>
+            <column name="CUSTOM_HTML" type="CLOB"/>
+            <column name="LABEL" type="VARCHAR2(255 CHAR)"/>
+            <column name="SEQUENCE" type="NUMBER(10, 6)"/>
+            <column name="MENU_ITEM_TYPE" type="VARCHAR2(255 CHAR)"/>
+            <column name="MEDIA_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="FKFC9BDD76E4720E0" references="BLC_MEDIA(MEDIA_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="LINKED_MENU_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="FKFC9BDD7A8D0E60C" references="BLC_CMS_MENU(MENU_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="LINKED_PAGE_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="FKFC9BDD77BB4A41" references="BLC_PAGE(PAGE_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="PARENT_MENU_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="FKFC9BDD73876279D" references="BLC_CMS_MENU(MENU_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-3">
+        <createTable tableName="BLC_COUNTRY_SUB_CAT">
+            <column name="COUNTRY_SUB_CAT_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="COUNTRY_SUB_CAT_PK" />
+            </column>
+            <column name="NAME" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-4">
+        <createTable tableName="BLC_COUNTRY_SUB">
+            <column name="ABBREVIATION" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="COUNTRY_SUB_PK" />
+            </column>
+            <column name="ALT_ABBREVIATION" type="VARCHAR2(255 CHAR)"/>
+            <column name="NAME" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COUNTRY_SUB_CAT" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="FKA804FBD172AAB3C0" references="BLC_COUNTRY_SUB_CAT(COUNTRY_SUB_CAT_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="COUNTRY" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false" foreignKeyName="FKA804FBD1A46E16CF" references="BLC_COUNTRY(ABBREVIATION)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-5">
+        <createTable tableName="BLC_ISO_COUNTRY">
+            <column name="ALPHA_2" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ISO_COUNTRY_PK" />
+            </column>
+            <column name="ALPHA_3" type="VARCHAR2(255 CHAR)"/>
+            <column name="NAME" type="VARCHAR2(255 CHAR)"/>
+            <column name="NUMERIC_CODE" type="NUMBER(10, 0)"/>
+            <column name="STATUS" type="VARCHAR2(255 CHAR)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-6">
+        <createTable tableName="BLC_ORDER_LOCK">
+            <column name="LOCK_KEY" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ORDER_LOCK_PK" />
+            </column>
+            <column name="ORDER_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="ORDER_LOCK_PK" />
+            </column>
+            <column name="LAST_UPDATED" type="NUMBER(19, 0)"/>
+            <column name="LOCKED" type="CHAR(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-7">
+        <createTable tableName="BLC_PAGE_ATTRIBUTES">
+        	<column name="ATTRIBUTE_ID" type="NUMBER(19, 0)">
+        		<constraints nullable="false" primaryKey="true" primaryKeyName="PAGE_ATTRIBUTES_PK" />
+        	</column>
+            <column name="FIELD_NAME" type="VARCHAR2(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIELD_VALUE" type="VARCHAR2(255 CHAR)"/>
+            <column name="PAGE_ID" type="NUMBER(19, 0)">
+                <constraints nullable="false" foreignKeyName="FK4FE27601883C2667" references="BLC_PAGE(PAGE_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <!-- ADD COLUMN  -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-8">
+        <addColumn tableName="BLC_PAGE">
+            <column name="ACTIVE_END_DATE" type="TIMESTAMP(6)(11)"/>
+            <column name="ACTIVE_START_DATE" type="TIMESTAMP(6)(11)"/>
+            <column name="META_DESCRIPTION" type="VARCHAR(255 CHAR)"/>
+            <column name="META_TITLE" type="VARCHAR(255 CHAR)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-9">
+        <addColumn tableName="BLC_SKU">
+            <column name="DISPLAY_TEMPLATE" type="VARCHAR(255 CHAR)"/>
+            <column name="EXTERNAL_ID" type="VARCHAR(255 CHAR)"/>
+            <column name="UPC" type="VARCHAR(255 CHAR)"/>
+            <column name="URL_KEY" type="VARCHAR(255 CHAR)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-10">
+        <addColumn tableName="BLC_CATALOG">
+            <column name="ARCHIVED" type="CHAR(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-11">
+        <addColumn tableName="BLC_CUSTOMER_ADDRESS">
+            <column name="ARCHIVED" type="CHAR(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-12">
+        <addColumn tableName="BLC_SANDBOX">
+            <column name="ARCHIVED" type="CHAR(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-13">
+        <addColumn tableName="BLC_STORE">
+            <column name="ARCHIVED" type="CHAR(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-14">
+        <addColumn tableName="BLC_PHONE">
+            <column name="COUNTRY_CODE" type="VARCHAR(255 CHAR)"/>
+            <column name="EXTENSION" type="VARCHAR(255 CHAR)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-15">
+        <addColumn tableName="BLC_CATEGORY_PRODUCT_XREF">
+            <column name="DEFAULT_REFERENCE" type="NUMBER(1, 0)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-16">
+        <addColumn tableName="BLC_CATEGORY_XREF">
+            <column name="DEFAULT_REFERENCE" type="NUMBER(1, 0)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-17">
+        <addColumn tableName="BLC_CATEGORY">
+            <column name="EXTERNAL_ID" type="VARCHAR(255 CHAR)"/>
+            <column name="OVERRIDE_GENERATED_URL" type="NUMBER(1, 0)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-18">
+        <addColumn tableName="BLC_FIELD">
+            <column name="FRIENDLY_NAME" type="VARCHAR(255 CHAR)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-19">
+        <addColumn tableName="BLC_ADDRESS">
+            <column name="FULL_NAME" type="VARCHAR(255 CHAR)"/>
+            <column name="ISO_COUNTRY_SUB" type="VARCHAR(255 CHAR)"/>
+            <column name="IS_MAILING" type="NUMBER(1, 0)"/>
+            <column name="IS_STREET" type="NUMBER(1, 0)"/>
+            <column name="SUB_STATE_PROV_REG" type="VARCHAR(255 CHAR)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-20">
+        <addColumn tableName="BLC_FLD_DEF">
+            <column name="HELP_TEXT" type="VARCHAR(255 CHAR)"/>
+            <column name="HINT" type="VARCHAR(255 CHAR)"/>
+            <column name="TOOLTIP" type="VARCHAR(255 CHAR)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-21">
+        <addColumn tableName="BLC_PRODUCT">
+            <column name="OVERRIDE_GENERATED_URL" type="NUMBER(1, 0)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-22">
+        <addColumn tableName="BLC_CAT_SEARCH_FACET_EXCL_XREF">
+            <column name="SEQUENCE" type="NUMBER(19, 2)"/>
+        </addColumn>
+    </changeSet>
+    
+    <!-- CHANGE PRIMARY KEY ON EXISTING TABLE -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-23">
+        <dropPrimaryKey tableName="BLC_ADMIN_USER_ADDTL_FIELDS"/>
+        <addColumn tableName="BLC_ADMIN_USER_ADDTL_FIELDS">
+            <column name="ATTRIBUTE_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_ADMIN_USER_ADDTL_FIELDS SET ATTRIBUTE_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_ADMIN_USER_ADDTL_FIELDS" columnName="ATTRIBUTE_ID"/>
+        <addPrimaryKey tableName="BLC_ADMIN_USER_ADDTL_FIELDS" columnNames="ATTRIBUTE_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-24">
+        <dropPrimaryKey tableName="BLC_SC_FLD_MAP"/>
+        <addColumn tableName="BLC_SC_FLD_MAP">
+            <column name="BLC_SC_SC_FIELD_ID" type="NUMBER(19, 0)" />
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_SC_FLD_MAP SET BLC_SC_SC_FIELD_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_SC_FLD_MAP" columnName="BLC_SC_SC_FIELD_ID"/>
+        <addPrimaryKey tableName="BLC_SC_FLD_MAP" columnNames="BLC_SC_SC_FIELD_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-25">
+        <dropPrimaryKey tableName="BLC_CATEGORY_MEDIA_MAP"/>
+        <addColumn tableName="BLC_CATEGORY_MEDIA_MAP">
+            <column name="CATEGORY_MEDIA_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_CATEGORY_MEDIA_MAP SET CATEGORY_MEDIA_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_CATEGORY_MEDIA_MAP" columnName="CATEGORY_MEDIA_ID"/>
+        <addPrimaryKey tableName="BLC_CATEGORY_MEDIA_MAP" columnNames="CATEGORY_MEDIA_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-26">
+        <dropPrimaryKey tableName="BLC_OFFER_RULE_MAP"/>
+        <addColumn tableName="BLC_OFFER_RULE_MAP">
+            <column name="OFFER_OFFER_RULE_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_OFFER_RULE_MAP SET OFFER_OFFER_RULE_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_OFFER_RULE_MAP" columnName="OFFER_OFFER_RULE_ID"/>
+        <addPrimaryKey tableName="BLC_OFFER_RULE_MAP" columnNames="OFFER_OFFER_RULE_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-27">
+        <dropPrimaryKey tableName="BLC_QUAL_CRIT_OFFER_XREF"/>
+        <addColumn tableName="BLC_QUAL_CRIT_OFFER_XREF">
+            <column name="OFFER_QUAL_CRIT_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_QUAL_CRIT_OFFER_XREF SET OFFER_QUAL_CRIT_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_QUAL_CRIT_OFFER_XREF" columnName="OFFER_QUAL_CRIT_ID"/>
+        <addPrimaryKey tableName="BLC_QUAL_CRIT_OFFER_XREF" columnNames="OFFER_QUAL_CRIT_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-28">
+        <dropPrimaryKey tableName="BLC_TAR_CRIT_OFFER_XREF"/>
+        <addColumn tableName="BLC_TAR_CRIT_OFFER_XREF">
+            <column name="OFFER_TAR_CRIT_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_TAR_CRIT_OFFER_XREF SET OFFER_TAR_CRIT_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_TAR_CRIT_OFFER_XREF" columnName="OFFER_TAR_CRIT_ID"/>
+        <addPrimaryKey tableName="BLC_TAR_CRIT_OFFER_XREF" columnNames="OFFER_TAR_CRIT_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-29">
+        <dropPrimaryKey tableName="BLC_PGTMPLT_FLDGRP_XREF"/>
+        <addColumn tableName="BLC_PGTMPLT_FLDGRP_XREF">
+            <column name="PG_TMPLT_FLD_GRP_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_PGTMPLT_FLDGRP_XREF SET PG_TMPLT_FLD_GRP_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_PGTMPLT_FLDGRP_XREF" columnName="PG_TMPLT_FLD_GRP_ID"/>
+        <addPrimaryKey tableName="BLC_PGTMPLT_FLDGRP_XREF" columnNames="PG_TMPLT_FLD_GRP_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-30">
+        <addColumn tableName="BLC_SITE_CATALOG">
+            <column name="SITE_CATALOG_XREF_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_SITE_CATALOG SET SITE_CATALOG_XREF_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_SITE_CATALOG" columnName="SITE_CATALOG_XREF_ID"/>
+        <addPrimaryKey tableName="BLC_SITE_CATALOG" columnNames="SITE_CATALOG_XREF_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-31">
+        <dropPrimaryKey tableName="BLC_SKU_MEDIA_MAP"/>
+        <addColumn tableName="BLC_SKU_MEDIA_MAP">
+            <column name="SKU_MEDIA_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_SKU_MEDIA_MAP SET SKU_MEDIA_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_SKU_MEDIA_MAP" columnName="SKU_MEDIA_ID"/>
+        <addPrimaryKey tableName="BLC_SKU_MEDIA_MAP" columnNames="SKU_MEDIA_ID"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-32">
+        <dropPrimaryKey tableName="BLC_SKU_OPTION_VALUE_XREF"/>
+        <addColumn tableName="BLC_SKU_OPTION_VALUE_XREF">
+            <column name="SKU_OPTION_VALUE_XREF_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE BLC_SKU_OPTION_VALUE_XREF SET SKU_OPTION_VALUE_XREF_ID = key_seq.nextval;</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="BLC_SKU_OPTION_VALUE_XREF" columnName="SKU_OPTION_VALUE_XREF_ID"/>
+        <addPrimaryKey tableName="BLC_SKU_OPTION_VALUE_XREF" columnNames="SKU_OPTION_VALUE_XREF_ID"/>
+    </changeSet>
+    
+    <!-- ADD COLUMN + FOREIGN KEY -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-33">
+        <addColumn tableName="BLC_SKU">
+            <column name="ADDL_PRODUCT_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="FK28E82CF750D6498B" references="BLC_PRODUCT(PRODUCT_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-34">
+        <addColumn tableName="BLC_ADDRESS">
+            <column name="ISO_COUNTRY_ALPHA2" type="VARCHAR(255 CHAR)">
+                <constraints foreignKeyName="FK299F86CE3A39A488" references="BLC_ISO_COUNTRY(ALPHA_2)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-35">
+        <addColumn tableName="BLC_SC_ITEM_CRITERIA">
+            <column name="SC_ID" type="NUMBER(19, 0)">
+                <constraints foreignKeyName="FK6D52BDA213D95585" references="BLC_SC(SC_ID)"
+                    deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-36">
+        <addColumn tableName="BLC_PAGE_FLD">
+            <column name="PAGE_ID" type="NUMBER(19, 0)"/>
+        </addColumn>
+        <sql>
+            UPDATE BLC_PAGE_FLD a SET a.PAGE_ID = (SELECT b.PAGE_ID FROM BLC_PAGE_FLD_MAP b WHERE b.PAGE_FLD_ID = a.PAGE_FLD_ID);
+        </sql>
+        <addNotNullConstraint tableName="BLC_PAGE_FLD" columnName="PAGE_ID"/>
+        <addForeignKeyConstraint baseColumnNames="PAGE_ID" baseTableName="BLC_PAGE_FLD" constraintName="FK86433AD4883C2667" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="PAGE_ID" referencedTableName="BLC_PAGE"/>
+    </changeSet>
+    
+    <!-- CREATE INDEX -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-37">
+        <createIndex indexName="ADDRESS_ISO_COUNTRY_IDX" tableName="BLC_ADDRESS" unique="false">
+            <column name="ISO_COUNTRY_ALPHA2"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-38">
+        <createIndex indexName="ADMINUSERATTRIBUTE_INDEX" tableName="BLC_ADMIN_USER_ADDTL_FIELDS" unique="false">
+            <column name="ADMIN_USER_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-39">
+        <createIndex indexName="ADMINUSERATTRIBUTE_NAME_INDEX" tableName="BLC_ADMIN_USER_ADDTL_FIELDS" unique="false">
+            <column name="FIELD_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-40">
+        <createIndex indexName="CATEGORY_E_ID_INDEX" tableName="BLC_CATEGORY" unique="false">
+            <column name="EXTERNAL_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-41">
+        <createIndex indexName="COUNTRY_SUB_ALT_ABRV_IDX" tableName="BLC_COUNTRY_SUB" unique="false">
+            <column name="ALT_ABBREVIATION"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-42">
+        <createIndex indexName="COUNTRY_SUB_NAME_IDX" tableName="BLC_COUNTRY_SUB" unique="false">
+            <column name="NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-43">
+        <createIndex indexName="PAGEATTRIBUTE_INDEX" tableName="BLC_PAGE_ATTRIBUTES" unique="false">
+            <column name="PAGE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-44">
+        <createIndex indexName="PAGEATTRIBUTE_NAME_INDEX" tableName="BLC_PAGE_ATTRIBUTES" unique="false">
+            <column name="FIELD_NAME"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-45">
+        <createIndex indexName="SKU_EXTERNAL_ID_INDEX" tableName="BLC_SKU" unique="false">
+            <column name="EXTERNAL_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-46">
+        <createIndex indexName="SKU_UPC_INDEX" tableName="BLC_SKU" unique="false">
+            <column name="UPC"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-47">
+        <createIndex indexName="SKU_URL_KEY_INDEX" tableName="BLC_SKU" unique="false">
+            <column name="URL_KEY"/>
+        </createIndex>
+    </changeSet>
+    
+    <!-- DROP FOREIGN KEY -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-48">
+        <dropForeignKeyConstraint baseTableName="BLC_CATEGORY_IMAGE" constraintName="FK27CF3E8015D1A13D"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-49">
+        <dropForeignKeyConstraint baseTableName="BLC_PAGE_FLD_MAP" constraintName="FKE9EE09515AEDD08A"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-50">
+        <dropForeignKeyConstraint baseTableName="BLC_PAGE_FLD_MAP" constraintName="FKE9EE0951883C2667"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-51">
+        <dropForeignKeyConstraint baseTableName="BLC_PRODUCT_SKU_XREF" constraintName="FKF2DBF6D35F11A0B7"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-52">
+        <dropForeignKeyConstraint baseTableName="BLC_PRODUCT_SKU_XREF" constraintName="FKF2DBF6D3B78C9977"/>
+    </changeSet>
+    
+    <!-- DROP UNIQUE CONSTRAINT -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-53">
+        <dropUniqueConstraint constraintName="CSTMR_ADDR_UNIQUE_CNSTRNT" tableName="BLC_CUSTOMER_ADDRESS"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-54">
+        <dropUniqueConstraint constraintName="UK_125F5803E7AB0252" tableName="BLC_TAR_CRIT_OFFER_XREF"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-55">
+        <dropUniqueConstraint constraintName="UK_D592E919E7AB0252" tableName="BLC_QUAL_CRIT_OFFER_XREF"/>
+    </changeSet>
+    
+    <!-- DROP TABLE -->
+    <changeSet author="austinrooke (generated)" id="1430153784520-56">
+        <dropTable tableName="BLC_CATEGORY_IMAGE"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-57">
+        <dropTable tableName="BLC_PAGE_FLD_MAP"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-58">
+        <dropTable tableName="BLC_PRODUCT_SKU_XREF"/>
+    </changeSet>
+    
+    <!-- DROP INDEX -->
+    <changeSet author="austinrooke (generated)" id="1430153784520-59">
+        <dropIndex indexName="SEARCH_PRIORITY_INDEX" tableName="BLC_SEARCH_INTERCEPT"/>
+    </changeSet>
+    
+    <!-- DROP NOT NULL CONSTRAINT -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-60">
+        <dropNotNullConstraint columnDataType="number(19,0)" columnName="ADDRESS_ID" tableName="BLC_CUSTOMER_PAYMENT"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-61">
+        <dropNotNullConstraint columnDataType="varchar(255 CHAR)" columnName="COUNTRY" tableName="BLC_ADDRESS"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-62">
+        <dropNotNullConstraint columnDataType="number(19,0)" columnName="MEDIA_ID" tableName="BLC_CATEGORY_MEDIA_MAP"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-63">
+        <dropNotNullConstraint columnDataType="number(19,0)" columnName="MEDIA_ID" tableName="BLC_SKU_MEDIA_MAP"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-64">
+        <dropNotNullConstraint columnDataType="number(19,0)" columnName="OFFER_ITEM_CRITERIA_ID" tableName="BLC_QUAL_CRIT_OFFER_XREF"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-65">
+        <dropNotNullConstraint columnDataType="number(19,0)" columnName="OFFER_ITEM_CRITERIA_ID" tableName="BLC_TAR_CRIT_OFFER_XREF"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-66">
+        <dropNotNullConstraint columnDataType="number(19,0)" columnName="OFFER_RULE_ID" tableName="BLC_OFFER_RULE_MAP"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-67">
+        <dropNotNullConstraint columnDataType="number(19,0)" columnName="PAGE_TMPLT_ID" tableName="BLC_PGTMPLT_FLDGRP_XREF"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-68">
+        <dropNotNullConstraint columnDataType="varchar(255 CHAR)" columnName="POSTAL_CODE" tableName="BLC_ADDRESS"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-69">
+        <dropNotNullConstraint columnDataType="varchar(255 CHAR)" columnName="PROPERTY_VALUE" tableName="BLC_SYSTEM_PROPERTY"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-70">
+        <dropNotNullConstraint columnDataType="number(19,0)" columnName="SC_FLD_ID" tableName="BLC_SC_FLD_MAP"/>
+    </changeSet>
+    
+    <!-- Modify Column Type -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-71">
+        <sql>
+            ALTER TABLE BLC_CUSTOMER_PAYMENT_FIELDS ADD TEMP_COLUMN CLOB;
+            UPDATE BLC_CUSTOMER_PAYMENT_FIELDS SET TEMP_COLUMN=FIELD_VALUE;
+            ALTER TABLE BLC_CUSTOMER_PAYMENT_FIELDS DROP COLUMN FIELD_VALUE;
+            ALTER TABLE BLC_CUSTOMER_PAYMENT_FIELDS RENAME COLUMN TEMP_COLUMN TO FIELD_VALUE;
+        </sql>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430153784520-72">
+        <sql>
+            ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF ADD TEMP_COLUMN NUMBER(10,6);
+            UPDATE BLC_PGTMPLT_FLDGRP_XREF SET TEMP_COLUMN=GROUP_ORDER;
+            ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF DROP COLUMN GROUP_ORDER;
+            ALTER TABLE BLC_PGTMPLT_FLDGRP_XREF RENAME COLUMN TEMP_COLUMN TO GROUP_ORDER;
+        </sql>
+    </changeSet>
+    
+    <!-- ADD NOT NULL CONSTRAINT -->
+    
+    <changeSet author="austinrooke (generated)" id="1430153784520-73">
+        <addNotNullConstraint columnDataType="number(19,0)" columnName="SEARCH_FACET_ID" tableName="BLC_SEARCH_FACET_XREF"/>
+    </changeSet>
+</databaseChangeLog>
