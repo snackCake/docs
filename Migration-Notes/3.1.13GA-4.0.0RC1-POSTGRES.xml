@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.3.xsd">
+    <changeSet author="austinrooke (generated)" id="1430412053665-1">
+        <createTable tableName="blc_cms_menu">
+            <column name="menu_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blc_cms_menu_pkey" />
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-2">
+        <createTable tableName="blc_cms_menu_item">
+            <column name="menu_item_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blc_cms_menu_item_pkey" />
+            </column>
+            <column name="action_url" type="VARCHAR(255)"/>
+            <column name="alt_text" type="VARCHAR(255)"/>
+            <column name="custom_html" type="TEXT"/>
+            <column name="label" type="VARCHAR(255)"/>
+            <column name="sequence" type="numeric(10, 6)"/>
+            <column name="menu_item_type" type="VARCHAR(255)"/>
+            <column name="media_id" type="BIGINT">
+                <constraints foreignKeyName="fkfc9bdd76e4720e0" references="blc_media(media_id)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="linked_menu_id" type="BIGINT">
+                <constraints foreignKeyName="fkfc9bdd7a8d0e60c" references="blc_cms_menu(menu_id)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="linked_page_id" type="BIGINT">
+                <constraints foreignKeyName="fkfc9bdd77bb4a41" references="blc_page(page_id)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="parent_menu_id" type="BIGINT">
+                <constraints foreignKeyName="fkfc9bdd73876279d" references="blc_cms_menu(menu_id)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-3">
+        <createTable tableName="blc_country_sub_cat">
+            <column name="country_sub_cat_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blc_country_sub_cat_pkey" />
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-4">
+        <createTable tableName="blc_country_sub">
+            <column name="abbreviation" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blc_country_sub_pkey" />
+            </column>
+            <column name="alt_abbreviation" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_sub_cat" type="BIGINT">
+                <constraints foreignKeyName="fka804fbd172aab3c0" references="blc_country_sub_cat(country_sub_cat_id)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="country" type="VARCHAR(255)">
+                <constraints nullable="false" foreignKeyName="fka804fbd1a46e16cf" references="blc_country(abbreviation)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-5">
+        <createTable tableName="blc_iso_country">
+            <column name="alpha_2" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blc_iso_country_pkey" />
+            </column>
+            <column name="alpha_3" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="numeric_code" type="INT4"/>
+            <column name="status" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-6">
+        <createTable tableName="blc_order_lock">
+            <column name="lock_key" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blc_order_lock_pkey" />
+            </column>
+            <column name="order_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blc_order_lock_pkey" />
+            </column>
+            <column name="last_updated" type="BIGINT"/>
+            <column name="locked" type="BPCHAR(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-7">
+        <createTable tableName="blc_page_attributes">
+            <column name="attribute_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="blc_page_attributes_pkey" />
+            </column>
+            <column name="field_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="field_value" type="VARCHAR(255)"/>
+            <column name="page_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk4fe27601883c2667" references="blc_page(page_id)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <!-- Add Column -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-8">
+        <addColumn tableName="blc_page">
+            <column name="active_end_date" type="timestamp(29, 6)"/>
+            <column name="active_start_date" type="timestamp(29, 6)"/>
+            <column name="meta_description" type="varchar(255)"/>
+            <column name="meta_title" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-9">
+        <addColumn tableName="blc_catalog">
+            <column name="archived" type="bpchar(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-10">
+        <addColumn tableName="blc_customer_address">
+            <column name="archived" type="bpchar(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-11">
+        <addColumn tableName="blc_sandbox">
+            <column name="archived" type="bpchar(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-12">
+        <addColumn tableName="blc_store">
+            <column name="archived" type="bpchar(1)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-13">
+        <addColumn tableName="blc_phone">
+            <column name="country_code" type="varchar(255)"/>
+            <column name="extension" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-14">
+        <addColumn tableName="blc_category_product_xref">
+            <column name="default_reference" type="bool"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-15">
+        <addColumn tableName="blc_category_xref">
+            <column name="default_reference" type="bool"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-16">
+        <addColumn tableName="blc_category">
+            <column name="external_id" type="varchar(255)"/>
+            <column name="override_generated_url" type="bool"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-17">
+        <addColumn tableName="blc_field">
+            <column name="friendly_name" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-18">
+        <addColumn tableName="blc_fld_def">
+            <column name="help_text" type="varchar(255)"/>
+            <column name="hint" type="varchar(255)"/>
+            <column name="tooltip" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-19">
+        <addColumn tableName="blc_product">
+            <column name="override_generated_url" type="bool"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-20">
+        <addColumn tableName="blc_cat_search_facet_excl_xref">
+            <column name="sequence" type="numeric(19, 2)"/>
+        </addColumn>
+    </changeSet>
+    
+    <!-- Add Column + Primary Key Constraint -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-21">
+        <dropPrimaryKey tableName="blc_admin_user_addtl_fields"/>
+        <addColumn tableName="blc_admin_user_addtl_fields">
+            <column name="attribute_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_admin_user_addtl_fields SET attribute_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_admin_user_addtl_fields" columnName="attribute_id"/>
+        <addPrimaryKey columnNames="attribute_id" constraintName="blc_admin_user_addtl_fields_pkey" tableName="blc_admin_user_addtl_fields"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-22">
+        <dropPrimaryKey tableName="blc_sc_fld_map"/>
+        <addColumn tableName="blc_sc_fld_map">
+            <column name="blc_sc_sc_field_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_sc_fld_map SET blc_sc_sc_field_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_sc_fld_map" columnName="blc_sc_sc_field_id"/>
+        <addPrimaryKey columnNames="blc_sc_sc_field_id" constraintName="blc_sc_fld_map_pkey" tableName="blc_sc_fld_map"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-23">
+        <dropPrimaryKey tableName="blc_category_media_map"/>
+        <addColumn tableName="blc_category_media_map">
+            <column name="category_media_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_category_media_map SET category_media_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_category_media_map" columnName="category_media_id"/>
+        <addPrimaryKey columnNames="category_media_id" constraintName="blc_category_media_map_pkey" tableName="blc_category_media_map"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-24">
+        <dropPrimaryKey tableName="blc_offer_rule_map"/>
+        <addColumn tableName="blc_offer_rule_map">
+            <column name="offer_offer_rule_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_offer_rule_map SET offer_offer_rule_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_offer_rule_map" columnName="offer_offer_rule_id"/>
+        <addPrimaryKey columnNames="offer_offer_rule_id" constraintName="blc_offer_rule_map_pkey" tableName="blc_offer_rule_map"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-25">
+        <dropPrimaryKey tableName="blc_qual_crit_offer_xref"/>
+        <addColumn tableName="blc_qual_crit_offer_xref">
+            <column name="offer_qual_crit_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_qual_crit_offer_xref SET offer_qual_crit_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_qual_crit_offer_xref" columnName="offer_qual_crit_id"/>
+        <addPrimaryKey columnNames="offer_qual_crit_id" constraintName="blc_qual_crit_offer_xref_pkey" tableName="blc_qual_crit_offer_xref"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-26">
+        <dropPrimaryKey tableName="blc_tar_crit_offer_xref"/>
+        <addColumn tableName="blc_tar_crit_offer_xref">
+            <column name="offer_tar_crit_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_tar_crit_offer_xref SET offer_tar_crit_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_tar_crit_offer_xref" columnName="offer_tar_crit_id"/>
+        <addPrimaryKey columnNames="offer_tar_crit_id" constraintName="blc_tar_crit_offer_xref_pkey" tableName="blc_tar_crit_offer_xref"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-27">
+        <dropPrimaryKey tableName="blc_pgtmplt_fldgrp_xref"/>
+        <addColumn tableName="blc_pgtmplt_fldgrp_xref">
+            <column name="pg_tmplt_fld_grp_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_pgtmplt_fldgrp_xref SET pg_tmplt_fld_grp_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_pgtmplt_fldgrp_xref" columnName="pg_tmplt_fld_grp_id"/>
+        <addPrimaryKey columnNames="pg_tmplt_fld_grp_id" constraintName="blc_pgtmplt_fldgrp_xref_pkey" tableName="blc_pgtmplt_fldgrp_xref"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-28">
+        <addColumn tableName="blc_site_catalog">
+            <column name="site_catalog_xref_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_site_catalog SET site_catalog_xref_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_site_catalog" columnName="site_catalog_xref_id"/>
+        <addPrimaryKey columnNames="site_catalog_xref_id" constraintName="blc_site_catalog_pkey" tableName="blc_site_catalog"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-29">
+        <dropPrimaryKey tableName="blc_sku_media_map"/>
+        <addColumn tableName="blc_sku_media_map">
+            <column name="sku_media_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_sku_media_map SET sku_media_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_sku_media_map" columnName="sku_media_id"/>
+        <addPrimaryKey columnNames="sku_media_id" constraintName="blc_sku_media_map_pkey" tableName="blc_sku_media_map"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-30">
+        <dropPrimaryKey tableName="blc_sku_option_value_xref"/>
+        <addColumn tableName="blc_sku_option_value_xref">
+            <column name="sku_option_value_xref_id" type="int8"/>
+        </addColumn>
+        <createSequence sequenceName="key_seq" />
+        <sql>UPDATE blc_sku_option_value_xref SET sku_option_value_xref_id = nextval('key_seq');</sql>
+        <dropSequence sequenceName="key_seq" />
+        <addNotNullConstraint tableName="blc_sku_option_value_xref" columnName="sku_option_value_xref_id"/>
+        <addPrimaryKey columnNames="sku_option_value_xref_id" constraintName="blc_sku_option_value_xref_pkey" tableName="blc_sku_option_value_xref"/>
+    </changeSet>
+    
+    <!-- Add Column + Foreign Key Constraint -->
+
+    <changeSet author="austinrooke (generated)" id="1430412053665-31">
+        <addColumn tableName="blc_sku">
+            <column name="addl_product_id" type="int8">
+                <constraints foreignKeyName="fk28e82cf750d6498b" references="blc_product(product_id)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="display_template" type="varchar(255)"/>
+            <column name="external_id" type="varchar(255)"/>
+            <column name="upc" type="varchar(255)"/>
+            <column name="url_key" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-32">
+        <addColumn tableName="blc_address">
+            <column name="full_name" type="varchar(255)"/>
+            <column name="is_mailing" type="bool"/>
+            <column name="is_street" type="bool"/>
+            <column name="iso_country_alpha2" type="varchar(255)">
+                <constraints foreignKeyName="fk299f86ce3a39a488" references="blc_iso_country(alpha_2)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+            <column name="iso_country_sub" type="varchar(255)"/>
+            <column name="sub_state_prov_reg" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-33">
+        <addColumn tableName="blc_page_fld">
+            <column name="page_id" type="int8"/>
+        </addColumn>
+        <sql>
+            UPDATE BLC_PAGE_FLD AS A SET PAGE_ID = B.PAGE_ID FROM BLC_PAGE_FLD_MAP AS B WHERE B.PAGE_FLD_ID = A.PAGE_FLD_ID;
+        </sql>
+        <addNotNullConstraint tableName="blc_page_fld" columnName="page_id"/>
+        <addForeignKeyConstraint baseColumnNames="page_id" baseTableName="blc_page_fld" constraintName="fk86433ad4883c2667" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="page_id" referencedTableName="blc_page"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-34">
+        <addColumn tableName="blc_sc_item_criteria">
+            <column name="sc_id" type="int8">
+                <constraints foreignKeyName="fk6d52bda213d95585" references="blc_sc(sc_id)" deferrable="false" initiallyDeferred="false" deleteCascade="false" />
+            </column>
+        </addColumn>
+    </changeSet>
+    
+    <!-- Create Index -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-35">
+        <createIndex indexName="address_iso_country_idx" tableName="blc_address" unique="false">
+            <column name="iso_country_alpha2"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-36">
+        <createIndex indexName="adminuserattribute_index" tableName="blc_admin_user_addtl_fields" unique="false">
+            <column name="admin_user_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-37">
+        <createIndex indexName="adminuserattribute_name_index" tableName="blc_admin_user_addtl_fields" unique="false">
+            <column name="field_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-38">
+        <createIndex indexName="category_e_id_index" tableName="blc_category" unique="false">
+            <column name="external_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-39">
+        <createIndex indexName="country_sub_alt_abrv_idx" tableName="blc_country_sub" unique="false">
+            <column name="alt_abbreviation"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-40">
+        <createIndex indexName="country_sub_name_idx" tableName="blc_country_sub" unique="false">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-41">
+        <createIndex indexName="pageattribute_index" tableName="blc_page_attributes" unique="false">
+            <column name="page_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-42">
+        <createIndex indexName="pageattribute_name_index" tableName="blc_page_attributes" unique="false">
+            <column name="field_name"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-43">
+        <createIndex indexName="sku_external_id_index" tableName="blc_sku" unique="false">
+            <column name="external_id"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-44">
+        <createIndex indexName="sku_upc_index" tableName="blc_sku" unique="false">
+            <column name="upc"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-45">
+        <createIndex indexName="sku_url_key_index" tableName="blc_sku" unique="false">
+            <column name="url_key"/>
+        </createIndex>
+    </changeSet>
+    
+    <!-- Drop Index -->
+    
+    <changeSet author="austinrooke (generated)" id="1430500841374-46">
+        <dropIndex indexName="search_priority_index" tableName="blc_search_intercept"/>
+    </changeSet>
+    
+    <!-- Drop Foreign Key Constraint -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-47">
+        <dropForeignKeyConstraint baseTableName="blc_category_image" constraintName="fk27cf3e8015d1a13d"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-48">
+        <dropForeignKeyConstraint baseTableName="blc_page_fld_map" constraintName="fke9ee09515aedd08a"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-49">
+        <dropForeignKeyConstraint baseTableName="blc_page_fld_map" constraintName="fke9ee0951883c2667"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-50">
+        <dropForeignKeyConstraint baseTableName="blc_product_sku_xref" constraintName="fkf2dbf6d35f11a0b7"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-51">
+        <dropForeignKeyConstraint baseTableName="blc_product_sku_xref" constraintName="fkf2dbf6d3b78c9977"/>
+    </changeSet>
+    
+    <!-- Drop Unique Constraint -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-52">
+        <dropUniqueConstraint constraintName="cstmr_addr_unique_cnstrnt" tableName="blc_customer_address"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-53">
+        <dropUniqueConstraint constraintName="uk_125f5803e7ab0252" tableName="blc_tar_crit_offer_xref"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-54">
+        <dropUniqueConstraint constraintName="uk_d592e919e7ab0252" tableName="blc_qual_crit_offer_xref"/>
+    </changeSet>
+    
+    <!-- Drop Table -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-55">
+        <dropTable tableName="blc_category_image"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-56">
+        <dropTable tableName="blc_page_fld_map"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-57">
+        <dropTable tableName="blc_product_sku_xref"/>
+    </changeSet>
+    
+    <!-- Drop Not Null Constraint -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-58">
+        <dropNotNullConstraint columnDataType="bigint" columnName="address_id" tableName="blc_customer_payment"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-59">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="country" tableName="blc_address"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-61">
+        <dropNotNullConstraint columnDataType="bigint" columnName="fld_group_id" tableName="blc_pgtmplt_fldgrp_xref"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-62">
+        <dropNotNullConstraint columnDataType="bigint" columnName="media_id" tableName="blc_category_media_map"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-63">
+        <dropNotNullConstraint columnDataType="bigint" columnName="media_id" tableName="blc_sku_media_map"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-64">
+        <dropNotNullConstraint columnDataType="bigint" columnName="offer_item_criteria_id" tableName="blc_qual_crit_offer_xref"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-65">
+        <dropNotNullConstraint columnDataType="bigint" columnName="offer_item_criteria_id" tableName="blc_tar_crit_offer_xref"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-66">
+        <dropNotNullConstraint columnDataType="bigint" columnName="offer_rule_id" tableName="blc_offer_rule_map"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-67">
+        <dropNotNullConstraint columnDataType="bigint" columnName="page_tmplt_id" tableName="blc_pgtmplt_fldgrp_xref"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-68">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="postal_code" tableName="blc_address"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-69">
+        <dropNotNullConstraint columnDataType="varchar(255)" columnName="property_value" tableName="blc_system_property"/>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-70">
+        <dropNotNullConstraint columnDataType="bigint" columnName="sc_fld_id" tableName="blc_sc_fld_map"/>
+    </changeSet>
+    
+    <!-- Modify Column Type -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-71">
+        <sql>
+            ALTER TABLE blc_pgtmplt_fldgrp_xref ADD temp_column NUMERIC(10,6);
+            UPDATE blc_pgtmplt_fldgrp_xref SET temp_column=group_order;
+            ALTER TABLE blc_pgtmplt_fldgrp_xref DROP COLUMN group_order;
+            ALTER TABLE blc_pgtmplt_fldgrp_xref RENAME COLUMN temp_column TO group_order;
+        </sql>
+    </changeSet>
+    <changeSet author="austinrooke (generated)" id="1430412053665-72">
+        <sql>
+            ALTER TABLE blc_customer_payment_fields ADD temp_column TEXT;
+            UPDATE blc_customer_payment_fields SET temp_column=field_value;
+            ALTER TABLE blc_customer_payment_fields DROP COLUMN field_value;
+            ALTER TABLE blc_customer_payment_fields RENAME COLUMN temp_column TO field_value;
+        </sql>
+    </changeSet>
+    
+    <!-- Add Not Null Constraint -->
+    
+    <changeSet author="austinrooke (generated)" id="1430412053665-73">
+        <addNotNullConstraint columnDataType="bigint" columnName="search_facet_id" tableName="blc_search_facet_xref"/>
+    </changeSet>
+</databaseChangeLog>
