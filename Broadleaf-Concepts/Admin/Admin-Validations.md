@@ -135,7 +135,7 @@ Of course if you were already subclassing CustomerImpl and wanted to add validat
 
 ## JSR303 Validations
 
-If you have built a fair amount of additional functionality on top of Broadleaf, chances are you are using standard [JSR-303 validations in Spring MVC](http://static.springsource.org/spring/docs/3.1.3.RELEASE/spring-framework-reference/html/validation.html#validation-beanvalidation). You can enable similar support via the admin by setting up the BeanValidatorEntityValidatorService like so in your applicationContext-admin.xml:
+If you have built a fair amount of additional functionality on top of Broadleaf, chances are you are using standard [JSR-303 validations in Spring MVC](http://docs.spring.io/spring/docs/4.1.6.RELEASE/spring-framework-reference/html/validation.html#validation-beanvalidation). You can enable similar support via the admin by setting up the BeanValidatorEntityValidatorService like so in your applicationContext-admin.xml:
 
 ```xml
 <bean id="blEntityValidatorService" class="org.broadleafcommerce.openadmin.server.service.persistence.validation.BeanValidationEntityValidatorServiceImpl" />
@@ -148,3 +148,13 @@ This also requires a `javax.validation.validator` to be present in Spring's root
 ```
 
 Of course this could be any class that conforms to the `javax.validation.validator` interface.
+
+When using the default Spring implementation, you must ensure Hibernate Validator is on your classpath. Add the following to your pom.xml dependencies section:
+
+```xml
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>4.3.0.Final</version>
+</dependency>
+```
