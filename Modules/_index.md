@@ -5,21 +5,20 @@ Broadleaf Commerce can be enhanced with add-on modules.
 ## Module Licenses
 | License Type | Description | How to get it? |
 | :----------- | :---------- | :------------ |
-| Apache 2 | Indicates the module uses the open source Apache 2 license | [Maven Central](http://search.maven.org/) |
-| Marketplace | Terms vary.  Many are free to use. | ([contact us](http://www.broadleafcommerce.com/contact))|
-| Commercial | A commercial offering from Broadleaf Commerce, LLC | ([contact us](http://www.broadleafcommerce.com/contact))|
+| Community | Indicates the module uses the open source Apache 2 license | [Maven Central](http://search.maven.org/) |
+| Enterprise | A commercial offering from Broadleaf Commerce, LLC | ([contact us](http://www.broadleafcommerce.com/contact))|
 
 ## Module Categories
 
 | Module Category | Description |
 | :----------- | :---------- |
-| [Commercial Modules](#commercial-modules) | Provide enterprise feature add-ons to Broadleaf |
+| [Enterprise Modules](#enterprise-modules) | Provide enterprise feature add-ons to Broadleaf |
 | [Payment Modules](#payment-modules) | Provide payment processing. |
 | [Wallet Modules](#wallet-modules) | Provide digital wallet solutions for easy checkout. |
 | [Tax Modules](#tax-modules) | Provide tax calculations. |
 | [Shipping Modules](#shipping-modules) | Provide shipping options and calculations. |
 
-## <a name="commercial-modules"></a>Commercial Modules 
+## <a name="enterprise-modules"></a>Enterprise Modules 
 ### Workflows and Approvals
 * Ability to modify products, offers, prices in a sandbox
 * Preview changes before they go live
@@ -90,30 +89,30 @@ Broadleaf Commerce can be enhanced with add-on modules.
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
-| [Authorize.net] (http://docs.broadleafcommerce.org/authorizenet/current) | Marketplace | Payments through CyberSource's [Authorize.net](http://www.authorize.net) gateway |
-| [Paypal] (http://docs.broadleafcommerce.org/paypal/current)  | Marketplace | Payments through PayPal's [express checkout](https://www.paypal.com/webapps/mpp/express-checkout) |
-| [PayPal Payflow Pro] (http://docs.broadleafcommerce.org/paypal-payflowpro/current) | Marketplace | Payments through PayPal's [Payflow Pro](https://www.paypal.com/us/webapps/mpp/referral/paypal-payflow-pro) |
-| [Braintree] (http://docs.broadleafcommerce.org/braintree/current) | Marketplace | Payments through [Braintree Payments](https://www.braintreepayments.com/) |
-| [CyberSource Payment] (http://docs.broadleafcommerce.org/cybersource-payment/current) | Marketplace | Payments through CyberSource's [Secure Acceptance Silent Order Post](http://www.cybersource.com/resources/collateral/pdf/SecureAcceptance_SilentOrderPost.pdf) and CyberSource's [SOAP API](http://www.cybersource.com/developers/learn/integration_methods/simple_order_api/learn_more.php) |
-| [Sagepay] (http://docs.broadleafcommerce.org/sagepay/current)  | Marketplace | Payments through [Sagepay](http://www.sagepay.co.uk/) |
+| [Authorize.net] (http://docs.broadleafcommerce.org/authorizenet/current) | Enterprise | Payments through CyberSource's [Authorize.net](http://www.authorize.net) gateway |
+| [Paypal] (http://docs.broadleafcommerce.org/paypal/current)  | Enterprise | Payments through PayPal's [express checkout](https://www.paypal.com/webapps/mpp/express-checkout) |
+| [PayPal Payflow Pro] (http://docs.broadleafcommerce.org/paypal-payflowpro/current) | Enterprise | Payments through PayPal's [Payflow Pro](https://www.paypal.com/us/webapps/mpp/referral/paypal-payflow-pro) |
+| [Braintree] (http://docs.broadleafcommerce.org/braintree/current) | Enterprise | Payments through [Braintree Payments](https://www.braintreepayments.com/) |
+| [CyberSource Payment] (http://docs.broadleafcommerce.org/cybersource-payment/current) | Enterprise | Payments through CyberSource's [Secure Acceptance Silent Order Post](http://www.cybersource.com/resources/collateral/pdf/SecureAcceptance_SilentOrderPost.pdf) and CyberSource's [SOAP API](http://www.cybersource.com/developers/learn/integration_methods/simple_order_api/learn_more.php) |
+| [Sagepay] (http://docs.broadleafcommerce.org/sagepay/current)  | Enterprise | Payments through [Sagepay](http://www.sagepay.co.uk/) |
 
 ## <a name="wallet-modules"></a>Wallet Modules
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
-| [MasterPass] (http://docs.broadleafcommerce.org/masterpass/current)  | Marketplace | Digital wallet solution through [MasterPass by MasterCard](https://masterpass.com/) |
+| [MasterPass] (http://docs.broadleafcommerce.org/masterpass/current)  | Enterprise | Digital wallet solution through [MasterPass by MasterCard](https://masterpass.com/) |
 
 ## <a name="tax-modules"></a>Tax Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
-| [Avalara] (http://docs.broadleafcommerce.org/avalara/current)  | Marketplace | Sales tax through [Avalara] (http://www.avalara.com/) |
+| [Avalara] (http://docs.broadleafcommerce.org/avalara/current)  | Enterprise | Sales tax through [Avalara] (http://www.avalara.com/) |
 
 ## <a name="shipping-modules"></a>Shipping Modules
 
 | Module Name | License | Description |
 | :---------- | :------ | :---------- |
-| FedEx | Marketplace | Shipping quotes from [FedEx web services](http://www.fedex.com/us/developer/product/basics.html) |
-| [USPS] (http://docs.broadleafcommerce.org/usps/current)  | Marketplace | Shipping quotes from [USPS web tools](https://www.usps.com/business/web-tools-apis/welcome.htm) |
+| FedEx | Enterprise | Shipping quotes from [FedEx web services](http://www.fedex.com/us/developer/product/basics.html) |
+| [USPS] (http://docs.broadleafcommerce.org/usps/current)  | Enterprise | Shipping quotes from [USPS web tools](https://www.usps.com/business/web-tools-apis/welcome.htm) |
 
 
 ## Community Modules
