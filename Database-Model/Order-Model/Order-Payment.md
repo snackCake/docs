@@ -8,11 +8,11 @@
 
 | Table                        | Related Entity | Description                                         |
 |:-----------------------------|:----------|:----------------------------------------------------|
-|BLC\_BANK\_ACCOUNT\_PAYMENT      | ^[javadoc:org/broadleafcommerce/core/payment/domain/BankAccountPaymentInfo]      | Contains data about a bank account used for payment  |
-|BLC\_GIFT\_CARD\_PAYMENT         | ^[javadoc:org/broadleafcommerce/core/payment/domain/GiftCardPaymentInfo]      | Contains data about a gift card used for payment  |
-|BLC\_CREDIT\_CARD\_PAYMENT       | ^[javadoc:org/broadleafcommerce/core/payment/domain/CreditCardPaymentInfo]      | Contains information about a credit card used for payment  |
+|BLC\_BANK\_ACCOUNT\_PAYMENT      | ^[javadoc:org/broadleafcommerce/core/payment/domain/secure/BankAccountPayment]      | Contains data about a bank account used for payment  |
+|BLC\_GIFT\_CARD\_PAYMENT         | ^[javadoc:org/broadleafcommerce/core/payment/domain/secure/GiftCardPayment]      | Contains data about a gift card used for payment  |
+|BLC\_CREDIT\_CARD\_PAYMENT       | ^[javadoc:org/broadleafcommerce/core/payment/domain/secure/CreditCardPayment]      | Contains information about a credit card used for payment  |
 |BLC\_ORDER\_PAYMENT             | ^[javadoc:org/broadleafcommerce/core/payment/domain/OrderPayment]      | Contains payment information for an order  |
-|BLC\_ORDER\_PAYMENT\_TRANSACTION     | ^[javadoc:org/broadleafcommerce/core/payment/domain/OrderPaymentTransaction]      | Contains transaction information related to an Order Payment  |
+|BLC\_ORDER\_PAYMENT\_TRANSACTION     | ^[javadoc:org/broadleafcommerce/core/payment/domain/PaymentTransaction]      | Contains transaction information related to an Order Payment  |
 |BLC\_TRANS\_ADDITNL\_FIELDS | n/a      | Contains important Gateway Specific Payment Data for a particular Payment Transaction |
 |BLC\_PAYMENT\_LOG               | ^[javadoc:org/broadleafcommerce/core/payment/domain/PaymentLog]      | Contains summary information for a payment instance  |
 
