@@ -6,12 +6,9 @@ Thanks for exploring Broadleaf Commerce!  With this tutorial, you'll have your e
 
 ## <a name="wiki-prerequisites"></a> Prerequisites
 
-- First, you'll need either Java 7 or Java 8 Development Kit (JDK)
+- First, download [the Java 8 Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 
-    - [Java 7 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
-    - [Java 8 JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-
-> Broadleaf offically recommends using Java 8. As of version 4.0, Broadleaf is not compatible with Java 6.
+> [[Debugging Startup Issues]]
 
 - You will also need the latest version of Maven (at least version 3.1, version 3.2 is recommended), which you can get [on the official Apache Maven site](http://maven.apache.org/download.html)
 
@@ -21,9 +18,7 @@ Thanks for exploring Broadleaf Commerce!  With this tutorial, you'll have your e
 
 Once you have the Java SDK installed, we're ready to get your IDE up and running. Let's start by downloading Eclipse.
 
-Download Link: [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunar)
-
-> For Java 8 users you must use at least Eclipse Luna. Previous releases do not support Java 8
+Download Link: [Eclipse IDE for Java EE Developers](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunasr2)
 
 Once Eclipse is done downloading, extract the archive and start it up. You'll be prompted for a workspace:
 
