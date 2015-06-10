@@ -52,9 +52,12 @@ A very common step that users may want to do is switch away from the bundled HSQ
 5. Update the build properties to use the correct MySQL database. In `build.properties`, you will want to update the following:
 
     ```ini
-    database.user=sa
+    # your local database username, just a user that has readwrite permissions
+    database.user=root
+    # local database password
     database.password=
     database.driver=com.mysql.jdbc.Driver
+    # this connection URL assumes that it is connecting to a schema called broadleaf
     database.url=jdbc:mysql://localhost:3306/broadleaf?useUnicode=true&amp;characterEncoding=utf8
     ```
     > Note: `database.driver` and `database.url` have been changed from HSQLDB to MySQL.
