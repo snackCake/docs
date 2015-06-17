@@ -30,7 +30,7 @@ In `config/domain.xml`
 
 For all other application servers, consult the server documentation for how to pass custom JVM arguments to the instance.
 
-[Spring instrument jar download](https://github.com/BroadleafCommerce/DemoSite/raw/master/lib/spring-instrument-3.2.2.RELEASE.jar)
+[Spring instrument jar download](https://github.com/BroadleafCommerce/DemoSite/raw/master/lib/spring-instrument-4.1.6.RELEASE.jar)
 
 > Note: the recommended version for Spring instrument might change as the version of Spring that Broadleaf targets changes
 
