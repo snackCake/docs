@@ -12,4 +12,4 @@ To begin working with Broadleaf Commerce, you will want to follow the [[Getting 
 
 ## Software License
 
-Broadleaf Commerce is distributed under the [Apache License 2.0](http://www.broadleafcommerce.org/license).
+Broadleaf Commerce is distributed under the [Apache License 2.0](http://www.broadleafcommerce.com/license/commercial).
