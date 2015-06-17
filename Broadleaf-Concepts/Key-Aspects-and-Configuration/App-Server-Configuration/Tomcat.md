@@ -51,7 +51,7 @@ You can then optionally modify build.xml to add a new ant task for this:
 </target>
 ```
 
-For admin, the configuration is similar but you would change the ```port``` to ```8081```. For more information on this plugin, check out the [plugin documentation](http://tomcat.apache.org/maven-plugin-2.0-SNAPSHOT/run-mojo-features.html).
+For admin, the configuration is similar but you would change the ```port``` to ```8081```. For more information on this plugin, check out the [plugin documentation](http://tomcat.apache.org/maven-plugin-2.2/run-mojo-features.html).
 
 ## Character Encoding
 
