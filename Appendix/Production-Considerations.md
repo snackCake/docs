@@ -39,8 +39,7 @@ Finally, for extremely large catalogs with a high frequency of cache update, mor
 for to mitigate excessive Java garbage collection from cache puts and removes. Terracotta's BigMemory product offers a good solution to this type of caching
 problem and Broadleaf Commerce is compatible with this solution. In addition, we have built a BigMemory specific module for
 our Hydrated Cache solution that works in concert with Hibernate's level 2 cache to offer full in-memory object cache for entity
-properties, in addition to the dehydrated state maintained by Hibernate. Refer to this webinar for more information,
-http://www.slideshare.net/crederajfischer/bigmemory-for-bigproblems-improving-performance-of-a-real-world-ecommerce-application-based-on-hibernate-broadleaf-commerce.
+properties, in addition to the dehydrated state maintained by Hibernate.
 
 ##Data Propagation Between Environments
 
