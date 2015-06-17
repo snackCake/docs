@@ -14,4 +14,4 @@ By default, Broadleaf Commerce employs a useless pass-through implementation for
 <bean id="blEncryptionModule" class="com.mycompany.encryption.MyEncryptionModule"/>
 ```
 
-Choosing a strategy for encryption and decryption of sensitive customer data is an important consideration, especially for PCI compliance. We suggest StrongKey, which serves to centrally manage symmetric encryption keys. Creating a custom encryption module that works in tandem with StrongKey represents a viable approach for key management and secure storage of customer data. Please refer to the StrongKey website for more information: http://www.strongkey.org/. 
+Choosing a strategy for encryption and decryption of sensitive customer data is an important consideration, especially for PCI compliance. We suggest StrongKey, which serves to centrally manage symmetric encryption keys. Creating a custom encryption module that works in tandem with StrongKey represents a viable approach for key management and secure storage of customer data. Please refer to the StrongKey website for more information: http://strongkey.strongauth.com/. 
