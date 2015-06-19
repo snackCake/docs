@@ -37,12 +37,12 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Support for separate, shared, or partially shared catalogs per site
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/multitenant/current)
 
-### Advanced Pricing (PriceList) Module 
+### Enterprise Pricing (PriceList) Module 
 * Manage separate price lists
 * Flexible rule based price list determination based on customer, locale, time
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/pricelist/current)
 
-### Advanced Offers Module
+### Enterprise Offers Module
 * Tiered Offers (Allows a single offer that varies the discount based on quantity purchased)
 * Customer Specific TimeZone Offers (Ability to run a special from 5-6pm in the customer's timezone or a specific timezone)
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/advancedoffer/current)
@@ -52,9 +52,10 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Fields are automatically available for use in offer and content targeting rules
 * [Full Module Documentation] (http://docs.broadleafcommerce.org/customfield/current)
 
-### Advanced CMS
+### Enterprise CMS
 * Extends the Broadleaf Structured Content concept with more intuitive admin organization
 * Supports templates with tiles that can serve mixed content
+* [Full Module Documentation] (http://docs.broadleafcommerce.org/advancedcms/current)
 
 ### Subscription
 * Adds subscription fields to the order and product domain
@@ -65,7 +66,7 @@ Broadleaf Commerce can be enhanced with add-on modules.
 * Creates Fulfillment Orders after an order has been submitted
 * Support for separate shipments, item cancellation, capture payment on fulfillment, and refunds
 
-### Advanced Inventory
+### Enterprise Inventory
 * Manage inventory at different Fulfillment Locations
 * Allow customers to subscribe to be notified when inventory is available for out-of-stock Skus
 * Deal with high-contention inventory scenarios
