@@ -20,7 +20,7 @@ The above command (`zkcli.sh`) may require that you have aleady run Solr as a st
 - The above command uploads the contents of the `blcSolrConfig` directory to the Zookeeper Quorum using a configuration name of "blc" (more on this later)
 - Now, Zookeeper has most of the files that Solr will need
 - Create a directory called `blcSolrHome0` anywhere on the file system (e.g. `$SOLR_HOME/myServer/blcSolrHome0`)
-- Copy the ```solr.xml``` file from `blcSolrConfig` to `blcSolrHome0`
+- Copy the `solr.xml` file from `blcSolrConfig` to `blcSolrHome0`
 - Create a directory called `blcSolrHome1` anywhere on the file system (e.g. `$SOLR_HOME/myServer/blcSolrHome1`)
 - Copy the `solr.xml` file from `blcSolrConfig` to `blcSolrHome1`
 - Start an instance of Solr on port 8983 connecting to the Zookeeper Quorum and using `blcSolrHome0` as the home directory: 
@@ -38,7 +38,7 @@ The above command (`zkcli.sh`) may require that you have aleady run Solr as a st
 
 - Now you have 2 nodes or instances of SolrCloud running, with a 3-node Quorum (cluster) of Zookeeper instances managing the Solr cluster
 
-Note that each of the Zookeeper instances can be configured on a different physical machine, as can each of the SolrCloud instances.  The configuration name "blc" is used, when creating collections, to specify the configuration for the collection.  See the [collection API](https://cwiki.apache.org/confluence/display/solr/Collections+API) for more information on creating collections.  One thing to note: You do not need to create any collections or aliases at this point.  Broadleaf will evaluate your cluster state and create the necessary collections and aliases as needed.  That said, this is a good time to talk about collections and aliases in case you want to create them yourself.
+Note that each of the Zookeeper instances can be configured on a different physical machine, as can each of the SolrCloud instances.  The configuration name "blc" is used, when creating collections, to specify the configuration for the collection.  See the [collection API](https://cwiki.apache.org/confluence/display/solr/Collections+API) for more information on creating collections.  Typically, Broadleaf will evaluate your cluster state and create the necessary collections and aliases for you but with SolrCloud, it is better to create the collections and aliases in advance so you can define the replication setup as well.  That said, this is a good time to talk about collections and aliases in case you want to create them yourself.
 
 SolrCloud allows you to create one or more collections.  A collection is an abstraction on top of a Solr core. It is like a core, except that it can be distributed across multiple Solr servers.  A collection can be aliased, meaning it can be assigned and referenced by another name.  If you do not create the proper collections and aliases, Broadleaf will create the following:
 
@@ -51,22 +51,24 @@ In other words, Broadleaf requires an alias called "primary" and an alias called
 
 If Broadleaf is configured to do full reindexing (using the `SolrIndexService`) it will reindex the collection aliased as "reindex" and then it will tell Solr to reassign the alias of the indices (essentially swapping aliases with their respective collections).  This is similar to the concept of core swapping on an embedded or stand-alone Solr configuration. Although Solr allows a single alias to point to multiple collections, it is important that aliases and collections serving Broadleaf have a one-to-one relationship.
 
-You can create the collections and aliases in advance if you would like.  You can do this via a browser (see the [collection API](https://cwiki.apache.org/confluence/display/solr/Collections+API)).  If you do, it is recommended to create them as follows:
+Creating the collections and aliases in advance can be done via a browser (see the [collection API](https://cwiki.apache.org/confluence/display/solr/Collections+API)).  It is recommended to create them as follows:
 
 - "blcCollection0" : aliased as "primary"
 - "blcCollection1" : aliased as "reindex"
 
-This can be done using the following URLs in a browswer, for example to create the collections:
+This can be done using the following URLs in a browswer.  For example to create the collections:
 
 ```
-http://localhost:8983/solr/admin/collections?action=CREATE&name=blcCollection0&numShards=2&collection.configName=blc
+http://localhost:8983/solr/admin/collections?action=CREATE&name=blcCollection0&numShards=2&collection.configName=blc&replicationFactor=2&maxShardsPerNode=2
 ```
 
 ```
-http://localhost:8983/solr/admin/collections?action=CREATE&name=blcCollection1&numShards=2&collection.configName=blc
+http://localhost:8983/solr/admin/collections?action=CREATE&name=blcCollection1&numShards=2&collection.configName=blc&replicationFactor=2&maxShardsPerNode=2
 ```
 
-And to create the aliases:
+Notice that as part of the collection creation, we are also specifying the `replicationFactor` and `maxShardsPerNode`.  This will setup shard replication so that your indexes are reduncant across different nodes (see [shards and indexing](https://cwiki.apache.org/confluence/display/solr/Shards+and+Indexing+Data+in+SolrCloud)).  This provides failover should a node be lost. 
+
+Now let's create the aliases:
 
 ```
 http://localhost:8983/solr/admin/collections?action=CREATEALIAS&name=primary&collections=blcCollection0
