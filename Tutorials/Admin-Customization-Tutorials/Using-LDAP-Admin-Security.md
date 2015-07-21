@@ -6,7 +6,7 @@ Many orgizations use LDAP to store security credentials and wish to leverage exi
 - Add the following configuration:
 
 ```xml
-<bean id="blUserDetailsMapper" class="org.broadleafcommerce.openadmin.server.security.ldap.BroadleafAdminLdapUserDetailsMapper">
+<bean id="blUserDetailsMapper" class="org.broadleafcommerce.openadmin.server.security.external.BroadleafAdminLdapUserDetailsMapper">
     <property name="roleNameSubstitutions">
         <map>
             <!-- Note that you must map the LDAP role(s) to 1 or more Broadleaf roles -->
