@@ -35,7 +35,7 @@ Here is a sample snippet that can be added to the heat clinic to show breadcrumb
 </div>
 ```
 
->> Note that this specific HTML attempts to show the SEARCH term as a Breadcrumb and provides a link for all crumbs except for the last one 
+> Note that this specific HTML attempts to show the SEARCH term as a Breadcrumb and provides a link for all crumbs except for the last one 
 
 
 # Relative URLs
@@ -53,14 +53,14 @@ To aid with this type of requirement, the following approach can be used ...
 
 **Step One** 
 Enable product resolution by id by setting the `allowProductResolutionUsingIdParam=true` in common.properties.
->> This will allow the ProductHandlerMapping to locate the product by id in addition to using the URL.
+> This will allow the ProductHandlerMapping to locate the product by id in addition to using the URL.
 
 
 **Step Two** 
 Use the Thymeleaf relative URL expression to build a relative url.  
 
 For example, in productListItem.html, replace `*{url}` with `#blc.relativeURL(product)`
->> This will take the last fragment of the product url and append it to the currentUrl and append the id of the product, resulting in a URL like `/clearance/green-ghost?productId=7` instead of using the default url e.g. `/hot-sauces/green-ghost`
+> This will take the last fragment of the product url and append it to the currentUrl and append the id of the product, resulting in a URL like `/clearance/green-ghost?productId=7` instead of using the default url e.g. `/hot-sauces/green-ghost`
 
 
 
