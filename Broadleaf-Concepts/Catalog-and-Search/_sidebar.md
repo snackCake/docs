@@ -1,3 +1,4 @@
 - [[Solr Deployment Models | Deployment Models]]
 - [[Indexing]]
 - [[Searching]]
+- [[Breadcrumbs]]
