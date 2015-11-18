@@ -53,9 +53,9 @@ Let's take a look at the relevant chunk:
 
 These two divs are mutually exclusive. Notice that they both share the check for whether the current customer is anonymous (`${customer.anonymous}`), with one div handling each case. This is evaluated via the `th:if` and `th:unless` tags. 
 
-> Unfamiliar users will definitely want to review the [Thymeleaf Documentation](http://www.thymeleaf.org/doc/Tutorial%20-%20Using%20Thymeleaf%2020120517.pdf) to learn more about this templating engine.
+> Unfamiliar users will definitely want to review the [Thymeleaf Documentation](http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.pdf) to learn more about this templating engine.
 
-We can see in the non-anonymous div the line `#{home.welcome}`. This is a Thymeleaf expression that looks up a 'home.welcom' key in a Spring message bundle. The default file for this is `messages.properties` in the `src/main/resources` folder in the site project. Let's search for the `home.welcome` key and change the value to `Hello` and take a look!
+We can see in the non-anonymous div the line `#{home.welcome}`. This is a Thymeleaf expression that looks up a 'home.welcome' key in a Spring message bundle. The default file for this is `messages.properties` in the `src/main/resources` folder in the site project. Let's search for the `home.welcome` key and change the value to `Hello` and take a look!
 
 ```ini
 home.welcome=Hello
