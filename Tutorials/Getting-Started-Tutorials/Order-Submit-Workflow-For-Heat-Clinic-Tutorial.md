@@ -81,7 +81,7 @@ public class RecordHeatRangeActivity extends BaseActivity {
 }
 ```
 
-> Note: You should choose `org.broadleafcommerce.core.order.domain.Order`, `org.apache.juli.logging.Log`, and `org.apache.juli.logging.LogFactory` as imports.
+> Note: You should choose `org.broadleafcommerce.core.order.domain.Order`, `org.apache.common.logging.Log`, and `org.apache.common.logging.LogFactory` as imports.
 
 Notice that the activity loops through all current products in the order and assigns the appropriate heat range to the customer.
 
