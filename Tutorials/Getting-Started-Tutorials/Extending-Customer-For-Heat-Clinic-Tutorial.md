@@ -37,6 +37,7 @@ and our implementation of that interface:
 ```java
 @Entity
 @Table(name = "HC_CUSTOMER")
+@PrimaryKeyJoinColumn(name = "CUSTOMER_ID")
 public class HCCustomerImpl extends CustomerImpl implements HCCustomer {
     private static final long serialVersionUID = 6545097668293683751L;
 
