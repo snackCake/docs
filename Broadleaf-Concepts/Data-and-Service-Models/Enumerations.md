@@ -39,26 +39,27 @@ if(!FulfillmentType.GIFT_CARD.equals(fulfillmentGroup.getType())) {
 
 ##DataDrivenEnumeration
 
-A `DataDrivenEnumeration` is an entity that contains a list of `DataDrivenEnumerationValue` values.  A `DataDrivenEnumerationValue` is also an entity and provides structure to a single `String` value.  In contrast to the `BroadleafEnumerationType` which is used to hard-code a set of values, the `DataDrivenEnumeration` contains a set of database stored values which can be changed as needed.
+A `DataDrivenEnumeration` is an entity that contains a list of `DataDrivenEnumerationValue` values.  A `DataDrivenEnumerationValue` is also an entity and provides structure to a single `String` value.  In contrast to the `BroadleafEnumerationType`, which is used to hard-code a set of values, the `DataDrivenEnumeration` contains a set of database stored values which can be changed as needed.
 
 The admin console provides configuration screens to create and edit `DataDrivenEnumerations` (under the `Utilities` tab in the sidebar).  Once an enumeration is created using the admin console, it is saved to the database for future use.  
   
-An example of how use a `DataDrivenEnumeration` is the creation of drop-down menus in the admin console.  In order to use a `DataDrivenEnumeration` to supply values to an admin drop-down menu, the `@AdminPresentation` annotation is used with the `@AdminPresentationDataDrivenEnumeration` annotation.  Below is an example:
-
->Note:  `@AdminPresentation` is used to style and place the field.  `@AdminPresentationDataDrivenEnumeration` is used to specify that the field will be assigned a value from a specific subset of `DataDrivenEnumerationValue` values.  
+An example of how use a `DataDrivenEnumeration` is the creation of drop-down menus in the admin console.  In order to use a `DataDrivenEnumeration` to supply values to an admin drop-down menu; the `@AdminPresentation` annotation is used with the `@AdminPresentationDataDrivenEnumeration` annotation.  Below is an example:  
 
 ```java
 @Column(name = "TAX_CODE")
 @AdminPresentation(friendlyName = "SkuImpl_Sku_TaxCode")
 @AdminPresentationDataDrivenEnumeration(optionFilterParams = { @OptionFilterParam(param = "type.key", value = "TAX_CODE", paramType = OptionFilterParamType.STRING) })
 protected String taxCode;
-```
+``` 
+
++ `@AdminPresentation` - Used to style and place the field.
++ `@AdminPresentationDataDrivenEnumeration` - Used to specify that the field will be assigned a value from a specific subset of `DataDrivenEnumerationValue` values.
 + `optionFilterParams` - Additional parameters to refine the query that is used to specify which values will be visible in the drop-down menu.
 + `param = "type.key"` - The field name in the target entity that should be used to refine the query.  In this case, type is from the `DataDrivenEnumerationValue` and key is from `DataDrivenEnumeration`.
 + `value = "TAX_CODE"` - The field value that should match for any items returned from the query.
 + `paramType = OptionFilterParamType.STRING` - This is the type for the value stored in this `OptionFilterParam` annotation.
 
-The `@AdminPresentationDataDrivenEnumeration` annotation specifies that the field `taxCode` will be assigned a value from the set of `DataDrivenEnumerationValue` values which have `type.key = "TAX_CODE"`.  The admin console will display a drop-down menu containing this set of values.
+`@AdminPresentationDataDrivenEnumeration` specifies that the field `taxCode` will be assigned a value from the set of `DataDrivenEnumerationValue` values which have `type.key = "TAX_CODE"`.  The admin console will display a drop-down menu containing this set of values.
 
 Here is alternate example illustrating the creation of a drop-down whose values come from `CategoryImpl.name`:
 
