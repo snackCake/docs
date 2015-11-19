@@ -18,7 +18,7 @@ This ContextLoader will analyze the contents of all applicationContexts specifie
 
 ### Strategy 1: Set/List/Map FactoryBeans
 
-This is the newer of the two strategies in Broadleaf, and all new configuration is written in this pattern. The easiest way to show this strategy is by example. Let's take a look at some configuration that lives in a Broadleaf applicationContext file:
+This is the newer of the two strategies used in Broadleaf, and all new configurations are written in this pattern. The easiest way to show this strategy is by example. Let's take a look at some of the configuration that lives in a Broadleaf applicationContext file:
 
 ```xml
 <bean id="blDialectProcessors" class="org.springframework.beans.factory.config.SetFactoryBean">
@@ -35,7 +35,7 @@ This is the newer of the two strategies in Broadleaf, and all new configuration 
 </bean> 
 ```
 
-What we have here is a bean called `blDialect` that has a property in it called `processors` which takes a Set of things that implement the Thymeleaf `IProcessor`. This applicationContext file also defines another bean called `blDialectProcessors` of type `SetFactoryBean`. This means that Spring will do some processing for this SetFactoryBean, and when it is injected into the `processors` property, it will be transformed into a Set.
+What we have here is a bean called `blDialect` that has a property in it called `processors` which takes a Set of beans that implement the Thymeleaf `IProcessor`. This applicationContext file also defines another bean called `blDialectProcessors` of type `SetFactoryBean`. This means that Spring will do some processing for this SetFactoryBean, and when it is injected into the `processors` property, it will be transformed into a Set.
 
 We are able to contribute an additional processor to this Set without copy-pasting the entire `blDialectProcessors` bean. We do so with the following configuration:
 
@@ -54,13 +54,13 @@ We are able to contribute an additional processor to this Set without copy-pasti
 </bean>    
 ```
 
-This additional configuration triggers the creation of a new bean, `blDialectAdditionalProcessors` that then defines two extra processors that we want to add to the `blDialect processors` property. Secondly, we define a `LateStageMergeBeanPostProcessor` that will merge our new bean into the existing bean. Then, when the existing bean is injected into `blDialect`, it will contain our extra entries.
+Firstly, this additional configuration triggers the creation of a new bean, `blDialectAdditionalProcessors` that then defines two extra processors that we want to add to the `blDialect processors` property. Secondly, we define a `LateStageMergeBeanPostProcessor` that will merge our new bean into the existing bean. Lastly, when the existing bean is injected into `blDialect`, it will contain our extra entries.
 
 This strategy is applicable for adding entries into any pre-defined Broadleaf beans.
 
 ### Strategy 2: XPath based merging
 
-This older merge strategy is still used in parts of the system that have not been migrated to the new style. It leverages various XPath based merge strategies defined in [default.properties](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/common/src/main/resources/org/broadleafcommerce/common/extensibility/context/merge/default.properties). This approach actually modifies the XML structure of the merged applicationContexts before it reaches Spring. Let's take a look at an example of registering multiple dialects in the `blWebTemplateEngine`:
+This is the older merge strategy and is still used in parts of the system that have not been migrated to the new style. It leverages various XPath based merge strategies defined in [default.properties](https://github.com/BroadleafCommerce/BroadleafCommerce/blob/master/common/src/main/resources/org/broadleafcommerce/common/extensibility/context/merge/default.properties). This approach actually modifies the XML structure of the merged applicationContexts before it reaches Spring. Let's take a look at an example of registering multiple dialects in the `blWebTemplateEngine`:
 
 ```xml
 <bean id="blWebTemplateEngine" class="org.thymeleaf.spring3.SpringTemplateEngine">
@@ -112,15 +112,15 @@ the XML that is produced would be:
 
 ### Which strategy should I use?
 
-When possible, you want to use strategy 1. Whenever the goal is to merge into an existing `ListFactoryBean`, `SetFactoryBean`, or `MapFactoryBean`, this is the right approach.
+When possible, you want to use **Strategy 1**. Whenever the goal is to merge into an existing `ListFactoryBean`, `SetFactoryBean`, or `MapFactoryBean`, this is the right approach.
 
-If you are wanting to contribute an entry to a collection that is not handled by one of those three classes, the next step is to check if an entry in default.properties exists. If it does, you are able to use the second merge strategy.
+If you want to contribute an entry to a collection that is not handled by one of those three classes, the next step is to check if an entry in `default.properties` exists. If it does, you are able to use the second merge strategy.
 
 ### Disabling the second strategy
 
 On occassion, you may need to override the Broadleaf merging process.
 
-This can be done by by adding a file named `broadleaf-commerce/skipMergeComponents.txt` in your classpath. For example, in the DemoSite, put this file in the `core/src/main/resources` directory.
+This can be done by adding a file named `broadleaf-commerce/skipMergeComponents.txt` to your classpath. For example, in the DemoSite, put this file in the `core/src/main/resources` directory.
 
 The file should contain a list of component names for which you do not want the Broadleaf Commerce merge process to be used. The example below would not perform merging on the `blAddItemWorkflow` and `blUpdateItemWorkflow` components.
 
@@ -133,4 +133,4 @@ By adding a component to this list, the default Spring merging process will be u
 
 ## Merging Spring MVC Application Contexts
 
-For servlet-level application context files, the second strategy described above is not applicable, as there is no special ContextLoader to process the XML. However, the first strategy is still applicable for any beans that utilize the new FactoryBean approach.
+For servlet-level application context files, **Strategy 2** described above is not applicable, as there is no special ContextLoader to process the XML. However, the first strategy is still applicable for any beans that utilize the new FactoryBean approach.

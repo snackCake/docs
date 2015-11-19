@@ -6,7 +6,7 @@ As a developer, you may be presented with interesting requirements in your imple
 
 ## Hooking into the add item workflow
 
-The first thing we need to do to override a Broadleaf Workflow is to place the default configuration into our possession. This is very easy -- just add the follow to the bottom of your `applicationContext.xml` file:
+The first thing we need to do to override a Broadleaf Workflow is to place the default configuration into our possession. This is very easy -- just add the following to the bottom of your `applicationContext.xml` file:
 
 ```xml
 <bean id="blAddItemWorkflow" class="org.broadleafcommerce.core.workflow.SequenceProcessor">
