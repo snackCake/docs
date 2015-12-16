@@ -13,7 +13,7 @@ First, we will need to support a new Referenced implementation if we plan on sto
 - the information must be kept secure
 - or, the information required to represent the account is more complicated than a simple account number
 
-Please read the [[Payment Security and PCI Compliance]] section for more information on ensuring data is secure.
+Please read the [[Payment Security and PCI Compliance]] section for more information on ensuring that data is secure.
 
 For this example, we will assume that employee account information passes this litmus test for creating a Referenced implementation. First, we'll create a custom interface that extends Referenced and defines our additional custom fields.
 

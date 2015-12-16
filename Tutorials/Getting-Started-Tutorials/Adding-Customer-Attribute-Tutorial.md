@@ -69,7 +69,7 @@ String url = super.processRegister(registerCustomerForm, errors, request, respon
         referralCodeAttr.setCustomer(newCustomer);
         
         // Update our customer object
-        newCustomer.getCustomerAttributes().add(referralCodeAttr);
+        newCustomer.getCustomerAttributes().put("referralCode", referralCodeAttr);
         newCustomer = customerService.saveCustomer(newCustomer);
 
         // Place the new customer onto the request

@@ -4,7 +4,7 @@ Certain occasions will arise when it will become necessary for you to alter the 
 
 ## Extend An Existing Service Implementation
 
-Let's first take a look at a service where we want to alter the behavior slightly. In this case, the best approach is to extend the service. It might be a desirable behavior to add in additional logic to a standard order cancel call to additionally log every cancellation. To achieve this end, we need to extend the CartService.
+Let's first take a look at a service where we want to alter the behavior slightly. In this case, the best approach is to extend the service. It might be a desirable behavior to add additional logic to a standard order cancel call to additionally log every cancellation. To achieve this, we need to extend the `CartServiceImpl`.
 
 ```java
 public class MyCartServiceImpl extends CartServiceImpl {
@@ -22,27 +22,27 @@ public class MyCartServiceImpl extends CartServiceImpl {
 }
 ```
 
-In our example, we override the `cancelOrder` method from the parent class and add in our logging of the cancel call. Immediately after logging the cancel, we call the cancelOrder method from the parent class. All the cancel logic is surrounded with a try / catch block and a OrderCancellationRuntimeException is thrown should a problem occur during the cancellation at any point.
+In our example, we override the `cancelOrder()` method from the parent class and add in our logging of the cancel call. Immediately after logging the cancellation, we call `cancelOrder()` from the parent class. All the cancel logic is surrounded with a try-catch block and an `OrderCancellationRuntimeException` is thrown should a problem occur during the cancellation at any point.
 
-Before our new service extension becomes active, we must first register it with Broadleaf Commerce. Since we're extending the CartService, we need to override the key id `blCartService`:
+Before our new service extension becomes active, we must first register it with Broadleaf Commerce. Since we're extending the `CartService`, we need to override the key id `blCartService`:
 
 ```xml
 <bean id="blCartService" class="com.mycompany.order.service.MyCartServiceImpl"/>
 ```
 
-This bean definition should be added to your application context. Once in place, Broadleaf Commerce will now instantiate MyCartService when an instance of CartService is required and the new cancelOrder method implementation will be called whenever an order is cancelled.
+This bean definition should be added to your application context. Once in place, Broadleaf Commerce will now instantiate `MyCartService` when an instance of `CartService` is required and the new `cancelOrder()` method implementation will be called whenever an order is cancelled.
 
-### Caveat in regards to Transactions and AOP
+> ### Caveat in regards to Transactions and AOP
 
-Most of the Broadleaf services use `@Transactional` annotations which means that Spring will wrap the service implementation within a JDK Proxy. By default, JDK proxies will only be castable to interfaces and not to the actual runtime type. Because of this, if you were to inject the `blCartService` bean if you attempted to cast to MyCartServiceImpl it would throw a ClassCastException.
+> Most of the Broadleaf services use `@Transactional` annotations, which means that Spring will wrap the service implementation within a JDK Proxy. By default, JDK proxies will only be castable to interfaces and not to the actual runtime type. Because of this, if you were to inject the `blCartService` bean and attempted to cast it to `MyCartServiceImpl`, it would throw a `ClassCastException`.
 
-This could be problematic if you were adding more methods to your implementation of CartService. The easy fix for this is to have your `MyCartServiceImpl` implement a new interface that you create for your new methods.
+> This could be problematic if you were adding more methods to your implementation of `CartService`. The quick fix for this is to have your `MyCartServiceImpl` implement a new interface that you create for your new methods.
 
 ## Re-Implement An Entire Service
 
-Sometimes, you may wish to radically change the way a Broadleaf Commerce service operates. For example, your situation may require that you retrieve catalog information from an internal web service instead of the standard database. To achieve such behavior, you would need to implement the CatalogService interface with your own code to retrieve product information from your web service and construct the appropriate domain objects. 
+Sometimes, you may wish to radically change the way a Broadleaf Commerce service operates. For example, your situation may require that you retrieve catalog information from an internal web service instead of the standard database. To achieve such behavior, you would need to implement the `CatalogService` interface with your own code to retrieve product information from your web service and construct the appropriate domain objects. 
 
-> Note - it is not suggested to retrieve catalog information from a web service real-time on every call, as this would likely have a deleterious effect on the performance of your Broadleaf Commerce-enabled site. Rather, a cached approach would be more appropriate. Perhaps results from calls to the web service could be cached locally and only updated when those results become stale after some arbitrary amount of time.
+> Note: It is not suggested to retrieve catalog information from a web service real-time on every call, as this would likely have a deleterious effect on the performance of your Broadleaf Commerce-enabled site. Rather, a cached approach would be more appropriate. Perhaps results from calls to the web service could be cached locally and only updated when those results become stale after some arbitrary amount of time.
 
 Let's review what an implementation of this type might look like:
 
@@ -69,7 +69,7 @@ public class MyCatalogServiceImpl implements CatalogService {
 }
 ```
 
-In this example, we attempt to demonstrate how a custom CatalogService implementation might look with a custom web service client that retrieves catalog information instead of the default retrieval from the database. You'll notice that the main job of the service is to translate from the web service domain into the Broadleaf Commerce domain.
+In this example, we attempt to demonstrate how a custom `CatalogService` implementation might look with a custom web service client that retrieves catalog information instead of the default retrieval from the database. You'll notice that the main job of the service is to translate from the web service domain into the Broadleaf Commerce domain.
 
 Of course, like any other Broadleaf Commerce override, you must specify your new service in your application context. In this case, you want to override the key id `blCatalogService`. 
 

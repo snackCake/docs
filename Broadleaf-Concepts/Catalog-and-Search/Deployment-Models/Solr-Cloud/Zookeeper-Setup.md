@@ -1,6 +1,6 @@
 # Zookeeper Setup
 
-Zookeeper is a framework for managing clusters.  It provides mechaisms for failover and distributed file and state management.  Zookeeper is essential to the function of SolrCloud.  For more information on Zookeeper, see the documentation on the [Solr wiki](https://cwiki.apache.org/confluence/display/solr/SolrCloud+Configuration+and+Parameters) and on the [Zookeeper Site](http://zookeeper.apache.org/).
+Zookeeper is a framework for managing clusters.  It provides mechanisms for failover and distributed file and state management.  Zookeeper is essential to the function of SolrCloud.  For more information on Zookeeper, see the documentation on the [Solr wiki](https://cwiki.apache.org/confluence/display/solr/SolrCloud+Configuration+and+Parameters) and on the [Zookeeper Site](http://zookeeper.apache.org/).
 
 Download the appropriate [version of Zookeeper](https://cwiki.apache.org/confluence/display/solr/Setting+Up+an+External+ZooKeeper+Ensemble) for the version of SolrCloud that you plan to use.  For example, for Solr 4.10, the version of Zookeeper is 3.4.6.
 
