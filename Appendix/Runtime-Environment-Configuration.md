@@ -17,7 +17,7 @@ This powerful configuration will allow you to share various attributes amongst e
 Furthermore, if you have local developer properties or other properties that you do not wish to commit to version control, you can specify file paths via the `property-shared-override` and `property-override` JVM runtime arguments.
 
 ```text
--Dproperty-share-override=/Users/SomeUser/SomeProject/secret.properties
+-Dproperty-shared-override=/Users/SomeUser/SomeProject/secret.properties
 ```
 
 
