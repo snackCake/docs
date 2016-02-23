@@ -1,6 +1,6 @@
 # Removing Thymeleaf
 
-Although the Broadleaf Commerce DemoSite shows a front-end that was built with the Thymeleaf tempalting engine, it is certainly possible to use a different templating language if you choose.
+Although the Broadleaf Commerce DemoSite shows a front-end that was built with the Thymeleaf templating engine, it is certainly possible to use a different templating language if you choose.
 
 If you would like to completely remove depdencency on Thymeleaf JARs from the *site* project, follow these steps:
 
